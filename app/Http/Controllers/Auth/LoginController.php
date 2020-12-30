@@ -51,7 +51,7 @@ class LoginController extends Controller
         ]);
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            \dd('login admin');
+            return \redirect()->route('admin.index');
         } elseif (Auth::guard('pemesan')->attempt($credentials)) {
             \dd('login pemesan');
         } elseif (Auth::guard('gudang')->attempt($credentials)) {

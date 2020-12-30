@@ -13,6 +13,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('/welcome', function () {
+    return view('layouts.main');
+    // return redirect()->route('login.index');
+});
 Route::get('/', function () {
     // return view('welcome');
     return redirect()->route('login.index');
@@ -20,4 +24,8 @@ Route::get('/', function () {
 Route::namespace('Auth')->group(function () {
     Route::get('login', 'LoginController@index')->name('login.index');
     Route::post('post-login', 'LoginController@formLogin')->name('post.login');
+});
+Route::namespace('Admin')->group(function () {
+    Route::resource('admin', 'AdminController');
+    Route::get('logout', 'AdminController@logout')->name('logout');
 });
