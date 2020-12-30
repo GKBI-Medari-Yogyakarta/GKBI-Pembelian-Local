@@ -40,6 +40,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'pemesan' => [
+            'driver' => 'session',
+            'provider' => 'pemesans',
+        ],
+        'gudang' => [
+            'driver' => 'session',
+            'provider' => 'gudangs',
+        ],
 
         'api' => [
             'driver' => 'token',
@@ -69,6 +77,14 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+        'pemesans' => [
+            'driver' => 'eloquent',
+            'model' => App\Model\Pemesan::class,
+        ],
+        'gudangs' => [
+            'driver' => 'eloquent',
+            'model' => App\Model\Gudang::class,
         ],
 
         // 'users' => [
