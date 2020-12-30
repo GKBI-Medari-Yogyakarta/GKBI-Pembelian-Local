@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
-class AdminController extends Controller
+class PemesanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,17 +14,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        if (Auth::check()) {
-            return \view('admin.index');
-        } else {
-            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
-        }
-    }
-    public function logout()
-    {
-        Session::flush();
-        Auth::logout();
-        return Redirect('login'); //routing login
+        //
     }
 
     /**
@@ -36,11 +24,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        if (Auth::check()) {
-            return \view('admin.create');
-        } else {
-            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
-        }
+        //
     }
 
     /**
@@ -51,16 +35,7 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        if (Auth::check()) {
-            $this->validate($request, [
-                'name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:pemesans'],
-                'password' => ['required', 'string', 'min:8', 'confirmed'],
-            ]);
-            
-        } else {
-            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
-        }
+        //
     }
 
     /**

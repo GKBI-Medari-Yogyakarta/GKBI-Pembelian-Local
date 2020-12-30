@@ -27,5 +27,6 @@ Route::namespace('Auth')->group(function () {
 });
 Route::namespace('Admin')->group(function () {
     Route::resource('admin', 'AdminController');
+    Route::resource('gudang', 'GudangController');
     Route::get('logout', 'AdminController@logout')->name('logout');
 });
