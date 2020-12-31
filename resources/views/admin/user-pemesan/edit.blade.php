@@ -40,7 +40,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control @error('password') is-invalid @enderror" id="exampleInputPassword1" name="password" value="{{ $user->password }}">
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" id="exampleInputPassword1" name="password">
                         @error('password')
                         <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">

@@ -102,6 +102,14 @@ class PemesanController extends Controller
     {
         if (Auth::check()) {
             $user = Pemesan::find($id);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            if ($request->password == null) {
+                $user->password = $user->password;
+            }
+            $user->password = Hash::make($request->password);
+            dd($user->password);
+            $user->save();
             return \redirect()->route('pemesan.index')->with(['msg' => "Berhasil merubah data $user->name"]);
         } else {
             # code...
