@@ -46,10 +46,10 @@ class LoginController extends Controller
     public function formLogin(Request $request)
     {
         \request()->validate([
-            'email' => 'required',
+            'name' => 'required',
             'password' => 'required',
         ]);
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('name', 'password');
         if (Auth::attempt($credentials)) {
             return \redirect()->route('admin.index');
         } elseif (Auth::guard('pemesan')->attempt($credentials)) {

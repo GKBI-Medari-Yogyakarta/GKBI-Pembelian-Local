@@ -14,7 +14,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/welcome', function () {
-    return view('layouts.main');
+    return view('admin.layouts.main');
     // return redirect()->route('login.index');
 });
 Route::get('/', function () {
@@ -28,5 +28,6 @@ Route::namespace('Auth')->group(function () {
 Route::namespace('Admin')->group(function () {
     Route::resource('admin', 'AdminController');
     Route::resource('gudang', 'GudangController');
+    Route::resource('pemesan', 'PemesanController');
     Route::get('logout', 'AdminController@logout')->name('logout');
 });

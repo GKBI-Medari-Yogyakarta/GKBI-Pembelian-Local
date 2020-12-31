@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserPemesanRequest;
+use App\Model\Pemesan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class PemesanController extends Controller
 {
@@ -14,7 +18,13 @@ class PemesanController extends Controller
      */
     public function index()
     {
-        //
+        if (Auth::check()) {
+            $user = Pemesan::query()->get();
+            // \dd($user);
+            return \view('admin.user-pemesan.index', \compact('user'));
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
 
     /**
@@ -24,7 +34,12 @@ class PemesanController extends Controller
      */
     public function create()
     {
-        //
+        if (Auth::check()) {
+            // \dd('cek');
+            return \view('admin.user-pemesan.create');
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
 
     /**
@@ -33,9 +48,19 @@ class PemesanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserPemesanRequest $req)
     {
-        //
+        if (Auth::check()) {
+            // \dd($req->all());
+            Pemesan::create([
+                'name' => $req->name,
+                'email' => $req->email,
+                'password' => Hash::make($req->password),
+            ]);
+            return \redirect()->route('pemesan.index')->with(['msg' => "Berhasil menambah user $req->name"]);
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
 
     /**
@@ -57,7 +82,13 @@ class PemesanController extends Controller
      */
     public function edit($id)
     {
-        //
+        if (Auth::check()) {
+            $user = Pemesan::find($id);
+            // \dd($user);
+            return \view('admin.user-pemesan.edit', \compact('user'));
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
 
     /**
@@ -69,7 +100,12 @@ class PemesanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if (Auth::check()) {
+            $user = Pemesan::find($id);
+            return \redirect()->route('pemesan.index')->with(['msg' => "Berhasil merubah data $user->name"]);
+        } else {
+            # code...
+        }
     }
 
     /**

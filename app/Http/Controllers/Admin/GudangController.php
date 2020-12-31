@@ -16,8 +16,7 @@ class GudangController extends Controller
     public function index()
     {
         // \dd('test');
-        if (Auth::guard('gudang')->check()) {
-            // \dd('cek');
+        if (Auth::check()) {
             return \view('admin.user-gudang.index');
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);

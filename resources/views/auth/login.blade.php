@@ -148,11 +148,11 @@
             {{-- @csrf --}}
             <h1>Login</h1>
             <div class="form-group">
-                <label for="email"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                <input type="text" name="email" id="email" placeholder="Your Name"/>
-                @if ($errors->has('email'))
+                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                <input type="text" name="name" id="name" placeholder="Your Name"/>
+                @if ($errors->has('name'))
                 <span class="error">
-                  {{ $errors->first('email') }}
+                  {{ $errors->first('name') }}
                 </span>
                 @endif
             </div>

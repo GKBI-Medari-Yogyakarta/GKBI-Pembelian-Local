@@ -14,9 +14,9 @@
         <script src="{{ asset('js/all.min.js') }}" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
-        @include('layouts.navbar')
+        @include('admin.layouts.navbar')
         <div id="layoutSidenav">
-            @include('layouts.sidebar')
+            @include('admin.layouts.sidebar')
             <div id="layoutSidenav_content">
                 @yield('main')
                 <footer class="py-4 bg-light mt-auto">

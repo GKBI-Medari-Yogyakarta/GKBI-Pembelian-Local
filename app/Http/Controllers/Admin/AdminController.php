@@ -57,7 +57,6 @@ class AdminController extends Controller
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:pemesans'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
             ]);
-            
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
