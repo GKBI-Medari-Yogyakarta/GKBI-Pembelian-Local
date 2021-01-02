@@ -56,6 +56,10 @@ class LoginController extends Controller
             \dd('login pemesan');
         } elseif (Auth::guard('gudang')->attempt($credentials)) {
             \dd(Auth::guard('gudang')->user()->name);
+        } elseif (Auth::guard('pembelian')->attempt($credentials)) {
+            \dd(Auth::guard('pembelian')->user()->name);
+        } elseif (Auth::guard('akuntansi')->attempt($credentials)) {
+            \dd(Auth::guard('akuntansi')->user()->name);
         } else {
             \dd('akun tidak ada');
         }

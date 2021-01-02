@@ -17,7 +17,7 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-dolly-flatbed"></i></div>
                     User Pembelian
                 </a>
-                <a class="nav-link" href="#">
+                <a class="nav-link {{ Request::url() == url('admin-akuntansi') ? 'active' : '' }}" href="{{ URL::route('admin-akuntansi.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-money-check"></i></div>
                     User Akuntansi
                 </a>
@@ -28,15 +28,15 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
                     User Pemesan
                 </a>
-                <a class="nav-link {{ Request::url() == url('admin-gudang/create') ? 'active' : '' }}" href="{{ URL::route('admin-gudang.index') }}">
+                <a class="nav-link {{ Request::url() == url('admin-gudang/create') ? 'active' : '' }}" href="{{ URL::route('admin-gudang.create') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
                     User Gudang
                 </a>
-                <a class="nav-link" href="#">
+                <a class="nav-link {{ Request::url() == url('admin-pembelian/create') ? 'active' : '' }}" href="{{ URL::route('admin-pembelian.create') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-dolly-flatbed"></i></div>
                     User Pembelian
                 </a>
-                <a class="nav-link" href="#">
+                <a class="nav-link {{ Request::url() == url('admin-akuntansi/create') ? 'active' : '' }}" href="{{ URL::route('admin-akuntansi.create') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-money-check"></i></div>
                     User Akuntansi
                 </a>
