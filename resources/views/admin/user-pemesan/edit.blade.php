@@ -11,7 +11,7 @@
                 Form edit data user {{ $user->name }}
             </div>
             <div class="card-body">
-                <form action="{{ URL::route('pemesan.update',$user->id) }}" method="POST">
+                <form action="{{ URL::route('admin-pemesan.update',$user->id) }}" method="POST">
                     @method('put')
                     {{ csrf_field() }}
                     <div class="form-group">
@@ -44,7 +44,7 @@
                         <p><strong>biarkan kosong jika tidak ingin mengganti password!!</strong></p>
                     </div>
                     <button type="submit" class="btn btn-outline-success">Simpan</button>
-                    <a href="{{ URL::route('pemesan.index') }}" class="btn btn-outline-primary">Batal</a>
+                    <a href="{{ URL::route('admin-pemesan.index') }}" class="btn btn-outline-primary">Batal</a>
                 </form>
             </div>
         </div>

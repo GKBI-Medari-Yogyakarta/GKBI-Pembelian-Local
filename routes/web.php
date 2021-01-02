@@ -27,7 +27,7 @@ Route::namespace('Auth')->group(function () {
 });
 Route::namespace('Admin')->group(function () {
     Route::resource('admin', 'AdminController');
-    Route::resource('gudang', 'GudangController');
-    Route::resource('pemesan', 'PemesanController');
+    Route::resource('admin-gudang', 'GudangController');
+    Route::resource('admin-pemesan', 'PemesanController');
     Route::get('logout', 'AdminController@logout')->name('logout');
 });

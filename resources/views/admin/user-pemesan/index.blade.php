@@ -36,8 +36,8 @@
                                 <td>{{ $pemesan->name }}</td>
                                 <td>{{ $pemesan->email }}</td>
                                 <td>
-                                    <a href="{{ URL::route('pemesan.edit',$pemesan->id) }}" class="btn btn-outline-warning">Edit</a>
-                                    <form action="{{ URL::route('pemesan.destroy',$pemesan->id) }}"
+                                    <a href="{{ URL::route('admin-pemesan.edit',$pemesan->id) }}" class="btn btn-outline-warning">Edit</a>
+                                    <form action="{{ URL::route('admin-pemesan.destroy',$pemesan->id) }}"
                                         method="POST" class="btn">
                                         @method('delete')
                                         @csrf
@@ -60,7 +60,7 @@
                             @endforelse
                         </tbody>
                     </table>
-                    <a href="{{ URL::route('pemesan.create') }}" class="btn btn-primary">Tambah</a>
+                    <a href="{{ URL::route('admin-pemesan.create') }}" class="btn btn-primary">Tambah</a>
                 </div>
             </div>
         </div>

@@ -36,8 +36,8 @@
                                 <td>{{ $gudang->name }}</td>
                                 <td>{{ $gudang->email }}</td>
                                 <td>
-                                    <a href="{{ URL::route('gudang.edit',$gudang->id) }}" class="btn btn-outline-warning">Edit</a>
-                                    <form action="{{ URL::route('gudang.destroy',$gudang->id) }}"
+                                    <a href="{{ URL::route('admin-gudang.edit',$gudang->id) }}" class="btn btn-outline-warning">Edit</a>
+                                    <form action="{{ URL::route('admin-gudang.destroy',$gudang->id) }}"
                                         method="POST" class="btn">
                                         @method('delete')
                                         @csrf
@@ -60,7 +60,7 @@
                             @endforelse
                         </tbody>
                     </table>
-                    <a href="{{ URL::route('gudang.create') }}" class="btn btn-primary">Tambah</a>
+                    <a href="{{ URL::route('admin-gudang.create') }}" class="btn btn-primary">Tambah</a>
                 </div>
             </div>
         </div>

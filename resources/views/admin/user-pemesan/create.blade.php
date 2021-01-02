@@ -11,7 +11,7 @@
                 Form buat data user pemesan
             </div>
             <div class="card-body">
-                <form action="{{ URL::route('pemesan.store') }}" method="POST">
+                <form action="{{ URL::route('admin-pemesan.store') }}" method="POST">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="name">Nama</label>
@@ -50,7 +50,7 @@
                         @enderror
                     </div>
                     <button type="submit" class="btn btn-outline-success">Simpan</button>
-                    <a href="{{ URL::route('pemesan.index') }}" class="btn btn-outline-primary">Batal</a>
+                    <a href="{{ URL::route('admin-pemesan.index') }}" class="btn btn-outline-primary">Batal</a>
                 </form>
             </div>
         </div>

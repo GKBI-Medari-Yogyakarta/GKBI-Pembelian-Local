@@ -54,7 +54,7 @@ class GudangController extends Controller
                 'email' => $req->email,
                 'password' => Hash::make($req->password),
             ]);
-            return \redirect()->route('gudang.index')->with(['msg' => "Berhasil menambah user $req->name"]);
+            return \redirect()->route('admin-gudang.index')->with(['msg' => "Berhasil menambah user $req->name"]);
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
@@ -109,7 +109,7 @@ class GudangController extends Controller
             }
             $user->password = Hash::make($req->password);
             $user->save();
-            return \redirect()->route('gudang.index')->with(['msg' => "Berhasil merubah data user $user->name"]);
+            return \redirect()->route('admin-gudang.index')->with(['msg' => "Berhasil merubah data user $user->name"]);
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }

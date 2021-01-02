@@ -5,11 +5,11 @@
                 <div class="sb-sidenav-menu-heading nav-link active">SISTEM UNTUK MEMBUAT USER BARU</div>
                 {{-- List User --}}
                 <div class="sb-sidenav-menu-heading"><i class="fas fa-users"></i> List User</div>
-                <a class="nav-link {{ Request::url() == url('pemesan') ? 'active' : '' }}" href="{{ URL::route('pemesan.index') }}">
+                <a class="nav-link {{ Request::url() == url('admin-pemesan') ? 'active' : '' }}" href="{{ URL::route('admin-pemesan.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
                     User Pemesan
                 </a>
-                <a class="nav-link {{ Request::url() == url('gudang') ? 'active' : '' }}" href="{{ URL::route('gudang.index') }}">
+                <a class="nav-link {{ Request::url() == url('admin-gudang') ? 'active' : '' }}" href="{{ URL::route('admin-gudang.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
                     User Gudang
                 </a>
@@ -24,11 +24,11 @@
 
                 {{-- Tambah Data --}}
                 <div class="sb-sidenav-menu-heading"><i class="fas fa-user-plus"></i> Tambah Data User</div>
-                <a class="nav-link {{ Request::url() == url('pemesan/create') ? 'active' : '' }}" href="{{ URL::route('pemesan.create') }}">
+                <a class="nav-link {{ Request::url() == url('admin-pemesan/create') ? 'active' : '' }}" href="{{ URL::route('admin-pemesan.create') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
                     User Pemesan
                 </a>
-                <a class="nav-link {{ Request::url() == url('gudang') ? 'active' : '' }}" href="{{ URL::route('gudang.index') }}">
+                <a class="nav-link {{ Request::url() == url('admin-gudang/create') ? 'active' : '' }}" href="{{ URL::route('admin-gudang.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
                     User Gudang
                 </a>
