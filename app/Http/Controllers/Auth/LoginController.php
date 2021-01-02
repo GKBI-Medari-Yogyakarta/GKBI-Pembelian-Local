@@ -55,7 +55,7 @@ class LoginController extends Controller
         } elseif (Auth::guard('pemesan')->attempt($credentials)) {
             \dd('login pemesan');
         } elseif (Auth::guard('gudang')->attempt($credentials)) {
-            return \redirect()->route('gudang.index');
+            \dd(Auth::guard('gudang')->user()->name);
         } else {
             \dd('akun tidak ada');
         }

@@ -35,7 +35,6 @@ class PemesanController extends Controller
     public function create()
     {
         if (Auth::check()) {
-            // \dd('cek');
             return \view('admin.user-pemesan.create');
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
@@ -51,7 +50,6 @@ class PemesanController extends Controller
     public function store(UserPemesanRequest $req)
     {
         if (Auth::check()) {
-            // \dd($req->all());
             Pemesan::create([
                 'name' => $req->name,
                 'email' => $req->email,
@@ -98,21 +96,25 @@ class PemesanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $req, $id)
     {
         if (Auth::check()) {
+            $this->validate($req, [
+                'name' => 'required',
+                'email' => 'required'
+            ]);
             $user = Pemesan::find($id);
-            $user->name = $request->name;
-            $user->email = $request->email;
-            if ($request->password == null) {
+            $user->name = $req->name;
+            $user->email = $req->email;
+            if (empty($req->password)) {
                 $user->password = $user->password;
             }
-            $user->password = Hash::make($request->password);
-            dd($user->password);
+            $user->password = Hash::make($req->password);
+            // dd($user->password);
             $user->save();
-            return \redirect()->route('pemesan.index')->with(['msg' => "Berhasil merubah data $user->name"]);
+            return \redirect()->route('pemesan.index')->with(['msg' => "Berhasil merubah data user $user->name"]);
         } else {
-            # code...
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
 
@@ -124,6 +126,13 @@ class PemesanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (Auth::check()) {
+            $user = Pemesan::find($id);
+            // \dd($user);
+            $user->delete();
+            return \redirect()->back()->with(['msg' => "Data user $user->name berhasil di hapus!!"]);
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
 }

@@ -4,68 +4,63 @@
 @section('main')
 <main>
     <div class="container-fluid">
-        <h1 class="mt-4">Data User Pemesan</h1> 
+        <h1 class="mt-4">Data User Pemesan</h1>
+        @if(session('msg'))
+            <div class="alert alert-success alert-dismissible" role="alert" style="z-index: 1">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ session('msg') }}
+            </div>
+        @endif
         <div class="card mb-4 mt-4">
             <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
-                DataTable Example
+                DataTable User Pemesan
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th class="text-center align-middle">No</th>
-                                <th class="text-center align-middle">NISN</th>
-                                <th class="text-center align-middle">Nama</th>
-                                <th class="text-center align-middle">Jenis</th>
-                                <th class="text-center align-middle">Kelas</th>
-                                <th class="text-center align-middle">Penerima</th>
-                                <th class="text-center align-middle">Penghasilan</th>
-                                <th class="text-center align-middle">Aksi</th>
+                                <th scope="col">#</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">E-mail</th>
+                                <th scope="col">Aksi</th>
                             </tr>
                         </thead>
-                        <tfoot>
-                            <tr>
-                                <th class="text-center align-middle">No</th>
-                                <th class="text-center align-middle">Siswa</th>
-                                <th class="text-center align-middle">Siswa</th>
-                                <th class="text-center align-middle">Kelamin</th>
-                                <th class="text-center align-middle">Siswa</th>
-                                <th class="text-center align-middle">KKS</th>
-                                <th class="text-center align-middle">Orang Tua</th>
-                                <th class="text-center align-middle">Aksi</th>
-                            </tr>
-                        </tfoot>
                         <tbody>
+                            @forelse ($user as $gudang)
                             <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
-                                <td>61</td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $gudang->name }}</td>
+                                <td>{{ $gudang->email }}</td>
                                 <td>
-                                    <a href="edit-siswa.html" class="btn btn-outline-primary">Edit</a>
+                                    <a href="{{ URL::route('gudang.edit',$gudang->id) }}" class="btn btn-outline-warning">Edit</a>
+                                    <form action="{{ URL::route('gudang.destroy',$gudang->id) }}"
+                                        method="POST" class="btn">
+                                        @method('delete')
+                                        @csrf
+                                        <button class="btn btn-outline-danger">
+                                            Hapus
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>
+                                    <a href="edit-siswa.html" class="btn btn-outline-warning">Edit</a>
                                     <a href="#" class="btn btn-outline-danger">Hapus</a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
-                                <td>61</td>
-                                <td>
-                                    <a href="edit-siswa.html" class="btn btn-outline-primary">Edit</a>
-                                    <a href="#" class="btn btn-outline-danger">Hapus</a>
-                                </td>
-                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
+                    <a href="{{ URL::route('gudang.create') }}" class="btn btn-primary">Tambah</a>
                 </div>
             </div>
         </div>

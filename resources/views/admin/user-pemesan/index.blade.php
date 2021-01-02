@@ -16,7 +16,7 @@
         <div class="card mb-4 mt-4">
             <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
-                DataTable Example
+                DataTable User Pemesan
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -37,7 +37,14 @@
                                 <td>{{ $pemesan->email }}</td>
                                 <td>
                                     <a href="{{ URL::route('pemesan.edit',$pemesan->id) }}" class="btn btn-outline-warning">Edit</a>
-                                    <a href="#" class="btn btn-outline-danger">Hapus</a>
+                                    <form action="{{ URL::route('pemesan.destroy',$pemesan->id) }}"
+                                        method="POST" class="btn">
+                                        @method('delete')
+                                        @csrf
+                                        <button class="btn btn-outline-danger">
+                                            Hapus
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                             @empty

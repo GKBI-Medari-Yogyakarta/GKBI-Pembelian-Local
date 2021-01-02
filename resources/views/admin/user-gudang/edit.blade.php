@@ -4,18 +4,19 @@
 @section('main')
 <main>
     <div class="container-fluid">
-        <h1 class="mt-4">Buat User Gudang</h1>
+        <h1 class="mt-4">Edit User Gudang</h1>
         <div class="card mb-4 mt-4">
             <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
-                Form buat data user gudang
+                Form edit data user {{ $user->name }}
             </div>
             <div class="card-body">
-                <form action="{{ URL::route('gudang.store') }}" method="POST">
+                <form action="{{ URL::route('gudang.update',$user->id) }}" method="POST">
+                    @method('put')
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="name">Nama</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ $user->name }}">
                         @error('name')
                         <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -27,7 +28,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email Dummy</label>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value="{{ old('email') }}">
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value="{{ $user->email }}">
                         @error('email')
                         <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -39,15 +40,8 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control @error('password') is-invalid @enderror" id="exampleInputPassword1" name="password" value="{{ old('password') }}">
-                        @error('password')
-                        <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            {{ $message }}
-                        </div>
-                        @enderror
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                        <p><strong>biarkan kosong jika tidak ingin mengganti password!!</strong></p>
                     </div>
                     <button type="submit" class="btn btn-outline-success">Simpan</button>
                     <a href="{{ URL::route('gudang.index') }}" class="btn btn-outline-primary">Batal</a>
