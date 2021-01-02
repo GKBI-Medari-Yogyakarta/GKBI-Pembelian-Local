@@ -13,7 +13,7 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
                     User Gudang
                 </a>
-                <a class="nav-link" href="#">
+                <a class="nav-link {{ Request::url() == url('admin-pembelian') ? 'active' : '' }}" href="{{ URL::route('admin-pembelian.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-dolly-flatbed"></i></div>
                     User Pembelian
                 </a>

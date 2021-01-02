@@ -5,7 +5,7 @@ namespace App\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class Gudang extends Authenticatable
+class Pembelian extends Authenticatable
 {
     use Notifiable;
 

@@ -48,6 +48,14 @@ return [
             'driver' => 'session',
             'provider' => 'gudangs',
         ],
+        'pembelian' => [
+            'driver' => 'session',
+            'provider' => 'pembelians',
+        ],
+        'akuntansi' => [
+            'driver' => 'session',
+            'provider' => 'akuntansis',
+        ],
 
         'api' => [
             'driver' => 'token',
@@ -86,6 +94,14 @@ return [
             'driver' => 'eloquent',
             'model' => App\Model\Gudang::class,
         ],
+        'pembelians' => [
+            'driver' => 'eloquent',
+            'model' => App\Model\Pembelian::class,
+        ],
+        'akuntansis' => [
+            'driver' => 'eloquent',
+            'model' => App\Model\Akuntansi::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
@@ -111,6 +127,30 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'pemesans' => [
+            'provider' => 'pemesans',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'gudangs' => [
+            'provider' => 'gudangs',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'pembelians' => [
+            'provider' => 'pembelians',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'akuntansis' => [
+            'provider' => 'akuntansis',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
