@@ -16,11 +16,11 @@
         <div class="card mb-4 mt-4">
             <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
-                DataTable User gudang
+                DataTable User pembelian
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                   <h1>Dashboard Gudang</h1>
+                   <h1>Dashboard pembelian</h1>
                 </div>
             </div>
         </div>

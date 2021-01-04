@@ -33,3 +33,10 @@ Route::namespace('Admin')->group(function () {
     Route::resource('admin-akuntansi', 'AkuntansiController');
     Route::get('logout', 'AdminController@logout')->name('logout');
 });
+Route::namespace('User')->group(function () {
+    Route::resource('user-pemesan', 'AdminPemesanController');
+    Route::resource('user-gudang', 'AdminGudangController');
+    Route::resource('user-pemesan', 'AdminPemesanController');
+    Route::resource('user-pembelian', 'AdminPembelianController');
+    Route::resource('user-akuntansi', 'AdminAkuntansiController');
+});

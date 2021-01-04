@@ -54,7 +54,7 @@ class PembelianController extends Controller
                 'email' => $req->email,
                 'password' => Hash::make($req->password),
             ]);
-            return \redirect()->route('admin-pemesan.index')->with(['msg' => "Berhasil menambah user $req->name"]);
+            return \redirect()->route('admin-pembelian.index')->with(['msg' => "Berhasil menambah user $req->name"]);
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
@@ -108,7 +108,7 @@ class PembelianController extends Controller
             }
             $user->password = $req->password;
             $user->save();
-            return \redirect()->route('admin-pemesan.index')->with(['msg' => "Berhasil merubah data user $req->name"]);
+            return \redirect()->route('admin-pembelian.index')->with(['msg' => "Berhasil merubah data user $req->name"]);
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }

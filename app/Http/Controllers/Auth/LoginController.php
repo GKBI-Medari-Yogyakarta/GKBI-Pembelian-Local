@@ -53,13 +53,13 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             return \redirect()->route('admin.index');
         } elseif (Auth::guard('pemesan')->attempt($credentials)) {
-            \dd('login pemesan');
+            return \redirect()->route('user-pemesan.index');
         } elseif (Auth::guard('gudang')->attempt($credentials)) {
-            \dd(Auth::guard('gudang')->user()->name);
+            return \redirect()->route('user-gudang.index');
         } elseif (Auth::guard('pembelian')->attempt($credentials)) {
-            \dd(Auth::guard('pembelian')->user()->name);
+            return \redirect()->route('user-pembelian.index');
         } elseif (Auth::guard('akuntansi')->attempt($credentials)) {
-            \dd(Auth::guard('akuntansi')->user()->name);
+            return \redirect()->route('user-akuntansi.index');
         } else {
             \dd('akun tidak ada');
         }
