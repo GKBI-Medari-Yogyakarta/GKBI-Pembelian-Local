@@ -4,8 +4,13 @@ namespace App\Http\Controllers\Pemesan;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Pemesan\NegaraRequest;
+use App\Model\Pemesan\Kabupaten;
 use App\Model\Pemesan\Negara;
+use App\Model\Pemesan\Provinsi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+use function Ramsey\Uuid\v1;
 
 class NegaraController extends Controller
 {
@@ -16,8 +21,13 @@ class NegaraController extends Controller
      */
     public function index()
     {
-        $n = Negara::all();
-        return \view('pemesan.alamat.negara.index', \compact('n'));
+        // SELECT n.id, n.nama,n.kode,p.nama as nm_prov, p.alias, k.prov_id,k.nama as nm_kab FROM negaras n JOIN provinsis p on n.id=p.negara_id JOIN kabupatens k on p.id=k.prov_id
+        $alamat = DB::table('negaras')
+            ->get();
+        $n = Negara::paginate(5);
+        $p = Provinsi::paginate(5);
+        $k = Kabupaten::paginate(5);
+        return \view('pemesan.alamat.index', \compact('alamat', 'n', 'p', 'k'));
     }
 
     /**
@@ -38,11 +48,12 @@ class NegaraController extends Controller
      */
     public function store(NegaraRequest $req)
     {
+        \dd($req->all());
         Negara::create([
             'nama' => $req->nama,
-            'nama' => $req->kode,
+            'kode' => $req->kode,
         ]);
-        return \redirect()->route('negara.index')->with(['msg' => "Berhasil menambah negara $req->nama"]);
+        return \redirect()->back()->with(['msg' => "Berhasil menambah negara $req->nama"]);
     }
 
     /**

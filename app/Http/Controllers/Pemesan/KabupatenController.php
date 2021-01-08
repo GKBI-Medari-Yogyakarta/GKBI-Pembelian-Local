@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Pemesan;
 
 use App\Http\Controllers\Controller;
+use App\Model\Pemesan\Kabupaten;
 use Illuminate\Http\Request;
 
 class KabupatenController extends Controller
@@ -14,7 +15,8 @@ class KabupatenController extends Controller
      */
     public function index()
     {
-        //
+        $kab = Kabupaten::query()->get();
+        return \view('pemesan.alamat.prov.index', \compact('kab'));
     }
 
     /**

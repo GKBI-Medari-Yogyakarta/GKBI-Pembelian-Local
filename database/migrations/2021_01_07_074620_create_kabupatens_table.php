@@ -16,7 +16,8 @@ class CreateKabupatensTable extends Migration
         Schema::create('kabupatens', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('prov_id');
-            $table->string('nama');
+            $table->string('nama')->unique();
+            $table->string('kota');
             $table->foreign('prov_id')->references('id')->on('provinsis');
             $table->timestamps();
         });

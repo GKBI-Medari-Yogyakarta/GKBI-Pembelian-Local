@@ -24,8 +24,15 @@ class NegaraRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => 'required',
+            'nama' => 'required|unique:negaras',
             'kode' => 'required',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'nama.required' => 'kolom nama negara kosong atau sudah ada.',
+            'kode.required' => 'kolom kode wajib diisi.',
         ];
     }
 }

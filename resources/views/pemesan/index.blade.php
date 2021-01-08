@@ -1,6 +1,6 @@
-@extends('admin.layouts.main')
-@section('title','Admin Page')
-@section('status-user','Admin Page')
+@extends('pemesan.layouts.main')
+@section('title','Pemesan Page')
+@section('status-user','Pemesan Page')
 @section('main')
 <main>
     <div class="container-fluid">

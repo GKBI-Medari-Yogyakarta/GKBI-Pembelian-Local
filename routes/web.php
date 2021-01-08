@@ -40,3 +40,8 @@ Route::namespace('User')->group(function () {
     Route::resource('user-pembelian', 'AdminPembelianController');
     Route::resource('user-akuntansi', 'AdminAkuntansiController');
 });
+Route::namespace('Pemesan')->group(function () {
+    Route::resource('negara', 'NegaraController');
+    Route::resource('provinsi', 'ProvinsiController');
+    Route::resource('kabupaten', 'KabupatenController');
+});

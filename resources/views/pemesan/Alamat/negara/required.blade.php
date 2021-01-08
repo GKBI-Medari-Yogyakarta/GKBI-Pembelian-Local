@@ -1,0 +1,16 @@
+@error('nama')
+    <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{ $message }}
+    </div>
+@enderror
+@error('kode')
+    <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{ $message }}
+    </div>
+@enderror

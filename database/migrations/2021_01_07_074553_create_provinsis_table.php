@@ -16,7 +16,7 @@ class CreateProvinsisTable extends Migration
         Schema::create('provinsis', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('negara_id');
-            $table->string('nama');
+            $table->string('nama')->unique();
             $table->string('alias');
             $table->foreign('negara_id')->references('id')->on('negaras');
             $table->timestamps();

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Pemesan;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProvRequest extends FormRequest
+class KabRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,9 @@ class ProvRequest extends FormRequest
     public function rules()
     {
         return [
-            'negara_id' => 'required',
-            'nama' => 'required|unique:provinsis',
-            'alias' => 'required',
+            'prov_id' => 'required',
+            'nama' => 'required|unique:kabupatens',
+            'kota' => 'required',
         ];
     }
 }
