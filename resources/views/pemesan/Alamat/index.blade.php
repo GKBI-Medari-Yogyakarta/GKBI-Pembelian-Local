@@ -36,21 +36,21 @@
                                     @forelse ($n as $negara)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $negara->name }}</td>
-                                    <td>{{ $negara->email }}</td>
-                                    <td>
-                                        <a href="{{ URL::route('negara.edit') }}"
-                                            class="btn btn-outline-warning">Edit</a>
-                                        <form
-                                            action="{{ URL::route('negara.destroy',$negara->id) }}"
-                                            method="POST" class="btn">
-                                            @method('delete')
-                                            @csrf
-                                            <button class="btn btn-outline-danger">
-                                                Hapus
-                                            </button>
-                                        </form>
-                                    </td>
+                                        <td>{{ $negara->nama }}</td>
+                                        <td>{{ $negara->kode }}</td>
+                                        <td class="">
+                                            <a href="{{ URL::route('negara.edit',$negara->id) }}"
+                                                class="btn btn-outline-warning btn-sm">Edit</a>
+                                            <form
+                                                action="{{ URL::route('negara.destroy',$negara->id) }}"
+                                                method="POST" class="btn btn-sm p-0">
+                                                @method('delete')
+                                                @csrf
+                                                <button class="btn btn-outline-danger btn-sm">
+                                                    Hapus
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @empty
                                     <tr>
@@ -79,16 +79,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @forelse ($alamat as $gudang)
+                                @forelse ($p as $prov)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                <td>{{ $gudang->name }}</td>
-                                <td>{{ $gudang->email }}</td>
+                                <td>{{ $prov->nama }}</td>
+                                <td>{{ $prov->alias }}</td>
                                 <td>
-                                    <a href="{{ URL::route('admin-gudang.edit',$gudang->id) }}"
+                                    <a href="{{ URL::route('provinsi.edit',$prov->id) }}"
                                         class="btn btn-outline-warning">Edit</a>
                                     <form
-                                        action="{{ URL::route('admin-gudang.destroy',$gudang->id) }}"
+                                        action="{{ URL::route('provinsi.destroy',$prov->id) }}"
                                         method="POST" class="btn">
                                         @method('delete')
                                         @csrf
@@ -98,7 +98,7 @@
                                     </form>
                                 </td>
                                 </tr>
-                            @empty--}}
+                            @empty
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>Mark</td>
@@ -108,7 +108,7 @@
                                         <a href="#" class="btn btn-outline-danger btn-sm">Hapus</a>
                                     </td>
                                 </tr>
-                                {{-- @endforelse --}}
+                            @endforelse
                             </tbody>
                         </table>
                     </div>

@@ -29,4 +29,12 @@ class KabRequest extends FormRequest
             'kota' => 'required',
         ];
     }
+    public function messages()
+    {
+        return [
+            'prov_id.required' => 'Belum memiliki provinsi',
+            'nama.required' => 'kolom nama kabupaten kosong atau sudah ada.',
+            'kota.required' => 'kolom kota wajib diisi.',
+        ];
+    }
 }

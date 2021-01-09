@@ -36,7 +36,8 @@
 <div class="modal fade" id="tambahProv" data-backdrop="static" tabindex="-1" aria-labelledby="provLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content border border-primary">
-            <form>
+            <form action="{{ URL::route('provinsi.store') }}" method="POST">
+                {{ csrf_field() }}
                 <div class="modal-header bg-warning">
                     <h5 class="modal-title text-white" id="provLabel">Tambah Daftar Provinsi</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -47,7 +48,7 @@
                     <div class="form-group row">
                         <label for="negara" class="col-sm-3 col-form-label">Negara</label>
                         <div class="col-sm-9">
-                            <select name="" id="negara" class="form-control">
+                            <select name="negara_id" id="negara" class="form-control @error('negara_id') is-invalid @enderror">
                                 <option selected disabled>pilih negara</option>
                                 <option value="1">Indonesia</option>
                                 <option value="2">Arab Saudi</option>
@@ -57,13 +58,13 @@
                     <div class="form-group row">
                         <label for="nmProv" class="col-sm-3 col-form-label">Provinsi</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="nmProv">
+                            <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nmProv" name="nama" value="{{ old('nama') }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="aliasProv" class="col-sm-3 col-form-label">Alias</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="aliasProv">
+                            <input type="text" class="form-control @error('alias') is-invalid @enderror" id="aliasProv" name="alias" value="{{ old('alias') }}">
                         </div>
                     </div>
                 </div>
@@ -79,7 +80,8 @@
 <div class="modal fade" id="tambahKab" data-backdrop="static" tabindex="-1" aria-labelledby="kabLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content border border-info">
-            <form>
+            <form action="{{ URL::route('kabupaten.store') }}" method="POST">
+                {{ csrf_field() }}
                 <div class="modal-header bg-dark">
                     <h5 class="modal-title text-white" id="kabLabel">Tambah Daftar Kabupaten</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -90,7 +92,7 @@
                     <div class="form-group row">
                         <label for="provinsi" class="col-sm-3 col-form-label">Provinsi</label>
                         <div class="col-sm-9">
-                            <select name="" id="provinsi" class="form-control">
+                            <select name="prov_id" id="provinsi" class="form-control @error('prov_id') is-invalid @enderror">
                                 <option selected disabled>pilih provinsi</option>
                                 <option value="1">Daerah Istimewa Yogyakarta</option>
                                 <option value="2">Jawa Tengah</option>
@@ -100,13 +102,13 @@
                     <div class="form-group row">
                         <label for="nmKab" class="col-sm-3 col-form-label">Kabupaten</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="nmKab">
+                            <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nmKab" name="nama" value="{{ old('nama') }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="kota" class="col-sm-3 col-form-label">Kota</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="kota">
+                            <input type="text" class="form-control @error('kota') is-invalid @enderror" id="kota" name="kota" value="{{ old('kota') }}">
                         </div>
                     </div>
                 </div>

@@ -40,12 +40,13 @@ class ProvinsiController extends Controller
      */
     public function store(ProvRequest $req)
     {
+        \dd($req->all());
         Provinsi::create([
             'negara_id' => $req->negara_id,
             'nama' => $req->nama,
             'alias' => $req->alias,
         ]);
-        return \redirect()->route('prov.index')->with(['msg' => "Berhasil menambah provinsi $$req->nama"]);
+        return \redirect()->back()->with(['msg' => "Berhasil menambah provinsi $req->nama"]);
     }
 
     /**

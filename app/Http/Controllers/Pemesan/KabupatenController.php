@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Pemesan;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Pemesan\KabRequest;
 use App\Model\Pemesan\Kabupaten;
 use Illuminate\Http\Request;
 
@@ -35,9 +36,15 @@ class KabupatenController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(KabRequest $req)
     {
-        //
+        \dd($req->all());
+        Kabupaten::create([
+            'prov_id'=>$req->prov_id,
+            'nama'=>$req->nama,
+            'kota'=>$req->kota,
+        ]);
+        return \redirect()->back()->with(['msg'=>"Berhasil menambah provinsi $req->nama"]);
     }
 
     /**

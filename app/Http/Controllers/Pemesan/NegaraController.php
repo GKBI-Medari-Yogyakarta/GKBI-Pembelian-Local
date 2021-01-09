@@ -48,7 +48,7 @@ class NegaraController extends Controller
      */
     public function store(NegaraRequest $req)
     {
-        \dd($req->all());
+        // \dd($req->all());
         Negara::create([
             'nama' => $req->nama,
             'kode' => $req->kode,
@@ -76,7 +76,7 @@ class NegaraController extends Controller
     public function edit($id)
     {
         $negara = Negara::find($id);
-        return \view('pemesan.alamat.negara.edit', $negara->id);
+        return \view('pemesan.alamat.negara.edit', \compact('negara'));
     }
 
     /**

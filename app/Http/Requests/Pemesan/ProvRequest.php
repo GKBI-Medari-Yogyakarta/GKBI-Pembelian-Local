@@ -29,4 +29,12 @@ class ProvRequest extends FormRequest
             'alias' => 'required',
         ];
     }
+    public function messages()
+    {
+        return [
+            'negara_id.required' => 'Belum memiliki negara',
+            'nama.required' => 'kolom nama provinsi kosong atau sudah ada.',
+            'alias.required' => 'kolom alias wajib diisi.',
+        ];
+    }
 }
