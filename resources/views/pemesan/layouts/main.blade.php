@@ -12,6 +12,7 @@
         <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
         <link href="{{ asset('css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" crossorigin="anonymous" />
         <script src="{{ asset('js/all.min.js') }}" crossorigin="anonymous"></script>
+        @yield('custom-style')
     </head>
     <body class="sb-nav-fixed">
         @include('pemesan.layouts.navbar')
