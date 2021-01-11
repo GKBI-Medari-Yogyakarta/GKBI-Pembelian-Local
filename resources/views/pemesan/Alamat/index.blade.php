@@ -13,7 +13,7 @@
                 {{ session('msg') }}
             </div>
         @endif
-        @include('pemesan.alamat.negara.required')
+        @include('pemesan.alamat.required')
         <div class="card mb-4 mt-4">
             <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
@@ -69,92 +69,96 @@
                         </div>
                     </div>
                     <div class="col">
-                        <table class="table table-striped table-sm border border-info">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Provinsi</th>
-                                    <th scope="col">Alias</th>
-                                    <th scope="col">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($p as $prov)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                <td>{{ $prov->nama }}</td>
-                                <td>{{ $prov->alias }}</td>
-                                <td>
-                                    <a href="{{ URL::route('provinsi.edit',$prov->id) }}"
-                                        class="btn btn-outline-warning">Edit</a>
-                                    <form
-                                        action="{{ URL::route('provinsi.destroy',$prov->id) }}"
-                                        method="POST" class="btn">
-                                        @method('delete')
-                                        @csrf
-                                        <button class="btn btn-outline-danger">
-                                            Hapus
-                                        </button>
-                                    </form>
-                                </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>
-                                        <a href="edit-siswa.html" class="btn btn-outline-warning btn-sm">Edit</a>
-                                        <a href="#" class="btn btn-outline-danger btn-sm">Hapus</a>
-                                    </td>
-                                </tr>
-                            @endforelse
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-sm border border-info">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Provinsi</th>
+                                        <th scope="col">Alias</th>
+                                        <th scope="col">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse ($p as $prov)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $prov->nama }}</td>
+                                        <td>{{ $prov->alias }}</td>
+                                        <td class="float-right" style="min-width: 120px;">
+                                            <a href="{{ URL::route('provinsi.edit',$prov->id) }}"
+                                                class="btn btn-outline-warning btn-sm">Edit</a>
+                                            <form
+                                                action="{{ URL::route('provinsi.destroy',$prov->id) }}"
+                                                method="POST" class="btn btn-sm p-0">
+                                                @method('delete')
+                                                @csrf
+                                                <button class="btn btn-outline-danger btn-sm">
+                                                    Hapus
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>
+                                            <a href="edit-siswa.html" class="btn btn-outline-warning btn-sm">Edit</a>
+                                            <a href="#" class="btn btn-outline-danger btn-sm">Hapus</a>
+                                        </td>
+                                    </tr>
+                                @endforelse
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div class="col">
-                        <table class="table table-striped table-sm border border-info">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Kabupaten</th>
-                                    <th scope="col">Kota</th>
-                                    <th scope="col">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {{-- @forelse ($alamat as $gudang)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                <td>{{ $gudang->name }}</td>
-                                <td>{{ $gudang->email }}</td>
-                                <td>
-                                    <a href="{{ URL::route('admin-gudang.edit',$gudang->id) }}"
-                                        class="btn btn-outline-warning">Edit</a>
-                                    <form
-                                        action="{{ URL::route('admin-gudang.destroy',$gudang->id) }}"
-                                        method="POST" class="btn">
-                                        @method('delete')
-                                        @csrf
-                                        <button class="btn btn-outline-danger">
-                                            Hapus
-                                        </button>
-                                    </form>
-                                </td>
-                                </tr>
-                            @empty--}}
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-sm border border-info">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Kabupaten</th>
+                                        <th scope="col">Kota</th>
+                                        <th scope="col">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse ($k as $kabupaten)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $kabupaten->nama }}</td>
+                                    <td>{{ $kabupaten->kota }}</td>
                                     <td>
-                                        <a href="edit-siswa.html" class="btn btn-outline-warning btn-sm">Edit</a>
-                                        <a href="#" class="btn btn-outline-danger btn-sm">Hapus</a>
+                                        <a href="{{ URL::route('kabupaten.edit',$kabupaten->id) }}"
+                                            class="btn btn-outline-warning btn-sm">Edit</a>
+                                        <form
+                                            action="{{ URL::route('kabupaten.destroy',$kabupaten->id) }}"
+                                            method="POST" class="btn btn-sm p-0">
+                                            @method('delete')
+                                            @csrf
+                                            <button class="btn btn-outline-danger btn-sm">
+                                                Hapus
+                                            </button>
+                                        </form>
                                     </td>
-                                </tr>
-                                {{-- @endforelse --}}
-                            </tbody>
-                        </table>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>
+                                            <a href="edit-siswa.html" class="btn btn-outline-warning btn-sm">Edit</a>
+                                            <a href="#" class="btn btn-outline-danger btn-sm">Hapus</a>
+                                        </td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <h4 class="mt-2 p-2 border-bottom border-info">Alamat berdasarkan daftar kabupaten yang ada</h4>
@@ -171,6 +175,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @forelse ($k as $kab)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $kab->nama }}</td>
+                                <td>{{ $kab->kota }}</td>
+                            </tr>
+                            @empty
                             <tr>
                                 <th scope="row">1</th>
                                 <td>Mark</td>
@@ -182,7 +193,7 @@
                                     <a href="#" class="btn btn-outline-danger">Hapus</a>
                                 </td>
                             </tr>
-                            {{-- @endforelse --}}
+                            @endforelse
                         </tbody>
                     </table>
                     <div class="ml-2 mt-4 mb-4">

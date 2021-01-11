@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pemesan;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Pemesan\NegaraRequest;
+use App\Http\Requests\Pemesan\NegaraReqUpdate;
 use App\Model\Pemesan\Kabupaten;
 use App\Model\Pemesan\Negara;
 use App\Model\Pemesan\Provinsi;
@@ -31,16 +32,6 @@ class NegaraController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return \view('pemesan.alamat.negara.create');
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -48,7 +39,6 @@ class NegaraController extends Controller
      */
     public function store(NegaraRequest $req)
     {
-        // \dd($req->all());
         Negara::create([
             'nama' => $req->nama,
             'kode' => $req->kode,
@@ -86,10 +76,10 @@ class NegaraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(NegaraRequest $req, $id)
+    public function update(NegaraReqUpdate $req,  $id)
     {
         $negara = Negara::find($id);
-        $negara->name = $req->nama;
+        $negara->nama = $req->nama;
         $negara->kode = $req->kode;
         $negara->save();
         return \redirect()->route('negara.index')->with(['msg' => "Berhasil mengubah negara $req->nama"]);

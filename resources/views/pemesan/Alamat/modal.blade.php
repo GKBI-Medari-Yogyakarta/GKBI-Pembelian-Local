@@ -50,8 +50,11 @@
                         <div class="col-sm-9">
                             <select name="negara_id" id="negara" class="form-control @error('negara_id') is-invalid @enderror">
                                 <option selected disabled>pilih negara</option>
-                                <option value="1">Indonesia</option>
-                                <option value="2">Arab Saudi</option>
+                                @forelse ($n as $negara)
+                                <option value="{{ $negara->id }}">{{ $negara->nama }}</option>
+                                @empty
+                                <option disabled>tidak ditemukan daftar negara</option>
+                                @endforelse
                             </select>
                         </div>
                     </div>
@@ -94,8 +97,11 @@
                         <div class="col-sm-9">
                             <select name="prov_id" id="provinsi" class="form-control @error('prov_id') is-invalid @enderror">
                                 <option selected disabled>pilih provinsi</option>
-                                <option value="1">Daerah Istimewa Yogyakarta</option>
-                                <option value="2">Jawa Tengah</option>
+                                @forelse ($p as $prov)
+                                <option value="{{ $prov->id }}">{{ $prov->nama }}</option>
+                                @empty
+                                <option disabled>tidak ditemukan daftar provinsi</option>
+                                @endforelse
                             </select>
                         </div>
                     </div>
