@@ -19,7 +19,6 @@ class BagianController extends Controller
      */
     public function index()
     {
-        // $bagian = Bagian::paginate(10);
         $bagian = DB::table('bagians')
             ->join('units', 'units.id', '=', 'bagians.unit_id')
             ->select('units.nama as nm_akt', 'bagians.nama as nm_bagian', 'bagians.no_identitas', 'bagians.id')
