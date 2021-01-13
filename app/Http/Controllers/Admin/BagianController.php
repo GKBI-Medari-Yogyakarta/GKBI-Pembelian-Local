@@ -53,7 +53,9 @@ class BagianController extends Controller
     public function edit($id)
     {
         $bagian = Bagian::find($id);
-        return \view('admin.bagian.edit', \compact('bagian'));
+        $b = DB::table('bagians')->where('id', $id)->get();
+        $unit = Unit::all();
+        return \view('admin.bagian.edit', \compact('bagian', 'unit', 'b'));
     }
 
     /**
