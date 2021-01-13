@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\BagianRequest;
 use App\Http\Requests\BagianReqUpdate;
 use App\Model\Bagian;
+use App\Model\Unit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BagianController extends Controller
 {
@@ -17,8 +19,13 @@ class BagianController extends Controller
      */
     public function index()
     {
-        $bagian = Bagian::paginate(10);
-        return \view('admin.bagian.index', \compact('bagian'));
+        // $bagian = Bagian::paginate(10);
+        $bagian = DB::table('bagians')
+            ->join('units', 'units.id', '=', 'bagians.unit_id')
+            ->select('units.nama as nm_akt', 'bagians.nama as nm_bagian', 'bagians.no_identitas', 'bagians.id')
+            ->paginate(10);
+        $unit = Unit::all();
+        return \view('admin.bagian.index', \compact('bagian', 'unit'));
     }
 
     /**

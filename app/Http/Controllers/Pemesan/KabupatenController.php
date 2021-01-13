@@ -4,11 +4,17 @@ namespace App\Http\Controllers\Pemesan;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Pemesan\KabRequest;
+use App\Http\Requests\Pemesan\KabReqUpdate;
 use App\Model\Pemesan\Kabupaten;
+use App\Model\Pemesan\Provinsi;
 use Illuminate\Http\Request;
 
 class KabupatenController extends Controller
 {
+    public function index()
+    {
+        return \redirect()->route('negara.index');
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -33,7 +39,9 @@ class KabupatenController extends Controller
      */
     public function edit($id)
     {
-        //
+        $kab = Kabupaten::find($id);
+        $p = Provinsi::all();
+        return \view('pemesan.alamat.kab.edit', \compact('kab', 'p'));
     }
 
     /**
@@ -43,9 +51,14 @@ class KabupatenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(KabReqUpdate $req, $id)
     {
-        //
+        $k = Kabupaten::find($id);
+        $k->nama = $req->nama;
+        $k->kota = $req->kota;
+        $k->prov_id = $req->prov_id;
+        $k->save();
+        return \redirect()->route('negara.index')->with(['msg' => "Berhasil merubah kabupaten $req->nama"]);
     }
 
     /**

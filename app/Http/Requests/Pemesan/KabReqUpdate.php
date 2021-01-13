@@ -32,6 +32,7 @@ class KabReqUpdate extends FormRequest
     public function messages()
     {
         return [
+            'prov_id.required' => 'Provinsi tidak boleh kosong',
             'nama.required' => 'kolom nama kabupaten tidak boleh kosong.',
             'kota.required' => 'kolom kota tidak boleh kosong.',
         ];

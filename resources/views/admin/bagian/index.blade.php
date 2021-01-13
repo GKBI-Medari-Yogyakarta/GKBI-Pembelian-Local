@@ -5,14 +5,7 @@
 <main>
     <div class="container-fluid">
         <h1 class="mt-4">Data Bagian</h1>
-        @if(session('msg'))
-            <div class="alert alert-success alert-dismissible" role="alert" style="z-index: 1">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                {{ session('msg') }}
-            </div>
-        @endif
+        @include('admin.message')
         <div class="card mb-4 mt-4">
             <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
@@ -24,20 +17,22 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Nama</th>
-                                <th scope="col">E-mail</th>
+                                <th scope="col">Nama bagian</th>
+                                <th scope="col">No identitas</th>
+                                <th scope="col">Masuk dalam unit</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($user as $gudang)
+                            @forelse ($bagian as $bagians)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $gudang->name }}</td>
-                                <td>{{ $gudang->email }}</td>
+                                <td>{{ $bagians->nm_bagian }}</td>
+                                <td>{{ $bagians->no_identitas }}</td>
+                                <td>{{ $bagians->nm_akt }}</td>
                                 <td>
-                                    <a href="{{ URL::route('admin-gudang.edit',$gudang->id) }}" class="btn btn-outline-warning">Edit</a>
-                                    <form action="{{ URL::route('admin-gudang.destroy',$gudang->id) }}"
+                                    <a href="{{ URL::route('admin-bagian.edit',$bagians->id) }}" class="btn btn-outline-warning">Edit</a>
+                                    <form action="{{ URL::route('admin-bagian.destroy',$bagians->id) }}"
                                         method="POST" class="btn">
                                         @method('delete')
                                         @csrf
@@ -60,10 +55,19 @@
                             @endforelse
                         </tbody>
                     </table>
-                    <a href="{{ URL::route('admin-gudang.create') }}" class="btn btn-primary">Tambah</a>
+                    <div class="ml-2 mt-4 mb-4">
+                        <button data-toggle="modal" data-target="#tambahBagian" class="btn btn-outline-primary btn-sm">
+                            Tambah
+                        </button>
+                        <button class="btn btn-sm mt-3">
+                            {{ $bagian->links() }}
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </main>
+{{-- Modal --}}
+@include('admin.modal')
 @endsection

@@ -21,6 +21,7 @@
             </div>
             <div class="card-body">
                 <div class="row">
+                    {{-- Negara --}}
                     <div class="col">
                         <div class="table-responsive">
                             <table class="table table-striped table-sm border border-info">
@@ -68,6 +69,7 @@
                             {{ $n->links() }}
                         </div>
                     </div>
+                    {{-- Provinsi --}}
                     <div class="col">
                         <div class="table-responsive">
                             <table class="table table-striped table-sm border border-info">
@@ -114,6 +116,7 @@
                             </table>
                         </div>
                     </div>
+                    {{-- Kabupaten --}}
                     <div class="col">
                         <div class="table-responsive">
                             <table class="table table-striped table-sm border border-info">
@@ -167,19 +170,20 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Negara</th>
-                                <th scope="col">Kode Negara</th>
-                                <th scope="col">Provinsi</th>
                                 <th scope="col">Kabupaten</th>
-                                <th scope="col">aksi</th>
+                                <th scope="col">Provinsi</th>
+                                <th scope="col">Kode Negara</th>
+                                <th scope="col">Negara</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($k as $kab)
+                            @forelse ($alamat as $address)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $kab->nama }}</td>
-                                <td>{{ $kab->kota }}</td>
+                                <td>{{ $address->nm_kab }}</td>
+                                <td>{{ $address->nm_prov }}</td>
+                                <td>{{ $address->kode }}</td>
+                                <td>{{ $address->nama }}</td>
                             </tr>
                             @empty
                             <tr>

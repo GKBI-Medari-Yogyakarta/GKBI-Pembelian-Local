@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class ProvinsiController extends Controller
 {
+    public function index()
+    {
+        return \redirect()->route('negara.index');
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -35,7 +39,8 @@ class ProvinsiController extends Controller
     public function edit($id)
     {
         $prov = Provinsi::find($id);
-        return \view('pemesan.alamat.prov.edit', $prov->id);
+        $n = Negara::all();
+        return \view('pemesan.alamat.prov.edit', \compact('prov', 'n'));
     }
 
     /**
@@ -52,7 +57,7 @@ class ProvinsiController extends Controller
         $prov->nama = $req->nama;
         $prov->alias = $req->alias;
         $prov->save();
-        return \redirect()->route('prov.index')->with(['msg' => "Berhasil merubah provinsi $req->nama"]);
+        return \redirect()->route('negara.index')->with(['msg' => "Berhasil merubah provinsi $req->nama"]);
     }
 
     /**

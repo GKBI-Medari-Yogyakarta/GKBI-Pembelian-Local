@@ -24,6 +24,9 @@ class NegaraController extends Controller
     {
         // SELECT n.id, n.nama,n.kode,p.nama as nm_prov, p.alias, k.prov_id,k.nama as nm_kab FROM negaras n JOIN provinsis p on n.id=p.negara_id JOIN kabupatens k on p.id=k.prov_id
         $alamat = DB::table('negaras')
+            ->join('provinsis', 'negaras.id', '=', 'provinsis.negara_id')
+            ->join('kabupatens', 'provinsis.id', '=', 'kabupatens.prov_id')
+            ->select('kabupatens.nama as nm_kab', 'provinsis.nama as nm_prov', 'negaras.nama', 'negaras.kode')
             ->get();
         $n = Negara::paginate(5);
         $p = Provinsi::paginate(5);

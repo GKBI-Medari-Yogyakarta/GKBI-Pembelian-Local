@@ -45,7 +45,8 @@ Route::namespace('User')->group(function () {
     Route::resource('user-akuntansi', 'AdminAkuntansiController');
 });
 Route::namespace('Pemesan')->group(function () {
-    Route::resource('negara', 'NegaraController');
+    Route::get('alamat', 'NegaraController@index')->name('negara.index');
+    Route::resource('negara', 'NegaraController')->except('index');
     Route::resource('provinsi', 'ProvinsiController');
     Route::resource('kabupaten', 'KabupatenController');
 });
