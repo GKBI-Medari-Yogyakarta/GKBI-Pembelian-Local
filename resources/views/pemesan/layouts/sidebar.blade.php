@@ -9,9 +9,9 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
                     Dashboard
                 </a>
-                <a class="nav-link {{ Request::url() == url('admin-gudang') ? 'active' : '' }}" href="{{ URL::route('admin-gudang.index') }}">
+                <a class="nav-link {{ Request::url() == url('permintaan') ? 'active' : '' }}" href="{{ URL::route('permintaan.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
-                    User Gudang
+                    Pembelian
                 </a>
                 <a class="nav-link {{ Request::url() == url('admin-pembelian') ? 'active' : '' }}" href="{{ URL::route('admin-pembelian.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-dolly-flatbed"></i></div>

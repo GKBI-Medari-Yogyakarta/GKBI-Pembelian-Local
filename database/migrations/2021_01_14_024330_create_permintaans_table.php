@@ -19,6 +19,7 @@ class CreatePermintaansTable extends Migration
             $table->string('no_pemesan'); //nomor surat permintaan
             $table->date('tgl_pesanan');
             $table->string('nm_barang');
+            $table->string('spesifikasi');
             $table->string('unit_stok');
             $table->string('gudang_stok');
             $table->date('tgl_diperlukan');

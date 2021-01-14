@@ -49,4 +49,5 @@ Route::namespace('Pemesan')->group(function () {
     Route::resource('negara', 'NegaraController')->except('index');
     Route::resource('provinsi', 'ProvinsiController');
     Route::resource('kabupaten', 'KabupatenController');
+    Route::resource('permintaan', 'PermintaanController');
 });
