@@ -27,7 +27,7 @@ class NegaraController extends Controller
             ->join('provinsis', 'negaras.id', '=', 'provinsis.negara_id')
             ->join('kabupatens', 'provinsis.id', '=', 'kabupatens.prov_id')
             ->select('kabupatens.nama as nm_kab', 'provinsis.nama as nm_prov', 'negaras.nama', 'negaras.kode')
-            ->get();
+            ->paginate(10);
         $n = Negara::paginate(5);
         $p = Provinsi::paginate(5);
         $k = Kabupaten::paginate(5);

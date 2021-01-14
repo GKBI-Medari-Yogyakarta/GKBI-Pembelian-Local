@@ -211,6 +211,9 @@
                             Kabupaten
                         </button>
                     </div>
+                    <div class="mt-2 ml-2">
+                        {{ $alamat->links() }}
+                    </div>
                 </div>
             </div>
         </div>
