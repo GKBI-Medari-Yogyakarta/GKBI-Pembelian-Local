@@ -32,11 +32,9 @@
                             <div class="col-sm-9">
                                 <select name="negara_id" id="negara" class="form-control @error('negara_id') is-invalid @enderror">
                                     <option disabled>pilih negara</option>
-                                    @forelse ($n as $negara)
-                                    <option value="{{ $negara->id }}">{{ $negara->nama }}</option>
-                                    @empty
-                                    <option disabled>tidak ditemukan daftar negara</option>
-                                    @endforelse
+                                    @foreach ($n as $negara)
+                                        <option value="{{ $negara->id }}" {{ $negara->id == $prov->negara_id ? 'selected' : null }}> {{ $negara->nama }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
