@@ -5,13 +5,13 @@
                 <div class="sb-sidenav-menu-heading nav-link active">SISTEM UNTUK MEMBUAT USER BARU</div>
                 {{-- List User --}}
                 <div class="sb-sidenav-menu-heading"><i class="fas fa-users"></i> List User</div>
-                <a class="nav-link {{ Request::url() == url('negara') ? 'active' : '' }}" href="{{ URL::route('negara.index') }}">
+                <a class="nav-link {{ Request::url() == url('alamat') ? 'active' : '' }}" href="{{ URL::route('negara.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
-                    Dashboard
+                    Alamat
                 </a>
                 <a class="nav-link {{ Request::url() == url('permintaan') ? 'active' : '' }}" href="{{ URL::route('permintaan.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
-                    Pembelian
+                    Permintaan
                 </a>
                 <a class="nav-link {{ Request::url() == url('admin-pembelian') ? 'active' : '' }}" href="{{ URL::route('admin-pembelian.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-dolly-flatbed"></i></div>

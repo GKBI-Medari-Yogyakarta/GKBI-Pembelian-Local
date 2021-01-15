@@ -43,7 +43,7 @@ class NegaraController extends Controller
     public function store(NegaraRequest $req)
     {
         Negara::create([
-            'nama' => $req->nama,
+            'nama' => \ucwords($req->nama),
             'kode' => $req->kode,
         ]);
         return \redirect()->back()->with(['msg' => "Berhasil menambah negara $req->nama"]);
@@ -82,7 +82,7 @@ class NegaraController extends Controller
     public function update(NegaraReqUpdate $req,  $id)
     {
         $negara = Negara::find($id);
-        $negara->nama = $req->nama;
+        $negara->nama = \ucwords($req->nama);
         $negara->kode = $req->kode;
         $negara->save();
         return \redirect()->route('negara.index')->with(['msg' => "Berhasil mengubah negara $req->nama"]);

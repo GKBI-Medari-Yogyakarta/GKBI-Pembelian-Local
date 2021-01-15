@@ -26,8 +26,8 @@ class KabupatenController extends Controller
         // return $req->all();
         Kabupaten::create([
             'prov_id' => $req->prov_id,
-            'nama' => $req->nama,
-            'kota' => $req->kota,
+            'nama' => \ucwords($req->nama),
+            'kota' => \ucwords($req->kota),
         ]);
         return \redirect()->back()->with(['msg' => "Berhasil menambah kabupaten $req->nama"]);
     }
@@ -54,8 +54,8 @@ class KabupatenController extends Controller
     public function update(KabReqUpdate $req, $id)
     {
         $k = Kabupaten::find($id);
-        $k->nama = $req->nama;
-        $k->kota = $req->kota;
+        $k->nama = \ucwords($req->nama);
+        $k->kota = \ucwords($req->kota);
         $k->prov_id = $req->prov_id;
         $k->save();
         return \redirect()->route('negara.index')->with(['msg' => "Berhasil merubah kabupaten $req->nama"]);

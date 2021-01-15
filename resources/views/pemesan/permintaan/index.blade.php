@@ -21,14 +21,21 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Kabupaten</th>
-                                <th scope="col">Provinsi</th>
-                                <th scope="col">Kode Negara</th>
-                                <th scope="col">Negara</th>
+                                <th rowspan="2" class="text-center align-middle" scope="col">#</th>
+                                <th rowspan="2" class="text-center align-middle" scope="col">Nama Barang</th>
+                                <th rowspan="2" class="text-center align-middle" scope="col">Spesifikasi</th>
+                                <th colspan="2" class="text-center align-middle" class="text-center">Stok</th>
+                                <th rowspan="2" class="text-center align-middle" scope="col">Jumlah</th>
+                                <th rowspan="2" class="text-center align-middle" scope="col">Tanggal Diperlukan</th>
+                                <th rowspan="2" class="text-center align-middle" scope="col">Realisasi</th>
+                                <th rowspan="2" class="text-center align-middle" scope="col">Keterangan</th>
+                            </tr>
+                            <tr>
+                                <th class="text-center unit">Unit</th>
+                                <th class="text-center pl-0 pr-0">Gudang</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -59,7 +66,9 @@
                         {{-- <button data-toggle="modal" data-target="#tambahNegara" class="btn btn-outline-primary btn-sm">
                             Negara
                         </button> --}}
-                        <button class="btn btn-outline-primary btn-sm">Tambah</button>
+                        <button data-toggle="modal" data-target="#tambahPermintaan" class="btn btn-outline-primary btn-sm">
+                            Tambah daftar permintaan
+                        </button>
                     </div>
                     <div class="mt-2 ml-2">
                         {{-- {{ $alamat->links() }} --}}
@@ -70,7 +79,7 @@
     </div>
 </main>
 <!-- Modal -->
-{{-- @include('pemesan.alamat.modal') --}}
+@include('pemesan.modal')
 @endsection
 @push('tooltip')
     <script>

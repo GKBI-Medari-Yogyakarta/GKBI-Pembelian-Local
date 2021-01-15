@@ -24,8 +24,8 @@ class ProvinsiController extends Controller
     {
         Provinsi::create([
             'negara_id' => $req->negara_id,
-            'nama' => $req->nama,
-            'alias' => $req->alias,
+            'nama' => \ucwords($req->nama),
+            'alias' => \ucwords($req->alias),
         ]);
         return \redirect()->back()->with(['msg' => "Berhasil menambah provinsi $req->nama"]);
     }
@@ -54,8 +54,8 @@ class ProvinsiController extends Controller
     {
         $prov = Provinsi::find($id);
         $prov->negara_id = $req->negara_id;
-        $prov->nama = $req->nama;
-        $prov->alias = $req->alias;
+        $prov->nama = \ucwords($req->nama);
+        $prov->alias = \ucwords($req->alias);
         $prov->save();
         return \redirect()->route('negara.index')->with(['msg' => "Berhasil merubah provinsi $req->nama"]);
     }
