@@ -2,7 +2,7 @@
 <div class="modal fade" id="tambahPermintaan" data-backdrop="static" tabindex="-1" aria-labelledby="negaraLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content border border-warning">
-            <form action="{{ URL::route('negara.store') }}" method="POST">
+            <form action="{{ URL::route('permintaan.store') }}" method="POST">
                 {{ csrf_field() }}
                 <div class="modal-header bg-primary">
                     <h5 class="modal-title text-white" id="negaraLabel">Tambah Daftar Permintaan</h5>
@@ -12,9 +12,15 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group row">
-                        <label for="namaNegara" class="col-sm-3 col-form-label">Negara</label>
+                        <label for="nmPemesan" class="col-sm-3 col-form-label">Nama Pemesan</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control @error('nama') is-invalid @enderror" id="namaNegara" name="nama" value="{{ old('nama') }}">
+                            <input type="text" class="form-control @error('pemesan') is-invalid @enderror" id="nmPemesan" name="pemesan" value="{{ old('pemesan') }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="no_pemesan" class="col-sm-3 col-form-label">Nama no_pemesan</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control @error('no_pemesan') is-invalid @enderror" id="no_pemesan" name="no_pemesan" value="{{ old('no_pemesan') }}">
                         </div>
                     </div>
                     <div class="form-group row">
