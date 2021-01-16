@@ -24,7 +24,7 @@ class CreatePermintaansTable extends Migration
             $table->string('gudang_stok');
             $table->date('tgl_diperlukan');
             $table->date('realisasi')->nullable();
-            $table->string('keterangan')->nullable();
+            $table->string('keterangan', 1000)->nullable();
             $table->enum('status_direktur', ['1', '0'])->default('0');
             $table->enum('status_niaga_pembelian', ['1', '0'])->default('0');
             $table->enum('status_permintaan', ['1', '0'])->default('0');

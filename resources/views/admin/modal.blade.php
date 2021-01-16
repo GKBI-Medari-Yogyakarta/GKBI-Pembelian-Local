@@ -1,11 +1,11 @@
-@section('custom-style')
+{{-- @section('custom-style')
 <style>
     .modal-content.border.border-warning {
         width: 160%;
         margin-left: -30%;
     }
 </style>
-@endsection
+@endsection --}}
 {{-- Unit Modal --}}
 <div class="modal fade mt-5" id="tambahUnit" data-backdrop="static" tabindex="-1" aria-labelledby="unitLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -43,7 +43,7 @@
 
 {{-- Bagian Modal --}}
 <div class="modal fade mt-5 " id="tambahBagian" data-backdrop="static" tabindex="-1" aria-labelledby="bagianLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content border border-warning">
             <form action="{{ URL::route('admin-bagian.store') }}" method="POST">
                 {{ csrf_field() }}

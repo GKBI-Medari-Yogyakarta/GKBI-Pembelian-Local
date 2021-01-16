@@ -1,14 +1,6 @@
-@section('custom-style')
-<style>
-    .modal-content.border.border-warning {
-        width: 160%;
-        margin-left: -30%;
-    }
-</style>
-@endsection
 {{-- Permintaan --}}
 <div class="modal fade" id="tambahPermintaan" data-backdrop="static" tabindex="-1" aria-labelledby="negaraLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content border border-warning">
             <form action="{{ URL::route('negara.store') }}" method="POST">
                 {{ csrf_field() }}

@@ -21,17 +21,17 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered">
+                    <table class="table table-striped table-bordered table-sm">
                         <thead>
                             <tr>
-                                <th rowspan="2" class="text-center align-middle" scope="col">#</th>
-                                <th rowspan="2" class="text-center align-middle" scope="col">Nama Barang</th>
-                                <th rowspan="2" class="text-center align-middle" scope="col">Spesifikasi</th>
-                                <th colspan="2" class="text-center align-middle" class="text-center">Stok</th>
-                                <th rowspan="2" class="text-center align-middle" scope="col">Jumlah</th>
-                                <th rowspan="2" class="text-center align-middle" scope="col">Tanggal Diperlukan</th>
-                                <th rowspan="2" class="text-center align-middle" scope="col">Realisasi</th>
-                                <th rowspan="2" class="text-center align-middle" scope="col">Keterangan</th>
+                                <th rowspan="2" class="text-center align-middle p-0" scope="col">#</th>
+                                <th rowspan="2" class="text-center align-middle p-0" scope="col">Nama Barang</th>
+                                <th rowspan="2" class="text-center align-middle p-0" scope="col">Spesifikasi</th>
+                                <th colspan="2" class="text-center align-middle p-0" class="text-center">Stok</th>
+                                <th rowspan="2" class="text-center align-middle p-0" scope="col">Jumlah</th>
+                                <th rowspan="2" class="text-center align-middle p-0" scope="col">Tanggal Diperlukan</th>
+                                <th rowspan="2" class="text-center align-middle p-0" scope="col">Realisasi</th>
+                                <th rowspan="2" class="text-center align-middle p-0" scope="col">Keterangan</th>
                             </tr>
                             <tr>
                                 <th class="text-center unit">Unit</th>
@@ -49,15 +49,26 @@
                             </tr>
                             @empty --}}
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
                                 <td>
+                                    <a href="#" class="btn bg-transparent p-0 align-middle text-center" id="detail" data-toggle="tooltip" data-placement="top" title="Detail">
+                                        <i class="fas fa-info-circle text-info h4 m-0"></i>
+                                    </a>
+                                </td>
+                                {{-- <td>
                                     <a href="edit-siswa.html" class="btn btn-outline-warning">Edit</a>
                                     <a href="#" class="btn btn-outline-danger">Hapus</a>
-                                </td>
+                                </td> --}}
+                            </tr>
+                            <tr>
+                                <td colspan="9" class="text-center align-middle"><h2><strong>Daftar permintaan kosong!!</strong></h2></td>
                             </tr>
                             {{-- @endforelse --}}
                         </tbody>
@@ -83,8 +94,9 @@
 @endsection
 @push('tooltip')
     <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip('toggle')
-        })
+        // $(function () {
+        //     $('[data-toggle="tooltip"]').tooltip()
+        // })
+        $('#detail').tooltip()
     </script>
 @endpush
