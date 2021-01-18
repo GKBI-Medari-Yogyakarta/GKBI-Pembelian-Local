@@ -13,7 +13,7 @@
                 {{ session('msg') }}
             </div>
         @endif
-        @include('pemesan.alamat.required')
+        @include('pemesan.layouts.required')
         <div class="card mb-4 mt-4">
             <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
