@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Pemesan;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Pemesan\PesananRequest;
+use App\Model\Bagian;
 use App\Model\Pemesan\Permintaan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PermintaanController extends Controller
 {
@@ -18,7 +20,11 @@ class PermintaanController extends Controller
     public function index()
     {
         if (Auth::guard('pemesan')->check()) {
-            return \view('pemesan.permintaan.index');
+            $unit = Bagian::all();
+            $permintaan = DB::table('perminstaans')
+            ->select('id','nm_barang','spesifikasi','unit_stok','gudang_stok')
+            ->get();
+            return \view('pemesan.permintaan.index',\compact('unit','permintaan'));
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
@@ -42,6 +48,7 @@ class PermintaanController extends Controller
      */
     public function store(PesananRequest $req)
     {
+        // \dd($req->all());
         if (Auth::guard('pemesan')->check()) {
             Permintaan::create([
                 'pemesan' => $req->pemesan,

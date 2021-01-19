@@ -18,15 +18,58 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="no_pemesan" class="col-sm-3 col-form-label">Nama no_pemesan</label>
+                        <label for="no_pemesan" class="col-sm-3 col-form-label">Nomor surat pemesan</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control @error('no_pemesan') is-invalid @enderror" id="no_pemesan" name="no_pemesan" value="{{ old('no_pemesan') }}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="kdNegara" class="col-sm-3 col-form-label">Kode Negara</label>
+                        <label for="tgl_pesanan" class="col-sm-3 col-form-label">Tanggal pesanan</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control @error('kode') is-invalid @enderror" id="kdNegara" name="kode" value="{{ old('kode') }}">
+                            <input type="date" class="form-control @error('tgl_pesanan') is-invalid @enderror" id="tgl_pesanan" name="tgl_pesanan" value="{{ old('tgl_pesanan') }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="nm_barang" class="col-sm-3 col-form-label">Nama barang</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control @error('nm_barang') is-invalid @enderror" id="nm_barang" name="nm_barang" value="{{ old('nm_barang') }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputspesifikasi" class="col-sm-3 col-form-label">Spesifikasi barang</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control @error('spesifikasi') is-invalid @enderror" id="inputspesifikasi" name="spesifikasi" value="{{ old('spesifikasi') }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputunit_stok" class="col-sm-3 col-form-label">Stok barang dari unit</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control @error('unit_stok') is-invalid @enderror" id="inputunit_stok" name="unit_stok" value="{{ old('unit_stok') }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputgudang_stok" class="col-sm-3 col-form-label">Stok barang dari gudang</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control @error('gudang_stok') is-invalid @enderror" id="inputgudang_stok" name="gudang_stok" value="{{ old('gudang_stok') }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputtgl_diperlukan" class="col-sm-3 col-form-label">Tanggal diperlukan</label>
+                        <div class="col-sm-9">
+                            <input type="date" class="form-control @error('tgl_diperlukan') is-invalid @enderror" id="inputtgl_diperlukan" name="tgl_diperlukan" value="{{ old('tgl_diperlukan') }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputbagian_id" class="col-sm-3 col-form-label">Negara</label>
+                        <div class="col-sm-9">
+                            <select name="bagian_id" id="inputbagian_id" class="form-control @error('bagian_id') is-invalid @enderror">
+                                <option selected disabled>pilih bagian</option>
+                                @forelse ($unit as $bagian)
+                                <option value="{{ $bagian->id }}">no/nama : {{ $bagian->no_identitas }} / {{ $bagian->nama }}</option>
+                                @empty
+                                <option disabled>tidak ditemukan daftar bagian</option>
+                                @endforelse
+                            </select>
                         </div>
                     </div>
                 </div>

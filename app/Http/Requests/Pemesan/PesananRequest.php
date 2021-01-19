@@ -45,7 +45,7 @@ class PesananRequest extends FormRequest
             'spesifikasi.required' => 'spesifikasi barang tidak boleh kosong!!',
             'unit_stok.required' => 'wajib mencantumkan stok unit!!',
             'gudang_stok.required' => 'wajib mencantumkan stok gudang!!',
-            'tgl_diperlukan.required' => 'tanggal diperluka wajib diisi!!',
+            'tgl_diperlukan.required' => 'tanggal diperlukan wajib diisi!!',
             'bagian_id.required' => 'bagian/unit yang memesan wajib dicantumkan!!',
         ];
     }
