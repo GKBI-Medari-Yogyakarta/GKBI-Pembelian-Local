@@ -39,15 +39,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @forelse ($alamat as $address)
+                            @forelse ($permintaan as $permintaans)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $address->nm_kab }}</td>
-                                <td>{{ $address->nm_prov }}</td>
-                                <td>{{ $address->kode }}</td>
-                                <td>{{ $address->nama }}</td>
+                                <td>{{ $permintaans->nm_barang }}</td>
+                                <td>{{ $permintaans->spesifikasi }}</td>
+                                <td>{{ $permintaans->unit_stok }}</td>
+                                <td>{{ $permintaans->gudang_stok }}</td>
+                                <td>{{ $permintaans->jumlah }}</td>
+                                <td>{{ $permintaans->tgl_diperlukan }}</td>
+                                <td>{{ $permintaans->realisasi }}</td>
+                                <td>{{ $permintaans->keterangan }}</td>
                             </tr>
-                            @empty --}}
+                            @empty
                             <tr>
                                 <td>1</td>
                                 <td>1</td>
@@ -70,7 +74,7 @@
                             <tr>
                                 <td colspan="9" class="text-center align-middle"><h2><strong>Daftar permintaan kosong!!</strong></h2></td>
                             </tr>
-                            {{-- @endforelse --}}
+                            @endforelse
                         </tbody>
                     </table>
                     <div class="ml-2 mt-4 mb-4">

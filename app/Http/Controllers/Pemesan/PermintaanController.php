@@ -21,9 +21,10 @@ class PermintaanController extends Controller
     {
         if (Auth::guard('pemesan')->check()) {
             $unit = Bagian::all();
-            $permintaan = DB::table('perminstaans')
-            ->select('id','nm_barang','spesifikasi','unit_stok','gudang_stok')
+            $permintaan = DB::table('permintaans')
+            ->select('id','nm_barang','spesifikasi','unit_stok','gudang_stok','jumlah','tgl_diperlukan','realisasi','keterangan')
             ->get();
+            // \dd($permintaan);
             return \view('pemesan.permintaan.index',\compact('unit','permintaan'));
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);

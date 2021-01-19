@@ -54,6 +54,12 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label for="inputjumlah" class="col-sm-3 col-form-label">Stok barang dari gudang</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control @error('jumlah') is-invalid @enderror" id="inputjumlah" name="jumlah" value="{{ old('jumlah') }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="inputtgl_diperlukan" class="col-sm-3 col-form-label">Tanggal diperlukan</label>
                         <div class="col-sm-9">
                             <input type="date" class="form-control @error('tgl_diperlukan') is-invalid @enderror" id="inputtgl_diperlukan" name="tgl_diperlukan" value="{{ old('tgl_diperlukan') }}">
