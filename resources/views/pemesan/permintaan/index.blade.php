@@ -49,7 +49,12 @@
                                 <td>{{ $permintaans->jumlah }}</td>
                                 <td>{{ $permintaans->tgl_diperlukan }}</td>
                                 <td>{{ $permintaans->realisasi }}</td>
-                                <td>{{ $permintaans->keterangan }}</td>
+                                <td>
+                                    {{ $permintaans->keterangan }} 
+                                    <a href="#" class="btn bg-transparent p-0 align-middle text-center" id="detail" data-toggle="tooltip" data-placement="right" title="Detail">
+                                        <i class="fas fa-info-circle text-info h4 m-0"></i>
+                                    </a>
+                                </td>
                             </tr>
                             @empty
                             <tr>
