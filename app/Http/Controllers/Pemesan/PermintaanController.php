@@ -22,7 +22,7 @@ class PermintaanController extends Controller
         if (Auth::guard('pemesan')->check()) {
             $unit = Bagian::all();
             $permintaan = DB::table('permintaans')
-            ->select('id','nm_barang','spesifikasi','unit_stok','gudang_stok','jumlah','tgl_diperlukan','realisasi','keterangan')
+            ->select('id','nm_barang','spesifikasi','unit_stok','gudang_stok','jumlah','tgl_diperlukan','keterangan')
             ->get();
             // \dd($permintaan);
             return \view('pemesan.permintaan.index',\compact('unit','permintaan'));

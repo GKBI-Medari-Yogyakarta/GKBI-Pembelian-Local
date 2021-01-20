@@ -30,7 +30,6 @@
                                 <th colspan="2" class="text-center align-middle p-0" class="text-center">Stok</th>
                                 <th rowspan="2" class="text-center align-middle p-0" scope="col">Jumlah</th>
                                 <th rowspan="2" class="text-center align-middle p-0" scope="col">Tanggal Diperlukan</th>
-                                <th rowspan="2" class="text-center align-middle p-0" scope="col">Realisasi</th>
                                 <th rowspan="2" class="text-center align-middle p-0" scope="col">Keterangan</th>
                             </tr>
                             <tr>
@@ -48,7 +47,6 @@
                                 <td>{{ $permintaans->gudang_stok }}</td>
                                 <td>{{ $permintaans->jumlah }}</td>
                                 <td>{{ $permintaans->tgl_diperlukan }}</td>
-                                <td>{{ $permintaans->realisasi }}</td>
                                 <td>
                                     {{ $permintaans->keterangan }} 
                                     <a href="{{ URL::route('permintaan.show',$permintaans->id) }}" class="btn bg-transparent p-0 align-middle text-center" id="detail" data-toggle="tooltip" data-placement="right" title="Detail">
@@ -96,7 +94,7 @@
                                 </td> --}}
                             </tr>
                             <tr>
-                                <td colspan="9" class="text-center align-middle"><h2><strong>Daftar permintaan kosong!!</strong></h2></td>
+                                <td colspan="8" class="text-center align-middle"><h2><strong>Daftar permintaan kosong!!</strong></h2></td>
                             </tr>
                             @endforelse
                         </tbody>
