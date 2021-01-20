@@ -54,7 +54,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="inputjumlah" class="col-sm-3 col-form-label">Stok barang dari gudang</label>
+                        <label for="inputjumlah" class="col-sm-3 col-form-label">Jumlah barang yang diminta</label>
                         <div class="col-sm-9">
                             <input type="number" class="form-control @error('jumlah') is-invalid @enderror" id="inputjumlah" name="jumlah" value="{{ old('jumlah') }}">
                         </div>

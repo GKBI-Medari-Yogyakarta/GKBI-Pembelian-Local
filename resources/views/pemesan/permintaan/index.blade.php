@@ -77,6 +77,25 @@
                                 </td> --}}
                             </tr>
                             <tr>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>
+                                    <a href="#" class="btn bg-transparent p-0 align-middle text-center" id="detail" data-toggle="tooltip" data-placement="top" title="Detail">
+                                        <i class="fas fa-info-circle text-info h4 m-0"></i>
+                                    </a>
+                                </td>
+                                {{-- <td>
+                                    <a href="edit-siswa.html" class="btn btn-outline-warning">Edit</a>
+                                    <a href="#" class="btn btn-outline-danger">Hapus</a>
+                                </td> --}}
+                            </tr>
+                            <tr>
                                 <td colspan="9" class="text-center align-middle"><h2><strong>Daftar permintaan kosong!!</strong></h2></td>
                             </tr>
                             @endforelse
@@ -103,9 +122,9 @@
 @endsection
 @push('tooltip')
     <script>
-        // $(function () {
-        //     $('[data-toggle="tooltip"]').tooltip()
-        // })
-        $('#detail').tooltip()
+         $(function () {
+             $('[data-toggle="tooltip"]').tooltip('show')
+         })
+        //$('#detail').tooltip()
     </script>
 @endpush
