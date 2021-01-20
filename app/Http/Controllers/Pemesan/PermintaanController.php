@@ -76,7 +76,8 @@ class PermintaanController extends Controller
      */
     public function show($id)
     {
-        //
+        $permintaan = Permintaan::find($id);
+        return \view('pemesan.permintaan.show',\compact('permintaan'));
     }
 
     /**

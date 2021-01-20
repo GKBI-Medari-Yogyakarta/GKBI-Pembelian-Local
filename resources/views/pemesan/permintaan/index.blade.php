@@ -51,7 +51,7 @@
                                 <td>{{ $permintaans->realisasi }}</td>
                                 <td>
                                     {{ $permintaans->keterangan }} 
-                                    <a href="#" class="btn bg-transparent p-0 align-middle text-center" id="detail" data-toggle="tooltip" data-placement="right" title="Detail">
+                                    <a href="{{ URL::route('permintaan.show',$permintaans->id) }}" class="btn bg-transparent p-0 align-middle text-center" id="detail" data-toggle="tooltip" data-placement="right" title="Detail">
                                         <i class="fas fa-info-circle text-info h4 m-0"></i>
                                     </a>
                                 </td>
