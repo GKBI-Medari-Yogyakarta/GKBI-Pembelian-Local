@@ -10,12 +10,12 @@
                     Alamat
                 </a>
                 <a class="nav-link {{ Request::url() == url('permintaan') ? 'active' : '' }}" href="{{ URL::route('permintaan.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
-                    Permintaan
+                    <div class="sb-nav-link-icon"><i class="fas fa-dolly-flatbed"></i></div>
+                    Permintaan Pembelian
                 </a>
                 <a class="nav-link {{ Request::url() == url('admin-pembelian') ? 'active' : '' }}" href="{{ URL::route('admin-pembelian.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-dolly-flatbed"></i></div>
-                    User Pembelian
+                    <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
+                    Permintaan Perbaikan
                 </a>
                 <a class="nav-link {{ Request::url() == url('admin-akuntansi') ? 'active' : '' }}" href="{{ URL::route('admin-akuntansi.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-money-check"></i></div>
