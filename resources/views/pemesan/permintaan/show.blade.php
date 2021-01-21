@@ -22,6 +22,14 @@
     </style>
 @section('main')
 <div class="container-fluid">
+    @if(session('msg'))
+        <div class="alert alert-success alert-dismissible" role="alert" style="z-index: 1">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{ session('msg') }}
+        </div>
+    @endif
     <div class="card mb-4 mt-4">
         <div class="card-header">
             <div class="row p-0">
@@ -144,8 +152,25 @@
             </div>
         </div>
     </div>
-    <a href="{{URL::route('permintaan.index')}}" class="btn btn-outline-primary btn-sm">Go somewhere {{$permintaan->id}}</a>
-    <button class="btn btn-outline-info" data-toggle="modal" data-target="#editPermintaan">Edit</button>
+    <div class="row">
+        <div class="col col-sm-1">
+            <a href="{{URL::route('permintaan.index')}}" class="btn btn-outline-warning btn-sm">Kembali</a>
+        </div>
+        <div class="col col-sm-10">
+            <button class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#editPermintaan">Edit</button>
+        </div>
+        <div class="col">
+            <form
+                action="{{ URL::route('permintaan.destroy',$permintaan->id) }}"
+                method="POST" class="btn btn-sm p-0">
+                @method('delete')
+                @csrf
+                <button class="btn btn-outline-danger btn-sm">
+                    Hapus
+                </button>
+            </form>
+        </div>
+    </div>
 </div>
 @endsection
 @include('pemesan.permintaan.edit-modal')

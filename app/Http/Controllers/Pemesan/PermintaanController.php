@@ -31,16 +31,6 @@ class PermintaanController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -76,32 +66,15 @@ class PermintaanController extends Controller
      */
     public function show($id)
     {
-        $unit = Bagian::all();
-        $permintaan = Permintaan::find($id);
-        // \dd($permintaan->bagian->id);
-        // $per = DB::table('permintaans')
-        // \dd(($permintaan));
-        return \view('pemesan.permintaan.show',\compact('permintaan','unit'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
         if (Auth::guard('pemesan')->check()) {
-            $pesanan = Permintaan::find($id);
-            if ($pesanan->status_direktur == '1') {
-                return \redirect()->back()->with(['msg' => "Tidak dapat mengubah daftar permintaan dari $pesanan->pemesan, karena permintaan sudah terealisasi pada tgl $pesanan->realisasi"]);
-            }
-            return \view('pemesan.permintaan.edit', \compact('pesanan'));
+            $unit = Bagian::all();
+            $permintaan = Permintaan::find($id);
+            return \view('pemesan.permintaan.show',\compact('permintaan','unit'));
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -126,7 +99,7 @@ class PermintaanController extends Controller
                 'tgl_diperlukan' => $req->tgl_diperlukan,
                 'bagian_id' => $req->bagian_id,
             ]);
-            return \redirect()->route('permintaan.index')->with(['msg' => "Berhasil merubah daftar permintaan dari $pesanan->pemesan"]);
+            return \redirect()->back()->with(['msg' => "Berhasil merubah daftar permintaan dari $pesanan->pemesan"]);
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
@@ -146,7 +119,7 @@ class PermintaanController extends Controller
                 return \redirect()->back()->with(['msg' => "Tidak dapat menghapus daftar permintaan dari $pesanan->pemesan, karena sudah disahkan oleh direktur"]);
             }
             $pesanan->delete();
-            return \redirect()->back()->with(['msg' => "Berhasil menghapus daftar permintaan dari $pesanan->nama"]);
+            return \redirect()->route('permintaan.index')->with(['msg' => "Berhasil menghapus daftar permintaan dari $pesanan->nama"]);
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }

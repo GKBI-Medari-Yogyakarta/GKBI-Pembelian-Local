@@ -2,10 +2,11 @@
 <div class="modal fade" id="editPermintaan" data-backdrop="static" tabindex="-1" aria-labelledby="negaraLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content border border-warning">
-            <form action="{{ URL::route('permintaan.store') }}" method="POST">
+            <form action="{{ URL::route('permintaan.update',$permintaan->id) }}" method="POST">
+                @method('put')
                 {{ csrf_field() }}
                 <div class="modal-header bg-primary">
-                    <h5 class="modal-title text-white" id="negaraLabel">Tambah Daftar Permintaan</h5>
+                    <h5 class="modal-title text-white" id="negaraLabel">Edit Daftar Permintaan dari {{$permintaan->pemesan}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" class="text-white">&times;</span>
                     </button>
