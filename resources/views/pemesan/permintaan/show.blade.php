@@ -54,22 +54,22 @@
                             <tr>
                                 <th scope="row" class="h-nomor pl-5">Pemesan</th>
                                 <td class="h-t text-right"><strong>:</strong></td>
-                                <td colspan="3" class="h-t pl-0">Mark</td>
+                                <td colspan="3" class="h-t pl-0">{{$permintaan->pemesan}}</td>
                             </tr>
                             <tr>
                                 <th scope="row" class="h-nomor pl-5">Unit/Bagian</th>
                                 <td class="h-t text-right"><strong>:</strong></td>
-                                <td colspan="3" class="h-t pl-0">Jacob</td>
+                                <td colspan="3" class="h-t pl-0">{{$permintaan->bagian->nama}}</td>
                             </tr>
                             <tr>
                                 <th scope="row" class="h-nomor pl-5">Nomor</th>
                                 <td class="h-t text-right"><strong>:</strong></td>
-                                <td colspan="3" class="h-t pl-0">Jacob</td>
+                                <td colspan="3" class="h-t pl-0">{{$permintaan->no_pemesan}}</td>
                             </tr>
                             <tr>
                                 <th scope="row" class="h-nomor pl-5">Tanggal</th>
                                 <td class="h-t text-right"><strong>:</strong></td>
-                                <td colspan="3" class="h-t pl-0">Jacob</td>
+                                <td colspan="3" class="h-t pl-0"> {{\Carbon\Carbon::parse($permintaan->tgl_pesanan)->translatedFormat('d F Y') }} </td>
                             </tr>
                         </tbody>
                     </table>                   
@@ -95,21 +95,14 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
+                        <th scope="row">{{$permintaan->id}}</th>
+                        <td>{{$permintaan->nm_barang}} / {{$permintaan->spesifikasi}}</td>
+                        <td>{{$permintaan->unit_stok}}</td>
+                        <td>{{$permintaan->gudang_stok}}</td>
+                        <td>{{$permintaan->jumlah}}</td>
+                        <td>{{$permintaan->tgl_diperlukan}}</td>
+                        <td>{{$permintaan->realisasi}}</td>
+                        <td>{{$permintaan->keterangan}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -152,5 +145,7 @@
         </div>
     </div>
     <a href="{{URL::route('permintaan.index')}}" class="btn btn-outline-primary btn-sm">Go somewhere {{$permintaan->id}}</a>
+    <button class="btn btn-outline-info" data-toggle="modal" data-target="#editPermintaan">Edit</button>
 </div>
 @endsection
+@include('pemesan.permintaan.edit-modal')

@@ -22,9 +22,8 @@ class PermintaanController extends Controller
         if (Auth::guard('pemesan')->check()) {
             $unit = Bagian::all();
             $permintaan = DB::table('permintaans')
-            ->select('id','nm_barang','spesifikasi','unit_stok','gudang_stok','jumlah','tgl_diperlukan','keterangan')
+            ->select('id','nm_barang','spesifikasi','unit_stok','gudang_stok','jumlah','tgl_diperlukan','keterangan','bagian_id')
             ->get();
-            // \dd($permintaan);
             return \view('pemesan.permintaan.index',\compact('unit','permintaan'));
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
@@ -59,6 +58,7 @@ class PermintaanController extends Controller
                 'spesifikasi' => $req->spesifikasi,
                 'unit_stok' => $req->unit_stok,
                 'gudang_stok' => $req->gudang_stok,
+                'jumlah'=>$req->jumlah,
                 'tgl_diperlukan' => $req->tgl_diperlukan,
                 'bagian_id' => $req->bagian_id,
             ]);
@@ -76,8 +76,12 @@ class PermintaanController extends Controller
      */
     public function show($id)
     {
+        $unit = Bagian::all();
         $permintaan = Permintaan::find($id);
-        return \view('pemesan.permintaan.show',\compact('permintaan'));
+        // \dd($permintaan->bagian->id);
+        // $per = DB::table('permintaans')
+        // \dd(($permintaan));
+        return \view('pemesan.permintaan.show',\compact('permintaan','unit'));
     }
 
     /**
@@ -118,6 +122,7 @@ class PermintaanController extends Controller
                 'spesifikasi' => $req->spesifikasi,
                 'unit_stok' => $req->unit_stok,
                 'gudang_stok' => $req->gudang_stok,
+                'jumlah'=>$req->jumlah,
                 'tgl_diperlukan' => $req->tgl_diperlukan,
                 'bagian_id' => $req->bagian_id,
             ]);
