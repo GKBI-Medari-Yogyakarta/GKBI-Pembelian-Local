@@ -154,23 +154,44 @@
     </div>
     <div class="row">
         <div class="col col-sm-1">
-            <a href="{{URL::route('permintaan.index')}}" class="btn btn-outline-warning btn-sm">Kembali</a>
-        </div>
+            <a href="{{URL::route('permintaan.index')}}" class="btn btn-warning btn-sm">Kembali</a>
+        </div>        
+        @if ($permintaan->status_permintaan != 1)
         <div class="col col-sm-10">
-            <button class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#editPermintaan">Edit</button>
+            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editPermintaan">Edit</button>
         </div>
+        @else
+        <div class="col col-sm-10">
+            <span id="detail" class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Tidak boleh diedit" data-placement="right">
+                <button class="btn btn-outline-primary btn-sm" style="pointer-events: none;" type="button" disabled>Edit</button>
+            </span>
+        </div>
+        @endif
+        @if ($permintaan->status_permintaan != 1)
         <div class="col">
             <form
                 action="{{ URL::route('permintaan.destroy',$permintaan->id) }}"
                 method="POST" class="btn btn-sm p-0">
                 @method('delete')
                 @csrf
-                <button class="btn btn-outline-danger btn-sm">
+                <button class="btn btn-danger btn-sm">
                     Hapus
                 </button>
             </form>
         </div>
+        @else
+        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Tidak boleh dihapus" data-placement="left">
+            <button class="btn btn-outline-danger btn-sm" style="pointer-events: none;" type="button" disabled>Hapus</button>
+        </span>
+        @endif
     </div>
 </div>
 @endsection
 @include('pemesan.permintaan.edit-modal')
+@push('tooltip')
+    <script>
+         $(function () {
+             $('[data-toggle="tooltip"]').tooltip('show')
+         })
+    </script>
+@endpush
