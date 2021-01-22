@@ -48,7 +48,7 @@
                                 <td>{{ $permintaans->jumlah }}</td>
                                 <td>{{ $permintaans->tgl_diperlukan }}</td>
                                 <td>
-                                    {{ $permintaans->keterangan }} 
+                                    {{ $permintaans->keterangan }}
                                     <a href="{{ URL::route('permintaan.show',$permintaans->id) }}" class="btn bg-transparent p-0 align-middle text-center" id="detail" data-toggle="tooltip" data-placement="right" title="Detail">
                                         <i class="fas fa-info-circle text-info h4 m-0"></i>
                                     </a>
@@ -56,7 +56,6 @@
                             </tr>
                             @empty
                             <tr>
-                                <td>1</td>
                                 <td>1</td>
                                 <td>1</td>
                                 <td>1</td>
@@ -75,7 +74,6 @@
                                 </td> --}}
                             </tr>
                             <tr>
-                                <td>1</td>
                                 <td>1</td>
                                 <td>1</td>
                                 <td>1</td>
