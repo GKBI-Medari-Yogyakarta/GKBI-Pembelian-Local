@@ -7,12 +7,17 @@ use App\Http\Requests\Pemesan\ProvRequest;
 use App\Model\Pemesan\Negara;
 use App\Model\Pemesan\Provinsi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProvinsiController extends Controller
 {
     public function index()
     {
-        return \redirect()->route('negara.index');
+        if (Auth::guard('pemesan')->check()) {
+            return \redirect()->route('negara.index');
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
     /**
      * Store a newly created resource in storage.
@@ -22,12 +27,16 @@ class ProvinsiController extends Controller
      */
     public function store(ProvRequest $req)
     {
-        Provinsi::create([
-            'negara_id' => $req->negara_id,
-            'nama' => \ucwords($req->nama),
-            'alias' => \ucwords($req->alias),
-        ]);
-        return \redirect()->back()->with(['msg' => "Berhasil menambah provinsi $req->nama"]);
+        if (Auth::guard('pemesan')->check()) {
+            Provinsi::create([
+                'negara_id' => $req->negara_id,
+                'nama' => \ucwords($req->nama),
+                'alias' => \ucwords($req->alias),
+            ]);
+            return \redirect()->back()->with(['msg' => "Berhasil menambah provinsi $req->nama"]);
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
 
     /**
@@ -38,9 +47,13 @@ class ProvinsiController extends Controller
      */
     public function edit($id)
     {
-        $prov = Provinsi::find($id);
-        $n = Negara::all();
-        return \view('pemesan.alamat.prov.edit', \compact('prov', 'n'));
+        if (Auth::guard('pemesan')->check()) {
+            $prov = Provinsi::find($id);
+            $n = Negara::all();
+            return \view('pemesan.alamat.prov.edit', \compact('prov', 'n'));
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
 
     /**
@@ -52,12 +65,16 @@ class ProvinsiController extends Controller
      */
     public function update(Request $req, $id)
     {
-        $prov = Provinsi::find($id);
-        $prov->negara_id = $req->negara_id;
-        $prov->nama = \ucwords($req->nama);
-        $prov->alias = \ucwords($req->alias);
-        $prov->save();
-        return \redirect()->route('negara.index')->with(['msg' => "Berhasil merubah provinsi $req->nama"]);
+        if (Auth::guard('pemesan')->check()) {
+            $prov = Provinsi::find($id);
+            $prov->negara_id = $req->negara_id;
+            $prov->nama = \ucwords($req->nama);
+            $prov->alias = \ucwords($req->alias);
+            $prov->save();
+            return \redirect()->route('negara.index')->with(['msg' => "Berhasil merubah provinsi $req->nama"]);
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
 
     /**
@@ -68,8 +85,12 @@ class ProvinsiController extends Controller
      */
     public function destroy($id)
     {
-        $prov = Provinsi::find($id);
-        $prov->delete();
-        return \redirect()->back()->with(['msg' => "Berhasil menghapus provinsi $prov->name"]);
+        if (Auth::guard('pemesan')->check()) {
+            $prov = Provinsi::find($id);
+            $prov->delete();
+            return \redirect()->back()->with(['msg' => "Berhasil menghapus provinsi $prov->name"]);
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
 }

@@ -2,7 +2,7 @@
 <div class="modal fade" id="tambahPermintaan" data-backdrop="static" tabindex="-1" aria-labelledby="negaraLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content border border-warning">
-            <form action="{{ URL::route('permintaan.store') }}" method="POST">
+            <form action="{{ URL::route('permintaan-pembelian.store') }}" method="POST">
                 {{ csrf_field() }}
                 <div class="modal-header bg-primary">
                     <h5 class="modal-title text-white" id="negaraLabel">Tambah Daftar Permintaan</h5>

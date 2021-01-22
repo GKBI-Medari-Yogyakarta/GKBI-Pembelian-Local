@@ -38,16 +38,16 @@ Route::namespace('Admin')->group(function () {
     Route::resource('admin-bagian', 'BagianController');
 });
 Route::namespace('User')->group(function () {
-    Route::resource('user-pemesan', 'AdminPemesanController');
-    Route::resource('user-gudang', 'AdminGudangController');
-    Route::resource('user-pemesan', 'AdminPemesanController');
-    Route::resource('user-pembelian', 'AdminPembelianController');
-    Route::resource('user-akuntansi', 'AdminAkuntansiController');
+    Route::get('user-pemesan', 'AdminPemesanController@index')->name('user-pemesan.index');
+    Route::get('user-gudang', 'AdminGudangController@index')->name('user-gudang.index');
+    Route::get('user-pemesan', 'AdminPemesanController@index')->name('user-pemesan.index');
+    Route::get('user-pembelian', 'AdminPembelianController@index')->name('user-pembelian.index');
+    Route::get('user-akuntansi', 'AdminAkuntansiController@index')->name('user-akuntansi.index');
 });
 Route::namespace('Pemesan')->group(function () {
     Route::get('alamat', 'NegaraController@index')->name('negara.index');
     Route::resource('negara', 'NegaraController')->except('index');
     Route::resource('provinsi', 'ProvinsiController');
     Route::resource('kabupaten', 'KabupatenController');
-    Route::resource('permintaan', 'PermintaanController');
+    Route::resource('permintaan-pembelian', 'PermintaanController');
 });

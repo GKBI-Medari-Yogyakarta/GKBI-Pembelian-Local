@@ -8,12 +8,17 @@ use App\Http\Requests\Pemesan\KabReqUpdate;
 use App\Model\Pemesan\Kabupaten;
 use App\Model\Pemesan\Provinsi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class KabupatenController extends Controller
 {
     public function index()
     {
-        return \redirect()->route('negara.index');
+        if (Auth::guard('pemesan')->check()) {
+            return \redirect()->route('negara.index');
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
     /**
      * Store a newly created resource in storage.
@@ -23,13 +28,17 @@ class KabupatenController extends Controller
      */
     public function store(KabRequest $req)
     {
-        // return $req->all();
-        Kabupaten::create([
-            'prov_id' => $req->prov_id,
-            'nama' => \ucwords($req->nama),
-            'kota' => \ucwords($req->kota),
-        ]);
-        return \redirect()->back()->with(['msg' => "Berhasil menambah kabupaten $req->nama"]);
+        if (Auth::guard('pemesan')->check()) {
+            // return $req->all();
+            Kabupaten::create([
+                'prov_id' => $req->prov_id,
+                'nama' => \ucwords($req->nama),
+                'kota' => \ucwords($req->kota),
+            ]);
+            return \redirect()->back()->with(['msg' => "Berhasil menambah kabupaten $req->nama"]);
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
     /**
      * Show the form for editing the specified resource.
@@ -39,9 +48,13 @@ class KabupatenController extends Controller
      */
     public function edit($id)
     {
-        $kab = Kabupaten::find($id);
-        $p = Provinsi::all();
-        return \view('pemesan.alamat.kab.edit', \compact('kab', 'p'));
+        if (Auth::guard('pemesan')->check()) {
+            $kab = Kabupaten::find($id);
+            $p = Provinsi::all();
+            return \view('pemesan.alamat.kab.edit', \compact('kab', 'p'));
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
 
     /**
@@ -53,12 +66,16 @@ class KabupatenController extends Controller
      */
     public function update(KabReqUpdate $req, $id)
     {
-        $k = Kabupaten::find($id);
-        $k->nama = \ucwords($req->nama);
-        $k->kota = \ucwords($req->kota);
-        $k->prov_id = $req->prov_id;
-        $k->save();
-        return \redirect()->route('negara.index')->with(['msg' => "Berhasil merubah kabupaten $req->nama"]);
+        if (Auth::guard('pemesan')->check()) {
+            $k = Kabupaten::find($id);
+            $k->nama = \ucwords($req->nama);
+            $k->kota = \ucwords($req->kota);
+            $k->prov_id = $req->prov_id;
+            $k->save();
+            return \redirect()->route('negara.index')->with(['msg' => "Berhasil merubah kabupaten $req->nama"]);
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
 
     /**
@@ -69,8 +86,12 @@ class KabupatenController extends Controller
      */
     public function destroy($id)
     {
-        $kab = Kabupaten::find($id);
-        $kab->delete();
-        return \redirect()->back()->with(['msg' => "Berhasil menghapus kabupaten $kab->name"]);
+        if (Auth::guard('pemesan')->check()) {
+            $kab = Kabupaten::find($id);
+            $kab->delete();
+            return \redirect()->back()->with(['msg' => "Berhasil menghapus kabupaten $kab->name"]);
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
 }

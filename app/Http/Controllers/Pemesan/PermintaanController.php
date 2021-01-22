@@ -119,7 +119,7 @@ class PermintaanController extends Controller
                 return \redirect()->back()->with(['msg' => "Tidak dapat menghapus daftar permintaan dari $pesanan->pemesan, karena sudah disahkan oleh direktur"]);
             }
             $pesanan->delete();
-            return \redirect()->route('permintaan.index')->with(['msg' => "Berhasil menghapus daftar permintaan dari $pesanan->nama"]);
+            return \redirect()->route('permintaan-pembelian.index')->with(['msg' => "Berhasil menghapus daftar permintaan dari $pesanan->nama"]);
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
