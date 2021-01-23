@@ -16,8 +16,7 @@ class GudangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         if (Auth::check()) {
             $user = Gudang::query()->get();
             return \view('admin.user-gudang.index', \compact('user'));
@@ -31,8 +30,7 @@ class GudangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         if (Auth::check()) {
             return \view('admin.user-gudang.create');
         } else {
@@ -46,8 +44,7 @@ class GudangController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserGudangRequest $req)
-    {
+    public function store(UserGudangRequest $req) {
         if (Auth::check()) {
             Gudang::create([
                 'name' => $req->name,
@@ -66,9 +63,9 @@ class GudangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        return \redirect()->route('admin-gudang.index');
     }
 
     /**

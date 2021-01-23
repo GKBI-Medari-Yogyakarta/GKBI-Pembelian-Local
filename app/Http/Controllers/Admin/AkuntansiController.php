@@ -16,8 +16,7 @@ class AkuntansiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         if (Auth::check()) {
             $user = Akuntansi::query()->get();
             return \view('admin.user-akuntansi.index', \compact('user'));
@@ -31,8 +30,7 @@ class AkuntansiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         if (Auth::check()) {
             return \view('admin.user-akuntansi.create');
         } else {
@@ -46,8 +44,7 @@ class AkuntansiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserAkuntansiRequest $req)
-    {
+    public function store(UserAkuntansiRequest $req) {
         if (Auth::check()) {
             Akuntansi::create([
                 'name' => $req->name,
@@ -66,9 +63,8 @@ class AkuntansiController extends Controller
      * @param  \App\Model\Akuntansi  $akuntansi
      * @return \Illuminate\Http\Response
      */
-    public function show(Akuntansi $akuntansi)
-    {
-        //
+    public function show() {
+        return \redirect()->route('admin-akuntansi.index');
     }
 
     /**
@@ -77,8 +73,7 @@ class AkuntansiController extends Controller
      * @param  \App\Model\Akuntansi  $akuntansi
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         if (Auth::check()) {
             $user = Akuntansi::find($id);
             return \view('admin.user-akuntansi.edit', \compact('user'));
@@ -94,8 +89,7 @@ class AkuntansiController extends Controller
      * @param  \App\Model\Akuntansi  $akuntansi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $req, $id)
-    {
+    public function update(Request $req, $id) {
         if (Auth::check()) {
             $this->validate($req, [
                 'name' => 'required',
@@ -121,8 +115,7 @@ class AkuntansiController extends Controller
      * @param  \App\Model\Akuntansi  $akuntansi
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         if (Auth::check()) {
             $user = Akuntansi::find($id);
             $user->delete();

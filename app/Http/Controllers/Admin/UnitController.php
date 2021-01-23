@@ -16,10 +16,12 @@ class UnitController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         $unit = Unit::paginate(10);
         return \view('admin.unit.index', \compact('unit'));
+    }
+    public function create() {
+        return \redirect()->route('admin-unit.show');
     }
 
     /**
@@ -28,13 +30,15 @@ class UnitController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UnitRequest $req)
-    {
+    public function store(UnitRequest $req) {
         Unit::create([
             'nama' => $req->nama,
             'alias' => $req->alias,
         ]);
         return \redirect()->back()->with(['msg' => "Berhasil menambah data unit $req->nama"]);
+    }
+    public function show() {
+        return \redirect()->route('admin-unit.index');
     }
 
     /**
@@ -43,8 +47,7 @@ class UnitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         $unit = Unit::find($id);
         return \view('admin.unit.edit', \compact('unit'));
     }
@@ -56,8 +59,7 @@ class UnitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UnitReqUpdate $req, $id)
-    {
+    public function update(UnitReqUpdate $req, $id) {
         $unit = Unit::find($id);
         $unit->nama = $req->nama;
         $unit->alias = $req->alias;
@@ -71,8 +73,7 @@ class UnitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         $unit = Unit::find($id);
         $unit->delete();
         return \redirect()->back()->with(['msg' => "Berhasil menghapus data unit $unit->nama"]);

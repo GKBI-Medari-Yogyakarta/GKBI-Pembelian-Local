@@ -29,6 +29,14 @@ class PermintaanController extends Controller
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
+    public function create()
+    {
+        if (Auth::guard('pemesan')->check()) {
+            return \redirect()->route('permintaan-pembelian.index');
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -70,6 +78,14 @@ class PermintaanController extends Controller
             $unit = Bagian::all();
             $permintaan = Permintaan::find($id);
             return \view('pemesan.permintaan.show',\compact('permintaan','unit'));
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
+    }
+    public function edit()
+    {
+        if (Auth::guard('pemesan')->check()) {
+            return \redirect()->route('permintaan-pembelian.index');
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }

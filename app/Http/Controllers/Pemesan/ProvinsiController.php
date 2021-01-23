@@ -19,6 +19,14 @@ class ProvinsiController extends Controller
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
+    public function create()
+    {
+        if (Auth::guard('pemesan')->check()) {
+            return \redirect()->route('negara.index');
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -34,6 +42,14 @@ class ProvinsiController extends Controller
                 'alias' => \ucwords($req->alias),
             ]);
             return \redirect()->back()->with(['msg' => "Berhasil menambah provinsi $req->nama"]);
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
+    }
+    public function show()
+    {
+        if (Auth::guard('pemesan')->check()) {
+            return \redirect()->route('negara.index');
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }

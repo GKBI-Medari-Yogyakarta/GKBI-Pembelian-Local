@@ -16,8 +16,7 @@ class PemesanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         if (Auth::check()) {
             $user = Pemesan::query()->get();
             // \dd($user);
@@ -32,8 +31,7 @@ class PemesanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         if (Auth::check()) {
             return \view('admin.user-pemesan.create');
         } else {
@@ -47,8 +45,7 @@ class PemesanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserPemesanRequest $req)
-    {
+    public function store(UserPemesanRequest $req) {
         if (Auth::check()) {
             Pemesan::create([
                 'name' => $req->name,
@@ -67,9 +64,12 @@ class PemesanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show() {
+        if(Auth::check()){
+            return \redirect()->route('admin-pemesan.index');
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
 
     /**
@@ -78,8 +78,7 @@ class PemesanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         if (Auth::check()) {
             $user = Pemesan::find($id);
             // \dd($user);
@@ -96,8 +95,7 @@ class PemesanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $req, $id)
-    {
+    public function update(Request $req, $id) {
         if (Auth::check()) {
             $this->validate($req, [
                 'name' => 'required',
@@ -124,8 +122,7 @@ class PemesanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         if (Auth::check()) {
             $user = Pemesan::find($id);
             // \dd($user);

@@ -20,6 +20,13 @@ class KabupatenController extends Controller
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
+    public function create(){
+        if (Auth::guard('pemesan')->check()) {
+            return \redirect()->route('negara.index');
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -36,6 +43,14 @@ class KabupatenController extends Controller
                 'kota' => \ucwords($req->kota),
             ]);
             return \redirect()->back()->with(['msg' => "Berhasil menambah kabupaten $req->nama"]);
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
+    }
+    public function show()
+    {
+        if (Auth::guard('pemesan')->check()) {
+            return \redirect()->route('negara.index');
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
