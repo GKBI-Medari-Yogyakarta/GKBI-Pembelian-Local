@@ -11,13 +11,8 @@ use Illuminate\Support\Facades\Hash;
 
 class AkuntansiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
+    //to index
+    public function index() {
         if (Auth::check()) {
             $user = Akuntansi::query()->get();
             return \view('admin.user-akuntansi.index', \compact('user'));
@@ -25,29 +20,16 @@ class AkuntansiController extends Controller
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
+    //to form create / make
+    public function create() {
         if (Auth::check()) {
             return \view('admin.user-akuntansi.create');
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(UserAkuntansiRequest $req)
-    {
+    //save / store data
+    public function store(UserAkuntansiRequest $req) {
         if (Auth::check()) {
             Akuntansi::create([
                 'name' => $req->name,
@@ -59,26 +41,16 @@ class AkuntansiController extends Controller
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Model\Akuntansi  $akuntansi
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Akuntansi $akuntansi)
-    {
-        //
+    //nothing, just for completed of resources in routing
+    public function show() {
+        if (Auth::check()) {
+            return \redirect()->route('admin-akuntansi.index');
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Model\Akuntansi  $akuntansi
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
+    //to form edit
+    public function edit($id) {
         if (Auth::check()) {
             $user = Akuntansi::find($id);
             return \view('admin.user-akuntansi.edit', \compact('user'));
@@ -86,16 +58,8 @@ class AkuntansiController extends Controller
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\Akuntansi  $akuntansi
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $req, $id)
-    {
+    //update
+    public function update(Request $req, $id) {
         if (Auth::check()) {
             $this->validate($req, [
                 'name' => 'required',
@@ -114,15 +78,8 @@ class AkuntansiController extends Controller
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Model\Akuntansi  $akuntansi
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
+    //delete
+    public function destroy($id) {
         if (Auth::check()) {
             $user = Akuntansi::find($id);
             $user->delete();

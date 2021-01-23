@@ -9,18 +9,18 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
                     Alamat
                 </a>
-                <a class="nav-link {{ Request::url() == url('permintaan') ? 'active' : '' }}" href="{{ URL::route('permintaan.index') }}">
+                <a class="nav-link {{ Request::url() == url('permintaan-pembelian') ? 'active' : '' }}" href="{{ URL::route('permintaan-pembelian.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-dolly-flatbed"></i></div>
                     Permintaan Pembelian
                 </a>
-                <a class="nav-link {{ Request::url() == url('admin-pembelian') ? 'active' : '' }}" href="{{ URL::route('admin-pembelian.index') }}">
+                <a class="nav-link" href="#">
                     <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
                     Permintaan Perbaikan
                 </a>
-                <a class="nav-link {{ Request::url() == url('admin-akuntansi') ? 'active' : '' }}" href="{{ URL::route('admin-akuntansi.index') }}">
+                {{-- <a class="nav-link {{ Request::url() == url('admin-akuntansi') ? 'active' : '' }}" href="{{ URL::route('admin-akuntansi.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-money-check"></i></div>
                     User Akuntansi
-                </a>
+                </a> --}}
 
                 {{-- Tambah Data --}}
                 {{-- <div class="sb-sidenav-menu-heading"><i class="fas fa-user-plus"></i> Tambah Data User</div>

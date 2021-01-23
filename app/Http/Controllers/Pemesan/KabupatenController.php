@@ -8,69 +8,78 @@ use App\Http\Requests\Pemesan\KabReqUpdate;
 use App\Model\Pemesan\Kabupaten;
 use App\Model\Pemesan\Provinsi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class KabupatenController extends Controller
 {
-    public function index()
-    {
-        return \redirect()->route('negara.index');
+    //to index
+    public function index() {
+        if (Auth::guard('pemesan')->check()) {
+            return \redirect()->route('negara.index');
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(KabRequest $req)
-    {
-        // return $req->all();
-        Kabupaten::create([
-            'prov_id' => $req->prov_id,
-            'nama' => \ucwords($req->nama),
-            'kota' => \ucwords($req->kota),
-        ]);
-        return \redirect()->back()->with(['msg' => "Berhasil menambah kabupaten $req->nama"]);
+    //to form create / make
+    public function create() {
+        if (Auth::guard('pemesan')->check()) {
+            return \redirect()->route('negara.index');
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $kab = Kabupaten::find($id);
-        $p = Provinsi::all();
-        return \view('pemesan.alamat.kab.edit', \compact('kab', 'p'));
+    //store / save data
+    public function store(KabRequest $req) {
+        if (Auth::guard('pemesan')->check()) {
+            Kabupaten::create([
+                'prov_id' => $req->prov_id,
+                'nama' => \ucwords($req->nama),
+                'kota' => \ucwords($req->kota),
+            ]);
+            return \redirect()->back()->with(['msg' => "Berhasil menambah kabupaten $req->nama"]);
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(KabReqUpdate $req, $id)
-    {
-        $k = Kabupaten::find($id);
-        $k->nama = \ucwords($req->nama);
-        $k->kota = \ucwords($req->kota);
-        $k->prov_id = $req->prov_id;
-        $k->save();
-        return \redirect()->route('negara.index')->with(['msg' => "Berhasil merubah kabupaten $req->nama"]);
+    //nothing, just for completed of resources in routing
+    public function show() {
+        if (Auth::guard('pemesan')->check()) {
+            return \redirect()->route('negara.index');
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $kab = Kabupaten::find($id);
-        $kab->delete();
-        return \redirect()->back()->with(['msg' => "Berhasil menghapus kabupaten $kab->name"]);
+    //to form edit
+    public function edit($id) {
+        if (Auth::guard('pemesan')->check()) {
+            $kab = Kabupaten::find($id);
+            $p = Provinsi::all();
+            return \view('pemesan.alamat.kab.edit', \compact('kab', 'p'));
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
+    }
+    //update
+    public function update(KabReqUpdate $req, $id) {
+        if (Auth::guard('pemesan')->check()) {
+            $k = Kabupaten::find($id);
+            $k->nama = \ucwords($req->nama);
+            $k->kota = \ucwords($req->kota);
+            $k->prov_id = $req->prov_id;
+            $k->save();
+            return \redirect()->route('negara.index')->with(['msg' => "Berhasil merubah kabupaten $req->nama"]);
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
+    }
+    //delete / hapus
+    public function destroy($id) {
+        if (Auth::guard('pemesan')->check()) {
+            $kab = Kabupaten::find($id);
+            $kab->delete();
+            return \redirect()->back()->with(['msg' => "Berhasil menghapus kabupaten $kab->name"]);
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
 }

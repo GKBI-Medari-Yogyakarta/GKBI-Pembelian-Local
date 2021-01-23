@@ -12,13 +12,8 @@ use Illuminate\Support\Facades\DB;
 
 class PermintaanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
+    //to index
+    public function index() {
         if (Auth::guard('pemesan')->check()) {
             $unit = Bagian::all();
             $permintaan = DB::table('permintaans')
@@ -29,16 +24,16 @@ class PermintaanController extends Controller
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(PesananRequest $req)
-    {
-        // \dd($req->all());
+    //nothing, just for completed of resources in routing
+    public function create() {
+        if (Auth::guard('pemesan')->check()) {
+            return \redirect()->route('permintaan-pembelian.index');
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
+    }
+    //save / store data
+    public function store(PesananRequest $req) {
         if (Auth::guard('pemesan')->check()) {
             Permintaan::create([
                 'pemesan' => $req->pemesan,
@@ -57,15 +52,8 @@ class PermintaanController extends Controller
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
+    //detail
+    public function show($id) {
         if (Auth::guard('pemesan')->check()) {
             $unit = Bagian::all();
             $permintaan = Permintaan::find($id);
@@ -74,17 +62,16 @@ class PermintaanController extends Controller
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(PesananRequest $req, $id)
-    {
+    //to form edit
+    public function edit() {
+        if (Auth::guard('pemesan')->check()) {
+            return \redirect()->route('permintaan-pembelian.index');
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
+    }
+    //update
+    public function update(PesananRequest $req, $id) {
         if (Auth::guard('pemesan')->check()) {
             $pesanan = Permintaan::find($id);
             $pesanan->update([
@@ -104,22 +91,15 @@ class PermintaanController extends Controller
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
+    //delete
+    public function destroy($id) {
         if (Auth::guard('pemesan')->check()) {
             $pesanan = Permintaan::find($id);
             if ($pesanan->status_direktur == '1') {
                 return \redirect()->back()->with(['msg' => "Tidak dapat menghapus daftar permintaan dari $pesanan->pemesan, karena sudah disahkan oleh direktur"]);
             }
             $pesanan->delete();
-            return \redirect()->route('permintaan.index')->with(['msg' => "Berhasil menghapus daftar permintaan dari $pesanan->nama"]);
+            return \redirect()->route('permintaan-pembelian.index')->with(['msg' => "Berhasil menghapus daftar permintaan dari $pesanan->nama"]);
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }

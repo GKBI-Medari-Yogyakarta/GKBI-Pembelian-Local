@@ -11,13 +11,8 @@ use Illuminate\Support\Facades\Hash;
 
 class GudangController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
+    //to index
+    public function index() {
         if (Auth::check()) {
             $user = Gudang::query()->get();
             return \view('admin.user-gudang.index', \compact('user'));
@@ -25,29 +20,16 @@ class GudangController extends Controller
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
+    //to form create / make
+    public function create() {
         if (Auth::check()) {
             return \view('admin.user-gudang.create');
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(UserGudangRequest $req)
-    {
+    //save / store data
+    public function store(UserGudangRequest $req) {
         if (Auth::check()) {
             Gudang::create([
                 'name' => $req->name,
@@ -59,26 +41,16 @@ class GudangController extends Controller
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+    //nothing, just for completed of resources in routing
+    public function show() {
+        if (Auth::check()) {
+            return \redirect()->route('admin-gudang.index');
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
+    //to form edit
+    public function edit($id) {
         if (Auth::check()) {
             $user = Gudang::find($id);
             return \view('admin.user-gudang.edit', \compact('user'));
@@ -86,16 +58,8 @@ class GudangController extends Controller
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $req, $id)
-    {
+    //update
+    public function update(Request $req, $id) {
         if (Auth::check()) {
             $this->validate($req, [
                 'name' => 'required',
@@ -114,15 +78,8 @@ class GudangController extends Controller
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
+    //delete
+    public function destroy($id) {
         if (Auth::check()) {
             $user = Gudang::find($id);
             $user->delete();
