@@ -8,13 +8,8 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminAkuntansiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
+    //to dashboard user akuntansi
+    public function index() {
         if (Auth::guard('akuntansi')->check()) {
             return \view('akuntansi.index');
         } else {

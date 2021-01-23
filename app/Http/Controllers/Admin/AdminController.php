@@ -9,21 +9,16 @@ use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
+    //to index admin
+    public function index() {
         if (Auth::check()) {
             return \view('admin.index');
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-    public function logout()
-    {
+    //to logout all user
+    public function logout() {
         Session::flush();
         Auth::logout();
         return Redirect('login'); //routing login

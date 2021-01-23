@@ -8,13 +8,8 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminPembelianController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
+    //to dashboard user pembelian
+    public function index() {
         if (Auth::guard('pembelian')->check()) {
             return \view('pembelian.index');
         } else {

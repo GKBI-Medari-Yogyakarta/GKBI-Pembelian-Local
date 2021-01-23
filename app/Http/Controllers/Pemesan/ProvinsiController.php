@@ -11,30 +11,24 @@ use Illuminate\Support\Facades\Auth;
 
 class ProvinsiController extends Controller
 {
-    public function index()
-    {
+    //to index
+    public function index() {
         if (Auth::guard('pemesan')->check()) {
             return \redirect()->route('negara.index');
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-    public function create()
-    {
+    //nothing, just for completed of resources in routing
+    public function create() {
         if (Auth::guard('pemesan')->check()) {
             return \redirect()->route('negara.index');
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(ProvRequest $req)
-    {
+    //save / store data
+    public function store(ProvRequest $req) {
         if (Auth::guard('pemesan')->check()) {
             Provinsi::create([
                 'negara_id' => $req->negara_id,
@@ -46,23 +40,16 @@ class ProvinsiController extends Controller
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-    public function show()
-    {
+    //nothing, just for completed of resources in routing
+    public function show() {
         if (Auth::guard('pemesan')->check()) {
             return \redirect()->route('negara.index');
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
+    //to form edit
+    public function edit($id) {
         if (Auth::guard('pemesan')->check()) {
             $prov = Provinsi::find($id);
             $n = Negara::all();
@@ -71,16 +58,8 @@ class ProvinsiController extends Controller
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $req, $id)
-    {
+    //update
+    public function update(Request $req, $id) {
         if (Auth::guard('pemesan')->check()) {
             $prov = Provinsi::find($id);
             $prov->negara_id = $req->negara_id;
@@ -92,15 +71,8 @@ class ProvinsiController extends Controller
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
+    //delete
+    public function destroy($id) {
         if (Auth::guard('pemesan')->check()) {
             $prov = Provinsi::find($id);
             $prov->delete();

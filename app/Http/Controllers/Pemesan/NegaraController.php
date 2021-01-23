@@ -16,15 +16,9 @@ use function Ramsey\Uuid\v1;
 
 class NegaraController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
+    //to index
+    public function index() {
         if (Auth::guard('pemesan')->check()) {
-            // SELECT n.id, n.nama,n.kode,p.nama as nm_prov, p.alias, k.prov_id,k.nama as nm_kab FROM negaras n JOIN provinsis p on n.id=p.negara_id JOIN kabupatens k on p.id=k.prov_id
             $alamat = DB::table('negaras')
                 ->join('provinsis', 'negaras.id', '=', 'provinsis.negara_id')
                 ->join('kabupatens', 'provinsis.id', '=', 'kabupatens.prov_id')
@@ -38,23 +32,16 @@ class NegaraController extends Controller
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-    public function create()
-    {
+    //nothing, just for completed of resources in routing
+    public function create() {
         if (Auth::guard('pemesan')->check()) {
             return \redirect()->route('negara.index');
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(NegaraRequest $req)
-    {
+    //save / store data
+    public function store(NegaraRequest $req) {
         if (Auth::guard('pemesan')->check()) {
             Negara::create([
                 'nama' => \ucwords($req->nama),
@@ -65,23 +52,16 @@ class NegaraController extends Controller
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-    public function show()
-    {
+    //nothing, just for completed of resources in routing
+    public function show() {
         if (Auth::guard('pemesan')->check()) {
             return \redirect()->route('negara.index');
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
+    //to form edit
+    public function edit($id) {
         if (Auth::guard('pemesan')->check()) {
             $negara = Negara::find($id);
             return \view('pemesan.alamat.negara.edit', \compact('negara'));
@@ -89,16 +69,8 @@ class NegaraController extends Controller
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(NegaraReqUpdate $req,  $id)
-    {
+    //update
+    public function update(NegaraReqUpdate $req,  $id) {
         if (Auth::guard('pemesan')->check()) {
             $negara = Negara::find($id);
             $negara->nama = \ucwords($req->nama);
@@ -109,15 +81,8 @@ class NegaraController extends Controller
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
+    //delete
+    public function destroy($id) {
         if (Auth::guard('pemesan')->check()) {
             $negara = Negara::find($id);
             $negara->delete();

@@ -8,13 +8,8 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminPemesanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
+    //to dashboard user pemesan
+    public function index() {
         if (Auth::guard('pemesan')->check()) {
             return \view('pemesan.index');
         } else {

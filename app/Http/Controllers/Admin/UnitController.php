@@ -8,74 +8,76 @@ use App\Http\Requests\UnitRequest;
 use App\Http\Requests\UnitReqUpdate;
 use App\Model\Unit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UnitController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //to index
     public function index() {
-        $unit = Unit::paginate(10);
-        return \view('admin.unit.index', \compact('unit'));
+        if (Auth::check()) {
+            $unit = Unit::paginate(10);
+            return \view('admin.unit.index', \compact('unit'));
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
+    //nothing, just for completed of resources in routing
     public function create() {
-        return \redirect()->route('admin-unit.show');
+        if (Auth::check()) {
+            return \redirect()->route('admin-unit.index');
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    //save / store data
     public function store(UnitRequest $req) {
-        Unit::create([
-            'nama' => $req->nama,
-            'alias' => $req->alias,
-        ]);
-        return \redirect()->back()->with(['msg' => "Berhasil menambah data unit $req->nama"]);
+        if (Auth::check()) {
+            Unit::create([
+                'nama' => $req->nama,
+                'alias' => $req->alias,
+            ]);
+            return \redirect()->back()->with(['msg' => "Berhasil menambah data unit $req->nama"]);
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
+    //nothing, just for completed of resources in routing
     public function show() {
-        return \redirect()->route('admin-unit.index');
+        if (Auth::check()) {
+            return \redirect()->route('admin-unit.index');
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //to form edit
     public function edit($id) {
-        $unit = Unit::find($id);
-        return \view('admin.unit.edit', \compact('unit'));
+        if (Auth::check()) {
+            $unit = Unit::find($id);
+            return \view('admin.unit.edit', \compact('unit'));
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //update
     public function update(UnitReqUpdate $req, $id) {
-        $unit = Unit::find($id);
-        $unit->nama = $req->nama;
-        $unit->alias = $req->alias;
-        $unit->save();
-        return \redirect()->route('admin-unit.index')->with(['msg' => "Berhasil merubah data unit $req->nama"]);
+        if (Auth::check()) {
+            $unit = Unit::find($id);
+            $unit->nama = $req->nama;
+            $unit->alias = $req->alias;
+            $unit->save();
+            return \redirect()->route('admin-unit.index')->with(['msg' => "Berhasil merubah data unit $req->nama"]);
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //delete
     public function destroy($id) {
-        $unit = Unit::find($id);
-        $unit->delete();
-        return \redirect()->back()->with(['msg' => "Berhasil menghapus data unit $unit->nama"]);
+        if (Auth::check()) {
+            $unit = Unit::find($id);
+            $unit->delete();
+            return \redirect()->back()->with(['msg' => "Berhasil menghapus data unit $unit->nama"]);
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
 }

@@ -8,13 +8,8 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminGudangController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
+    //to dashboard user gudang
+    public function index() {
         if (Auth::guard('gudang')->check()) {
             return \view('gudang.index');
         } else {
