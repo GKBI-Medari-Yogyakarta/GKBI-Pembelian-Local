@@ -80,7 +80,7 @@
                                 <td colspan="3" class="h-t pl-0"> {{\Carbon\Carbon::parse($permintaan->tgl_pesanan)->translatedFormat('d F Y') }} </td>
                             </tr>
                         </tbody>
-                    </table>                   
+                    </table>
                 </div>
             </div>
         </div>
@@ -106,7 +106,11 @@
                         <th scope="row">{{$permintaan->id}}</th>
                         <td>{{$permintaan->nm_barang}} / {{$permintaan->spesifikasi}}</td>
                         <td>{{$permintaan->unit_stok}}</td>
-                        <td>{{$permintaan->gudang_stok}}</td>
+                        @if (empty($perminstaans->gudang_stok))
+                            <td>0</td>
+                        @else
+                            <td>{{$permintaan->gudang_stok}}</td>
+                        @endif
                         <td>{{$permintaan->jumlah}}</td>
                         <td>{{$permintaan->tgl_diperlukan}}</td>
                         <td>{{$permintaan->realisasi}}</td>
@@ -154,8 +158,8 @@
     </div>
     <div class="row">
         <div class="col col-sm-1">
-            <a href="{{URL::route('permintaan.index')}}" class="btn btn-warning btn-sm">Kembali</a>
-        </div>        
+            <a href="{{URL::route('permintaan-pembelian.index')}}" class="btn btn-warning btn-sm">Kembali</a>
+        </div>
         @if ($permintaan->status_permintaan != 1)
         <div class="col col-sm-10">
             <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editPermintaan">Edit</button>
@@ -170,7 +174,7 @@
         @if ($permintaan->status_permintaan != 1)
         <div class="col">
             <form
-                action="{{ URL::route('permintaan.destroy',$permintaan->id) }}"
+                action="{{ URL::route('permintaan-pembelian.destroy',$permintaan->id) }}"
                 method="POST" class="btn btn-sm p-0">
                 @method('delete')
                 @csrf

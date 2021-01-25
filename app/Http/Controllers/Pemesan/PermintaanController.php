@@ -43,7 +43,7 @@ class PermintaanController extends Controller
                 'nm_barang' => $req->nm_barang,
                 'spesifikasi' => $req->spesifikasi,
                 'unit_stok' => $req->unit_stok,
-                'gudang_stok' => $req->gudang_stok,
+                // 'gudang_stok' => $req->gudang_stok,
                 'jumlah'=>$req->jumlah,
                 'tgl_diperlukan' => $req->tgl_diperlukan,
                 'bagian_id' => $req->bagian_id,

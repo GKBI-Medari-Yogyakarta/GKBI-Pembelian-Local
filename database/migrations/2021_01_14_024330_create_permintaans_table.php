@@ -21,7 +21,7 @@ class CreatePermintaansTable extends Migration
             $table->string('nm_barang');
             $table->string('spesifikasi');
             $table->string('unit_stok');
-            $table->string('gudang_stok');
+            $table->string('gudang_stok')->nullable();
             $table->date('tgl_diperlukan');
             $table->date('realisasi')->nullable();
             $table->string('keterangan', 1000)->nullable();

@@ -1,5 +1,5 @@
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-    <a class="navbar-brand" href="index.html">@yield('status-user')</a>
+    <a class="navbar-brand" href="#">@yield('status-user')</a>
     <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
     {{-- <h4 class="ml-2 text-white">SISTEM UNTUK MEMBUAT USER BARU</h4> --}}
     <!-- Navbar Search-->

@@ -30,7 +30,7 @@ class PesananRequest extends FormRequest
             'nm_barang' => 'required',
             'spesifikasi' => 'required',
             'unit_stok' => 'required',
-            'gudang_stok' => 'required',
+            // 'gudang_stok' => 'required',
             'jumlah'=>'required',
             'tgl_diperlukan' => 'required|date',
             'bagian_id' => 'required',
