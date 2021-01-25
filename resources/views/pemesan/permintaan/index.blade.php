@@ -44,7 +44,11 @@
                                 <td>{{ $permintaans->nm_barang }}</td>
                                 <td>{{ $permintaans->spesifikasi }}</td>
                                 <td>{{ $permintaans->unit_stok }}</td>
-                                <td>{{ $permintaans->gudang_stok }}</td>
+                                @if (empty($perminstaans->gudang_stok))
+                                    <td>belum dilihat / diupdate dari unit Gudang</td>
+                                @else
+                                    <td>{{$permintaan->gudang_stok}}</td>
+                                @endif
                                 <td>{{ $permintaans->jumlah }}</td>
                                 <td>{{ $permintaans->tgl_diperlukan }}</td>
                                 <td>

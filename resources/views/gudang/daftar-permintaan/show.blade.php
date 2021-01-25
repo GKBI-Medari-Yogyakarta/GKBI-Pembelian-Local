@@ -1,6 +1,6 @@
-@extends('pemesan.layouts.main')
-@section('title','Pemesan Page')
-@section('status-user','Pemesan Page')
+@extends('gudang.layouts.main')
+@section('title','Gudang Page')
+@section('status-user','Gudang Page')
 @section('custom-style')
     <style>
         .h-nomor{
@@ -30,7 +30,7 @@
             {{ session('msg') }}
         </div>
     @endif
-    @include('pemesan.layouts.required')
+    @include('gudang.layouts.required')
     <div class="card mb-4 mt-4">
         <div class="card-header">
             <div class="row p-0">
@@ -107,10 +107,10 @@
                         <th scope="row">{{$permintaan->id}}</th>
                         <td>{{$permintaan->nm_barang}} / {{$permintaan->spesifikasi}}</td>
                         <td>{{$permintaan->unit_stok}}</td>
-                        @if (empty($perminstaans->gudang_stok))
-                            <td>belum dilihat / diupdate dari unit Gudang</td>
+                        @if (empty($permintaan->gudang_stok))
+                        <td>{{$permintaan->gudang_stok}}</td>
                         @else
-                            <td>{{$permintaan->gudang_stok}}</td>
+                        <td>belum dilihat / diupdate dari unit Gudang</td>
                         @endif
                         <td>{{$permintaan->jumlah}}</td>
                         <td>{{$permintaan->tgl_diperlukan}}</td>
@@ -159,7 +159,7 @@
     </div>
     <div class="row">
         <div class="col col-sm-1">
-            <a href="{{URL::route('permintaan-pembelian.index')}}" class="btn btn-warning btn-sm">Kembali</a>
+            <a href="{{URL::route('permintaan.index')}}" class="btn btn-warning btn-sm">Kembali</a>
         </div>
         @if ($permintaan->status_permintaan != 1)
         <div class="col col-sm-10">
@@ -192,7 +192,7 @@
     </div>
 </div>
 @endsection
-@include('pemesan.permintaan.edit-modal')
+@include('gudang.daftar-permintaan.edit-modal')
 @push('tooltip')
     <script>
          $(function () {
