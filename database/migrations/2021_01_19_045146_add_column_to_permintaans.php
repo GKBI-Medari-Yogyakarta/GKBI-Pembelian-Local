@@ -15,6 +15,7 @@ class AddColumnToPermintaans extends Migration
     {
         Schema::table('permintaans', function (Blueprint $table) {
             $table->string('jumlah')->after('gudang_stok');
+            $table->string('user_pemesan_id')->after('keterangan')->nullable();
         });
     }
 

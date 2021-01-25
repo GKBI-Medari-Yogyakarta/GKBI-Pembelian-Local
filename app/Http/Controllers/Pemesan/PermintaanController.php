@@ -35,6 +35,7 @@ class PermintaanController extends Controller
     //save / store data
     public function store(PesananRequest $req) {
         if (Auth::guard('pemesan')->check()) {
+            $user_pemesan_id = Auth::guard('pemesan')->user()->getAuthIdentifier();
             Permintaan::create([
                 'pemesan' => $req->pemesan,
                 'no_pemesan' => $req->no_pemesan,
@@ -46,6 +47,7 @@ class PermintaanController extends Controller
                 'jumlah'=>$req->jumlah,
                 'tgl_diperlukan' => $req->tgl_diperlukan,
                 'bagian_id' => $req->bagian_id,
+                'user_pemesan_id'=> $user_pemesan_id,
             ]);
             return \redirect()->back()->with(['msg' => "Berhasil menambah daftar permintaan dari $req->pemesan"]);
         } else {
@@ -74,6 +76,7 @@ class PermintaanController extends Controller
     public function update(PesananRequest $req, $id) {
         if (Auth::guard('pemesan')->check()) {
             $pesanan = Permintaan::find($id);
+            $user_pemesan_id = Auth::guard('pemesan')->user()->getAuthIdentifier();
             $pesanan->update([
                 'pemesan' => $req->pemesan,
                 'no_pemesan' => $req->no_pemesan,
@@ -85,6 +88,7 @@ class PermintaanController extends Controller
                 'jumlah'=>$req->jumlah,
                 'tgl_diperlukan' => $req->tgl_diperlukan,
                 'bagian_id' => $req->bagian_id,
+                'user_pemesan_id' => $user_pemesan_id,
             ]);
             return \redirect()->back()->with(['msg' => "Berhasil merubah daftar permintaan dari $pesanan->pemesan"]);
         } else {
