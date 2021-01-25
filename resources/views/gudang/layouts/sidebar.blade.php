@@ -2,20 +2,20 @@
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="nav">
-                <div class="sb-sidenav-menu-heading nav-link active">SISTEM PEERMINTAAN INTERNAL PC. GKBI</div>
+                <div class="sb-sidenav-menu-heading nav-link active">SISTEM MELIHAT DAFTAR PERMINTAAN</div>
                 {{-- List User --}}
                 <div class="sb-sidenav-menu-heading"><i class="fas fa-users"></i> List User</div>
-                <a class="nav-link {{ Request::url() == url('user-pemesan/alamat') ? 'active' : '' }}" href="{{ URL::route('negara.index') }}">
+                <a class="nav-link {{ Request::url() == url('alamat') ? 'active' : '' }}" href="{{ URL::route('negara.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
-                    Alamat
+                    Daftar Pesanan
                 </a>
-                <a class="nav-link {{ Request::url() == url('user-pemesan/permintaan-pembelian') ? 'active' : '' }}" href="{{ URL::route('permintaan-pembelian.index') }}">
+                <a class="nav-link {{ Request::url() == url('user-gudang/permintaan') ? 'active' : '' }}" href="{{ URL::route('permintaan.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-dolly-flatbed"></i></div>
-                    Permintaan Pembelian
+                    Daftar Permintaan
                 </a>
                 <a class="nav-link" href="#">
                     <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
-                    Permintaan Perbaikan
+                    Daftar Perbaikan
                 </a>
             </div>
         </div>

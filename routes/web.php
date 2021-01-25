@@ -1,18 +1,5 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 use Illuminate\Support\Facades\Route;
-
 Route::view('welcome', 'admin.layouts.main');
 Route::redirect('/', 'login', 301);
 Route::namespace('Auth')->group(function () {
@@ -33,14 +20,20 @@ Route::namespace('Admin')->group(function () {
 Route::namespace('User')->group(function () {
     Route::get('user-pemesan', 'AdminPemesanController@index')->name('user-pemesan.index');
     Route::get('user-gudang', 'AdminGudangController@index')->name('user-gudang.index');
-    Route::get('user-pemesan', 'AdminPemesanController@index')->name('user-pemesan.index');
     Route::get('user-pembelian', 'AdminPembelianController@index')->name('user-pembelian.index');
     Route::get('user-akuntansi', 'AdminAkuntansiController@index')->name('user-akuntansi.index');
 });
 Route::namespace('Pemesan')->group(function () {
-    Route::get('alamat', 'NegaraController@index')->name('negara.index');
-    Route::resource('negara', 'NegaraController')->except('index');
-    Route::resource('provinsi', 'ProvinsiController');
-    Route::resource('kabupaten', 'KabupatenController');
-    Route::resource('permintaan-pembelian', 'PermintaanController');
+    Route::prefix('user-pemesan')->group(function(){
+        Route::get('alamat', 'NegaraController@index')->name('negara.index');
+        Route::resource('negara', 'NegaraController')->except('index');
+        Route::resource('provinsi', 'ProvinsiController');
+        Route::resource('kabupaten', 'KabupatenController');
+        Route::resource('permintaan-pembelian', 'PermintaanController');
+    });
+});
+Route::namespace('Gudang')->group(function(){
+    Route::prefix('user-gudang')->group(function(){
+        Route::resource('permintaan', 'GudangPermintaanController');
+    });
 });

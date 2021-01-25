@@ -11,7 +11,7 @@ class AdminGudangController extends Controller
     //to dashboard user gudang
     public function index() {
         if (Auth::guard('gudang')->check()) {
-            return \view('gudang.index');
+            return \view('gudang.daftar-pesanan.index');
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }

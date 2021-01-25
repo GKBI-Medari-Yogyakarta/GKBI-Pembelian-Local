@@ -2,7 +2,7 @@
 <div class="modal fade" id="editPermintaan" data-backdrop="static" tabindex="-1" aria-labelledby="negaraLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content border border-warning">
-            <form action="{{ URL::route('permintaan.update',$permintaan->id) }}" method="POST">
+            <form action="{{ URL::route('permintaan-pembelian.update',$permintaan->id) }}" method="POST">
                 @method('put')
                 {{ csrf_field() }}
                 <div class="modal-header bg-primary">
@@ -48,12 +48,12 @@
                             <input type="number" class="form-control @error('unit_stok') is-invalid @enderror" id="inputunit_stok" name="unit_stok" value="{{ $permintaan->unit_stok }}">
                         </div>
                     </div>
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                         <label for="inputgudang_stok" class="col-sm-3 col-form-label">Stok barang dari gudang</label>
                         <div class="col-sm-9">
                             <input type="number" class="form-control @error('gudang_stok') is-invalid @enderror" id="inputgudang_stok" name="gudang_stok" value="{{ $permintaan->gudang_stok }}">
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group row">
                         <label for="inputjumlah" class="col-sm-3 col-form-label">Jumlah barang yang diminta</label>
                         <div class="col-sm-9">
