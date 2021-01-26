@@ -30,6 +30,7 @@
                                 <th rowspan="2" class="text-center align-middle p-0" scope="col">Jumlah</th>
                                 <th rowspan="2" class="text-center align-middle p-0" scope="col">Tanggal Diperlukan</th>
                                 <th rowspan="2" class="text-center align-middle p-0" scope="col">Keterangan</th>
+                                <th rowspan="2" class="text-center align-middle p-0" scope="col">Aksi</th>
                             </tr>
                             <tr>
                                 <th class="text-center unit">Unit</th>
@@ -52,7 +53,9 @@
                                 <td>{{ $p->tgl_diperlukan }}</td>
                                 <td>
                                     {{ $p->keterangan }}
-                                    <a href="{{ URL::route('permintaan.show',$p->id) }}" class="btn bg-transparent p-0 align-middle text-center" id="detail" data-toggle="tooltip" data-placement="right" title="Detail">
+                                </td>
+                                <td>
+                                    <a href="{{ URL::route('permintaan.show',$p->id) }}" class="btn bg-transparent p-0 align-middle text-center" id="detail" data-toggle="tooltip" data-placement="top" title="Detail">
                                         <i class="fas fa-info-circle text-info h4 m-0"></i>
                                     </a>
                                 </td>
@@ -107,3 +110,10 @@
     </div>
 </main>
 @endsection
+@push('tooltip')
+    <script>
+         $(function () {
+             $('[data-toggle="tooltip"]').tooltip('show')
+         })
+    </script>
+@endpush

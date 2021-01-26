@@ -17,7 +17,11 @@
             margin-top: 27%;
         }
         .img-ttd{
-            width: 70%;
+            width: 200px;
+        }
+        td.text-center.align-middle.ttd {
+            width: 10px;
+            margin: 0px;
         }
     </style>
 @section('main')
@@ -91,7 +95,7 @@
                     <tr>
                         <th rowspan="2" class="text-center align-middle p-0" scope="col">#</th>
                         <th rowspan="2" class="text-center align-middle p-0" scope="col">Nama Barang & Spesifikasi</th>
-                        <th colspan="2" class="text-center align-middle p-0" class="text-center">Stok</th>
+                        <th colspan="2" class="text-center align-middle p-0" >Stok</th>
                         <th rowspan="2" class="text-center align-middle p-0" scope="col">Jumlah</th>
                         <th rowspan="2" class="text-center align-middle p-0" scope="col">Tanggal Diperlukan</th>
                         <th rowspan="2" class="text-center align-middle p-0" scope="col">Realisasi</th>
@@ -107,7 +111,7 @@
                         <th scope="row">{{$permintaan->id}}</th>
                         <td>{{$permintaan->nm_barang}} / {{$permintaan->spesifikasi}}</td>
                         <td>{{$permintaan->unit_stok}}</td>
-                        @if (empty($permintaan->gudang_stok))
+                        @if (!empty($permintaan->gudang_stok))
                         <td>{{$permintaan->gudang_stok}}</td>
                         @else
                         <td>belum dilihat / diupdate dari unit Gudang</td>
@@ -121,40 +125,62 @@
             </table>
         </div>
         <div class="card-footer text-muted">
-            <div class="row">
-                <div class="col">
-                    <p class="text-dark mb-0 pb-0 text-center">Unit Niaga</p>
-                    <p class="text-dark mb-0 pb-0 text-center">Bagian Pembelian</p>
-                    <p class="text-center mb-0">
-                        <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>
-                    </p>
-                    <p class="text-dark text-center">(SUDARMANTO)</p>
-                </div>
-                <div class="col">
-                    <p class="text-dark mb-0 pb-0 text-center">Unit Niaga</p>
-                    <p class="text-dark mb-0 pb-0 text-center">Bagian Pembelian</p>
-                    <p class="text-center mb-0">
-                        <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>
-                    </p>
-                    <p class="text-dark text-center">(SUDARMANTO)</p>
-                </div>
-                <div class="col">
-                    <p class="text-dark mb-0 pb-0 text-center">Unit Niaga</p>
-                    <p class="text-dark mb-0 pb-0 text-center">Bagian Pembelian</p>
-                    <p class="text-center mb-0">
-                        <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>
-                    </p>
-                    <p class="text-dark text-center">(SUDARMANTO)</p>
-                </div>
-                <div class="col">
-                    <p class="text-dark mb-0 pb-0 text-center">Unit Niaga</p>
-                    <p class="text-dark mb-0 pb-0 text-center">Bagian Pembelian</p>
-                    <p class="text-center mb-0">
-                        <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>
-                    </p>
-                    <p class="text-dark text-center">(SUDARMANTO)</p>
-                </div>
-            </div>
+            <table class="table table-borderless table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center align-middle ttd p-0 m-0">Unit Niaga</th>
+                        <th scope="col" class="text-center align-middle ttd p-0 m-0" rowspan="2">Direktur</th>
+                        <th scope="col" class="text-center align-middle ttd p-0 m-0" rowspan="2">Ka. Unit</th>
+                        <th scope="col" class="text-center align-middle ttd p-0 m-0" rowspan="2">Ka. Bagian/Pemesan</th>
+                    </tr>
+                    <tr>
+                        <th scope="col" class="text-center">Bagian Pembelian</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center align-middle ttd">
+                            @if ($permintaan->status_niaga_pembelian != '1')
+                            <h4>Belum di acc</h4>
+                            @else
+                            <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>
+                            @endif
+                        </td>
+                        <td class="text-center align-middle ttd">
+                            @if ($permintaan->status_direktur != '1')
+                            <h4>Belum di acc</h4>
+                            <button data-toggle="modal" data-target="#accPermintaan" class="btn btn-outline-primary btn-sm">
+                                Acc sekarang ?
+                            </button>
+                            @else
+                            <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>
+                            @endif
+                        </td>
+                        <td class="text-center align-middle ttd">
+                            @if ($permintaan->status_ka_unit != '1')
+                            <h4>Belum di acc</h4>
+                            @else
+                            <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>
+                            @endif
+                        </td>
+                        <td class="text-center align-middle ttd">
+                            @if ($permintaan->status_ka_bpemesan != '1')
+                            <h4>Belum di acc</h4>
+                            @else
+                            <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>
+                            @endif
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td class="text-center">SUDARMANTO</td>
+                        <td class="text-center">SUDARMANTO</td>
+                        <td class="text-center">SUDARMANTO</td>
+                        <td class="text-center">SUDARMANTO</td>
+                    </tr>
+                </tfoot>
+            </table>
         </div>
     </div>
     <div class="row">
@@ -193,6 +219,7 @@
 </div>
 @endsection
 @include('gudang.daftar-permintaan.edit-modal')
+@include('gudang.daftar-permintaan.acc-modal')
 @push('tooltip')
     <script>
          $(function () {

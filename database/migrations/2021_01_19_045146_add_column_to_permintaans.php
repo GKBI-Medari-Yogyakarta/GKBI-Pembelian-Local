@@ -16,6 +16,8 @@ class AddColumnToPermintaans extends Migration
         Schema::table('permintaans', function (Blueprint $table) {
             $table->string('jumlah')->after('gudang_stok');
             $table->string('user_pemesan_id')->after('keterangan')->nullable();
+            $table->enum('status_ka_bpemesan',['1','0'])->after('user_pemesan_id')->default('1');
+            $table->enum('status_ka_unit',['1','0'])->after('status_ka_bpemesan')->default('1');
         });
     }
 

@@ -39,9 +39,8 @@ class GudangPermintaanController extends Controller
     //to detail
     public function show($id) {
         if (Auth::guard('gudang')->check()) {
-            $unit = Bagian::all();
             $permintaan = Permintaan::find($id);
-            return \view('gudang.daftar-permintaan.show',\compact('unit','permintaan'));
+            return \view('gudang.daftar-permintaan.show',\compact('permintaan'));
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
@@ -55,24 +54,20 @@ class GudangPermintaanController extends Controller
         }
     }
     //update
-    public function update(PesananRequest $req, $id) {
+    public function update(Request $req, $id) {
         $this->validate($req,[
             'gudang_stok'=>'required',
         ]);
         $pesanan = Permintaan::find($id);
-        $pesanan->update([
-            'pemesan' => $req->pemesan,
-            'no_pemesan' => $req->no_pemesan,
-            'tgl_pesanan' => $req->tgl_pesanan,
-            'nm_barang' => $req->nm_barang,
-            'spesifikasi' => $req->spesifikasi,
-            'unit_stok' => $req->unit_stok,
-            'gudang_stok' => $req->gudang_stok,
-            'jumlah'=>$req->jumlah,
-            'tgl_diperlukan' => $req->tgl_diperlukan,
-            'bagian_id' => $req->bagian_id,
-        ]);
-        return \redirect()->back()->with(['msg' => "Berhasil merubah daftar permintaan dari $pesanan->pemesan"]);
+        if ($req->input('action') == 'acc') {
+            $pesanan->status_direktur = '1';
+            $pesanan->save();
+            return \redirect()->back()->with(['msg' => "Permintaan pesanan dari $pesanan->pemesan berhasil di acc"]);
+        } else if($req->input('action') == 'Simpan') {
+            $pesanan->gudang_stok = $req->gudang_stok;
+            $pesanan->save();
+            return \redirect()->back()->with(['msg' => "Berhasil merubah daftar permintaan dari $pesanan->pemesan"]);
+        }
     }
     //delete
     public function destroy($id) {

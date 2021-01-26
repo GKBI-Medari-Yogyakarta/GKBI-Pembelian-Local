@@ -125,6 +125,5 @@
          $(function () {
              $('[data-toggle="tooltip"]').tooltip('show')
          })
-        //$('#detail').tooltip()
     </script>
 @endpush
