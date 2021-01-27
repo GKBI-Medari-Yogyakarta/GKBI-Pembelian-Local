@@ -65,13 +65,16 @@ class GudangPermintaanController extends Controller
             return \redirect()->back()->with(['msg' => "Berhasil merubah daftar permintaan dari $pesanan->pemesan"]);
         } else if($req->input('action') == 'acc') {
             $pesanan->status_direktur = '1';
-            // \dd($pesanan->status_direktur,$pesanan->gudang_stok);
             $pesanan->save();
             return \redirect()->back()->with(['msg' => "Permintaan pesanan dari $pesanan->pemesan berhasil di acc"]);
         }
     }
-    //delete
-    public function destroy($id) {
-        //
+    //nothing, just for completed of resources in routing
+    public function destroy() {
+        if (Auth::guard('gudang')->check()) {
+            return \redirect()->route('permintaan.index');
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
 }

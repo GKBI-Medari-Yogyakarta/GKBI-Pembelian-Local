@@ -17,7 +17,11 @@
             margin-top: 27%;
         }
         .img-ttd{
-            width: 70%;
+            width: 200px;
+        }
+        td.text-center.align-middle.ttd {
+            width: 10px;
+            margin: 0px;
         }
     </style>
 @section('main')
@@ -121,58 +125,80 @@
             </table>
         </div>
         <div class="card-footer text-muted">
-            <div class="row">
-                <div class="col">
-                    <p class="text-dark mb-0 pb-0 text-center">Unit Niaga</p>
-                    <p class="text-dark mb-0 pb-0 text-center">Bagian Pembelian</p>
-                    <p class="text-center mb-0">
-                        <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>
-                    </p>
-                    <p class="text-dark text-center">(SUDARMANTO)</p>
-                </div>
-                <div class="col">
-                    <p class="text-dark mb-0 pb-0 text-center">Unit Niaga</p>
-                    <p class="text-dark mb-0 pb-0 text-center">Bagian Pembelian</p>
-                    <p class="text-center mb-0">
-                        <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>
-                    </p>
-                    <p class="text-dark text-center">(SUDARMANTO)</p>
-                </div>
-                <div class="col">
-                    <p class="text-dark mb-0 pb-0 text-center">Unit Niaga</p>
-                    <p class="text-dark mb-0 pb-0 text-center">Bagian Pembelian</p>
-                    <p class="text-center mb-0">
-                        <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>
-                    </p>
-                    <p class="text-dark text-center">(SUDARMANTO)</p>
-                </div>
-                <div class="col">
-                    <p class="text-dark mb-0 pb-0 text-center">Unit Niaga</p>
-                    <p class="text-dark mb-0 pb-0 text-center">Bagian Pembelian</p>
-                    <p class="text-center mb-0">
-                        <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>
-                    </p>
-                    <p class="text-dark text-center">(SUDARMANTO)</p>
-                </div>
-            </div>
+            <table class="table table-borderless table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center align-middle ttd p-0 m-0">Unit Niaga</th>
+                        <th scope="col" class="text-center align-middle ttd p-0 m-0" rowspan="2">Direktur</th>
+                        <th scope="col" class="text-center align-middle ttd p-0 m-0" rowspan="2">Ka. Unit</th>
+                        <th scope="col" class="text-center align-middle ttd p-0 m-0" rowspan="2">Ka. Bagian/Pemesan</th>
+                    </tr>
+                    <tr>
+                        <th scope="col" class="text-center">Bagian Pembelian</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center align-middle ttd">
+                            @if ($permintaan->status_niaga_pembelian != '1')
+                            <h4>Belum di acc</h4>
+                            @else
+                            <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>
+                            @endif
+                        </td>
+                        <td class="text-center align-middle ttd">
+                            @if ($permintaan->status_direktur != '1')
+                            <h4>Belum di acc</h4>
+                            <button data-toggle="modal" data-target="#accPermintaan" class="btn btn-outline-primary btn-sm">
+                                Acc sekarang ?
+                            </button>
+                            @else
+                            <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>
+                            @endif
+                        </td>
+                        <td class="text-center align-middle ttd">
+                            @if ($permintaan->status_ka_unit != '1')
+                            <h4>Belum di acc</h4>
+                            @else
+                            <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>
+                            @endif
+                        </td>
+                        <td class="text-center align-middle ttd">
+                            @if ($permintaan->status_ka_bpemesan != '1')
+                            <h4>Belum di acc</h4>
+                            @else
+                            <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>
+                            @endif
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td class="text-center">SUDARMANTO</td>
+                        <td class="text-center">SUDARMANTO</td>
+                        <td class="text-center">SUDARMANTO</td>
+                        <td class="text-center">SUDARMANTO</td>
+                    </tr>
+                </tfoot>
+            </table>
         </div>
     </div>
     <div class="row">
         <div class="col col-sm-1">
             <a href="{{URL::route('permintaan-pembelian.index')}}" class="btn btn-warning btn-sm">Kembali</a>
         </div>
-        @if ($permintaan->status_permintaan != 1)
+        @if ($permintaan->status_permintaan != '1' && $permintaan->status_direktur != '1')
         <div class="col col-sm-10">
             <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editPermintaan">Edit</button>
         </div>
         @else
         <div class="col col-sm-10">
-            <span id="detail" class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Tidak boleh diedit" data-placement="right">
+            <span id="detail" class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Tidak boleh diedit, status sudah diacc direktur" data-placement="right">
                 <button class="btn btn-outline-primary btn-sm" style="pointer-events: none;" type="button" disabled>Edit</button>
             </span>
         </div>
         @endif
-        @if ($permintaan->status_permintaan != 1)
+        @if ($permintaan->status_permintaan != '1' && $permintaan->status_direktur != '1')
         <div class="col">
             <form
                 action="{{ URL::route('permintaan-pembelian.destroy',$permintaan->id) }}"
@@ -185,7 +211,7 @@
             </form>
         </div>
         @else
-        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Tidak boleh dihapus" data-placement="left">
+        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Tidak boleh dihapus, status sudah diacc direktur" data-placement="left">
             <button class="btn btn-outline-danger btn-sm" style="pointer-events: none;" type="button" disabled>Hapus</button>
         </span>
         @endif

@@ -15,42 +15,36 @@
                     <div class="form-group row">
                         <label for="nmPemesan" class="col-sm-3 col-form-label">Nama Pemesan</label>
                         <div class="col-sm-9">
-                            {{-- <p class="mt-2">{{ $permintaan->pemesan }}</p> --}}
                             <input disabled type="text" class="form-control @error('pemesan') is-invalid @enderror" id="nmPemesan" name="pemesan" value="{{ $permintaan->pemesan }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="no_pemesan" class="col-sm-3 col-form-label">Nomor surat pemesan</label>
                         <div class="col-sm-9">
-                            {{-- <p class="mt-2">{{ $permintaan->no_pemesan }}</p> --}}
                             <input disabled type="text" class="form-control @error('no_pemesan') is-invalid @enderror" id="no_pemesan" name="no_pemesan" value="{{ $permintaan->no_pemesan }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="tgl_pesanan" class="col-sm-3 col-form-label">Tanggal pesanan</label>
                         <div class="col-sm-9">
-                            {{-- <p class="mt-2">{{ $permintaan->tgl_pesanan }}</p> --}}
                             <input disabled type="date" class="form-control @error('tgl_pesanan') is-invalid @enderror" id="tgl_pesanan" name="tgl_pesanan" value="{{ $permintaan->tgl_pesanan }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="nm_barang" class="col-sm-3 col-form-label">Nama barang</label>
                         <div class="col-sm-9">
-                            {{-- <p class="mt-2">{{ $permintaan->nm_barang }}</p> --}}
                             <input disabled type="text" class="form-control @error('nm_barang') is-invalid @enderror" id="nm_barang" name="nm_barang" value="{{ $permintaan->nm_barang }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputspesifikasi" class="col-sm-3 col-form-label">Spesifikasi barang</label>
                         <div class="col-sm-9">
-                            {{-- <p class="mt-2">{{ $permintaan->spesifikasi }}</p> --}}
                             <input disabled type="text" class="form-control @error('spesifikasi') is-invalid @enderror" id="inputspesifikasi" name="spesifikasi" value="{{ $permintaan->spesifikasi }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputunit_stok" class="col-sm-3 col-form-label">Stok barang dari unit</label>
                         <div class="col-sm-9">
-                            {{-- <p class="mt-2">{{ $permintaan->unit_stok }}</p> --}}
                             <input disabled type="number" class="form-control @error('unit_stok') is-invalid @enderror" id="inputunit_stok" name="unit_stok" value="{{ $permintaan->unit_stok }}">
                         </div>
                     </div>
@@ -67,14 +61,12 @@
                     <div class="form-group row">
                         <label for="inputjumlah" class="col-sm-3 col-form-label">Jumlah barang yang diminta</label>
                         <div class="col-sm-9">
-                            {{-- <p class="mt-2">{{ $permintaan->jumlah }}</p> --}}
                             <input disabled type="number" class="form-control @error('jumlah') is-invalid @enderror" id="inputjumlah" name="jumlah" value="{{ $permintaan->jumlah }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputtgl_diperlukan" class="col-sm-3 col-form-label">Tanggal diperlukan</label>
                         <div class="col-sm-9">
-                            {{-- <p class="mt-2">{{ $permintaan->tgl_diperlukan }}</p> --}}
                             <input disabled type="date" class="form-control @error('tgl_diperlukan') is-invalid @enderror" id="inputtgl_diperlukan" name="tgl_diperlukan" value="{{ $permintaan->tgl_diperlukan }}">
                         </div>
                     </div>
