@@ -1,6 +1,6 @@
 {{-- Edit Permintaan --}}
 <div class="modal fade" id="accPermintaan" data-backdrop="static" tabindex="-1" aria-labelledby="negaraLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content border border-warning">
             <form action="{{ URL::route('permintaan.update',$permintaan->id) }}" method="POST">
                 @method('put')
@@ -75,11 +75,15 @@
                         </div>
                     </div>
                 </div> --}}
+                <div class="modal-body">
+                    <input hidden type="number" name="gudang_stok" value="{{ $permintaan->gudang_stok }}">
+                    <h3 class="h3"> Apakah sudah dipastikan mendapat izin dari Pak Direktur untuk di Acc .?</h3>
+                </div>
                 <div class="modal-footer">
                     <div class="row">
                         <div class="col">
                             @if (!empty($permintaan->gudang_stok))
-                            <input type="text" name="action" class="btn btn-primary" value="acc">
+                            <input type="submit" name="action" class="btn btn-primary" value="acc">
                             @else
                             <button disabled class="btn btn-primary">Gudang stok belum diisi</button>
                             @endif

@@ -59,14 +59,15 @@ class GudangPermintaanController extends Controller
             'gudang_stok'=>'required',
         ]);
         $pesanan = Permintaan::find($id);
-        if ($req->input('action') == 'acc') {
-            $pesanan->status_direktur = '1';
-            $pesanan->save();
-            return \redirect()->back()->with(['msg' => "Permintaan pesanan dari $pesanan->pemesan berhasil di acc"]);
-        } else if($req->input('action') == 'Simpan') {
+        if ($req->input('action') == 'Simpan') {
             $pesanan->gudang_stok = $req->gudang_stok;
             $pesanan->save();
             return \redirect()->back()->with(['msg' => "Berhasil merubah daftar permintaan dari $pesanan->pemesan"]);
+        } else if($req->input('action') == 'acc') {
+            $pesanan->status_direktur = '1';
+            // \dd($pesanan->status_direktur,$pesanan->gudang_stok);
+            $pesanan->save();
+            return \redirect()->back()->with(['msg' => "Permintaan pesanan dari $pesanan->pemesan berhasil di acc"]);
         }
     }
     //delete

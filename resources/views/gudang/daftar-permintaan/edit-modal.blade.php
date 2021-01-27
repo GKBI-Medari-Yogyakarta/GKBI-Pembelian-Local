@@ -89,7 +89,6 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    {{-- <input type="submit" name="action" class="btn btn-primary" value="acc"> --}}
                     <input type="submit" name="action" class="btn btn-primary" value="Simpan">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                 </div>
