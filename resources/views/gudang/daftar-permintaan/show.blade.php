@@ -82,7 +82,7 @@
                             <tr>
                                 <th scope="row" class="h-nomor pl-5">Tanggal</th>
                                 <td class="h-t text-right"><strong>:</strong></td>
-                                <td colspan="3" class="h-t pl-0"> {{\Carbon\Carbon::parse($permintaan->tgl_pesanan)->translatedFormat('d F Y') }} </td>
+                                <td colspan="3" class="h-t pl-0"> {{\Carbon\Carbon::parse($permintaan->tgl_pesanan)->isoFormat('D MMM Y') }} </td>
                             </tr>
                         </tbody>
                     </table>
@@ -117,7 +117,7 @@
                         <td>belum dilihat / diupdate dari unit Gudang</td>
                         @endif
                         <td>{{$permintaan->jumlah}}</td>
-                        <td>{{$permintaan->tgl_diperlukan}}</td>
+                        <td>{{\Carbon\Carbon::parse($permintaan->tgl_diperlukan)->isoFormat('dddd, D MMM Y') }}</td>
                         <td>{{$permintaan->realisasi}}</td>
                         <td>{{$permintaan->keterangan}}</td>
                     </tr>

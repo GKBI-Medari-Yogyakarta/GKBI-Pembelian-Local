@@ -50,7 +50,7 @@
                                 <td>belum dilihat / diupdate dari unit Gudang</td>
                                 @endif
                                 <td>{{ $p->jumlah }}</td>
-                                <td>{{ $p->tgl_diperlukan }}</td>
+                                <td>{{\Carbon\Carbon::parse($p->tgl_diperlukan)->isoFormat('dddd, D MMM Y') }}</td>
                                 <td>
                                     {{ $p->keterangan }}
                                 </td>
@@ -61,34 +61,6 @@
                                 </td>
                             </tr>
                             @empty
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>
-                                    <a href="#" class="btn bg-transparent p-0 align-middle text-center" id="detail" data-toggle="tooltip" data-placement="top" title="Detail">
-                                        <i class="fas fa-info-circle text-info h4 m-0"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>
-                                    <a href="#" class="btn bg-transparent p-0 align-middle text-center" id="detail" data-toggle="tooltip" data-placement="top" title="Detail">
-                                        <i class="fas fa-info-circle text-info h4 m-0"></i>
-                                    </a>
-                                </td>
-                            </tr>
                             <tr>
                                 <td colspan="8" class="text-center align-middle"><h2><strong>Daftar permintaan kosong!!</strong></h2></td>
                             </tr>

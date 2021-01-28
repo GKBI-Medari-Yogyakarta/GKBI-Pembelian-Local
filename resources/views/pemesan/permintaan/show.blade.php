@@ -82,7 +82,7 @@
                             <tr>
                                 <th scope="row" class="h-nomor pl-5">Tanggal</th>
                                 <td class="h-t text-right"><strong>:</strong></td>
-                                <td colspan="3" class="h-t pl-0"> {{\Carbon\Carbon::parse($permintaan->tgl_pesanan)->translatedFormat('d F Y') }} </td>
+                                <td colspan="3" class="h-t pl-0"> {{\Carbon\Carbon::parse($permintaan->tgl_pesanan)->isoFormat('D MMM Y') }} </td>
                             </tr>
                         </tbody>
                     </table>
@@ -111,13 +111,13 @@
                         <th scope="row">{{$permintaan->id}}</th>
                         <td>{{$permintaan->nm_barang}} / {{$permintaan->spesifikasi}}</td>
                         <td>{{$permintaan->unit_stok}}</td>
-                        @if (empty($perminstaans->gudang_stok))
-                            <td>belum dilihat / diupdate dari unit Gudang</td>
+                        @if (!empty($permintaan->gudang_stok))
+                        <td>{{$permintaan->gudang_stok}}</td>
                         @else
-                            <td>{{$permintaan->gudang_stok}}</td>
+                        <td>belum dilihat / diupdate dari unit Gudang</td>
                         @endif
                         <td>{{$permintaan->jumlah}}</td>
-                        <td>{{$permintaan->tgl_diperlukan}}</td>
+                        <td> {{\Carbon\Carbon::parse($permintaan->tgl_diperlukan)->isoFormat('dddd, D MMM Y') }} </td>
                         <td>{{$permintaan->realisasi}}</td>
                         <td>{{$permintaan->keterangan}}</td>
                     </tr>
