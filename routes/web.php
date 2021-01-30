@@ -35,6 +35,6 @@ Route::namespace('Pemesan')->group(function () {
 Route::namespace('Gudang')->group(function(){
     Route::prefix('user-gudang')->group(function(){
         Route::resource('permintaan', 'GudangPermintaanController');
-        Route::resource('pesanan', 'DaftarPesananController');
+        Route::get('pesanan', 'DaftarPesananController@index')->name('pesanan.index');
     });
 });

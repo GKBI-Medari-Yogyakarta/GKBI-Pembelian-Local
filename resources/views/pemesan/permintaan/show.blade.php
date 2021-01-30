@@ -2,37 +2,42 @@
 @section('title','Pemesan Page')
 @section('status-user','Pemesan Page')
 @section('custom-style')
-    <style>
-        .h-nomor{
-            width: 10%;
-            height: 10%;
-        }
-        .h-t{
-            height: 10%;
-        }
-        .w-titik{
-            width: 1%;
-        }
-        table.nav-right.table.table-borderless.table-sm.mb-0 {
-            margin-top: 27%;
-        }
-        .img-ttd{
-            width: 200px;
-        }
-        td.text-center.align-middle.ttd {
-            width: 10px;
-            margin: 0px;
-        }
-    </style>
+<style>
+    .h-nomor {
+        width: 10%;
+        height: 10%;
+    }
+
+    .h-t {
+        height: 10%;
+    }
+
+    .w-titik {
+        width: 1%;
+    }
+
+    table.nav-right.table.table-borderless.table-sm.mb-0 {
+        margin-top: 27%;
+    }
+
+    .img-ttd {
+        width: 200px;
+    }
+
+    td.text-center.align-middle.ttd {
+        width: 10px;
+        margin: 0px;
+    }
+</style>
 @section('main')
 <div class="container-fluid">
     @if(session('msg'))
-        <div class="alert alert-success alert-dismissible" role="alert" style="z-index: 1">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            {{ session('msg') }}
-        </div>
+    <div class="alert alert-success alert-dismissible" role="alert" style="z-index: 1">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{ session('msg') }}
+    </div>
     @endif
     @include('pemesan.layouts.required')
     <div class="card mb-4 mt-4">
@@ -149,9 +154,6 @@
                         <td class="text-center align-middle ttd">
                             @if ($permintaan->status_direktur != '1')
                             <h4>Belum di acc</h4>
-                            <button data-toggle="modal" data-target="#accPermintaan" class="btn btn-outline-primary btn-sm">
-                                Acc sekarang ?
-                            </button>
                             @else
                             <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>
                             @endif
@@ -200,9 +202,7 @@
         @endif
         @if ($permintaan->status_permintaan != '1' && $permintaan->status_direktur != '1')
         <div class="col">
-            <form
-                action="{{ URL::route('permintaan-pembelian.destroy',$permintaan->id) }}"
-                method="POST" class="btn btn-sm p-0">
+            <form action="{{ URL::route('permintaan-pembelian.destroy',$permintaan->id) }}" method="POST" class="btn btn-sm p-0">
                 @method('delete')
                 @csrf
                 <button class="btn btn-danger btn-sm">
@@ -220,9 +220,9 @@
 @endsection
 @include('pemesan.permintaan.edit-modal')
 @push('tooltip')
-    <script>
-         $(function () {
-             $('[data-toggle="tooltip"]').tooltip('show')
-         })
-    </script>
+<script>
+    $(function() {
+        $('[data-toggle="tooltip"]').tooltip('show')
+    })
+</script>
 @endpush
