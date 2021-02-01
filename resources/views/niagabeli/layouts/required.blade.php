@@ -1,5 +1,5 @@
-{{-- permintaan --}}
-@error('pemesan')
+{{-- alamat --}}
+@error('nama')
 <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -7,7 +7,7 @@
     {{ $message }}
 </div>
 @enderror
-@error('no_pemesan')
+@error('kode')
 <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -15,7 +15,7 @@
     {{ $message }}
 </div>
 @enderror
-@error('tgl_pesanan')
+@error('negara_id')
 <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -23,7 +23,7 @@
     {{ $message }}
 </div>
 @enderror
-@error('nm_barang')
+@error('alias')
 <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -31,7 +31,7 @@
     {{ $message }}
 </div>
 @enderror
-@error('spesifikasi')
+@error('prov_id')
 <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -39,31 +39,7 @@
     {{ $message }}
 </div>
 @enderror
-@error('unit_stok')
-<div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-    {{ $message }}
-</div>
-@enderror
-@error('jumlah')
-<div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-    {{ $message }}
-</div>
-@enderror
-@error('tgl_diperlukan')
-<div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-    {{ $message }}
-</div>
-@enderror
-@error('bagian_id')
+@error('kota')
 <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>

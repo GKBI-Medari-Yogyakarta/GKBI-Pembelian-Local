@@ -1,6 +1,6 @@
-@extends('pemesan.layouts.main')
-@section('title','Pemesan Page')
-@section('status-user','Pemesan Page')
+@extends('niagabeli.layouts.main')
+@section('title','Niagabeli Page')
+@section('status-user','Niagabeli Page')
 @section('custom-style')
 <style>
     .justify-content-md-center p-2{

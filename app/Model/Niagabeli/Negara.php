@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\Pemesan;
+namespace App\Model\Niagabeli;
 
 use Illuminate\Database\Eloquent\Model;
 

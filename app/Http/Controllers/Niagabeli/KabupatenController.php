@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Pemesan;
+namespace App\Http\Controllers\Niagabeli;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Pemesan\KabRequest;
-use App\Http\Requests\Pemesan\KabReqUpdate;
-use App\Model\Pemesan\Kabupaten;
-use App\Model\Pemesan\Provinsi;
+use App\Http\Requests\Niagabeli\KabRequest;
+use App\Http\Requests\Niagabeli\KabReqUpdate;
+use App\Model\Niagabeli\Kabupaten;
+use App\Model\Niagabeli\Provinsi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +14,7 @@ class KabupatenController extends Controller
 {
     //to index
     public function index() {
-        if (Auth::guard('pemesan')->check()) {
+        if (Auth::guard('pembelian')->check()) {
             return \redirect()->route('negara.index');
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
@@ -22,7 +22,7 @@ class KabupatenController extends Controller
     }
     //to form create / make
     public function create() {
-        if (Auth::guard('pemesan')->check()) {
+        if (Auth::guard('pembelian')->check()) {
             return \redirect()->route('negara.index');
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
@@ -30,7 +30,7 @@ class KabupatenController extends Controller
     }
     //store / save data
     public function store(KabRequest $req) {
-        if (Auth::guard('pemesan')->check()) {
+        if (Auth::guard('pembelian')->check()) {
             Kabupaten::create([
                 'prov_id' => $req->prov_id,
                 'nama' => \ucwords($req->nama),
@@ -43,7 +43,7 @@ class KabupatenController extends Controller
     }
     //nothing, just for completed of resources in routing
     public function show() {
-        if (Auth::guard('pemesan')->check()) {
+        if (Auth::guard('pembelian')->check()) {
             return \redirect()->route('negara.index');
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
@@ -51,17 +51,17 @@ class KabupatenController extends Controller
     }
     //to form edit
     public function edit($id) {
-        if (Auth::guard('pemesan')->check()) {
+        if (Auth::guard('pembelian')->check()) {
             $kab = Kabupaten::find($id);
             $p = Provinsi::all();
-            return \view('pemesan.alamat.kab.edit', \compact('kab', 'p'));
+            return \view('niagabeli.alamat.kab.edit', \compact('kab', 'p'));
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
     //update
     public function update(KabReqUpdate $req, $id) {
-        if (Auth::guard('pemesan')->check()) {
+        if (Auth::guard('pembelian')->check()) {
             $k = Kabupaten::find($id);
             $k->nama = \ucwords($req->nama);
             $k->kota = \ucwords($req->kota);
@@ -74,7 +74,7 @@ class KabupatenController extends Controller
     }
     //delete / hapus
     public function destroy($id) {
-        if (Auth::guard('pemesan')->check()) {
+        if (Auth::guard('pembelian')->check()) {
             $kab = Kabupaten::find($id);
             $kab->delete();
             return \redirect()->back()->with(['msg' => "Berhasil menghapus kabupaten $kab->name"]);

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Pemesan;
+namespace App\Http\Requests\Niagabeli;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class NegaraRequest extends FormRequest
+class ProvRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,17 @@ class NegaraRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => 'required|unique:negaras',
-            'kode' => 'required',
+            'negara_id' => 'required',
+            'nama' => 'required|unique:provinsis',
+            'alias' => 'required',
         ];
     }
     public function messages()
     {
         return [
-            'nama.required' => 'kolom nama negara kosong atau sudah ada.',
-            'kode.required' => 'kolom kode wajib diisi.',
+            'negara_id.required' => 'Belum memiliki negara',
+            'nama.required' => 'kolom nama provinsi kosong atau sudah ada.',
+            'alias.required' => 'kolom alias wajib diisi.',
         ];
     }
 }

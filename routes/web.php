@@ -23,13 +23,17 @@ Route::namespace('User')->group(function () {
     Route::get('user-pembelian', 'AdminPembelianController@index')->name('user-pembelian.index');
     Route::get('user-akuntansi', 'AdminAkuntansiController@index')->name('user-akuntansi.index');
 });
-Route::namespace('Pemesan')->group(function () {
+Route::namespace('Pemesan')->group(function(){
     Route::prefix('user-pemesan')->group(function(){
+        Route::resource('permintaan-pembelian', 'PermintaanController');
+    });
+});
+Route::namespace('Niagabeli')->group(function () {
+    Route::prefix('user-pembelian')->group(function(){
         Route::get('alamat', 'NegaraController@index')->name('negara.index');
         Route::resource('negara', 'NegaraController')->except('index');
         Route::resource('provinsi', 'ProvinsiController');
         Route::resource('kabupaten', 'KabupatenController');
-        Route::resource('permintaan-pembelian', 'PermintaanController');
     });
 });
 Route::namespace('Gudang')->group(function(){

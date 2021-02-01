@@ -1,9 +1,9 @@
-@extends('pemesan.layouts.main')
-@section('title','Pemesan Page')
-@section('status-user','Pemesan Page')
+@extends('niagabeli.layouts.main')
+@section('title','Niagabeli Page')
+@section('status-user','Niagabeli Page')
 @section('custom-style')
 <style>
-    .justify-content-md-center p-2{
+    .justify-content-md-center p-2 {
         padding: 40px;
     }
 </style>
@@ -12,12 +12,12 @@
     <div class="container">
         <div class="justify-content-md-center p-2">
             @error('nama')
-                <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    {{ $message }}
-                </div>
+            <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ $message }}
+            </div>
             @enderror
             <div class="card mt-4">
                 <form action="{{ URL::route('kabupaten.update',$kab->id) }}" method="POST">
@@ -33,7 +33,7 @@
                                 <select name="prov_id" id="provinsi" class="form-control @error('prov_id') is-invalid @enderror">
                                     <option selected disabled>pilih provinsi</option>
                                     @foreach ($p as $prov)
-                                        <option value="{{ $prov->id }}" {{ $prov->id == $kab->prov_id ? 'selected' : null }}> {{ $prov->nama }}</option>
+                                    <option value="{{ $prov->id }}" {{ $prov->id == $kab->prov_id ? 'selected' : null }}> {{ $prov->nama }}</option>
                                     @endforeach
                                 </select>
                             </div>

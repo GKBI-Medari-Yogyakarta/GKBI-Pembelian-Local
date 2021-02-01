@@ -1,19 +1,19 @@
-@extends('pemesan.layouts.main')
-@section('title','Pemesan Page')
-@section('status-user','Pemesan Page')
+@extends('niagabeli.layouts.main')
+@section('title','Niagabeli Page')
+@section('status-user','Niagabeli Page')
 @section('main')
 <main>
     <div class="container-fluid">
         <h1 class="mt-4">Alamat</h1>
         @if(session('msg'))
-            <div class="alert alert-success alert-dismissible" role="alert" style="z-index: 1">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                {{ session('msg') }}
-            </div>
+        <div class="alert alert-success alert-dismissible" role="alert" style="z-index: 1">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{ session('msg') }}
+        </div>
         @endif
-        @include('pemesan.layouts.required')
+        @include('niagabeli.layouts.required')
         <div class="card mb-4 mt-4">
             <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
@@ -40,11 +40,8 @@
                                         <td>{{ $negara->nama }}</td>
                                         <td>{{ $negara->kode }}</td>
                                         <td class="">
-                                            <a href="{{ URL::route('negara.edit',$negara->id) }}"
-                                                class="btn btn-outline-warning btn-sm">Edit</a>
-                                            <form
-                                                action="{{ URL::route('negara.destroy',$negara->id) }}"
-                                                method="POST" class="btn btn-sm p-0">
+                                            <a href="{{ URL::route('negara.edit',$negara->id) }}" class="btn btn-outline-warning btn-sm">Edit</a>
+                                            <form action="{{ URL::route('negara.destroy',$negara->id) }}" method="POST" class="btn btn-sm p-0">
                                                 @method('delete')
                                                 @csrf
                                                 <button class="btn btn-outline-danger btn-sm">
@@ -53,7 +50,7 @@
                                             </form>
                                         </td>
                                     </tr>
-                                @empty
+                                    @empty
                                     <tr>
                                         <th scope="row">1</th>
                                         <td>Mark</td>
@@ -88,11 +85,8 @@
                                         <td>{{ $prov->nama }}</td>
                                         <td>{{ $prov->alias }}</td>
                                         <td class="float-right" style="min-width: 120px;">
-                                            <a href="{{ URL::route('provinsi.edit',$prov->id) }}"
-                                                class="btn btn-outline-warning btn-sm">Edit</a>
-                                            <form
-                                                action="{{ URL::route('provinsi.destroy',$prov->id) }}"
-                                                method="POST" class="btn btn-sm p-0">
+                                            <a href="{{ URL::route('provinsi.edit',$prov->id) }}" class="btn btn-outline-warning btn-sm">Edit</a>
+                                            <form action="{{ URL::route('provinsi.destroy',$prov->id) }}" method="POST" class="btn btn-sm p-0">
                                                 @method('delete')
                                                 @csrf
                                                 <button class="btn btn-outline-danger btn-sm">
@@ -101,7 +95,7 @@
                                             </form>
                                         </td>
                                     </tr>
-                                @empty
+                                    @empty
                                     <tr>
                                         <th scope="row">1</th>
                                         <td>Mark</td>
@@ -111,7 +105,7 @@
                                             <a href="#" class="btn btn-outline-danger btn-sm">Hapus</a>
                                         </td>
                                     </tr>
-                                @endforelse
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
@@ -132,23 +126,20 @@
                                     @forelse ($k as $kabupaten)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $kabupaten->nama }}</td>
-                                    <td>{{ $kabupaten->kota }}</td>
-                                    <td>
-                                        <a href="{{ URL::route('kabupaten.edit',$kabupaten->id) }}"
-                                            class="btn btn-outline-warning btn-sm">Edit</a>
-                                        <form
-                                            action="{{ URL::route('kabupaten.destroy',$kabupaten->id) }}"
-                                            method="POST" class="btn btn-sm p-0">
-                                            @method('delete')
-                                            @csrf
-                                            <button class="btn btn-outline-danger btn-sm">
-                                                Hapus
-                                            </button>
-                                        </form>
-                                    </td>
+                                        <td>{{ $kabupaten->nama }}</td>
+                                        <td>{{ $kabupaten->kota }}</td>
+                                        <td>
+                                            <a href="{{ URL::route('kabupaten.edit',$kabupaten->id) }}" class="btn btn-outline-warning btn-sm">Edit</a>
+                                            <form action="{{ URL::route('kabupaten.destroy',$kabupaten->id) }}" method="POST" class="btn btn-sm p-0">
+                                                @method('delete')
+                                                @csrf
+                                                <button class="btn btn-outline-danger btn-sm">
+                                                    Hapus
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
-                                @empty
+                                    @empty
                                     <tr>
                                         <th scope="row">1</th>
                                         <td>Mark</td>
@@ -220,12 +211,12 @@
     </div>
 </main>
 <!-- Modal -->
-@include('pemesan.alamat.modal')
+@include('niagabeli.alamat.modal')
 @endsection
 @push('tooltip')
-    <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip('toggle')
-        })
-    </script>
+<script>
+    $(function() {
+        $('[data-toggle="tooltip"]').tooltip('toggle')
+    })
+</script>
 @endpush

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Pemesan;
+namespace App\Http\Controllers\Niagabeli;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Pemesan\NegaraRequest;
-use App\Http\Requests\Pemesan\NegaraReqUpdate;
-use App\Model\Pemesan\Kabupaten;
-use App\Model\Pemesan\Negara;
-use App\Model\Pemesan\Provinsi;
+use App\Http\Requests\Niagabeli\NegaraRequest;
+use App\Http\Requests\Niagabeli\NegaraReqUpdate;
+use App\Model\Niagabeli\Kabupaten;
+use App\Model\Niagabeli\Negara;
+use App\Model\Niagabeli\Provinsi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +18,7 @@ class NegaraController extends Controller
 {
     //to index
     public function index() {
-        if (Auth::guard('pemesan')->check()) {
+        if (Auth::guard('pembelian')->check()) {
             $alamat = DB::table('negaras')
                 ->join('provinsis', 'negaras.id', '=', 'provinsis.negara_id')
                 ->join('kabupatens', 'provinsis.id', '=', 'kabupatens.prov_id')
@@ -27,14 +27,14 @@ class NegaraController extends Controller
             $n = Negara::paginate(5);
             $p = Provinsi::paginate(5);
             $k = Kabupaten::paginate(5);
-            return \view('pemesan.alamat.index', \compact('alamat', 'n', 'p', 'k'));
+            return \view('niagabeli.alamat.index', \compact('alamat', 'n', 'p', 'k'));
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
     //nothing, just for completed of resources in routing
     public function create() {
-        if (Auth::guard('pemesan')->check()) {
+        if (Auth::guard('pembelian')->check()) {
             return \redirect()->route('negara.index');
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
@@ -42,7 +42,7 @@ class NegaraController extends Controller
     }
     //save / store data
     public function store(NegaraRequest $req) {
-        if (Auth::guard('pemesan')->check()) {
+        if (Auth::guard('pembelian')->check()) {
             Negara::create([
                 'nama' => \ucwords($req->nama),
                 'kode' => $req->kode,
@@ -54,7 +54,7 @@ class NegaraController extends Controller
     }
     //nothing, just for completed of resources in routing
     public function show() {
-        if (Auth::guard('pemesan')->check()) {
+        if (Auth::guard('pembelian')->check()) {
             return \redirect()->route('negara.index');
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
@@ -62,16 +62,16 @@ class NegaraController extends Controller
     }
     //to form edit
     public function edit($id) {
-        if (Auth::guard('pemesan')->check()) {
+        if (Auth::guard('pembelian')->check()) {
             $negara = Negara::find($id);
-            return \view('pemesan.alamat.negara.edit', \compact('negara'));
+            return \view('niagabeli.alamat.negara.edit', \compact('negara'));
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
     //update
     public function update(NegaraReqUpdate $req,  $id) {
-        if (Auth::guard('pemesan')->check()) {
+        if (Auth::guard('pembelian')->check()) {
             $negara = Negara::find($id);
             $negara->nama = \ucwords($req->nama);
             $negara->kode = $req->kode;
@@ -83,7 +83,7 @@ class NegaraController extends Controller
     }
     //delete
     public function destroy($id) {
-        if (Auth::guard('pemesan')->check()) {
+        if (Auth::guard('pembelian')->check()) {
             $negara = Negara::find($id);
             $negara->delete();
             return \redirect()->back()->with(['msg' => "Berhasil menghapus negara $negara->nama"]);

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Pemesan;
+namespace App\Http\Requests\Niagabeli;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class KabRequest extends FormRequest
+class NegaraReqUpdate extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +24,15 @@ class KabRequest extends FormRequest
     public function rules()
     {
         return [
-            'prov_id' => 'required',
-            'nama' => 'required|unique:kabupatens',
-            'kota' => 'required',
+            'nama' => 'required',
+            'kode' => 'required',
         ];
     }
     public function messages()
     {
         return [
-            'prov_id.required' => 'Belum memiliki provinsi',
-            'nama.required' => 'kolom nama kabupaten kosong atau sudah ada.',
-            'kota.required' => 'kolom kota wajib diisi.',
+            'nama.required' => 'kolom nama negara tidak boleh kosong.',
+            'kode.required' => 'kolom kode tidak boleh kosong.',
         ];
     }
 }
