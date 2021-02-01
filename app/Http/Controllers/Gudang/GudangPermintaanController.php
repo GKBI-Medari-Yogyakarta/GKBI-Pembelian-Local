@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Gudang;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Pemesan\PesananRequest;
+use App\Model\Bagian;
+use App\Model\Pemesan\Permintaan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,76 +14,67 @@ class GudangPermintaanController extends Controller
     //to index
     public function index() {
         if (Auth::guard('gudang')->check()) {
-            return \view('gudang.daftar-permintaan.index');
+            $permintaans = Permintaan::all();
+            return \view('gudang.daftar-permintaan.index',\compact('permintaans'));
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
-
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    //nothing, just for completed of resources in routing
+    public function create() {
+        if (Auth::guard('gudang')->check()) {
+            return \redirect()->route('permintaan.index');
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    //nothing, just for completed of resources in routing
+    public function store() {
+        if (Auth::guard('gudang')->check()) {
+            return \redirect()->route('permintaan.index');
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+    //to detail
+    public function show($id) {
+        if (Auth::guard('gudang')->check()) {
+            $permintaan = Permintaan::find($id);
+            return \view('gudang.daftar-permintaan.show',\compact('permintaan'));
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+    //nothing, just for completed of resources in routing
+    public function edit($id) {
+        if (Auth::guard('gudang')->check()) {
+            return \redirect()->route('permintaan.index');
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+    //update
+    public function update(Request $req, $id) {
+        $this->validate($req,[
+            'gudang_stok'=>'required',
+        ]);
+        $pesanan = Permintaan::find($id);
+        if ($req->input('action') == 'Simpan') {
+            $pesanan->gudang_stok = $req->gudang_stok;
+            $pesanan->save();
+            return \redirect()->back()->with(['msg' => "Berhasil merubah daftar permintaan dari $pesanan->pemesan"]);
+        } else if($req->input('action') == 'acc') {
+            $pesanan->status_direktur = '1';
+            $pesanan->save();
+            return \redirect()->back()->with(['msg' => "Permintaan pesanan dari $pesanan->pemesan berhasil di acc"]);
+        }
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    //nothing, just for completed of resources in routing
+    public function destroy() {
+        if (Auth::guard('gudang')->check()) {
+            return \redirect()->route('permintaan.index');
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
 }

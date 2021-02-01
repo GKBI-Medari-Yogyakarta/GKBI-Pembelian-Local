@@ -1,45 +1,40 @@
-@extends('pemesan.layouts.main')
-@section('title','Pemesan Page')
-@section('status-user','Pemesan Page')
+@extends('gudang.layouts.main')
+@section('title','Gudang Page')
+@section('status-user','Gudang Page')
 @section('custom-style')
-<style>
-    .h-nomor {
-        width: 10%;
-        height: 10%;
-    }
-
-    .h-t {
-        height: 10%;
-    }
-
-    .w-titik {
-        width: 1%;
-    }
-
-    table.nav-right.table.table-borderless.table-sm.mb-0 {
-        margin-top: 27%;
-    }
-
-    .img-ttd {
-        width: 200px;
-    }
-
-    td.text-center.align-middle.ttd {
-        width: 10px;
-        margin: 0px;
-    }
-</style>
+    <style>
+        .h-nomor{
+            width: 10%;
+            height: 10%;
+        }
+        .h-t{
+            height: 10%;
+        }
+        .w-titik{
+            width: 1%;
+        }
+        table.nav-right.table.table-borderless.table-sm.mb-0 {
+            margin-top: 27%;
+        }
+        .img-ttd{
+            width: 200px;
+        }
+        td.text-center.align-middle.ttd {
+            width: 10px;
+            margin: 0px;
+        }
+    </style>
 @section('main')
 <div class="container-fluid">
     @if(session('msg'))
-    <div class="alert alert-success alert-dismissible" role="alert" style="z-index: 1">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        {{ session('msg') }}
-    </div>
+        <div class="alert alert-success alert-dismissible" role="alert" style="z-index: 1">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{ session('msg') }}
+        </div>
     @endif
-    @include('pemesan.layouts.required')
+    @include('gudang.layouts.required')
     <div class="card mb-4 mt-4">
         <div class="card-header">
             <div class="row p-0">
@@ -100,7 +95,7 @@
                     <tr>
                         <th rowspan="2" class="text-center align-middle p-0" scope="col">#</th>
                         <th rowspan="2" class="text-center align-middle p-0" scope="col">Nama Barang & Spesifikasi</th>
-                        <th colspan="2" class="text-center align-middle p-0" class="text-center">Stok</th>
+                        <th colspan="2" class="text-center align-middle p-0" >Stok</th>
                         <th rowspan="2" class="text-center align-middle p-0" scope="col">Jumlah</th>
                         <th rowspan="2" class="text-center align-middle p-0" scope="col">Tanggal Diperlukan</th>
                         <th rowspan="2" class="text-center align-middle p-0" scope="col">Realisasi</th>
@@ -122,7 +117,7 @@
                         <td>belum dilihat / diupdate dari unit Gudang</td>
                         @endif
                         <td>{{$permintaan->jumlah}}</td>
-                        <td> {{\Carbon\Carbon::parse($permintaan->tgl_diperlukan)->isoFormat('dddd, D MMM Y') }} </td>
+                        <td>{{\Carbon\Carbon::parse($permintaan->tgl_diperlukan)->isoFormat('dddd, D MMM Y') }}</td>
                         <td>{{$permintaan->realisasi}}</td>
                         <td>{{$permintaan->keterangan}}</td>
                     </tr>
@@ -154,6 +149,9 @@
                         <td class="text-center align-middle ttd">
                             @if ($permintaan->status_direktur != '1')
                             <h4>Belum di acc</h4>
+                            <button data-toggle="modal" data-target="#accPermintaan" class="btn btn-outline-primary btn-sm">
+                                Acc sekarang ?
+                            </button>
                             @else
                             <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>
                             @endif
@@ -187,7 +185,7 @@
     </div>
     <div class="row">
         <div class="col col-sm-1">
-            <a href="{{URL::route('permintaan-pembelian.index')}}" class="btn btn-warning btn-sm">Kembali</a>
+            <a href="{{URL::route('permintaan.index')}}" class="btn btn-warning btn-sm">Kembali</a>
         </div>
         @if ($permintaan->status_permintaan != '1' && $permintaan->status_direktur != '1')
         <div class="col col-sm-10">
@@ -200,9 +198,11 @@
             </span>
         </div>
         @endif
-        @if ($permintaan->status_permintaan != '1' && $permintaan->status_direktur != '1')
+        @if ($permintaan->status_permintaan != 1 && $permintaan->status_direktur != '1')
         <div class="col">
-            <form action="{{ URL::route('permintaan-pembelian.destroy',$permintaan->id) }}" method="POST" class="btn btn-sm p-0">
+            <form
+                action="{{ URL::route('permintaan-pembelian.destroy',$permintaan->id) }}"
+                method="POST" class="btn btn-sm p-0">
                 @method('delete')
                 @csrf
                 <button class="btn btn-danger btn-sm">
@@ -218,11 +218,12 @@
     </div>
 </div>
 @endsection
-@include('pemesan.permintaan.edit-modal')
+@include('gudang.daftar-permintaan.edit-modal')
+@include('gudang.daftar-permintaan.acc-modal')
 @push('tooltip')
-<script>
-    $(function() {
-        $('[data-toggle="tooltip"]').tooltip('show')
-    })
-</script>
+    <script>
+         $(function () {
+             $('[data-toggle="tooltip"]').tooltip('show')
+         })
+    </script>
 @endpush

@@ -44,9 +44,13 @@
                                 <td>{{ $permintaans->nm_barang }}</td>
                                 <td>{{ $permintaans->spesifikasi }}</td>
                                 <td>{{ $permintaans->unit_stok }}</td>
-                                <td>{{ $permintaans->gudang_stok }}</td>
+                                @if (!empty($permintaans->gudang_stok))
+                                <td>{{$permintaans->gudang_stok}}</td>
+                                @else
+                                <td>belum dilihat / diupdate dari unit Gudang</td>
+                                @endif
                                 <td>{{ $permintaans->jumlah }}</td>
-                                <td>{{ $permintaans->tgl_diperlukan }}</td>
+                                <td> {{\Carbon\Carbon::parse($permintaans->tgl_diperlukan)->isoFormat('dddd, D MMM Y') }} </td>
                                 <td>
                                     {{ $permintaans->keterangan }}
                                     <a href="{{ URL::route('permintaan-pembelian.show',$permintaans->id) }}" class="btn bg-transparent p-0 align-middle text-center" id="detail" data-toggle="tooltip" data-placement="right" title="Detail">
@@ -56,51 +60,12 @@
                             </tr>
                             @empty
                             <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>
-                                    <a href="#" class="btn bg-transparent p-0 align-middle text-center" id="detail" data-toggle="tooltip" data-placement="top" title="Detail">
-                                        <i class="fas fa-info-circle text-info h4 m-0"></i>
-                                    </a>
-                                </td>
-                                {{-- <td>
-                                    <a href="edit-siswa.html" class="btn btn-outline-warning">Edit</a>
-                                    <a href="#" class="btn btn-outline-danger">Hapus</a>
-                                </td> --}}
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>
-                                    <a href="#" class="btn bg-transparent p-0 align-middle text-center" id="detail" data-toggle="tooltip" data-placement="top" title="Detail">
-                                        <i class="fas fa-info-circle text-info h4 m-0"></i>
-                                    </a>
-                                </td>
-                                {{-- <td>
-                                    <a href="edit-siswa.html" class="btn btn-outline-warning">Edit</a>
-                                    <a href="#" class="btn btn-outline-danger">Hapus</a>
-                                </td> --}}
-                            </tr>
-                            <tr>
                                 <td colspan="8" class="text-center align-middle"><h2><strong>Daftar permintaan kosong!!</strong></h2></td>
                             </tr>
                             @endforelse
                         </tbody>
                     </table>
                     <div class="ml-2 mt-4 mb-4">
-                        {{-- <button data-toggle="modal" data-target="#tambahNegara" class="btn btn-outline-primary btn-sm">
-                            Negara
-                        </button> --}}
                         <button data-toggle="modal" data-target="#tambahPermintaan" class="btn btn-outline-primary btn-sm">
                             Tambah daftar permintaan
                         </button>
@@ -121,6 +86,5 @@
          $(function () {
              $('[data-toggle="tooltip"]').tooltip('show')
          })
-        //$('#detail').tooltip()
     </script>
 @endpush
