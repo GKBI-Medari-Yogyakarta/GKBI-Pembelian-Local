@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Model\Pemesan;
+namespace App\Model\Niagabeli;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Perbaikan extends Model
+class Supplier extends Model
 {
     //
 }
