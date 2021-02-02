@@ -34,6 +34,9 @@ Route::namespace('Niagabeli')->group(function () {
         Route::resource('negara', 'NegaraController')->except('index');
         Route::resource('provinsi', 'ProvinsiController');
         Route::resource('kabupaten', 'KabupatenController');
+        Route::group(['prefix' => 'alamat'], function () {
+            Route::resource('supplier', 'SupplierController');
+        });
     });
 });
 Route::namespace('Gudang')->group(function(){

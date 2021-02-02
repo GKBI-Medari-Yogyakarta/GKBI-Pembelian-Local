@@ -9,6 +9,10 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
                     Alamat
                 </a>
+                <a class="nav-link {{ Request::url() == url('user-pembelian/alamat/supplier') ? 'active' : '' }}" href="{{ URL::route('supplier.index') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
+                    Alamat Supplier
+                </a>
                 <a class="nav-link {{ Request::url() == url('user-pemesan/permintaan-pembelian') ? 'active' : '' }}" href="{{ URL::route('permintaan-pembelian.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-dolly-flatbed"></i></div>
                     Permintaan Pembelian
