@@ -33,6 +33,7 @@
                                 <th class="text-center align-middle p-0" scope="col" rowspan="2">No. Telp.</th>
                                 <th class="text-center align-middle p-0" scope="col" rowspan="2">FAX</th>
                                 <th class="text-center align-middle p-0" scope="col" rowspan="2">NPWP</th>
+                                <th class="text-center align-middle p-0" scope="col" rowspan="2">Aksi</th>
                             </tr>
                             <tr>
                                 <th class="text-center p-0" scope="col">Provinsi</th>
@@ -41,42 +42,39 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @forelse ($alamat as $address)
+                            @forelse ($supplier as $s)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $address->nm_kab }}</td>
-                                <td>{{ $address->nm_prov }}</td>
-                                <td>{{ $address->kode }}</td>
-                                <td>{{ $address->nama }}</td>
-                            </tr>
-                            @empty --}}
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
+                                <td>{{ $s->nama }}</td>
+                                <td>{{ $s->attn }}</td>
+                                <td>{{ $s->nm_prov }}</td>
+                                <td>{{ $s->nm_kab }}</td>
+                                <td>{{ $s->alamat }}</td>
+                                <td>{{ $s->email }}</td>
+                                <td>{{ $s->telp }}</td>
+                                <td>{{ $s->fax }}</td>
+                                <td>{{ $s->npwp }}</td>
                                 <td>
-                                    <a href="edit-siswa.html" class="btn btn-outline-warning">Edit</a>
+                                    <a href="{{ URL::route('supplier.edit',$s->id) }}" class="btn btn-outline-warning">Edit</a>
                                     <a href="#" class="btn btn-outline-danger">Hapus</a>
                                 </td>
                             </tr>
-                            {{-- @endforelse --}}
+                            @empty
+                            <tr>
+                                <td colspan="11" class="text-center">
+                                    <h3>Data Supplier masih kosong!!</h3>
+                                </td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                     <div class="ml-2 mt-4 mb-4">
-                        <button data-toggle="modal" data-target="#tambahNegara" class="btn btn-outline-primary btn-sm">
-                            Negara
-                        </button>
-                        <button data-toggle="modal" data-target="#tambahProv" class="btn btn-outline-primary btn-sm">
-                            Provinsi
-                        </button>
-                        <button data-toggle="modal" data-target="#tambahKab" class="btn btn-outline-primary btn-sm">
-                            Kabupaten
+                        <button data-toggle="modal" data-target="#tambahSupplier" class="btn btn-outline-primary btn-sm">
+                            Tambah Supplier
                         </button>
                     </div>
                     <div class="mt-2 ml-2">
-                        {{-- {{ $alamat->links() }} --}}
+                        {{ $supplier->links() }}
                     </div>
                 </div>
             </div>
@@ -84,7 +82,7 @@
     </div>
 </main>
 <!-- Modal -->
-{{-- @include('niagabeli.alamat.modal') --}}
+@include('niagabeli.supplier.modal')
 @endsection
 @push('tooltip')
 <script>

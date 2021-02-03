@@ -3,21 +3,79 @@
 namespace App\Http\Controllers\Niagabeli;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Niagabeli\SupplierRequest;
+use App\Model\Niagabeli\Kabupaten;
+use App\Model\Niagabeli\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SupplierController extends Controller
 {
     //to index
-    public function index() {
+    public function index()
+    {
         if (Auth::guard('pembelian')->check()) {
-            return \view('niagabeli.supplier.index');
+            $kabupatens = Kabupaten::all();
+            $supplier = DB::table('suppliers as s')
+                ->join('kabupatens as k', 'k.id', '=', 's.kab_id')
+                ->join('provinsis as p', 'p.id', '=', 'k.prov_id')
+                ->select('s.*', 'k.nama as nm_kab', 'p.nama as nm_prov')
+                ->paginate(10);
+            return \view('niagabeli.supplier.index', \compact('kabupatens', 'supplier'));
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
     //nothing, just for completed of resources in routing
-    public function create() {
+    public function create()
+    {
+        if (Auth::guard('pembelian')->check()) {
+            return \redirect()->route('supplier.index');
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
+    }
+    public function store(SupplierRequest $req)
+    {
+        if (Auth::guard('pembelian')->check()) {
+            Supplier::create([
+                'kab_id' => $req->kab_id,
+                'nama' => $req->nama,
+                'telp' => $req->telp,
+                'fax' => $req->fax,
+                'alamat' => $req->alamat,
+                'email' => $req->email,
+                'attn' => $req->attn,
+                'npwp' => $req->npwp,
+            ]);
+            return \redirect()->back()->with(['msg' => "Berhasil menambah data supplier $req->nama"]);
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
+    }
+    //nothing, just for completed of resources in routing
+    public function show($id)
+    {
+        if (Auth::guard('pembelian')->check()) {
+            return \redirect()->route('supplier.index');
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
+    }
+    public function edit($id)
+    {
+        if (Auth::guard('pembelian')->check()) {
+            $s = Supplier::find($id);
+            $k = Kabupaten::all();
+            return \view('niagabeli.supplier.edit', \compact('s', 'k'));
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
         if (Auth::guard('pembelian')->check()) {
             return \redirect()->route('supplier.index');
         } else {
@@ -25,50 +83,8 @@ class SupplierController extends Controller
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request) {
-        if (Auth::guard('pembelian')->check()) {
-            return \redirect()->route('supplier.index');
-        } else {
-            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
-        }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id) {
-        if (Auth::guard('pembelian')->check()) {
-            return \redirect()->route('supplier.index');
-        } else {
-            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
-        }
-    }
-    public function edit($id) {
-        if (Auth::guard('pembelian')->check()) {
-            return \redirect()->route('supplier.index');
-        } else {
-            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
-        }
-    }
-
-    public function update(Request $request, $id) {
-        if (Auth::guard('pembelian')->check()) {
-            return \redirect()->route('supplier.index');
-        } else {
-            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
-        }
-    }
-
-    public function destroy($id) {
+    public function destroy($id)
+    {
         if (Auth::guard('pembelian')->check()) {
             return \redirect()->route('supplier.index');
         } else {
