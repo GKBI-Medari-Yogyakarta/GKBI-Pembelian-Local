@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Auth;
 class ProvinsiController extends Controller
 {
     //to index
-    public function index() {
+    public function index()
+    {
         if (Auth::guard('pembelian')->check()) {
             return \redirect()->route('negara.index');
         } else {
@@ -20,7 +21,8 @@ class ProvinsiController extends Controller
         }
     }
     //nothing, just for completed of resources in routing
-    public function create() {
+    public function create()
+    {
         if (Auth::guard('pembelian')->check()) {
             return \redirect()->route('negara.index');
         } else {
@@ -28,7 +30,8 @@ class ProvinsiController extends Controller
         }
     }
     //save / store data
-    public function store(ProvRequest $req) {
+    public function store(ProvRequest $req)
+    {
         if (Auth::guard('pembelian')->check()) {
             Provinsi::create([
                 'negara_id' => $req->negara_id,
@@ -41,7 +44,8 @@ class ProvinsiController extends Controller
         }
     }
     //nothing, just for completed of resources in routing
-    public function show() {
+    public function show()
+    {
         if (Auth::guard('pembelian')->check()) {
             return \redirect()->route('negara.index');
         } else {
@@ -49,7 +53,8 @@ class ProvinsiController extends Controller
         }
     }
     //to form edit
-    public function edit($id) {
+    public function edit($id)
+    {
         if (Auth::guard('pembelian')->check()) {
             $prov = Provinsi::find($id);
             $n = Negara::all();
@@ -59,7 +64,8 @@ class ProvinsiController extends Controller
         }
     }
     //update
-    public function update(Request $req, $id) {
+    public function update(Request $req, $id)
+    {
         if (Auth::guard('pembelian')->check()) {
             $prov = Provinsi::find($id);
             $prov->negara_id = $req->negara_id;
@@ -72,11 +78,12 @@ class ProvinsiController extends Controller
         }
     }
     //delete
-    public function destroy($id) {
+    public function destroy($id)
+    {
         if (Auth::guard('pembelian')->check()) {
             $prov = Provinsi::find($id);
             $prov->delete();
-            return \redirect()->back()->with(['msg' => "Berhasil menghapus provinsi $prov->name"]);
+            return \redirect()->back()->with(['msg' => "Berhasil menghapus provinsi $prov->nama"]);
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }

@@ -17,7 +17,8 @@ use function Ramsey\Uuid\v1;
 class NegaraController extends Controller
 {
     //to index
-    public function index() {
+    public function index()
+    {
         if (Auth::guard('pembelian')->check()) {
             $alamat = DB::table('negaras')
                 ->join('provinsis', 'negaras.id', '=', 'provinsis.negara_id')
@@ -33,7 +34,8 @@ class NegaraController extends Controller
         }
     }
     //nothing, just for completed of resources in routing
-    public function create() {
+    public function create()
+    {
         if (Auth::guard('pembelian')->check()) {
             return \redirect()->route('negara.index');
         } else {
@@ -41,7 +43,8 @@ class NegaraController extends Controller
         }
     }
     //save / store data
-    public function store(NegaraRequest $req) {
+    public function store(NegaraRequest $req)
+    {
         if (Auth::guard('pembelian')->check()) {
             Negara::create([
                 'nama' => \ucwords($req->nama),
@@ -53,7 +56,8 @@ class NegaraController extends Controller
         }
     }
     //nothing, just for completed of resources in routing
-    public function show() {
+    public function show()
+    {
         if (Auth::guard('pembelian')->check()) {
             return \redirect()->route('negara.index');
         } else {
@@ -61,7 +65,8 @@ class NegaraController extends Controller
         }
     }
     //to form edit
-    public function edit($id) {
+    public function edit($id)
+    {
         if (Auth::guard('pembelian')->check()) {
             $negara = Negara::find($id);
             return \view('niagabeli.alamat.negara.edit', \compact('negara'));
@@ -70,7 +75,8 @@ class NegaraController extends Controller
         }
     }
     //update
-    public function update(NegaraReqUpdate $req,  $id) {
+    public function update(NegaraReqUpdate $req,  $id)
+    {
         if (Auth::guard('pembelian')->check()) {
             $negara = Negara::find($id);
             $negara->nama = \ucwords($req->nama);
@@ -82,7 +88,8 @@ class NegaraController extends Controller
         }
     }
     //delete
-    public function destroy($id) {
+    public function destroy($id)
+    {
         if (Auth::guard('pembelian')->check()) {
             $negara = Negara::find($id);
             $negara->delete();

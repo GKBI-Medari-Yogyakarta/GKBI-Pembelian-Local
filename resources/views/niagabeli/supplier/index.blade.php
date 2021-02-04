@@ -20,7 +20,6 @@
                 DataTable Alamat Supplier
             </div>
             <div class="card-body">
-                <h4 class="mt-2 p-2 border-bottom border-info">Alamat Supplier</h4>
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-sm">
                         <thead>
@@ -55,8 +54,14 @@
                                 <td>{{ $s->fax }}</td>
                                 <td>{{ $s->npwp }}</td>
                                 <td>
-                                    <a href="{{ URL::route('supplier.edit',$s->id) }}" class="btn btn-outline-warning">Edit</a>
-                                    <a href="#" class="btn btn-outline-danger">Hapus</a>
+                                    <a href="{{ URL::route('supplier.edit',$s->id) }}" class="btn btn-outline-warning btn-sm">Edit</a>
+                                    <form action="{{ URL::route('supplier.destroy',$s->id) }}" method="POST" class="btn btn-sm p-0">
+                                        @method('delete')
+                                        @csrf
+                                        <button class="btn btn-outline-danger btn-sm">
+                                            Hapus
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                             @empty
