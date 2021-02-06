@@ -1,5 +1,7 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
+
 Route::view('welcome', 'admin.layouts.main');
 Route::redirect('/', 'login', 301);
 Route::namespace('Auth')->group(function () {
@@ -23,25 +25,28 @@ Route::namespace('User')->group(function () {
     Route::get('user-pembelian', 'AdminPembelianController@index')->name('user-pembelian.index');
     Route::get('user-akuntansi', 'AdminAkuntansiController@index')->name('user-akuntansi.index');
 });
-Route::namespace('Pemesan')->group(function(){
-    Route::prefix('user-pemesan')->group(function(){
+Route::namespace('Pemesan')->group(function () {
+    Route::prefix('user-pemesan')->group(function () {
         Route::resource('permintaan-pembelian', 'PermintaanController');
     });
 });
-Route::namespace('Niagabeli')->group(function () {
-    Route::prefix('user-pembelian')->group(function(){
-        Route::get('alamat', 'NegaraController@index')->name('negara.index');
-        Route::resource('negara', 'NegaraController')->except('index');
-        Route::resource('provinsi', 'ProvinsiController');
-        Route::resource('kabupaten', 'KabupatenController');
-        Route::group(['prefix' => 'alamat'], function () {
-            Route::resource('supplier', 'SupplierController');
-        });
+Route::namespace('Niagabeli')->prefix('user-pembelian')->group(function () {
+    Route::get('alamat', 'NegaraController@index')->name('negara.index');
+    Route::resource('negara', 'NegaraController')->except('index');
+    Route::resource('provinsi', 'ProvinsiController');
+    Route::resource('kabupaten', 'KabupatenController');
+    Route::group(['prefix' => 'alamat'], function () {
+        Route::resource('supplier', 'SupplierController');
     });
 });
-Route::namespace('Gudang')->group(function(){
-    Route::prefix('user-gudang')->group(function(){
-        Route::resource('permintaan', 'GudangPermintaanController');
-        Route::get('pesanan', 'DaftarPesananController@index')->name('pesanan.index');
-    });
+Route::namespace('Gudang')->prefix('user-gudang')->group(function () {
+    Route::resource('permintaan', 'GudangPermintaanController');
+    Route::get('pesanan', 'DaftarPesananController@index')->name('pesanan.index');
+});
+Route::namespace('Akuntansi')->prefix('user-akuntansi')->group(function () {
+    Route::get('rekening', 'RekController@index')->name('rekening.index');
+    Route::post('rekening', 'RekController@store')->name('rekening.store');
+    Route::get('rekening/{id}/edit', 'RekController@edit')->name('rekening.edit');
+    Route::put('rekening/{id}', 'RekController@update')->name('rekening.update');
+    Route::delete('rekening/{id}', 'RekController@destroy')->name('rekening.destroy');
 });

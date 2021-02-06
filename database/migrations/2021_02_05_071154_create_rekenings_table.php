@@ -18,6 +18,9 @@ class CreateRekeningsTable extends Migration
             $table->string('bank');
             $table->string('no_rekening');
             $table->string('saldo')->nullable();
+            $table->unsignedBigInteger('sup_id')->nullable();
+            $table->foreign('sup_id')->references('id')->on('suppliers');
+            $table->enum('status', ['PC. GKBI', 'supplier']);
             $table->timestamps();
         });
     }

@@ -18,6 +18,7 @@ class CreateTransactionsTable extends Migration
             $table->unsignedBigInteger('rek_id')->nullable();
             $table->foreign('rek_id')->references('id')->on('rekenings');
             $table->string('kd_transaction');
+            $table->enum('jenis_transaction',['cash','credit','hutang']);
             $table->string('keterangan')->nullable();
             $table->string('total');
             $table->string('hrga_per_item')->nullable();

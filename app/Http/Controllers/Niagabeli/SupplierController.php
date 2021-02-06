@@ -88,7 +88,7 @@ class SupplierController extends Controller
             $s->attn = $req->attn;
             $s->npwp = $req->attn;
             $s->save();
-            return \redirect()->route('supplier.index');
+            return \redirect()->route('supplier.index')->with(['msg' => "Berhasil merubah data supplier $req->nama"]);
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
