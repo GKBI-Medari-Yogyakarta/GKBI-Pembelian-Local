@@ -4,7 +4,7 @@ namespace App\Http\Requests\Akuntansi;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TransactionRequest extends FormRequest
+class PaymentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

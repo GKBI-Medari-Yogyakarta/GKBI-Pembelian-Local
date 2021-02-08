@@ -23,6 +23,15 @@ class RekController extends Controller
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
+    //nothing, just for completed of resources in routing
+    public function create()
+    {
+        if (Auth::guard('akuntansi')->check()) {
+            return \redirect()->route('akuntansi.index');
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
+    }
     //to store
     public function store(RekRequest $req)
     {

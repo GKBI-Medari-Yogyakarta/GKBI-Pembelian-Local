@@ -4,9 +4,9 @@ namespace App\Model\Akuntansi;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction extends Model
+class Payment extends Model
 {
-    protected $fillable = ['rek_id', 'kd_transaction', 'jenis_transaction', 'keterangan', 'total', 'harga_per_item', 'saldo_awal', 'saldo_akhir', 'tgl_transaction'];
+    protected $fillable = ['rek_id', 'payment_code', 'payment_type', 'keterangan', 'total', 'harga_per_item', 'saldo_awal', 'saldo_akhir', 'payment_date'];
     public $timestamps = \true;
     public function rekening()
     {
