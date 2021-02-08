@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rekening extends Model
 {
-    protected $table = ['bank', 'no_rekening', 'saldo', 'sup_id', 'status'];
+    protected $fillable = ['bank', 'no_rekening', 'saldo', 'sup_id', 'status'];
     public $timestamps = \true;
     public function supplier()
     {

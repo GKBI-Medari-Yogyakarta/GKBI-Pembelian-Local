@@ -25,9 +25,9 @@ class NegaraController extends Controller
                 ->join('kabupatens', 'provinsis.id', '=', 'kabupatens.prov_id')
                 ->select('kabupatens.nama as nm_kab', 'provinsis.nama as nm_prov', 'negaras.nama', 'negaras.kode')
                 ->paginate(10);
-            $n = Negara::paginate(5);
-            $p = Provinsi::paginate(5);
-            $k = Kabupaten::paginate(5);
+            $n = Negara::paginate(3);
+            $p = Provinsi::paginate(3);
+            $k = Kabupaten::paginate(3);
             return \view('niagabeli.alamat.index', \compact('alamat', 'n', 'p', 'k'));
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);

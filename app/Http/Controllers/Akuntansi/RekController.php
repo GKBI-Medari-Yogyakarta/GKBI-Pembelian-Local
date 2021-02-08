@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Akuntansi\RekRequest;
 use App\Http\Requests\Akuntansi\RekReqUpdate;
 use App\Model\Akuntansi\Rekening;
+use App\Model\Niagabeli\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +17,8 @@ class RekController extends Controller
     {
         if (Auth::guard('akuntansi')->check()) {
             $rek = Rekening::all();
-            return \view('akuntansi.index', \compact('rek'));
+            $sup = Supplier::all();
+            return \view('akuntansi.rek.index', \compact('rek', 'sup'));
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
@@ -25,14 +27,15 @@ class RekController extends Controller
     public function store(RekRequest $req)
     {
         if (Auth::guard('akuntansi')->check()) {
-            Rekening::create([
+            $t = Rekening::create([
                 'bank' => $req->bank,
                 'no_rekening' => $req->no_rekening,
                 'saldo' => $req->saldo,
                 'sup_id' => $req->sup_id,
                 'status' => $req->status,
             ]);
-            return \redirect()->route('rekening.index')->with(['msg' => "Berhasil menambah data bank $req->bank"]);
+            // \dd($t);
+            return \redirect()->back()->with(['msg' => "Berhasil menambah data bank $req->bank"]);
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
@@ -41,7 +44,8 @@ class RekController extends Controller
     {
         if (Auth::guard('akuntansi')->check()) {
             $rek = Rekening::find($id);
-            return \view('akuntansi.index', \compact('rek'));
+            $sup = Supplier::all();
+            return \view('akuntansi.rek.edit', \compact('rek', 'sup'));
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
@@ -55,13 +59,15 @@ class RekController extends Controller
             $rek->saldo = $req->saldo;
             $rek->sup_id = $req->sup_id;
             $rek->status = $req->status;
+            // \dd($rek);
             $rek->save();
             return \redirect()->route('rekening.index')->with(['msg' => "Berhasil merubah data bank $req->bank"]);
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-    public function destroy($id){
+    public function destroy($id)
+    {
         if (Auth::guard('akuntansi')->check()) {
             $rek = Rekening::find($id);
             $rek->delete();

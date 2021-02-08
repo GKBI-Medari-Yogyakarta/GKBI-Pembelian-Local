@@ -59,7 +59,7 @@ class LoginController extends Controller
         } elseif (Auth::guard('pembelian')->attempt($credentials)) {
             return \redirect()->route('negara.index');
         } elseif (Auth::guard('akuntansi')->attempt($credentials)) {
-            return \redirect()->route('user-akuntansi.index');
+            return \redirect()->route('rekening.index');
         } else {
             \dd('akun tidak ada');
         }

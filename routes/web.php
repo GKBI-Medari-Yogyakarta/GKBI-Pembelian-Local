@@ -44,9 +44,10 @@ Route::namespace('Gudang')->prefix('user-gudang')->group(function () {
     Route::get('pesanan', 'DaftarPesananController@index')->name('pesanan.index');
 });
 Route::namespace('Akuntansi')->prefix('user-akuntansi')->group(function () {
-    Route::get('rekening', 'RekController@index')->name('rekening.index');
-    Route::post('rekening', 'RekController@store')->name('rekening.store');
-    Route::get('rekening/{id}/edit', 'RekController@edit')->name('rekening.edit');
-    Route::put('rekening/{id}', 'RekController@update')->name('rekening.update');
-    Route::delete('rekening/{id}', 'RekController@destroy')->name('rekening.destroy');
+    // Route::get('rekening', 'RekController@index')->name('rekening.index');
+    // Route::post('rekening', 'RekController@store')->name('rekening.store');
+    // Route::get('rekening/{id}/edit', 'RekController@edit')->name('rekening.edit');
+    // Route::put('rekening/{id}', 'RekController@update')->name('rekening.update');
+    // Route::delete('rekening/{id}', 'RekController@destroy')->name('rekening.destroy');
+    Route::resource('rekening', 'RekController');
 });

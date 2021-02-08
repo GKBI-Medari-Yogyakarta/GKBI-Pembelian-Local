@@ -19,7 +19,7 @@
                 <i class="fas fa-table mr-1"></i>
                 DataTable Alamat Supplier
             </div>
-            <div class="card-body">
+            <div class="card-body p-2">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-sm">
                         <thead>

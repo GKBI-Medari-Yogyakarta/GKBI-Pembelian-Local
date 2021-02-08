@@ -39,7 +39,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $negara->nama }}</td>
                                         <td>{{ $negara->kode }}</td>
-                                        <td class="">
+                                        <td class="p-0">
                                             <a href="{{ URL::route('negara.edit',$negara->id) }}" class="btn btn-outline-warning btn-sm">Edit</a>
                                             <form action="{{ URL::route('negara.destroy',$negara->id) }}" method="POST" class="btn btn-sm p-0">
                                                 @method('delete')
@@ -52,13 +52,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>
-                                            <a href="edit-siswa.html" class="btn btn-outline-warning btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-outline-danger btn-sm">Hapus</a>
-                                        </td>
+                                        <td colspan="4"><strong>Daftar negara kosong!!</strong></td>
                                     </tr>
                                     @endforelse
                                 </tbody>
@@ -97,13 +91,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>
-                                            <a href="edit-siswa.html" class="btn btn-outline-warning btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-outline-danger btn-sm">Hapus</a>
-                                        </td>
+                                        <td colspan="4"><strong>Daftar negara kosong!!</strong></td>
                                     </tr>
                                     @endforelse
                                 </tbody>
@@ -128,7 +116,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $kabupaten->nama }}</td>
                                         <td>{{ $kabupaten->kota }}</td>
-                                        <td>
+                                        <td class="p-1">
                                             <a href="{{ URL::route('kabupaten.edit',$kabupaten->id) }}" class="btn btn-outline-warning btn-sm">Edit</a>
                                             <form action="{{ URL::route('kabupaten.destroy',$kabupaten->id) }}" method="POST" class="btn btn-sm p-0">
                                                 @method('delete')
@@ -141,13 +129,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>
-                                            <a href="edit-siswa.html" class="btn btn-outline-warning btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-outline-danger btn-sm">Hapus</a>
-                                        </td>
+                                        <td colspan="4"><strong>Daftar negara kosong!!</strong></td>
                                     </tr>
                                     @endforelse
                                 </tbody>
