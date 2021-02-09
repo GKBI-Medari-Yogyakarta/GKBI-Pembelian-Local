@@ -5,7 +5,7 @@
                 <div class="sb-sidenav-menu-heading nav-link active">SISTEM PEERMINTAAN INTERNAL PC. GKBI</div>
                 {{-- List User --}}
                 <div class="sb-sidenav-menu-heading"><i class="fas fa-users"></i> List User</div>
-                <a class="nav-link {{ Request::url() == url('user-akuntansi/rekening') ? 'active' : '' }}" href="{{ URL::route('rekening.index') }}">
+                <a class="nav-link {{ (request()->is('user-akuntansi/rekening*')) ? 'active' : '' }}" href="{{ URL::route('rekening.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-file-invoice-dollar"></i></div>
                     Data Rekening
                 </a>

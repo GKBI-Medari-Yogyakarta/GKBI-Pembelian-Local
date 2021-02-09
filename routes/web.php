@@ -38,6 +38,13 @@ Route::namespace('Niagabeli')->prefix('user-pembelian')->group(function () {
     Route::group(['prefix' => 'alamat'], function () {
         Route::resource('supplier', 'SupplierController');
     });
+    Route::group(['prefix' => 'permintaan-pembelian'], function () {
+        Route::get('pembelian', 'TransactionController@index')->name('transaction.index');
+        Route::resource('pembelian', 'TransactionController')->only('create', 'store', 'show');
+        Route::get('pembelian/{id}/detail', 'TransactionController@edit')->name('transaction.edit');
+        Route::put('pembelian/{id}', 'TransactionController@update')->name('transaction.update');
+        Route::delete('pembelian/{id}', 'TransactionDetailController@destroy')->name('transaction.destroy');
+    });
 });
 Route::namespace('Gudang')->prefix('user-gudang')->group(function () {
     Route::resource('permintaan', 'GudangPermintaanController');
