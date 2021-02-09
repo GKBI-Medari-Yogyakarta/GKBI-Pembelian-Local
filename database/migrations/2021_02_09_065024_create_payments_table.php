@@ -20,11 +20,13 @@ class CreatePaymentsTable extends Migration
             $table->string('payment_code');
             $table->enum('payment_type', ['cash', 'credit', 'hutang', 'barter'])->default('hutang');
             $table->string('keterangan')->nullable();
-            $table->string('total');
             $table->string('hrga_per_item')->nullable();
+            $table->string('total');
             $table->string('saldo_awal');
             $table->string('saldo_akhir');
             $table->date('payment_date');
+            $table->unsignedBigInteger('transaction_id')->nullable();
+            $table->foreign('transaction_id')->references('id')->on('transactions');
             $table->timestamps();
         });
     }
