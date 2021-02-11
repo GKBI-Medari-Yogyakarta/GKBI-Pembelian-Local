@@ -13,19 +13,23 @@ use Illuminate\Support\Facades\DB;
 class PermintaanController extends Controller
 {
     //to index
-    public function index() {
+    public function index()
+    {
         if (Auth::guard('pemesan')->check()) {
             $unit = Bagian::all();
             $permintaan = DB::table('permintaans')
-            ->select('id','nm_barang','spesifikasi','unit_stok','gudang_stok','jumlah','tgl_diperlukan','keterangan','bagian_id')
-            ->get();
-            return \view('pemesan.permintaan.index',\compact('unit','permintaan'));
+                ->select('id', 'nm_barang', 'spesifikasi', 'unit_stok', 'gudang_stok', 'jumlah', 'tgl_diperlukan', 'keterangan', 'bagian_id')
+                ->get();
+            $u = \random_int(1, 10);
+            $g = \random_int(1, 10);
+            return \view('pemesan.permintaan.index', \compact('unit', 'permintaan', 'u', 'g'));
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
     //nothing, just for completed of resources in routing
-    public function create() {
+    public function create()
+    {
         if (Auth::guard('pemesan')->check()) {
             return \redirect()->route('permintaan-pembelian.index');
         } else {
@@ -33,7 +37,8 @@ class PermintaanController extends Controller
         }
     }
     //save / store data
-    public function store(PesananRequest $req) {
+    public function store(PesananRequest $req)
+    {
         if (Auth::guard('pemesan')->check()) {
             $user_pemesan_id = Auth::guard('pemesan')->user()->getAuthIdentifier();
             Permintaan::create([
@@ -43,11 +48,11 @@ class PermintaanController extends Controller
                 'nm_barang' => $req->nm_barang,
                 'spesifikasi' => $req->spesifikasi,
                 'unit_stok' => $req->unit_stok,
-                // 'gudang_stok' => $req->gudang_stok,
-                'jumlah'=>$req->jumlah,
+                'gudang_stok' => $req->gudang_stok,
+                'jumlah' => $req->jumlah,
                 'tgl_diperlukan' => $req->tgl_diperlukan,
                 'bagian_id' => $req->bagian_id,
-                'user_pemesan_id'=> $user_pemesan_id,
+                'user_pemesan_id' => $user_pemesan_id,
             ]);
             return \redirect()->back()->with(['msg' => "Berhasil menambah daftar permintaan dari $req->pemesan"]);
         } else {
@@ -55,17 +60,19 @@ class PermintaanController extends Controller
         }
     }
     //detail
-    public function show($id) {
+    public function show($id)
+    {
         if (Auth::guard('pemesan')->check()) {
             $unit = Bagian::all();
             $permintaan = Permintaan::find($id);
-            return \view('pemesan.permintaan.show',\compact('permintaan','unit'));
+            return \view('pemesan.permintaan.show', \compact('permintaan', 'unit'));
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
     //to form edit
-    public function edit() {
+    public function edit()
+    {
         if (Auth::guard('pemesan')->check()) {
             return \redirect()->route('permintaan-pembelian.index');
         } else {
@@ -73,30 +80,36 @@ class PermintaanController extends Controller
         }
     }
     //update
-    public function update(PesananRequest $req, $id) {
+    public function update(Request $req, $id)
+    {
         if (Auth::guard('pemesan')->check()) {
             $pesanan = Permintaan::find($id);
             $user_pemesan_id = Auth::guard('pemesan')->user()->getAuthIdentifier();
-            $pesanan->update([
-                'pemesan' => $req->pemesan,
-                'no_pemesan' => $req->no_pemesan,
-                'tgl_pesanan' => $req->tgl_pesanan,
-                'nm_barang' => $req->nm_barang,
-                'spesifikasi' => $req->spesifikasi,
-                'unit_stok' => $req->unit_stok,
-                // 'gudang_stok' => $req->gudang_stok,
-                'jumlah'=>$req->jumlah,
-                'tgl_diperlukan' => $req->tgl_diperlukan,
-                'bagian_id' => $req->bagian_id,
-                'user_pemesan_id' => $user_pemesan_id,
-            ]);
-            return \redirect()->back()->with(['msg' => "Berhasil merubah daftar permintaan dari $pesanan->pemesan"]);
+            if ($req->input('action') == 'Simpan') {
+                $pesanan->update([
+                    'pemesan' => $req->pemesan,
+                    'no_pemesan' => $req->no_pemesan,
+                    'tgl_pesanan' => $req->tgl_pesanan,
+                    'nm_barang' => $req->nm_barang,
+                    'spesifikasi' => $req->spesifikasi,
+                    'jumlah' => $req->jumlah,
+                    'tgl_diperlukan' => $req->tgl_diperlukan,
+                    'bagian_id' => $req->bagian_id,
+                    'user_pemesan_id' => $user_pemesan_id,
+                ]);
+                return \redirect()->back()->with(['msg' => "Berhasil merubah daftar permintaan dari $pesanan->pemesan"]);
+            } else if ($req->input('action') == 'acc') {
+                $pesanan->status_direktur = '1';
+                $pesanan->save();
+                return \redirect()->back()->with(['msg' => "Permintaan pesanan dari $pesanan->pemesan berhasil di acc"]);
+            }
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
     //delete
-    public function destroy($id) {
+    public function destroy($id)
+    {
         if (Auth::guard('pemesan')->check()) {
             $pesanan = Permintaan::find($id);
             if ($pesanan->status_direktur == '1') {

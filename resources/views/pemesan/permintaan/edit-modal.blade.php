@@ -45,15 +45,17 @@
                     <div class="form-group row">
                         <label for="inputunit_stok" class="col-sm-3 col-form-label">Stok barang dari unit</label>
                         <div class="col-sm-9">
-                            <input type="number" class="form-control @error('unit_stok') is-invalid @enderror" id="inputunit_stok" name="unit_stok" value="{{ $permintaan->unit_stok }}">
+                            {{-- <input type="number" class="form-control @error('unit_stok') is-invalid @enderror" id="inputunit_stok" name="unit_stok" value="{{ $permintaan->unit_stok }}"> --}}
+                            <input type="number" value="{{ $permintaan->unit_stok }}" name="unit_stok" id="inputunit_stok" readonly>
                         </div>
                     </div>
-                    {{-- <div class="form-group row">
+                    <div class="form-group row">
                         <label for="inputgudang_stok" class="col-sm-3 col-form-label">Stok barang dari gudang</label>
                         <div class="col-sm-9">
-                            <input type="number" class="form-control @error('gudang_stok') is-invalid @enderror" id="inputgudang_stok" name="gudang_stok" value="{{ $permintaan->gudang_stok }}">
+                            {{-- <input type="number" class="form-control @error('gudang_stok') is-invalid @enderror" id="inputgudang_stok" name="gudang_stok" value="{{ $permintaan->gudang_stok }}"> --}}
+                            <input type="number" value="{{ $permintaan->gudang_stok }}" name="gudang_stok" id="inputgudang_stok" readonly>
                         </div>
-                    </div> --}}
+                    </div>
                     <div class="form-group row">
                         <label for="inputjumlah" class="col-sm-3 col-form-label">Jumlah barang yang diminta</label>
                         <div class="col-sm-9">
@@ -79,7 +81,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <input type="submit" name="action" class="btn btn-primary" value="Simpan">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                 </div>
             </form>

@@ -29,9 +29,9 @@ class PesananRequest extends FormRequest
             'tgl_pesanan' => 'required|date',
             'nm_barang' => 'required',
             'spesifikasi' => 'required',
-            'unit_stok' => 'required',
+            // 'unit_stok' => 'required',
             // 'gudang_stok' => 'required',
-            'jumlah'=>'required',
+            'jumlah' => 'required',
             'tgl_diperlukan' => 'required|date',
             'bagian_id' => 'required',
         ];
@@ -44,9 +44,9 @@ class PesananRequest extends FormRequest
             'tgl_pesanan.required' => 'tanggal pengajuan permintaan wajib diisi!!',
             'nm_barang.required' => 'nama barang tidak boleh kosong!!',
             'spesifikasi.required' => 'spesifikasi barang tidak boleh kosong!!',
-            'unit_stok.required' => 'wajib mencantumkan stok unit!!',
+            // 'unit_stok.required' => 'wajib mencantumkan stok unit!!',
             // 'gudang_stok.required' => 'wajib mencantumkan stok gudang!!',
-            'jumlah.required'=>'kolom jumlah tidak boleh kosong!!',
+            'jumlah.required' => 'kolom jumlah tidak boleh kosong!!',
             'tgl_diperlukan.required' => 'tanggal diperlukan wajib diisi!!',
             'bagian_id.required' => 'bagian/unit yang memesan wajib dicantumkan!!',
         ];

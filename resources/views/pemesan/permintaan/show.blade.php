@@ -154,6 +154,9 @@
                         <td class="text-center align-middle ttd">
                             @if ($permintaan->status_direktur != '1')
                             <h4>Belum di acc</h4>
+                            <button data-toggle="modal" data-target="#accPermintaan" class="btn btn-outline-primary btn-sm">
+                                Acc sekarang ?
+                            </button>
                             @else
                             <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>
                             @endif
@@ -219,6 +222,7 @@
 </div>
 @endsection
 @include('pemesan.permintaan.edit-modal')
+@include('pemesan.permintaan.acc-modal')
 @push('tooltip')
 <script>
     $(function() {
