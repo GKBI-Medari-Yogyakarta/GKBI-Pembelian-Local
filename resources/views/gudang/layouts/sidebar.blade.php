@@ -9,7 +9,7 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
                     Daftar Pesanan
                 </a>
-                <a class="nav-link {{ Request::url() == url('user-gudang/permintaan') ? 'active' : '' }}" href="{{ URL::route('permintaan.index') }}">
+                <a class="nav-link {{ (request()->is('user-gudang/permintaan*')) ? 'active' : ''}}" href="{{ URL::route('permintaan.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-dolly-flatbed"></i></div>
                     Daftar Permintaan
                 </a>
