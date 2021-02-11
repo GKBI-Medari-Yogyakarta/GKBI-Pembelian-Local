@@ -7,14 +7,18 @@ use App\Http\Requests\Niagabeli\TransactionRequest;
 use App\Model\Niagabeli\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class TransactionController extends Controller
 {
     public function index()
     {
         if (Auth::guard('pembelian')->check()) {
-            return \view('niagabeli.pembelian.index');
-            return \redirect()->route('transaction.index');
+            $permintaan = DB::table('transactions as t')
+                ->join('permintaans as p', 'p.id', '=', 't.permintaan_id')
+                ->select('p.nm_barang', 'p.spesifikasi', 'p.unit_stok', 'p.gudang_stok', 'p.tgl_diperlukan', 'p.realisasi', 'p.keterangan', 't.*')
+                ->get();
+            return \view('niagabeli.pembelian.index', \compact('permintaan'));
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }

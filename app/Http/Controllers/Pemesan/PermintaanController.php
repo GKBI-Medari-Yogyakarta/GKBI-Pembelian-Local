@@ -103,6 +103,7 @@ class PermintaanController extends Controller
             } else if ($req->input('action') == 'acc') {
                 Transaction::create([
                     'permintaan_id' => $pesanan->id,
+                    'rencana_beli' => $pesanan->jumlah,
                 ]);
                 $pesanan->status_direktur = '1';
                 $pesanan->save();

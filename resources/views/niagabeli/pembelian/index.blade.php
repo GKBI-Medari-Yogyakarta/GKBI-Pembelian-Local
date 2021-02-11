@@ -39,18 +39,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @forelse ($permintaans as $p)
+                            @forelse ($permintaan as $p)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $p->nm_barang }}</td>
                                 <td>{{ $p->spesifikasi }}</td>
                                 <td>{{ $p->unit_stok }}</td>
-                                @if (empty($perminstaans->gudang_stok))
                                 <td>{{$p->gudang_stok}}</td>
-                                @else
-                                <td>belum dilihat / diupdate dari unit Gudang</td>
-                                @endif
-                                <td>{{ $p->jumlah }}</td>
+                                <td>{{ $p->rencana_beli }}</td>
                                 <td>{{\Carbon\Carbon::parse($p->tgl_diperlukan)->isoFormat('dddd, D MMM Y') }}</td>
                                 <td>
                                     {{ $p->keterangan }}
@@ -61,11 +57,11 @@
                                     </a>
                                 </td>
                             </tr>
-                            @empty --}}
+                            @empty
                             <tr>
                                 <td colspan="8" class="text-center align-middle"><h2><strong>Daftar permintaan kosong!!</strong></h2></td>
                             </tr>
-                            {{-- @endforelse --}}
+                            @endforelse
                         </tbody>
                     </table>
                     <div class="ml-2 mt-4 mb-4">

@@ -27,7 +27,7 @@ class CreatePermintaansTable extends Migration
             $table->string('keterangan', 1000)->nullable();
             $table->enum('status_direktur', ['1', '0'])->nullable();
             $table->enum('status_niaga_pembelian', ['1', '0'])->nullable();
-            $table->enum('status_permintaan', ['1', '0'])->nullable();
+            $table->enum('status_permintaan', ['1', '0'])->default('0');
             $table->unsignedBigInteger('bagian_id')->nullable();
             $table->foreign('bagian_id')->references('id')->on('bagians');
             $table->string('ttd_pemesan')->nullable();
