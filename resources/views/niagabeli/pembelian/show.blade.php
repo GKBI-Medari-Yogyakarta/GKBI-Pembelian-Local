@@ -1,6 +1,6 @@
-@extends('pemesan.layouts.main')
-@section('title','Pemesan Page')
-@section('status-user','Pemesan Page')
+@extends('niagabeli.layouts.main')
+@section('title','Niagabeli Page')
+@section('status-user','Niagabeli Page')
 @section('custom-style')
 <style>
     .h-nomor {
@@ -72,22 +72,22 @@
                             <tr>
                                 <th scope="row" class="h-nomor pl-5">Pemesan</th>
                                 <td class="h-t text-right"><strong>:</strong></td>
-                                <td colspan="3" class="h-t pl-0">{{$permintaan->pemesan}}</td>
+                                <td colspan="3" class="h-t pl-0">{{$transaction->permintaan->pemesan}}</td>
                             </tr>
                             <tr>
                                 <th scope="row" class="h-nomor pl-5">Unit/Bagian</th>
                                 <td class="h-t text-right"><strong>:</strong></td>
-                                <td colspan="3" class="h-t pl-0">{{$permintaan->bagian->nama}}</td>
+                                <td colspan="3" class="h-t pl-0">{{$transaction->permintaan->bagian->nama}}</td>
                             </tr>
                             <tr>
                                 <th scope="row" class="h-nomor pl-5">Nomor</th>
                                 <td class="h-t text-right"><strong>:</strong></td>
-                                <td colspan="3" class="h-t pl-0">{{$permintaan->no_pemesan}}</td>
+                                <td colspan="3" class="h-t pl-0">{{$transaction->permintaan->no_pemesan}}</td>
                             </tr>
                             <tr>
                                 <th scope="row" class="h-nomor pl-5">Tanggal</th>
                                 <td class="h-t text-right"><strong>:</strong></td>
-                                <td colspan="3" class="h-t pl-0"> {{\Carbon\Carbon::parse($permintaan->tgl_pesanan)->isoFormat('D MMM Y') }} </td>
+                                <td colspan="3" class="h-t pl-0"> {{\Carbon\Carbon::parse($transaction->permintaan->tgl_pesanan)->isoFormat('D MMM Y') }} </td>
                             </tr>
                         </tbody>
                     </table>
@@ -113,18 +113,14 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row">{{$permintaan->id}}</th>
-                        <td>{{$permintaan->nm_barang}} / {{$permintaan->spesifikasi}}</td>
-                        <td>{{$permintaan->unit_stok}}</td>
-                        @if (!empty($permintaan->gudang_stok))
-                        <td>{{$permintaan->gudang_stok}}</td>
-                        @else
-                        <td>belum dilihat / diupdate dari unit Gudang</td>
-                        @endif
-                        <td>{{$permintaan->jumlah}}</td>
-                        <td> {{\Carbon\Carbon::parse($permintaan->tgl_diperlukan)->isoFormat('dddd, D MMM Y') }} </td>
-                        <td>{{$permintaan->realisasi}}</td>
-                        <td>{{$permintaan->keterangan}}</td>
+                        <th scope="row">{{$transaction->permintaan->id}}</th>
+                        <td>{{$transaction->permintaan->nm_barang}} / {{$transaction->permintaan->spesifikasi}}</td>
+                        <td>{{$transaction->permintaan->unit_stok}}</td>
+                        <td>{{$transaction->permintaan->gudang_stok}}</td>
+                        <td>{{$transaction->permintaan->jumlah}}</td>
+                        <td> {{\Carbon\Carbon::parse($transaction->permintaan->tgl_diperlukan)->isoFormat('dddd, D MMM Y') }} </td>
+                        <td>{{$transaction->permintaan->realisasi}}</td>
+                        <td>{{$transaction->permintaan->keterangan}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -145,35 +141,20 @@
                 <tbody>
                     <tr>
                         <td class="text-center align-middle ttd">
-                            @if ($permintaan->status_niaga_pembelian != '1')
+                            @if ($transaction->permintaan->status_niaga_pembelian != '1')
                             <h4>Belum di acc</h4>
                             @else
                             <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>
                             @endif
                         </td>
                         <td class="text-center align-middle ttd">
-                            @if ($permintaan->status_direktur != '1')
-                            <h4>Belum di acc</h4>
-                            <button data-toggle="modal" data-target="#accPermintaan" class="btn btn-outline-primary btn-sm">
-                                Acc sekarang ?
-                            </button>
-                            @else
                             <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>
-                            @endif
                         </td>
                         <td class="text-center align-middle ttd">
-                            @if ($permintaan->status_ka_unit != '1')
-                            <h4>Belum di acc</h4>
-                            @else
                             <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>
-                            @endif
                         </td>
                         <td class="text-center align-middle ttd">
-                            @if ($permintaan->status_ka_bpemesan != '1')
-                            <h4>Belum di acc</h4>
-                            @else
                             <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>
-                            @endif
                         </td>
                     </tr>
                 </tbody>
@@ -190,39 +171,28 @@
     </div>
     <div class="row">
         <div class="col col-sm-1">
-            <a href="{{URL::route('permintaan-pembelian.index')}}" class="btn btn-warning btn-sm">Kembali</a>
+            <a href="{{URL::route('transaction.index')}}" class="btn btn-warning btn-sm">Kembali</a>
         </div>
-        @if ($permintaan->status_permintaan != '1' && $permintaan->status_direktur != '1')
-        <div class="col col-sm-10">
+        {{-- @if ($permintaan->status_permintaan != '1' && $permintaan->status_direktur != '1') --}}
+        <div class="col col-sm-9">
             <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editPermintaan">Edit</button>
         </div>
-        @else
+        {{-- @else
         <div class="col col-sm-10">
             <span id="detail" class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Tidak boleh diedit, status sudah diacc direktur" data-placement="right">
                 <button class="btn btn-outline-primary btn-sm" style="pointer-events: none;" type="button" disabled>Edit</button>
             </span>
         </div>
-        @endif
-        @if ($permintaan->status_permintaan != '1' && $permintaan->status_direktur != '1')
+        @endif --}}
         <div class="col">
-            <form action="{{ URL::route('permintaan-pembelian.destroy',$permintaan->id) }}" method="POST" class="btn btn-sm p-0">
-                @method('delete')
-                @csrf
-                <button class="btn btn-danger btn-sm">
-                    Hapus
-                </button>
-            </form>
+            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editPermintaan">Proses Pembelian</button>
         </div>
-        @else
-        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Tidak boleh dihapus, status sudah diacc direktur" data-placement="left">
+        {{-- <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Tidak memiliki hak untuk menghapus" data-placement="left">
             <button class="btn btn-outline-danger btn-sm" style="pointer-events: none;" type="button" disabled>Hapus</button>
-        </span>
-        @endif
+        </span> --}}
     </div>
 </div>
 @endsection
-@include('pemesan.permintaan.edit-modal')
-@include('pemesan.permintaan.acc-modal')
 @push('tooltip')
 <script>
     $(function() {

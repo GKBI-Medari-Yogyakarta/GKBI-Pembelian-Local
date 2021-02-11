@@ -24,7 +24,7 @@ class TransactionRequest extends FormRequest
     public function rules()
     {
         return [
-            'permintaan_id' => 'required',
+            // 'permintaan_id' => 'required',
             'tgl_status' => 'required',
             'no_niaga' => 'required',
             'rencana_beli' => 'required',
@@ -36,7 +36,7 @@ class TransactionRequest extends FormRequest
     public function messages()
     {
         return [
-            'permintaan_id.required' => 'kolom permintaan tidak boleh kosong!!',
+            // 'permintaan_id.required' => 'kolom permintaan tidak boleh kosong!!',
             'tgl_status.required' => 'kolom tanggal status tidak boleh kosong!!',
             'no_niaga.required' => 'kolom nomor tidak boleh kosong!!',
             'rencana_beli.required' => 'kolom rencana jumlah beli tidak boleh kosong!!',
