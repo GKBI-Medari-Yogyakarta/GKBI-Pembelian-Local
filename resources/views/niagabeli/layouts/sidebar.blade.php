@@ -13,7 +13,7 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
                     Alamat Supplier
                 </a>
-                <a class="nav-link {{ (request()->is('user-pembelian/permintaan-pembelian*')) ? 'active' : '' }}" href="{{ URL::route('transaction.index') }}">
+                <a class="nav-link {{ (request()->is('user-pembelian/permintaan-pembelian/pembelian*')) ? 'active' : '' }}" href="{{ URL::route('transaction.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-dolly-flatbed"></i></div>
                     Permintaan Pembelian
                 </a>

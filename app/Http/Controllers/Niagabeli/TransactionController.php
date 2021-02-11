@@ -13,6 +13,7 @@ class TransactionController extends Controller
     public function index()
     {
         if (Auth::guard('pembelian')->check()) {
+            return \view('niagabeli.pembelian.index');
             return \redirect()->route('transaction.index');
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
