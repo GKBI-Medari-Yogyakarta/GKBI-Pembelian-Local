@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePermintaansTable extends Migration
+class CreatePermintaanTemporariesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePermintaansTable extends Migration
      */
     public function up()
     {
-        Schema::create('permintaans', function (Blueprint $table) {
+        Schema::create('permintaan_temporaries', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('pemesan'); //nama pemesan
             $table->string('no_pemesan'); //nomor surat permintaan
@@ -22,9 +22,13 @@ class CreatePermintaansTable extends Migration
             $table->string('spesifikasi');
             $table->string('unit_stok');
             $table->string('gudang_stok')->nullable();
+            $table->string('jumlah');
             $table->date('tgl_diperlukan');
             $table->date('realisasi')->nullable();
             $table->string('keterangan', 1000)->nullable();
+            $table->string('user_pemesan_id')->nullable();
+            $table->enum('status_ka_bpemesan', ['1', '0'])->default('1');
+            $table->enum('status_ka_unit', ['1', '0'])->default('1');
             $table->enum('status_direktur', ['1', '0'])->nullable();
             $table->enum('status_niaga_pembelian', ['1', '0'])->nullable();
             $table->enum('status_permintaan', ['1', '0'])->nullable();
@@ -45,6 +49,6 @@ class CreatePermintaansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('permintaans');
+        Schema::dropIfExists('permintaan_temporaries');
     }
 }

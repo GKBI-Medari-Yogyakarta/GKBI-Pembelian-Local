@@ -203,7 +203,7 @@
             </span>
         </div>
         @endif
-        @if ($permintaan->status_permintaan != '1' && $permintaan->status_direktur == null)
+        @if ($permintaan->status_permintaan != '1' && $permintaan->status_direktur != '1')
         <div class="col">
             <form action="{{ URL::route('permintaan-pembelian.destroy',$permintaan->id) }}" method="POST" class="btn btn-sm p-0">
                 @method('delete')
@@ -214,7 +214,7 @@
             </form>
         </div>
         @else
-        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Tidak boleh dihapus, status sudah diacc/ditolak direktur" data-placement="left">
+        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Tidak boleh dihapus, status sudah diacc direktur" data-placement="left">
             <button class="btn btn-outline-danger btn-sm" style="pointer-events: none;" type="button" disabled>Hapus</button>
         </span>
         @endif

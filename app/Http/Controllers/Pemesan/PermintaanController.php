@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Pemesan;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Pemesan\PesananRequest;
 use App\Model\Bagian;
+use App\Model\Niagabeli\Transaction;
 use App\Model\Pemesan\Permintaan;
+use App\Model\Pemesan\PermintaanTemporary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -99,9 +101,32 @@ class PermintaanController extends Controller
                 ]);
                 return \redirect()->back()->with(['msg' => "Berhasil merubah daftar permintaan dari $pesanan->pemesan"]);
             } else if ($req->input('action') == 'acc') {
+                Transaction::create([
+                    'permintaan_id' => $pesanan->id,
+                ]);
                 $pesanan->status_direktur = '1';
                 $pesanan->save();
                 return \redirect()->back()->with(['msg' => "Permintaan pesanan dari $pesanan->pemesan berhasil di acc"]);
+            } else if ($req->input('action') == 'tidak') {
+                PermintaanTemporary::create([
+                    'pemesan' => $pesanan->pemesan,
+                    'no_pemesan' => $pesanan->no_pemesan,
+                    'tgl_pesanan' => $pesanan->tgl_pesanan,
+                    'nm_barang' => $pesanan->nm_barang,
+                    'spesifikasi' => $pesanan->spesifikasi,
+                    'unit_stok' => $pesanan->unit_stok,
+                    'gudang_stok' => $pesanan->gudang_stok,
+                    'jumlah' => $pesanan->jumlah,
+                    'tgl_diperlukan' => $pesanan->tgl_diperlukan,
+                    'bagian_id' => $pesanan->bagian_id,
+                    'user_pemesan_id' => $pesanan->user_pemesan_id,
+                    'status_ka_bpemesan' => $pesanan->status_ka_bpemesan,
+                    'status_ka_unit' => $pesanan->status_ka_unit,
+                    'status_direktur' => $pesanan->status_direktur,
+                ]);
+                $pesanan->status_direktur = '0';
+                $pesanan->save();
+                return \redirect()->back()->with(['msg' => "Permintaan pesanan dari $pesanan->pemesan ditolak!!"]);
             }
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
@@ -115,6 +140,22 @@ class PermintaanController extends Controller
             if ($pesanan->status_direktur == '1') {
                 return \redirect()->back()->with(['msg' => "Tidak dapat menghapus daftar permintaan dari $pesanan->pemesan, karena sudah disahkan oleh direktur"]);
             }
+            PermintaanTemporary::create([
+                'pemesan' => $pesanan->pemesan,
+                'no_pemesan' => $pesanan->no_pemesan,
+                'tgl_pesanan' => $pesanan->tgl_pesanan,
+                'nm_barang' => $pesanan->nm_barang,
+                'spesifikasi' => $pesanan->spesifikasi,
+                'unit_stok' => $pesanan->unit_stok,
+                'gudang_stok' => $pesanan->gudang_stok,
+                'jumlah' => $pesanan->jumlah,
+                'tgl_diperlukan' => $pesanan->tgl_diperlukan,
+                'bagian_id' => $pesanan->bagian_id,
+                'user_pemesan_id' => $pesanan->user_pemesan_id,
+                'status_ka_bpemesan' => $pesanan->status_ka_bpemesan,
+                'status_ka_unit' => $pesanan->status_ka_unit,
+                'status_direktur' => $pesanan->status_direktur,
+            ]);
             $pesanan->delete();
             return \redirect()->route('permintaan-pembelian.index')->with(['msg' => "Berhasil menghapus daftar permintaan dari $pesanan->nama"]);
         } else {

@@ -25,6 +25,13 @@
                             @endif
                         </div>
                         <div class="col">
+                            @if (!empty($permintaan->gudang_stok))
+                            <input type="submit" name="action" class="btn btn-warning" value="tidak">
+                            @else
+                            <button disabled class="btn btn-primary">Gudang stok belum diisi</button>
+                            @endif
+                        </div>
+                        <div class="col">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                         </div>
                     </div>
