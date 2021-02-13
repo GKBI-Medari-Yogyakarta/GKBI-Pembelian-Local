@@ -40,8 +40,9 @@ Route::namespace('Niagabeli')->prefix('user-pembelian')->group(function () {
     });
     Route::group(['prefix' => 'permintaan-pembelian'], function () {
         Route::get('pembelian', 'TransactionController@index')->name('transaction.index');
-        Route::resource('pembelian', 'TransactionController')->only('create', 'store', 'show');
-        Route::get('pembelian/{id}/detail', 'TransactionController@edit')->name('transaction.edit');
+        Route::resource('pembelian', 'TransactionController')->only('create', 'store');
+        Route::get('pembelian/{id}/detail', 'TransactionController@show')->name('transaction.show');
+        Route::get('pembelian/{id}/proses', 'TransactionController@edit')->name('transaction.edit');
         Route::put('pembelian/{id}', 'TransactionController@update')->name('transaction.update');
         Route::delete('pembelian/{id}', 'TransactionDetailController@destroy')->name('transaction.destroy');
     });

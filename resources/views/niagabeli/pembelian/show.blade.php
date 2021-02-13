@@ -175,7 +175,13 @@
         </div>
         {{-- @if ($permintaan->status_permintaan != '1' && $permintaan->status_direktur != '1') --}}
         <div class="col col-sm-9">
-            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editPermintaan">Edit</button>
+            @if ($transaction->status_beli == '1')
+            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Tidak boleh di edit, status barang sudah terbeli" data-placement="right">
+                <button class="btn btn-outline-danger btn-sm" style="pointer-events: none;" type="button" disabled>Edit</button>
+            </span>
+            @else
+            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updatePembelian">Edit</button>
+            @endif
         </div>
         {{-- @else
         <div class="col col-sm-10">
@@ -185,7 +191,14 @@
         </div>
         @endif --}}
         <div class="col">
-            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editPermintaan">Proses Pembelian</button>
+            @if ($tes !== true)
+            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editPermintaan">Proses Pembelian</a>
+            @else
+            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Tidak dapat diproses, status belum/tidak di acc" data-placement="left">
+                <button class="btn btn-outline-danger btn-sm" style="pointer-events: none;" type="button" disabled>Proses Pembelian</button>
+            </span>
+            {{-- <button disabled class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editPermintaan">Proses Pembelian</button> --}}
+            @endif
         </div>
         {{-- <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Tidak memiliki hak untuk menghapus" data-placement="left">
             <button class="btn btn-outline-danger btn-sm" style="pointer-events: none;" type="button" disabled>Hapus</button>
@@ -193,6 +206,7 @@
     </div>
 </div>
 @endsection
+@include('niagabeli.pembelian.modal')
 @push('tooltip')
 <script>
     $(function() {

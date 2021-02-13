@@ -52,8 +52,8 @@
                                     {{ $p->keterangan }}
                                 </td>
                                 <td>
-                                    <button class="btn btn-primary">proses pembelian</button>
-                                    <a href="{{ URL::route('pembelian.show',$p->id) }}" class="btn bg-transparent p-0 align-middle text-center" id="detail" data-toggle="tooltip" data-placement="right" title="Detail">
+                                    <a class="btn btn-primary" href="{{ URL::route('transaction.edit',$p->id) }}">proses pembelian</a>
+                                    <a href="{{ URL::route('transaction.show',$p->id) }}" class="btn bg-transparent p-0 align-middle text-center" id="detail" data-toggle="tooltip" data-placement="right" title="Detail">
                                         <i class="fas fa-info-circle text-info h4 m-0"></i>
                                     </a>
                                 </td>

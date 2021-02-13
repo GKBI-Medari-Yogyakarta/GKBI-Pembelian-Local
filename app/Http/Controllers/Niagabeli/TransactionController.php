@@ -45,7 +45,8 @@ class TransactionController extends Controller
     {
         if (Auth::guard('pembelian')->check()) {
             $transaction = Transaction::find($id);
-            return \view('niagabeli.pembelian.show', \compact('transaction'));
+            $tes = $transaction->status_niaga != 'acc' || empty($transaction->no_niaga);
+            return \view('niagabeli.pembelian.show', \compact('transaction', 'tes'));
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
