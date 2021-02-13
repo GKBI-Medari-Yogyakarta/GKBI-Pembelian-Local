@@ -1,8 +1,9 @@
-{{-- Permintaan --}}
+{{-- Permintaan Pembelian (Transaction)--}}
 <div class="modal fade" id="updatePembelian" data-backdrop="static" tabindex="-1" aria-labelledby="negaraLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content border border-warning">
-            <form action="{{ URL::route('permintaan-pembelian.store') }}" method="POST">
+            <form action="{{ URL::route('transaction.update',$transaction->id) }}" method="POST">
+                @method('put')
                 {{ csrf_field() }}
                 <div class="modal-header bg-primary">Perbaharui Daftar Permintaan</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -12,62 +13,46 @@
                 <div class="modal-body">
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputEmail4">Nomor</label>
-                            <input type="email" class="form-control" id="inputEmail4">
+                            <label for="inputNoNiaga">Nomor Surat</label>
+                            <input type="text" class="form-control @error('no_niaga') is-invalid @enderror" id="inputNoNiaga" name="no_niaga" value="{{ old('no_niaga') . $transaction->no_niaga, 'Default' }}">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputDate">Tanggal</label>
-                            <input type="date" class="form-control" id="inputDate" min="2018-01-01">
+                            <input type="date" min="2021-01-01" class="form-control @error('tgl_status') is-invalid @enderror" id="inputDate" name="tgl_status">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputEmail4">Nomor</label>
-                            <input type="email" class="form-control" id="inputEmail4">
+                            <label for="inputPlanPay">Rencana beli</label>
+                            <input type="text" class="form-control @error('rencana_beli') is-invalid @enderror" id="inputPlanPay" name="rencana_beli" value="{{ old('rencana_beli') . $transaction->rencana_beli, 'Default' }}">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputDate">Tanggal</label>
-                            <input type="date" class="form-control" id="inputDate" min="2018-01-01">
+                            <label for="inputPlanAmount">Perkiraan biaya</label>
+                            <input type="number" class="form-control" id="inputPlanAmount" name="perkiraan_biaya" value="{{ old('perkiraan_biaya') . $transaction->perkiraan_biaya, 'Default' }}">
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputAddress">Address</label>
-                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputAddress2">Address 2</label>
-                        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                        <label for="inputCity">City</label>
-                        <input type="text" class="form-control" id="inputCity">
+                            <label for="inputPayType">Metode pembayaran</label>
+                            <select name="payment_type" id="inputPayType" class="form-control @error('payment_type') is-invalid @enderror">
+                                <option value="hutang">Hutang</option>
+                                <option value="credit">Credit</option>
+                                <option value="cash">Cash</option>
+                                <option value="barter">Barter</option>
+                            </select>
                         </div>
-                        <div class="form-group col-md-4">
-                        <label for="inputState">State</label>
-                        <select id="inputState" class="form-control">
-                            <option selected>Choose...</option>
-                            <option>...</option>
-                        </select>
-                        </div>
-                        <div class="form-group col-md-2">
-                        <label for="inputZip">Zip</label>
-                        <input type="text" class="form-control" id="inputZip">
+                        <div class="form-group col-md-6">
+                            <label for="inputNoPembelian">Nomor pembelian</label>
+                            <input type="text" class="form-control @error('no_transaction') is-invalid @enderror" id="inputNoPembelian" name="no_transaction" value="{{ old('no_transaction') . $transaction->no_transaction, 'Default' }}">
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="gridCheck">
-                        <label class="form-check-label" for="gridCheck">
-                            Check me out
-                        </label>
-                        </div>
+                        <label for="inputKeterangan">Keterangan</label>
+                        <textarea class="form-control @error('keterangan') is-invalid @enderror" id="inputKeterangan" rows="3" name="keterangan"></textarea>
                     </div>
-                    {{-- <button type="submit" class="btn btn-primary">Sign in</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button> --}}
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <input type="submit" name="action" class="btn btn-primary" value="Simpan">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                 </div>
             </form>

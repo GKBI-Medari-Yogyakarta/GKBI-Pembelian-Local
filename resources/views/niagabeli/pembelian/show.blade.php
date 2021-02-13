@@ -53,12 +53,14 @@
                             <tr>
                                 <th scope="row" class="h-nomor pl-0">Nomor</th>
                                 <td class="h-t w-titik"><strong>:</strong></td>
-                                <td colspan="3" class="h-t pl-0">Mark</td>
+                                <td colspan="3" class="h-t pl-0">{{ $transaction->no_niaga }}</td>
                             </tr>
                             <tr>
                                 <th scope="row" class="h-nomor pl-0">Tanggal</th>
                                 <td class="h-t w-titik"><strong>:</strong></td>
-                                <td colspan="3" class="h-t pl-0">Jacob</td>
+                                @empty($transaction->tgl_status == false)
+                                    <td colspan="3" class="h-t pl-0">{{\Carbon\Carbon::parse($transaction->tgl_status)->isoFormat('D MMM Y') }}</td>
+                                @endempty
                             </tr>
                         </tbody>
                     </table>
@@ -143,6 +145,9 @@
                         <td class="text-center align-middle ttd">
                             @if ($transaction->permintaan->status_niaga_pembelian != '1')
                             <h4>Belum di acc</h4>
+                            <button data-toggle="modal" data-target="#accPermintaan" class="btn btn-outline-primary btn-sm">
+                                Acc sekarang.?
+                            </button>
                             @else
                             <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>
                             @endif
@@ -173,7 +178,6 @@
         <div class="col col-sm-1">
             <a href="{{URL::route('transaction.index')}}" class="btn btn-warning btn-sm">Kembali</a>
         </div>
-        {{-- @if ($permintaan->status_permintaan != '1' && $permintaan->status_direktur != '1') --}}
         <div class="col col-sm-9">
             @if ($transaction->status_beli == '1')
             <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Tidak boleh di edit, status barang sudah terbeli" data-placement="right">
@@ -183,13 +187,6 @@
             <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updatePembelian">Edit</button>
             @endif
         </div>
-        {{-- @else
-        <div class="col col-sm-10">
-            <span id="detail" class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Tidak boleh diedit, status sudah diacc direktur" data-placement="right">
-                <button class="btn btn-outline-primary btn-sm" style="pointer-events: none;" type="button" disabled>Edit</button>
-            </span>
-        </div>
-        @endif --}}
         <div class="col">
             @if ($tes !== true)
             <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editPermintaan">Proses Pembelian</a>
@@ -197,12 +194,8 @@
             <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Tidak dapat diproses, status belum/tidak di acc" data-placement="left">
                 <button class="btn btn-outline-danger btn-sm" style="pointer-events: none;" type="button" disabled>Proses Pembelian</button>
             </span>
-            {{-- <button disabled class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editPermintaan">Proses Pembelian</button> --}}
             @endif
         </div>
-        {{-- <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Tidak memiliki hak untuk menghapus" data-placement="left">
-            <button class="btn btn-outline-danger btn-sm" style="pointer-events: none;" type="button" disabled>Hapus</button>
-        </span> --}}
     </div>
 </div>
 @endsection
@@ -210,7 +203,9 @@
 @push('tooltip')
 <script>
     $(function() {
-        $('[data-toggle="tooltip"]').tooltip('show')
+        $('[data-toggle="tooltip"]').tooltip({
+            delay: {show:0,hide:1500}
+        });
     })
 </script>
 @endpush

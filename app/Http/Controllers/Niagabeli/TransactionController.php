@@ -64,16 +64,16 @@ class TransactionController extends Controller
     {
         if (Auth::guard('pembelian')->check()) {
             $transaction = Transaction::find($id);
-            if ($req->input('action' == 'update')) {
+            if ($req->input('action' == 'Simpan')) {
                 // $transaction->permintaan_id = $req->permintaan_id;
                 $transaction->tgl_status = $req->tgl_status;
                 $transaction->no_niaga = $req->no_niaga;
 
-                $sn = $transaction->status_niaga;
-                if (!empty($req->status_niaga)) {
-                    $sn = $req->status_niaga;
-                }
-                $transaction->status_niaga = $sn;
+                // $sn = $transaction->status_niaga;
+                // if (!empty($req->status_niaga)) {
+                //     $sn = $req->status_niaga;
+                // }
+                // $transaction->status_niaga = $sn;
 
                 $transaction->rencana_beli = $req->rencana_beli;
 
@@ -86,11 +86,11 @@ class TransactionController extends Controller
                 $transaction->payment_type = $req->payment_type;
                 $transaction->keterangan = $req->keterangan;
 
-                $sb = $transaction->status_beli;
-                if (!empty($req->status_beli)) {
-                    $sb = $req->status_beli;
-                }
-                $transaction->status_beli = $sb;
+                // $sb = $transaction->status_beli;
+                // if (!empty($req->status_beli)) {
+                //     $sb = $req->status_beli;
+                // }
+                // $transaction->status_beli = $sb;
 
                 $transaction->no_transaction = $req->no_transaction;
 
