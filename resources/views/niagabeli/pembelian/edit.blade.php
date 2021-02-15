@@ -13,7 +13,7 @@
         <div class="justify-content-md-center p-2">
             @include('niagabeli.layouts.required')
             <div class="card mt-4">
-                <form action="{{ URL::route('supplier.update',$s->id) }}" method="POST">
+                <form action="{{ URL::route('transaction.store',$transaction->id) }}" method="POST">
                     @method('put')
                     {{ csrf_field() }}
                     <div class="modal-header bg-primary">
@@ -34,19 +34,19 @@
                         <div class="form-group row">
                             <label for="namaSupplier" class="col-sm-3 col-form-label">Nama Pemesan</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control @error('nama') is-invalid @enderror" id="namaSupplier" name="nama" value="{{ $s->nama }}">
+                                <input type="text" class="form-control @error('nama') is-invalid @enderror" id="namaSupplier" name="nama" value="{{ $transaction->nama }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="telpSupplier" class="col-sm-3 col-form-label">Nomor Surat Pemesan</label>
                             <div class="col-sm-9">
-                                <input type="number" class="form-control @error('telp') is-invalid @enderror" id="telpSupplier" name="telp" value="{{ $s->telp }}">
+                                <input type="number" class="form-control @error('telp') is-invalid @enderror" id="telpSupplier" name="telp" value="{{ $transaction->telp }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="faxSupplier" class="col-sm-3 col-form-label">Tanggal Pemesanan</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control @error('fax') is-invalid @enderror" id="faxSupplier" name="fax" value="{{ $s->fax }}">
+                                <input type="text" class="form-control @error('fax') is-invalid @enderror" id="faxSupplier" name="fax" value="{{ $transaction->fax }}">
                             </div>
                         </div>
                         <div class="form-group row">

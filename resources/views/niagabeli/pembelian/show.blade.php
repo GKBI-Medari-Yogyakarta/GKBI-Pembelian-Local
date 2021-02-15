@@ -146,14 +146,12 @@
                 <tbody>
                     <tr>
                         <td class="text-center align-middle ttd">
-                            @if ($transaction->permintaan->status_niaga_pembelian != '1')
+                            @if ($transaction->permintaan->status_niaga_pembelian != '1' && $transaction->status_niaga != 'acc')
                             <h4>Belum di acc</h4>
                                 @if (!empty($transaction->no_niaga))
-                                    @if ($status !== true)
-                                    <button data-toggle="modal" data-target="#accPermintaan" class="btn btn-outline-primary btn-sm">
-                                        Acc sekarang.?
-                                    </button>
-                                    @endif
+                                <button data-toggle="modal" data-target="#accPermintaan" class="btn btn-outline-primary btn-sm">
+                                    Acc sekarang.?
+                                </button>
                                 @else
                                 <button disabled class="btn btn-primary btn-sm">
                                     isi nomor pembelian terlebih dahulu
@@ -191,15 +189,15 @@
         </div>
         <div class="col col-sm-9">
             @if ($status !== true)
-            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updatePembelian">Edit</button>
-            @else
             <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Tidak dapat diedit, status belum/tidak di acc" data-placement="right">
                 <button class="btn btn-outline-danger btn-sm" style="pointer-events: none;" type="button" disabled>Edit</button>
             </span>
+            @else
+            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updatePembelian">Edit</button>
             @endif
         </div>
         <div class="col">
-            @if ($status !== true)
+            @if ($transaction->status_beli !== '1')
             <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editPermintaan">Proses Pembelian</a>
             @else
             <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Tidak dapat diproses, status belum/tidak di acc" data-placement="left">
@@ -216,7 +214,7 @@
 <script>
     $(function() {
         $('[data-toggle="tooltip"]').tooltip({
-            delay: {show:0,hide:1500}
+            delay: {show:0,hide:2000}
         });
     })
 </script>

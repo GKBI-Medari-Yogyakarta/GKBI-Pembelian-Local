@@ -30,7 +30,7 @@ class CreatePermintaanTemporariesTable extends Migration
             $table->enum('status_ka_bpemesan', ['1', '0'])->default('1');
             $table->enum('status_ka_unit', ['1', '0'])->default('1');
             $table->enum('status_direktur', ['1', '0'])->nullable();
-            $table->enum('status_niaga_pembelian', ['1', '0'])->nullable();
+            $table->enum('status_niaga_pembelian', ['1', '0'])->default('0');
             $table->enum('status_permintaan', ['1', '0'])->nullable();
             $table->unsignedBigInteger('bagian_id')->nullable();
             $table->foreign('bagian_id')->references('id')->on('bagians');

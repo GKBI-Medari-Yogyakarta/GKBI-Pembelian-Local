@@ -17,11 +17,11 @@ class CreateTransactionDetailsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('transaction_id')->nullable();
             $table->foreign('transaction_id')->references('id')->on('transactions');
-            $table->string('_terbeli');
-            $table->string('_terbayar');
-            $table->date('tgl_beli');
+            $table->string('_terbeli')->nullable();
+            $table->string('_terbayar')->nullable();
+            $table->date('tgl_beli')->nullable();
             $table->string('ppn')->nullable();
-            $table->string('nota');
+            $table->string('nota')->nullable();
             $table->string('harga_item')->nullable();
             $table->string('jumlah_item')->nullable();
             $table->timestamps();

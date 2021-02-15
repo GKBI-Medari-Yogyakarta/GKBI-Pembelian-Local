@@ -24,7 +24,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputPlanPay">Rencana beli</label>
-                            <input readonly type="text" class="form-control @error('rencana_beli') is-invalid @enderror" id="inputPlanPay" name="rencana_beli" value="{{ old('rencana_beli') . $transaction->rencana_beli, 'Default' }}">
+                            <input readonly type="number" class="form-control @error('rencana_beli') is-invalid @enderror" id="inputPlanPay" name="rencana_beli" value="{{ old('rencana_beli') . $transaction->rencana_beli, 'Default' }}">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputPlanAmount">Perkiraan biaya</label>
