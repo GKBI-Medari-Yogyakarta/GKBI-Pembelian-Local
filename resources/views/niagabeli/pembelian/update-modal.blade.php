@@ -18,13 +18,13 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputDate">Tanggal</label>
-                            <input type="date" min="2021-01-01" class="form-control @error('tgl_status') is-invalid @enderror" id="inputDate" name="tgl_status">
+                            <input type="date" min="2021-01-01" class="form-control @error('tgl_status') is-invalid @enderror" id="inputDate" name="tgl_status" value="{{$transaction->tgl_status}}">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputPlanPay">Rencana beli</label>
-                            <input type="text" class="form-control @error('rencana_beli') is-invalid @enderror" id="inputPlanPay" name="rencana_beli" value="{{ old('rencana_beli') . $transaction->rencana_beli, 'Default' }}">
+                            <input readonly type="text" class="form-control @error('rencana_beli') is-invalid @enderror" id="inputPlanPay" name="rencana_beli" value="{{ old('rencana_beli') . $transaction->rencana_beli, 'Default' }}">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputPlanAmount">Perkiraan biaya</label>
@@ -48,7 +48,7 @@
                     </div>
                     <div class="form-group">
                         <label for="inputKeterangan">Keterangan</label>
-                        <textarea class="form-control @error('keterangan') is-invalid @enderror" id="inputKeterangan" rows="3" name="keterangan"></textarea>
+                        <textarea class="form-control @error('keterangan') is-invalid @enderror" id="inputKeterangan" rows="3" name="keterangan">{{ old('keterangan') . $transaction->keterangan,'Default' }}</textarea>
                     </div>
                 </div>
                 <div class="modal-footer">

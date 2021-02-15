@@ -28,6 +28,9 @@
         width: 10px;
         margin: 0px;
     }
+    .status{
+        width: max-content;
+    }
 </style>
 @section('main')
 <div class="container-fluid">
@@ -145,9 +148,17 @@
                         <td class="text-center align-middle ttd">
                             @if ($transaction->permintaan->status_niaga_pembelian != '1')
                             <h4>Belum di acc</h4>
-                            <button data-toggle="modal" data-target="#accPermintaan" class="btn btn-outline-primary btn-sm">
-                                Acc sekarang.?
-                            </button>
+                                @if (!empty($transaction->no_niaga))
+                                    @if ($status !== true)
+                                    <button data-toggle="modal" data-target="#accPermintaan" class="btn btn-outline-primary btn-sm">
+                                        Acc sekarang.?
+                                    </button>
+                                    @endif
+                                @else
+                                <button disabled class="btn btn-primary btn-sm">
+                                    isi nomor pembelian terlebih dahulu
+                                </button>
+                                @endif
                             @else
                             <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>
                             @endif
@@ -179,16 +190,16 @@
             <a href="{{URL::route('transaction.index')}}" class="btn btn-warning btn-sm">Kembali</a>
         </div>
         <div class="col col-sm-9">
-            @if ($transaction->status_beli == '1')
-            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Tidak boleh di edit, status barang sudah terbeli" data-placement="right">
+            @if ($status !== true)
+            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updatePembelian">Edit</button>
+            @else
+            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Tidak dapat diedit, status belum/tidak di acc" data-placement="right">
                 <button class="btn btn-outline-danger btn-sm" style="pointer-events: none;" type="button" disabled>Edit</button>
             </span>
-            @else
-            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updatePembelian">Edit</button>
             @endif
         </div>
         <div class="col">
-            @if ($tes !== true)
+            @if ($status !== true)
             <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editPermintaan">Proses Pembelian</a>
             @else
             <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Tidak dapat diproses, status belum/tidak di acc" data-placement="left">

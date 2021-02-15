@@ -18,17 +18,17 @@
                 <div class="modal-footer">
                     <div class="row">
                         <div class="col">
-                            @if ($transaction->status_niaga != '0')
-                            <button disabled class="btn btn-primary">Status {{ $transaction->status_niaga }}</button>
-                            @else
+                            @if ($status !== true)
                             <input type="submit" name="action" class="btn btn-primary" value="acc">
+                            @else
+                            <button disabled class="btn btn-primary status">status {{ $transaction->status_niaga }}</button>
                             @endif
                         </div>
                         <div class="col">
-                            @if ($transaction->status_niaga != '0')
-                            <button disabled class="btn btn-primary">Status {{ $transaction->status_niaga }}</button>
-                            @else
+                            @if ($status !== true)
                             <input type="submit" name="action" class="btn btn-warning" value="tidak">
+                            @else
+                            <button disabled class="btn btn-primary status">status {{ $transaction->status_niaga }}</button>
                             @endif
                         </div>
                         <div class="col">

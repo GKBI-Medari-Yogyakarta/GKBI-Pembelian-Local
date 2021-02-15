@@ -21,14 +21,14 @@
                             @if (!empty($permintaan->gudang_stok))
                             <input type="submit" name="action" class="btn btn-primary" value="acc">
                             @else
-                            <button disabled class="btn btn-primary">Gudang stok belum diisi</button>
+                            <button disabled class="btn btn-primary status">Gudang stok belum diisi</button>
                             @endif
                         </div>
                         <div class="col">
                             @if (!empty($permintaan->gudang_stok))
                             <input type="submit" name="action" class="btn btn-warning" value="tidak">
                             @else
-                            <button disabled class="btn btn-primary">Gudang stok belum diisi</button>
+                            <button disabled class="btn btn-primary status">Gudang stok belum diisi</button>
                             @endif
                         </div>
                         <div class="col">

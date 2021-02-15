@@ -28,6 +28,9 @@
         width: 10px;
         margin: 0px;
     }
+    .status{
+        width: max-content;
+    }
 </style>
 @section('main')
 <div class="container-fluid">

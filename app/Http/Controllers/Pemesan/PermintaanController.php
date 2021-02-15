@@ -129,6 +129,7 @@ class PermintaanController extends Controller
                 $pesanan->save();
                 return \redirect()->back()->with(['msg' => "Permintaan pesanan dari $pesanan->pemesan ditolak!!"]);
             }
+            return \redirect()->back()->with(['msg' => 'tidak ada aksi!!']);
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }

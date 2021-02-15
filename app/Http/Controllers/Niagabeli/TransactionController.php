@@ -45,8 +45,8 @@ class TransactionController extends Controller
     {
         if (Auth::guard('pembelian')->check()) {
             $transaction = Transaction::find($id);
-            $tes = $transaction->status_niaga != 'acc' || empty($transaction->no_niaga);
-            return \view('niagabeli.pembelian.show', \compact('transaction', 'tes'));
+            $status = $transaction->status_niaga != 'acc' || empty($transaction->no_niaga);
+            return \view('niagabeli.pembelian.show', \compact('transaction', 'status'));
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
@@ -60,21 +60,13 @@ class TransactionController extends Controller
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
-    public function update(TransactionRequest $req, $id)
+    public function update(Request $req, $id)
     {
         if (Auth::guard('pembelian')->check()) {
             $transaction = Transaction::find($id);
-            if ($req->input('action' == 'Simpan')) {
-                // $transaction->permintaan_id = $req->permintaan_id;
+            if ($req->input('action') == 'Simpan') {
                 $transaction->tgl_status = $req->tgl_status;
                 $transaction->no_niaga = $req->no_niaga;
-
-                // $sn = $transaction->status_niaga;
-                // if (!empty($req->status_niaga)) {
-                //     $sn = $req->status_niaga;
-                // }
-                // $transaction->status_niaga = $sn;
-
                 $transaction->rencana_beli = $req->rencana_beli;
 
                 $pb = $transaction->perkiraan_biaya;
@@ -82,28 +74,20 @@ class TransactionController extends Controller
                     $pb = $req->perkiraan_biaya;
                 }
                 $transaction->perkiraan_biaya = $pb;
-
                 $transaction->payment_type = $req->payment_type;
                 $transaction->keterangan = $req->keterangan;
-
-                // $sb = $transaction->status_beli;
-                // if (!empty($req->status_beli)) {
-                //     $sb = $req->status_beli;
-                // }
-                // $transaction->status_beli = $sb;
-
                 $transaction->no_transaction = $req->no_transaction;
 
                 $transaction->save();
-                return \redirect()->back()->with(['msg' => 'Berhasil merubah data pembelian', $transaction->permintaan->pemesan]);
-            } else if ($req->input('action' == 'acc')) {
+                return \redirect()->back()->with(['msg' => 'Berhasil merubah data pembelian ' . $transaction->permintaan->pemesan]);
+            } else if ($req->input('action') == 'acc') {
                 $transaction->status_niaga = 'acc';
                 $transaction->save();
-                return \redirect()->route('transaction.index')->with(['msg' => 'Berhasil merubah data pembelian', $transaction->permintaan->pemesan]);
-            } elseif ($req->input('action' == 'tidak')) {
+                return \redirect()->route('transaction.index')->with(['msg' => 'Data pembelian di ' . $transaction->permintaan->pemesan]);
+            } else if ($req->input('action') == 'tidak') {
                 $transaction->status_niaga = 'tidak';
                 $transaction->save();
-                return \redirect()->route('transaction.index')->with(['msg' => 'Berhasil merubah data pembelian', $transaction->permintaan->pemesan]);
+                return \redirect()->route('transaction.index')->with(['msg' => 'Data pembelian ' . $transaction->permintaan->pemesan . 'di acc']);
             }
             return \redirect()->back()->with(['msg' => 'tidak ada aksi!!']);
         } else {
