@@ -97,12 +97,15 @@ class TransactionController extends Controller
                 $transaction->save();
                 return \redirect()->back()->with(['msg' => 'Berhasil merubah data pembelian', $transaction->permintaan->pemesan]);
             } else if ($req->input('action' == 'acc')) {
-                $transaction->status_niaga = '1';
+                $transaction->status_niaga = 'acc';
                 $transaction->save();
                 return \redirect()->route('transaction.index')->with(['msg' => 'Berhasil merubah data pembelian', $transaction->permintaan->pemesan]);
-            } else {
-                return \redirect()->back()->with(['msg' => 'tidak ada aksi!!']);
+            } elseif ($req->input('action' == 'tidak')) {
+                $transaction->status_niaga = 'tidak';
+                $transaction->save();
+                return \redirect()->route('transaction.index')->with(['msg' => 'Berhasil merubah data pembelian', $transaction->permintaan->pemesan]);
             }
+            return \redirect()->back()->with(['msg' => 'tidak ada aksi!!']);
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }

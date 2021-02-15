@@ -104,3 +104,45 @@
     {{ $message }}
 </div>
 @enderror
+
+{{-- Permintaan Pembelian --}}
+@error('no_niaga')
+<div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    {{ $message }}
+</div>
+@enderror
+@error('tgl_status')
+<div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    {{ $message }}
+</div>
+@enderror
+@error('rencana_beli')
+<div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    {{ $message }}
+</div>
+@enderror
+@error('no_transaction')
+<div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    {{ $message }}
+</div>
+@enderror
+@error('keterangan')
+<div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    {{ $message }}
+</div>
+@enderror

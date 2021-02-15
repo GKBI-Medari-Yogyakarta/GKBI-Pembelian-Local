@@ -39,7 +39,7 @@
         {{ session('msg') }}
     </div>
     @endif
-    @include('pemesan.layouts.required')
+    @include('niagabeli.layouts.required')
     <div class="card mb-4 mt-4">
         <div class="card-header">
             <div class="row p-0">
@@ -199,7 +199,8 @@
     </div>
 </div>
 @endsection
-@include('niagabeli.pembelian.modal')
+@include('niagabeli.pembelian.update-modal')
+@include('niagabeli.pembelian.acc-modal')
 @push('tooltip')
 <script>
     $(function() {

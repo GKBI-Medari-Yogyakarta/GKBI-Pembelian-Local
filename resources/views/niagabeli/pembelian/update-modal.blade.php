@@ -5,7 +5,7 @@
             <form action="{{ URL::route('transaction.update',$transaction->id) }}" method="POST">
                 @method('put')
                 {{ csrf_field() }}
-                <div class="modal-header bg-primary">Perbaharui Daftar Permintaan</h5>
+                <div class="modal-header bg-primary text-white">Perbaharui Daftar Permintaan</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" class="text-white">&times;</span>
                     </button>
