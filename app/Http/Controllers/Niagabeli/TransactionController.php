@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Niagabeli;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Niagabeli\TransactionRequest;
 use App\Model\Niagabeli\Transaction;
 use App\Model\Niagabeli\TransactionDetail;
-use App\Model\Pemesan\Permintaan;
 use App\Model\Pemesan\PermintaanTemporary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
