@@ -52,7 +52,11 @@
                                     {{ $p->keterangan }}
                                 </td>
                                 <td>
-                                    <a class="btn btn-primary" href="{{ URL::route('transaction.edit',$p->id) }}">proses pembelian</a>
+                                    @if ($p->status_beli !== '1')
+                                    <a class="btn btn-primary" href="{{ URL::route('detail.edit',$p->id) }}">proses pembelian</a>
+                                    @else
+                                    <button disabled class="btn btn-warning">sudah terbeli</button>
+                                    @endif
                                     <a href="{{ URL::route('transaction.show',$p->id) }}" class="btn bg-transparent p-0 align-middle text-center" id="detail" data-toggle="tooltip" data-placement="right" title="Detail">
                                         <i class="fas fa-info-circle text-info h4 m-0"></i>
                                     </a>

@@ -34,7 +34,7 @@ class TransactionDetailRequest extends FormRequest
         return [
             '_terbeli.required' => 'jumlah terbeli tidak boleh kosong!!',
             '_terbayar.required' => 'jumlah terbayar tidak boleh kosong!!',
-            'tgl_beli.required' => 'tanggal beli tidak boleh kosong!!',
+            'tgl_beli.required' => 'tanggal pembelian tidak boleh kosong!!',
         ];
     }
 }

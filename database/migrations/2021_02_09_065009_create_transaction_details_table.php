@@ -23,6 +23,8 @@ class CreateTransactionDetailsTable extends Migration
             $table->string('ppn')->nullable();
             $table->string('nota')->nullable();
             $table->string('harga_item')->nullable();
+            // $table->unsignedBigInteger('spb_id')->nullable();
+            // $table->foreign('transaction_id')->references('id')->on('transactions');
             $table->timestamps();
         });
     }

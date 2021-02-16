@@ -52,6 +52,7 @@ class TransactionController extends Controller
     }
     public function show($id)
     {
+        // \dd('ok');
         if (Auth::guard('pembelian')->check()) {
             $transaction = Transaction::find($id);
             $status = $transaction->status_niaga != 'acc' || empty($transaction->no_niaga);

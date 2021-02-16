@@ -28,13 +28,30 @@ class TransactionDetailController extends Controller
     }
     public function edit($id)
     {
-        //
+        if (Auth::guard('pembelian')->check()) {
+            $transDetail = TransactionDetail::find($id);
+            return \view('niagabeli.pembelian.edit', \compact('transDetail'));
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
     public function update(TransactionDetailRequest $req, $id)
     {
+        $m = '10000';
+        $n = '20000';
+       $x = $m + $n;
         if (Auth::guard('pembelian')->check()) {
             $transDetail = TransactionDetail::find($id);
-            \dd($transDetail);
+            $transDetail->_terbeli = $req->_terbeli;
+            $transDetail->_terbayar = $req->_terbayar;
+            $transDetail->tgl_beli = $req->tgl_beli;
+            $ppn = null;
+            if (!empty($req->ppn)) {
+                $ppn = $req->ppn;
+            }
+            $transDetail->ppn = $ppn;
+            $transDetail->save();
+            return \redirect()->route('transaction.index')->with(['msg' => 'Berhasil memproses data peermintaan pembelian dengan nomor transaksi ' . $transDetail->transaction->no_transaction]);
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }

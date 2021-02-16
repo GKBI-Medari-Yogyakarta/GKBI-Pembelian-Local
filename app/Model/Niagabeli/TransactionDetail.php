@@ -10,6 +10,6 @@ class TransactionDetail extends Model
     public $timestamps = \true;
     public function transaction()
     {
-        return $this->hasOne(Transaction::class, 'transaction_id');
+        return $this->belongsTo(Transaction::class, 'transaction_id');
     }
 }

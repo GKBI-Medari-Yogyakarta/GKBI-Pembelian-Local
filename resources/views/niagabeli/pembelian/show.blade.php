@@ -198,7 +198,7 @@
         </div>
         <div class="col">
             @if ($transaction->status_beli !== '1')
-            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editPermintaan">Proses Pembelian</a>
+            <a href="{{ URL::route('detail.edit',$transaction->id) }}" class="btn btn-primary btn-sm" >Proses Pembelian</a>
             @else
             <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Tidak dapat diproses, status belum/tidak di acc" data-placement="left">
                 <button class="btn btn-outline-danger btn-sm" style="pointer-events: none;" type="button" disabled>Proses Pembelian</button>
