@@ -15,6 +15,15 @@ class CreateSPBarangsTable extends Migration
     {
         Schema::create('s_p_barangs', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('transaction_id')->nullable();
+            $table->foreign('transaction_id')->references('id')->on('transactions');
+            $table->unsignedBigInteger('sup_id')->nullable();
+            $table->foreign('sup_id')->references('id')->on('suppliers');
+            $table->string('nota_spb')->nullable();
+            $table->string('total_hrg')->nullable();
+            $table->string('ppn')->nullable();
+            $table->date('jadwal_datang')->nullable();
+            $table->date('tempo_pembayaran')->nullable();
             $table->timestamps();
         });
     }

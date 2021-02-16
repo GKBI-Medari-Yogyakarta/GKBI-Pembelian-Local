@@ -37,9 +37,6 @@ class TransactionDetailController extends Controller
     }
     public function update(TransactionDetailRequest $req, $id)
     {
-        $m = '10000';
-        $n = '20000';
-       $x = $m + $n;
         if (Auth::guard('pembelian')->check()) {
             $transDetail = TransactionDetail::find($id);
             $transDetail->_terbeli = $req->_terbeli;

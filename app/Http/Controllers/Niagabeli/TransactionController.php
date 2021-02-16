@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Niagabeli;
 
 use App\Http\Controllers\Controller;
+use App\Model\Niagabeli\SPBarang;
 use App\Model\Niagabeli\Transaction;
 use App\Model\Niagabeli\TransactionDetail;
 use App\Model\Pemesan\PermintaanTemporary;
@@ -84,6 +85,9 @@ class TransactionController extends Controller
                 $transaction->status_niaga = 'acc';
                 $transaction->save();
                 TransactionDetail::create([
+                    'transaction_id' => $transaction->id,
+                ]);
+                SPBarang::create([
                     'transaction_id' => $transaction->id,
                 ]);
                 $transaction->permintaan->status_niaga_pembelian = '1';
