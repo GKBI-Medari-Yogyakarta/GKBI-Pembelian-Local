@@ -23,7 +23,6 @@ class CreateTransactionDetailsTable extends Migration
             $table->string('ppn')->nullable();
             $table->string('nota')->nullable();
             $table->string('harga_item')->nullable();
-            $table->string('jumlah_item')->nullable();
             $table->timestamps();
         });
     }

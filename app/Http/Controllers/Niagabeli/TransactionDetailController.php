@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Niagabeli;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Niagabeli\TransactionDetailRequest;
+use App\Model\Niagabeli\TransactionDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionDetailController extends Controller
 {
@@ -27,11 +30,14 @@ class TransactionDetailController extends Controller
     {
         //
     }
-    public function update(Request $request, $id)
+    public function update(TransactionDetailRequest $req, $id)
     {
-        // $this->validate($request,[
-        //     '_t'
-        // ])
+        if (Auth::guard('pembelian')->check()) {
+            $transDetail = TransactionDetail::find($id);
+            \dd($transDetail);
+        } else {
+            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
     public function destroy($id)
     {
