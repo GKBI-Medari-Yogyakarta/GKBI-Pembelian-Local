@@ -24,6 +24,7 @@ class PermintaanSeeder extends Seeder
             'tgl_diperlukan' => '2021-03-03',
             'bagian_id' => 2,
             'user_pemesan_id' => 1,
+            'status_direktur' => 1,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -39,6 +40,7 @@ class PermintaanSeeder extends Seeder
             'tgl_diperlukan' => '2021-03-04',
             'bagian_id' => 2,
             'user_pemesan_id' => 1,
+            'status_direktur' => 1,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
