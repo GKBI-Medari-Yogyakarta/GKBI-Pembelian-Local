@@ -47,6 +47,16 @@ class TransactionDetailController extends Controller
             $transDetail->_terbeli = $req->_terbeli;
             $transDetail->_terbayar = $req->_terbayar;
             $transDetail->tgl_beli = $req->tgl_beli;
+            $nota = null;
+            if (!empty($req->nota)) {
+                $nota = $req->nota;
+            }
+            $transDetail->nota = $nota;
+            $peritem = null;
+            if (!empty($req->harga_item)) {
+                $peritem = $req->harga_item;
+            }
+            $transDetail->harga_item = $peritem;
             $ppn = null;
             if (!empty($req->ppn)) {
                 $ppn = $req->ppn;

@@ -136,6 +136,18 @@
                                 <input type="text" class="form-control @error('ppn') is-invalid @enderror" id="ppn" name="ppn" value="{{ old('ppn'). $transDetail->ppn,'default' }}" placeholder="boleh kosong">
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="nota" class="col-sm-3 col-form-label">Nota Pembelian</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control @error('nota') is-invalid @enderror" id="nota" name="nota" value="{{ old('nota'). $transDetail->nota,'default' }}" placeholder="boleh kosong">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="ppn" class="col-sm-3 col-form-label">Harga per item</label>
+                            <div class="col-sm-9">
+                                <input type="number" class="form-control @error('harga_item') is-invalid @enderror" id="harga_item" name="harga_item" value="{{ old('harga_item'). $transDetail->harga_item,'default' }}" placeholder="boleh kosong">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
