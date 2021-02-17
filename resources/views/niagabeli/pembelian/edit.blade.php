@@ -21,39 +21,64 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group row">
-                            <label for="negara" class="col-sm-3 col-form-label">Supplier</label>
+                            <label for="supplier" class="col-sm-3 col-form-label">Supplier</label>
                             <div class="col-sm-9">
-                                <select name="sup_id" id="negara" class="form-control @error('sup_id') is-invalid @enderror">
-                                    <option disabled>pilih supplier</option>
-                                    @foreach ($sup as $suppliers)
-                                        {{-- <option value="{{ $supplier->id }}" {{ $negara->id == $prov->negara_id ? 'selected' : null }}> {{ $negara->nama }}</option> --}}
-                                        <option value="">{{ $supplier }}</option>
+                                <select name="sup_id" id="supplier" class="form-control @error('sup_id') is-invalid @enderror">
+                                    <option disabled selected>pilih supplier</option>
+                                    @foreach ($sup as $supplier)
+                                        <option value="{{ $supplier->id }}" {{ $supplier->id == $spb->sup_id ? 'selected' : null }}> {{ $supplier->nama }}</option>
                                     @endforeach
                                 </select>
+                                @error('sup_id')
+                                <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="_terbeli" class="col-sm-3 col-form-label">Jumlah terbeli</label>
+                            <label for="spb" class="col-sm-3 col-form-label">Nota SPB</label>
                             <div class="col-sm-9">
-                                <input type="number" class="form-control @error('_terbeli') is-invalid @enderror" id="_terbeli" name="_terbeli" value="{{ old('_terbeli'). $transDetail->_terbeli,'default' }}">
+                                <input type="text" class="form-control @error('nota_spb') is-invalid @enderror" id="spb" name="nota_spb" value="{{ old('nota_spb'). $spb->nota_spb,'default' }}">
+                                @error('nota_spb')
+                                <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="_terbayar" class="col-sm-3 col-form-label">Terbayar</label>
+                            <label for="jadwal" class="col-sm-3 col-form-label">Jadwal Datang</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control @error('_terbayar') is-invalid @enderror" id="_terbayar" name="_terbayar" value="{{ old('_terbayar'). $transDetail->_terbayar,'default' }}">
+                                <input type="date" class="form-control @error('jadwal_datang') is-invalid @enderror" id="jadwal" name="jadwal_datang" value="{{ old('jadwal_datang').$spb->jadwal_datang, 'default'  }}">
+                                @error('jadwal_datang')
+                                <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="tgl_beli" class="col-sm-3 col-form-label">Tanggal pembelian</label>
+                            <label for="tempo" class="col-sm-3 col-form-label">Tempo Pembayaran</label>
                             <div class="col-sm-9">
-                                <input type="date" class="form-control @error('tgl_beli') is-invalid @enderror" id="tgl_beli" name="tgl_beli" value="{{ old('tgl_beli').$transDetail->tgl_beli, 'default'  }}">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="ppn" class="col-sm-3 col-form-label">Ppn</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control @error('ppn') is-invalid @enderror" id="ppn" name="ppn" value="{{ $transDetail->ppn }}">
+                                <input type="date" class="form-control @error('tempo_pembayaran') is-invalid @enderror" id="tempo" name="tempo_pembayaran" value="{{ old('tempo_pembayaran').$spb->tempo_pembayaran, 'default'  }}">
+                                @error('tempo_pembayaran')
+                                <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -67,24 +92,48 @@
                             <label for="_terbeli" class="col-sm-3 col-form-label">Jumlah terbeli</label>
                             <div class="col-sm-9">
                                 <input type="number" class="form-control @error('_terbeli') is-invalid @enderror" id="_terbeli" name="_terbeli" value="{{ old('_terbeli'). $transDetail->_terbeli,'default' }}">
+                                @error('_terbeli')
+                                <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="_terbayar" class="col-sm-3 col-form-label">Terbayar</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control @error('_terbayar') is-invalid @enderror" id="_terbayar" name="_terbayar" value="{{ old('_terbayar'). $transDetail->_terbayar,'default' }}">
+                                @error('_terbayar')
+                                <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="tgl_beli" class="col-sm-3 col-form-label">Tanggal pembelian</label>
                             <div class="col-sm-9">
                                 <input type="date" class="form-control @error('tgl_beli') is-invalid @enderror" id="tgl_beli" name="tgl_beli" value="{{ old('tgl_beli').$transDetail->tgl_beli, 'default'  }}">
+                                @error('tgl_beli')
+                                <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="ppn" class="col-sm-3 col-form-label">Ppn</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control @error('ppn') is-invalid @enderror" id="ppn" name="ppn" value="{{ $transDetail->ppn }}">
+                                <input type="text" class="form-control @error('ppn') is-invalid @enderror" id="ppn" name="ppn" value="{{ old('ppn'). $transDetail->ppn,'default' }}" placeholder="boleh kosong">
                             </div>
                         </div>
                     </div>

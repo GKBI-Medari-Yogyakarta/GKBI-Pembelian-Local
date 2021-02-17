@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BagianSeeder::class);
         $this->call(PermintaanSeeder::class);
         $this->call(TransactionSeeder::class);
+        $this->call(SupplierSeeder::class);
     }
 }

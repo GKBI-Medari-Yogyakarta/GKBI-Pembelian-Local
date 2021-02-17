@@ -32,8 +32,9 @@ class TransactionDetailController extends Controller
     {
         if (Auth::guard('pembelian')->check()) {
             $transDetail = TransactionDetail::find($id);
+            $spb = SPBarang::find($id);
             $sup = Supplier::all();
-            return \view('niagabeli.pembelian.edit', \compact('transDetail', 'sup'));
+            return \view('niagabeli.pembelian.edit', \compact('transDetail', 'sup', 'spb'));
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
@@ -42,7 +43,6 @@ class TransactionDetailController extends Controller
     {
         if (Auth::guard('pembelian')->check()) {
             $spb = SPBarang::find($id);
-            // $spb->sup_id = $req->
             $transDetail = TransactionDetail::find($id);
             $transDetail->_terbeli = $req->_terbeli;
             $transDetail->_terbayar = $req->_terbayar;
@@ -52,9 +52,15 @@ class TransactionDetailController extends Controller
                 $ppn = $req->ppn;
             }
             $transDetail->ppn = $ppn;
+            $spb->sup_id = $req->sup_id;
+            $spb->ppn = $ppn;
+            $spb->nota_spb = $req->nota_spb;
+            $spb->jadwal_datang = $req->jadwal_datang;
+            $spb->tempo_pembayaran = $req->tempo_pembayaran;
+            $spb->total_hrg = $req->_terbayar;
+            $spb->save();
             $transDetail->save();
-
-            return \redirect()->route('transaction.index')->with(['msg' => 'Berhasil memproses data peermintaan pembelian dengan nomor transaksi ' . $transDetail->transaction->no_transaction]);
+            return \redirect()->route('transaction.index')->with(['msg' => 'Berhasil memproses data permintaan pembelian dengan nomor transaksi ' . $transDetail->transaction->no_transaction]);
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
