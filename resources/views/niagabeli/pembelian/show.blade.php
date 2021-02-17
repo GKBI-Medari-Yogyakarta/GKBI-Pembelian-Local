@@ -198,7 +198,13 @@
         </div>
         <div class="col">
             @if ($transaction->status_beli !== '1')
-            <a href="{{ URL::route('detail.edit',$transaction->id) }}" class="btn btn-primary btn-sm" >Proses Pembelian</a>
+                @if ($transaction->status_niaga ==='acc')
+                <a href="{{ URL::route('detail.edit',$transaction->id) }}" class="btn btn-primary btn-sm" >Proses Pembelian</a>
+                @else
+                <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="data belum lengkap!!" data-placement="left">
+                    <button class="btn btn-outline-danger btn-sm" style="pointer-events: none;" type="button" disabled>Tidak dapat diproses</button>
+                </span>
+                @endif
             @else
             <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Tidak dapat diproses, status belum/tidak di acc" data-placement="left">
                 <button class="btn btn-outline-danger btn-sm" style="pointer-events: none;" type="button" disabled>Proses Pembelian</button>

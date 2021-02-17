@@ -19,6 +19,8 @@ class TransactionSeeder extends Seeder
             'rencana_beli' => 10,
             'keterangan' => 'Untuk memonitor melalui CCTV',
             'no_transaction' => '1AA1',
+            'created_at' => now(),
+            'updated_at'=>now(),
         ]);
         DB::table('transactions')->insert([
             'permintaan_id' => 2,
@@ -27,6 +29,8 @@ class TransactionSeeder extends Seeder
             'rencana_beli' => 10,
             'keterangan' => 'CCTV Untuk memonitor melalui CCTV untuk',
             'no_transaction' => '2AA2',
+            'created_at' => now(),
+            'updated_at'=>now(),
         ]);
     }
 }

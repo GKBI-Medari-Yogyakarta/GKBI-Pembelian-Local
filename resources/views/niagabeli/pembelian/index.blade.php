@@ -53,9 +53,13 @@
                                 </td>
                                 <td>
                                     @if ($p->status_beli !== '1')
-                                    <a class="btn btn-primary" href="{{ URL::route('detail.edit',$p->id) }}">proses pembelian</a>
+                                        @if ($p->status_niaga === 'acc')
+                                        <a class="btn btn-primary" href="{{ URL::route('detail.edit',$p->id) }}">proses pembelian</a>
+                                        @else
+                                        <button disabled class="btn btn-warning">data belum lengkap</button>
+                                        @endif
                                     @else
-                                    <button disabled class="btn btn-warning">sudah terbeli</button>
+                                    <button disabled class="btn btn-outline-danger">sudah terbeli</button>
                                     @endif
                                     <a href="{{ URL::route('transaction.show',$p->id) }}" class="btn bg-transparent p-0 align-middle text-center" id="detail" data-toggle="tooltip" data-placement="right" title="Detail">
                                         <i class="fas fa-info-circle text-info h4 m-0"></i>
@@ -69,13 +73,8 @@
                             @endforelse
                         </tbody>
                     </table>
-                    <div class="ml-2 mt-4 mb-4">
-                        <button data-toggle="modal" data-target="#tambahSupplier" class="btn btn-outline-primary btn-sm">
-                            Edit Pembelian
-                        </button>
-                    </div>
-                    <div class="mt-2 ml-2">
-                        {{-- {{ $supplier->links() }} --}}
+                    <div class="mt-2 ml-0">
+                        {{ $permintaan->links() }}
                     </div>
                 </div>
             </div>
@@ -83,12 +82,13 @@
     </div>
 </main>
 <!-- Modal -->
-{{-- @include('niagabeli.supplier.modal') --}}
 @endsection
 @push('tooltip')
 <script>
     $(function() {
-        $('[data-toggle="tooltip"]').tooltip('toggle')
+        $('[data-toggle="tooltip"]').tooltip({
+            delay: {show:0,hide:1500}
+        });
     })
 </script>
 @endpush

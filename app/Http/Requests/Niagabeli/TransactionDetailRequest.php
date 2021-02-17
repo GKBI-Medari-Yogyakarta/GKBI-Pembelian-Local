@@ -27,6 +27,11 @@ class TransactionDetailRequest extends FormRequest
             '_terbeli' => 'required',
             '_terbayar' => 'required',
             'tgl_beli' => 'required',
+            'sup_id' => 'required',
+            'nota_spb' => 'required',
+            'total_hrg' => 'required',
+            'jadwal_datang' => 'required',
+            'tempo_pembayaran' => 'required',
         ];
     }
     public function messages()
@@ -35,6 +40,11 @@ class TransactionDetailRequest extends FormRequest
             '_terbeli.required' => 'jumlah terbeli tidak boleh kosong!!',
             '_terbayar.required' => 'jumlah terbayar tidak boleh kosong!!',
             'tgl_beli.required' => 'tanggal pembelian tidak boleh kosong!!',
+            'sup_id.required' => 'kolom supplier tidak boleh kosong!!',
+            'nota_spb.required' => 'nota surat penerimaan barang tidak boleh kosong!!',
+            'total_hrg.required' => 'harga total  pembelian tidak boleh kosong!!',
+            'jadwal_datang.required' => 'jadwal datang pembelian tidak boleh kosong!!',
+            'tempo_pembayaran.required' => 'waktu tempo pembayaran tidak boleh kosong!!',
         ];
     }
 }

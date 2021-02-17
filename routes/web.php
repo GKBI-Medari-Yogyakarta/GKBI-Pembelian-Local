@@ -44,7 +44,7 @@ Route::namespace('Niagabeli')->prefix('user-pembelian')->group(function () {
         Route::get('pembelian/{transaction}/detail', 'TransactionController@show')->name('transaction.show');
         Route::put('pembelian/{transaction}', 'TransactionController@update')->name('transaction.update');
         Route::delete('pembelian/{transaction}', 'TransactionDetailController@destroy')->name('transaction.destroy');
-        // Route::resource('transaction','TransactionController');
+        //detail
         Route::get('pembelian/{transaction}/proses', 'TransactionDetailController@edit')->name('detail.edit');
         Route::put('pembelian/{transaction}/proses', 'TransactionDetailController@update')->name('detail.update');
     });
@@ -55,5 +55,4 @@ Route::namespace('Gudang')->prefix('user-gudang')->group(function () {
 });
 Route::namespace('Akuntansi')->prefix('user-akuntansi')->group(function () {
     Route::resource('rekening', 'RekController');
-    // Route::resource('transaksi', 'TransactionController');
 });

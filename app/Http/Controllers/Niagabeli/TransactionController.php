@@ -19,7 +19,7 @@ class TransactionController extends Controller
             $permintaan = DB::table('transactions as t')
                 ->join('permintaans as p', 'p.id', '=', 't.permintaan_id')
                 ->select('p.nm_barang', 'p.spesifikasi', 'p.unit_stok', 'p.gudang_stok', 'p.tgl_diperlukan', 'p.realisasi', 'p.keterangan', 't.*')
-                ->get();
+                ->paginate(10);
             return \view('niagabeli.pembelian.index', \compact('permintaan'));
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
@@ -83,14 +83,9 @@ class TransactionController extends Controller
                 return \redirect()->back()->with(['msg' => 'Berhasil merubah data pembelian ' . $transaction->permintaan->pemesan]);
             } else if ($req->input('action') == 'acc') {
                 $transaction->status_niaga = 'acc';
-                $transaction->save();
-                TransactionDetail::create([
-                    'transaction_id' => $transaction->id,
-                ]);
-                SPBarang::create([
-                    'transaction_id' => $transaction->id,
-                ]);
                 $transaction->permintaan->status_niaga_pembelian = '1';
+                DB::statement('CALL transaction_acc(?,?,?)', [$transaction->id, \now(), \now()]);
+                $transaction->save();
                 $transaction->permintaan->save();
                 return \redirect()->route('transaction.index')->with(['msg' => 'Data pembelian dari ' . $transaction->permintaan->pemesan . ' sudah di acc. jangan lupa diproses ketika sudah melakukan pembelian!!']);
             } else if ($req->input('action') == 'tidak') {
