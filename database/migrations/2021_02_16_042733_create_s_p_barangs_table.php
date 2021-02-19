@@ -24,6 +24,7 @@ class CreateSPBarangsTable extends Migration
             $table->string('ppn')->nullable();
             $table->date('jadwal_datang')->nullable();
             $table->date('tempo_pembayaran')->nullable();
+            $table->string('satuan')->nullable();
             $table->timestamps();
         });
     }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SPBarang extends Model
 {
-    protected $fillable = ['transaction_id', 'sup_id', 'nota_spb', 'total_hrg', 'ppn', 'jadwal_datang', 'tempo_pembayaran'];
+    protected $fillable = ['transaction_id', 'sup_id', 'nota_spb', 'total_hrg', 'ppn', 'jadwal_datang', 'tempo_pembayaran', 'satuan'];
     public $timestamps = \true;
     public function transaction()
     {

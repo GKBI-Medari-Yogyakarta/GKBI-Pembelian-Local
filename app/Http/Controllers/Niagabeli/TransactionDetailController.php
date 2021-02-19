@@ -62,7 +62,12 @@ class TransactionDetailController extends Controller
                 $ppn = $req->ppn;
             }
             $transDetail->ppn = $ppn;
-            $spb->sup_id = $req->sup_id;
+            $satuan = null;
+            if (!empty($req->satuan)) {
+                $satuan = $req->satuan;
+            }
+            $spb->satuan = $satuan;
+            $spb->sup_id = '1';
             $spb->ppn = $ppn;
             $spb->nota_spb = $req->nota_spb;
             $spb->jadwal_datang = $req->jadwal_datang;

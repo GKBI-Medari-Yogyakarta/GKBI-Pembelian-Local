@@ -54,6 +54,20 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="satuanBarang" class="col-sm-3 col-form-label">Satuan barang</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control @error('satuan') is-invalid @enderror" id="satuanBarang" name="satuan" value="{{ old('satuan').$spb->satuan, 'default'  }}">
+                                @error('satuan')
+                                <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="jadwal" class="col-sm-3 col-form-label">Jadwal Datang</label>
                             <div class="col-sm-9">
                                 <input type="date" class="form-control @error('jadwal_datang') is-invalid @enderror" id="jadwal" name="jadwal_datang" value="{{ old('jadwal_datang').$spb->jadwal_datang, 'default'  }}">
