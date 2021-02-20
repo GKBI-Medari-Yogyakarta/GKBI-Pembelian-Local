@@ -31,6 +31,7 @@ class TransactionDetailRequest extends FormRequest
             'nota_spb' => 'required',
             'jadwal_datang' => 'required',
             'tempo_pembayaran' => 'required',
+            'satuan' => 'required',
         ];
     }
     public function messages()
@@ -43,6 +44,7 @@ class TransactionDetailRequest extends FormRequest
             'nota_spb.required' => 'nota surat penerimaan barang tidak boleh kosong!!',
             'jadwal_datang.required' => 'jadwal datang pembelian tidak boleh kosong!!',
             'tempo_pembayaran.required' => 'waktu tempo pembayaran tidak boleh kosong!!',
+            'satuan.required' => 'kolom satuan tidak boleh kosong!!',
         ];
     }
 }

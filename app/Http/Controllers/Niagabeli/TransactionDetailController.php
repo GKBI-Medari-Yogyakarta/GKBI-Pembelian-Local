@@ -43,6 +43,7 @@ class TransactionDetailController extends Controller
     {
         if (Auth::guard('pembelian')->check()) {
             $spb = SPBarang::find($id);
+            // $user_pembelian_id = Auth::guard('pembelian')->user()->getAuthIdentifier();
             $transDetail = TransactionDetail::find($id);
             $transDetail->_terbeli = $req->_terbeli;
             $transDetail->_terbayar = $req->_terbayar;
