@@ -48,6 +48,9 @@ Route::namespace('Niagabeli')->prefix('user-pembelian')->group(function () {
         Route::get('pembelian/{transaction}/proses', 'TransactionDetailController@edit')->name('detail.edit');
         Route::put('pembelian/{transaction}/proses', 'TransactionDetailController@update')->name('detail.update');
     });
+    Route::group(['prefix'=>'surat'],function (){
+       Route::resource('jalan','SuratJalanController') ;
+    });
 });
 Route::namespace('Gudang')->prefix('user-gudang')->group(function () {
     Route::resource('permintaan', 'GudangPermintaanController');

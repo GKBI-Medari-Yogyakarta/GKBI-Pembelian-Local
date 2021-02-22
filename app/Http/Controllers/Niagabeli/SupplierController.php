@@ -58,11 +58,11 @@ class SupplierController extends Controller
     //nothing, just for completed of resources in routing
     public function show($id)
     {
-        if (Auth::guard('pembelian')->check()) {
+//        if (Auth::guard('pembelian')->check()) {
             return \redirect()->route('supplier.index');
-        } else {
-            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
-        }
+//        } else {
+//            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+//        }
     }
     public function edit($id)
     {
