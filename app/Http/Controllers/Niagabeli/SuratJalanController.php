@@ -14,10 +14,6 @@ class SuratJalanController extends Controller
     public function index()
     {
         if (Auth::guard('pembelian')->check()) {
-            //            $permintaan = DB::table('transactions as t')
-            //                ->join('permintaans as p', 'p.id', '=', 't.permintaan_id')
-            //                ->select('p.nm_barang', 'p.spesifikasi', 'p.unit_stok', 'p.gudang_stok', 'p.tgl_diperlukan', 'p.realisasi', 'p.keterangan', 't.*')
-            //                ->paginate(10);
             $surat_jalan = SuratJalan::all();
             return view('niagabeli.surat-jalan.index', \compact('surat_jalan'));
         } else {

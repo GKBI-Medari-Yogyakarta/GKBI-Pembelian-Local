@@ -15,6 +15,8 @@ class CreateSuratJalansTable extends Migration
     {
         Schema::create('surat_jalans', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('spb_id')->nullable();
+            $table->foreign('spb_id')->references('id')->on('s_p_barangs');
             $table->string('no_jalan');
             $table->date('tgl_');
             $table->string('arsip')->nullable();

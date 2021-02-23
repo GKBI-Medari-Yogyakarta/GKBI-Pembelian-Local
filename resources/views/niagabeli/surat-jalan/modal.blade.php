@@ -11,6 +11,12 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group row">
+                        <label for="suratJalan" class="col-sm-3 col-form-label">Barang</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control @error('no_jalan') is-invalid @enderror" id="suratJalan" name="no_jalan" value="{{ old('no_jalan') }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="suratJalan" class="col-sm-3 col-form-label">Nomor Surat Jalan</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control @error('no_jalan') is-invalid @enderror" id="suratJalan" name="no_jalan" value="{{ old('no_jalan') }}">

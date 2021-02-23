@@ -26,13 +26,14 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Nomor Surat Jalan</th>
-                                <th scope="col">Tanggal</th>
+                                <th scope="col">Tanggal Surat Jalan</th>
+                                <th scope="col">Nomor Surat Ijin Masuk</th>
                                 <th scope="col">Arsip</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                             </thead>
                             <tbody>
-                           @forelse ($surat_jalan as $sj)
+                           {{-- @forelse ($surat_jalan as $sj)
                                <tr>
                                    <td>{{ $loop->iteration }}</td>
                                    <td>{{ $sj->no_jalan }}</td>
@@ -49,13 +50,13 @@
                                        </form>
                                    </td>
                                </tr>
-                           @empty
+                           @empty --}}
                                 <tr>
                                     <td colspan="11" class="text-center">
                                         <h3>Data Supplier masih kosong!!</h3>
                                     </td>
                                 </tr>
-                           @endforelse
+                           {{-- @endforelse --}}
                             </tbody>
                         </table>
                         <div class="ml-2 mt-4 mb-4">
