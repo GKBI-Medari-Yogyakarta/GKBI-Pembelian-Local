@@ -1,7 +1,7 @@
 <div class="modal fade" id="suratJalan" data-backdrop="static" tabindex="-1" aria-labelledby="suratJalanLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content border border-warning">
-            <form action="{{ URL::route('negara.store') }}" method="POST">
+            <form action="{{ URL::route('jalan.store') }}" method="POST">
                 {{ csrf_field() }}
                 <div class="modal-header bg-primary">
                     <h5 class="modal-title text-white" id="suratJalanLabel">Tambah Surat Jalan</h5>
@@ -10,17 +10,22 @@
                     </button>
                 </div>
                 <div class="modal-body">
-
                     <div class="form-group row">
-                        <label for="namaNegara" class="col-sm-3 col-form-label">Negara</label>
+                        <label for="suratJalan" class="col-sm-3 col-form-label">Nomor Surat Jalan</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control @error('nama') is-invalid @enderror" id="namaNegara" name="nama" value="{{ old('nama') }}">
+                            <input type="text" class="form-control @error('no_jalan') is-invalid @enderror" id="suratJalan" name="no_jalan" value="{{ old('no_jalan') }}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="kdNegara" class="col-sm-3 col-form-label">Kode Negara</label>
+                        <label for="arsip" class="col-sm-3 col-form-label">Arsip</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control @error('kode') is-invalid @enderror" id="kdNegara" name="kode" value="{{ old('kode') }}">
+                            <input type="text" class="form-control @error('arsip') is-invalid @enderror" id="arsip" name="arsip" value="{{ old('arsip') }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="tglSurat" class="col-sm-3 col-form-label">Tanggal</label>
+                        <div class="col-sm-9">
+                            <input type="date" class="form-control @error('tgl_') is-invalid @enderror" id="tglSurat" name="tgl_" value="{{ old('tgl_') }}">
                         </div>
                     </div>
                 </div>

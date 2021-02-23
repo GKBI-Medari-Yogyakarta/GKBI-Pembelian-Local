@@ -14,11 +14,12 @@ class SuratJalanController extends Controller
     public function index()
     {
         if (Auth::guard('pembelian')->check()) {
-//            $permintaan = DB::table('transactions as t')
-//                ->join('permintaans as p', 'p.id', '=', 't.permintaan_id')
-//                ->select('p.nm_barang', 'p.spesifikasi', 'p.unit_stok', 'p.gudang_stok', 'p.tgl_diperlukan', 'p.realisasi', 'p.keterangan', 't.*')
-//                ->paginate(10);
-            return view('niagabeli.surat-jalan.index');
+            //            $permintaan = DB::table('transactions as t')
+            //                ->join('permintaans as p', 'p.id', '=', 't.permintaan_id')
+            //                ->select('p.nm_barang', 'p.spesifikasi', 'p.unit_stok', 'p.gudang_stok', 'p.tgl_diperlukan', 'p.realisasi', 'p.keterangan', 't.*')
+            //                ->paginate(10);
+            $surat_jalan = SuratJalan::all();
+            return view('niagabeli.surat-jalan.index', \compact('surat_jalan'));
         } else {
             return redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
@@ -29,12 +30,14 @@ class SuratJalanController extends Controller
     }
     public function store(SuratJalanRequest $req)
     {
-        if (Auth::guard('pembelian')->check()){
-            $t = SuratJalan::create([
+        if (Auth::guard('pembelian')->check()) {
+            $user_pembelian_id = Auth::guard('pembelian')->user()->getAuthIdentifier();
+            SuratJalan::create([
                 'no_jalan' => $req->no_jalan,
                 'tgl_' => $req->tgl_,
+                'user_id' => $user_pembelian_id,
             ]);
-            return redirect()->back()->with(['msg'=>"Berhasil menambah surat jalan, dengan nomor $req->no_jalan"]);
+            return redirect()->back()->with(['msg' => "Berhasil menambah surat jalan, dengan nomor $req->no_jalan"]);
         } else {
             return redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }

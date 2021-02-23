@@ -41,36 +41,36 @@
                             </tr>
                             </thead>
                             <tbody>
-{{--                            @forelse ($supplier as $s)--}}
-{{--                                <tr>--}}
-{{--                                    <td>{{ $loop->iteration }}</td>--}}
-{{--                                    <td>{{ $s->nama }}</td>--}}
-{{--                                    <td>{{ $s->attn }}</td>--}}
-{{--                                    <td>{{ $s->nm_prov }}</td>--}}
-{{--                                    <td>{{ $s->nm_kab }}</td>--}}
-{{--                                    <td>{{ $s->alamat }}</td>--}}
-{{--                                    <td>{{ $s->email }}</td>--}}
-{{--                                    <td>{{ $s->telp }}</td>--}}
-{{--                                    <td>{{ $s->fax }}</td>--}}
-{{--                                    <td>{{ $s->npwp }}</td>--}}
-{{--                                    <td>--}}
-{{--                                        <a href="{{ URL::route('supplier.edit',$s->id) }}" class="btn btn-outline-warning btn-sm">Edit</a>--}}
-{{--                                        <form action="{{ URL::route('supplier.destroy',$s->id) }}" method="POST" class="btn btn-sm p-0">--}}
-{{--                                            @method('delete')--}}
-{{--                                            @csrf--}}
-{{--                                            <button class="btn btn-outline-danger btn-sm">--}}
-{{--                                                Hapus--}}
-{{--                                            </button>--}}
-{{--                                        </form>--}}
-{{--                                    </td>--}}
-{{--                                </tr>--}}
-{{--                            @empty--}}
+                           @forelse ($surat_jalan as $sj)
+                               <tr>
+                                   <td>{{ $loop->iteration }}</td>
+                                   <td>{{ $sj->nama }}</td>
+                                   <td>{{ $s->attn }}</td>
+                                   <td>{{ $s->nm_prov }}</td>
+                                   <td>{{ $s->nm_kab }}</td>
+                                   <td>{{ $s->alamat }}</td>
+                                   <td>{{ $s->email }}</td>
+                                   <td>{{ $s->telp }}</td>
+                                   <td>{{ $s->fax }}</td>
+                                   <td>{{ $s->npwp }}</td>
+                                   <td>
+                                       <a href="{{ URL::route('supplier.edit',$s->id) }}" class="btn btn-outline-warning btn-sm">Edit</a>
+                                       <form action="{{ URL::route('supplier.destroy',$s->id) }}" method="POST" class="btn btn-sm p-0">
+                                           @method('delete')
+                                           @csrf
+                                           <button class="btn btn-outline-danger btn-sm">
+                                               Hapus
+                                           </button>
+                                       </form>
+                                   </td>
+                               </tr>
+                           @empty
                                 <tr>
                                     <td colspan="11" class="text-center">
                                         <h3>Data Supplier masih kosong!!</h3>
                                     </td>
                                 </tr>
-{{--                            @endforelse--}}
+                           @endforelse
                             </tbody>
                         </table>
                         <div class="ml-2 mt-4 mb-4">
