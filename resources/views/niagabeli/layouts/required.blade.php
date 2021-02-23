@@ -146,3 +146,29 @@
     {{ $message }}
 </div>
 @enderror
+
+{{-- Surat Jalan --}}
+@error('spb_id')
+<div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    {{ $message }}
+</div>
+@enderror
+@error('no_jalan')
+<div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    {{ $message }}
+</div>
+@enderror
+@error('tgl_')
+<div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    {{ $message }}
+</div>
+@enderror

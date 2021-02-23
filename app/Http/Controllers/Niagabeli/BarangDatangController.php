@@ -26,7 +26,6 @@ class BarangDatangController extends Controller
                 ->select('p.pemesan', 'p.nm_barang', 't.status_beli')
                 ->where('t.status_beli', '=', '1')
                 ->get();
-            \dd($barang_datang);
             return \redirect()->route('barang-datang.index', \compact('barang_datang'));
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
