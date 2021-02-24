@@ -17,8 +17,8 @@ class CreateSuratJalansTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('spb_id')->nullable();
             $table->foreign('spb_id')->references('id')->on('s_p_barangs');
-            $table->string('no_jalan');
-            $table->date('tgl_');
+            $table->string('no_jalan')->nullable();
+            $table->date('tgl_')->nullable();
             $table->string('arsip')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();

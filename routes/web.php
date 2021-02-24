@@ -49,10 +49,15 @@ Route::namespace('Niagabeli')->prefix('user-pembelian')->group(function () {
         Route::put('pembelian/{transaction}/proses', 'TransactionDetailController@update')->name('detail.update');
     });
     Route::group(['prefix' => 'surat'], function () {
-        Route::resource('jalan', 'SuratJalanController');
+        // Route::resource('jalan', 'SuratJalanController');
+        Route::get('jalan', 'SuratJalanController@index')->name('jalan.index');
+        Route::post('jalan/{id}', 'SuratJalanController@store')->name('jalan.store');
     });
     Route::prefix('barang')->group(function () {
         Route::resource('datang', 'BarangDatangController');
+
+        // Route::get('datang', 'BarangDatangController@index')->name('datang.index');
+        // Route::get('datang/{id}', 'BarangDatangController@edit')->name('datang.edit');
     });
 });
 Route::namespace('Gudang')->prefix('user-gudang')->group(function () {

@@ -4,10 +4,14 @@ namespace App\Http\Controllers\Niagabeli;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Niagabeli\SuratJalanRequest;
+use App\Model\Niagabeli\SPBarang;
 use App\Model\Niagabeli\SuratJalan;
+use App\Model\Pemesan\Permintaan;
+use Illuminate\Foundation\Console\Presets\React;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\Console\Input\Input;
 
 class SuratJalanController extends Controller
 {
@@ -33,10 +37,56 @@ class SuratJalanController extends Controller
     {
         //
     }
-    public function store(SuratJalanRequest $req)
+    public function store($id)
     {
         if (Auth::guard('pembelian')->check()) {
             $user_pembelian_id = Auth::guard('pembelian')->user()->getAuthIdentifier();
+            $spb = SPBarang::find($id);
+            $permintaan = Permintaan::find($spb->transaction->permintaan_id);
+            $status = SuratJalan::where('spb_id', $spb->id)->first();
+            if (isset($status->spb_id)) {
+                return redirect()->back()->with(['msg' => "Permintaan dari $permintaan->pemesan untuk barang $permintaan->nm_barang Sudah ditambahkan"]);
+            } else {
+                SuratJalan::create([
+                    'spb_id' => $spb->id,
+                    'user_id' => $user_pembelian_id,
+                ]);
+                return redirect()->back()->with(['msg' => "Berhasil menambah surat jalan, permintaan dari $permintaan->pemesan untuk barang $permintaan->nm_barang "]);
+            }
+        } else {
+            return redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
+    }
+    public function show($id)
+    {
+        return SPBarang::findOrFail($id);
+        //
+    }
+    public function edit($id)
+    {
+        // \dd('ok');
+        if (Auth::guard('pembelian')->check()) {
+            $user_pembelian_id = Auth::guard('pembelian')->user()->getAuthIdentifier();
+            $spb = SPBarang::find($id);
+            \dd($spb);
+            // SuratJalan::create([
+            //     'no_jalan' => $req->no_jalan,
+            //     'tgl_' => $req->tgl_,
+            //     'spb_id' => $req->spb_id,
+            //     'user_id' => $user_pembelian_id,
+            // ]);
+            return redirect()->back()->with(['msg' => "Berhasil menambah surat jalan, dengan nomor $spb->no_jalan"]);
+        } else {
+            return redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
+    }
+
+    public function update(Request $req, $id)
+    {
+        if (Auth::guard('pembelian')->check()) {
+            $user_pembelian_id = Auth::guard('pembelian')->user()->getAuthIdentifier();
+            $spb = SPBarang::find($id);
+            \dd($spb);
             SuratJalan::create([
                 'no_jalan' => $req->no_jalan,
                 'tgl_' => $req->tgl_,
@@ -47,19 +97,6 @@ class SuratJalanController extends Controller
         } else {
             return redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
-    }
-    public function show($id)
-    {
-        //
-    }
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     public function destroy($id)
