@@ -59,41 +59,34 @@ class SuratJalanController extends Controller
     }
     public function show($id)
     {
-        return SPBarang::findOrFail($id);
-        //
+        if (Auth::guard('pembelian')->check()) {
+            $sj = SuratJalan::findOrFail($id);
+            return \view('niagabeli.surat-jalan.edit', \compact('sj'));
+        } else {
+            return redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
     public function edit($id)
     {
-        // \dd('ok');
         if (Auth::guard('pembelian')->check()) {
-            $user_pembelian_id = Auth::guard('pembelian')->user()->getAuthIdentifier();
-            $spb = SPBarang::find($id);
-            \dd($spb);
-            // SuratJalan::create([
-            //     'no_jalan' => $req->no_jalan,
-            //     'tgl_' => $req->tgl_,
-            //     'spb_id' => $req->spb_id,
-            //     'user_id' => $user_pembelian_id,
-            // ]);
-            return redirect()->back()->with(['msg' => "Berhasil menambah surat jalan, dengan nomor $spb->no_jalan"]);
+            $sj = SuratJalan::findOrFail($id);
+            return \view('niagabeli.surat-jalan.edit', \compact('sj'));
         } else {
             return redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
 
-    public function update(Request $req, $id)
+    public function update(SuratJalanRequest $req, $id)
     {
         if (Auth::guard('pembelian')->check()) {
             $user_pembelian_id = Auth::guard('pembelian')->user()->getAuthIdentifier();
-            $spb = SPBarang::find($id);
-            \dd($spb);
-            SuratJalan::create([
+            $sj = SuratJalan::findOrFail($id);
+            $sj->update([
                 'no_jalan' => $req->no_jalan,
                 'tgl_' => $req->tgl_,
-                'spb_id' => $req->spb_id,
                 'user_id' => $user_pembelian_id,
             ]);
-            return redirect()->back()->with(['msg' => "Berhasil menambah surat jalan, dengan nomor $req->no_jalan"]);
+            return redirect()->back()->with(['msg' => "Berhasil mengubah surat jalan, dengan nomor $req->no_jalan"]);
         } else {
             return redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
@@ -101,6 +94,12 @@ class SuratJalanController extends Controller
 
     public function destroy($id)
     {
-        //
+        if (Auth::guard('pembelian')->check()) {
+            $sj = SuratJalan::findOrFail($id);
+            $sj->delete();
+            return redirect()->back()->with(['msg' => "Berhasil menghapus surat jalan, dengan nomor $sj->no_jalan"]);
+        } else {
+            return redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
 }

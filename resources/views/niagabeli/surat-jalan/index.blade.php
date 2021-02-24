@@ -19,7 +19,7 @@
                     <div class="card mb-4 mt-4">
                         <div class="card-header">
                             <i class="fas fa-table mr-1"></i>
-                            DataTable Daftar Barang Sudah Terbeli
+                            Daftar Barang Sudah Dibeli
                         </div>
                         <div class="card-body p-2">
                             <div class="table-responsive">
@@ -84,11 +84,6 @@
                                    @endforelse
                                     </tbody>
                                 </table>
-                                <div class="ml-2 mt-4 mb-4">
-                                    <button data-toggle="modal" data-target="#suratJalan" class="btn btn-outline-primary btn-sm">
-                                        Tambah Surat Jalan
-                                    </button>
-                                </div>
                                 <div class="mt-2 ml-2">
                                     {{--{{ $supplier->links() }}--}}
                                 </div>
@@ -100,7 +95,7 @@
                     <div class="card mb-4 mt-4">
                         <div class="card-header">
                             <i class="fas fa-table mr-1"></i>
-                            DataTable Surat Jalan
+                            Surat Jalan
                         </div>
                         <div class="card-body p-2">
                             <div class="table-responsive">
@@ -119,11 +114,15 @@
                                        <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $sj->no_jalan }}</td>
-                                                <td> {{\Carbon\Carbon::parse($sj->tgl_)->isoFormat('dddd, D MMM Y') }} </td>
+                                            @if (isset($sj->tgl_))
+                                            <td>{{\Carbon\Carbon::parse($sj->tgl_)->isoFormat('dddd, D MMM Y') }} </td>
+                                            @else
+                                            <td></td>
+                                            @endif
                                             <td>{{ $sj->arsip }}</td>
                                             <td>
-                                                <a href="{{ URL::route('supplier.edit',$sj->id) }}" class="btn btn-outline-warning btn-sm">Edit</a>
-                                                <form action="{{ URL::route('supplier.destroy',$sj->id) }}" method="POST" class="btn btn-sm p-0">
+                                                <a href="{{ URL::route('jalan.edit',$sj->id) }}" class="btn btn-outline-warning btn-sm">Edit</a>
+                                                <form action="{{ URL::route('jalan.destroy',$sj->id) }}" method="POST" class="btn btn-sm p-0">
                                                     @method('delete')
                                                     @csrf
                                                     <button class="btn btn-outline-danger btn-sm">
@@ -141,11 +140,6 @@
                                    @endforelse
                                     </tbody>
                                 </table>
-                                <div class="ml-2 mt-4 mb-4">
-                                    <button data-toggle="modal" data-target="#suratJalan" class="btn btn-outline-primary btn-sm">
-                                        Tambah Surat Jalan
-                                    </button>
-                                </div>
                                 <div class="mt-2 ml-2">
                                     {{--{{ $supplier->links() }}--}}
                                 </div>
@@ -158,7 +152,6 @@
         </div>
     </main>
     <!-- Modal -->
-    {{-- @include('niagabeli.surat-jalan.modal') --}}
 @endsection
 @push('tooltip')
     <script>

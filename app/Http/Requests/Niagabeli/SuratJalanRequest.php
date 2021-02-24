@@ -26,7 +26,6 @@ class SuratJalanRequest extends FormRequest
         return [
             'no_jalan' => 'required',
             'tgl_' => 'required',
-            'spb_id' => 'required',
         ];
     }
     public function messages()
@@ -34,7 +33,6 @@ class SuratJalanRequest extends FormRequest
         return [
             'no_jalan.required' => 'nomor surat jalan tidak boleh kosong!!',
             'tgl_.required' => 'tanggal surat jalan tidak boleh kosong!!',
-            'spb_id.required' => 'barang tidak boleh kosong!!',
         ];
     }
 }
