@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Niagabeli;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Niagabeli\SuratJalanRequest;
+use App\Model\Gudang\SuratIjinMasuk;
+use App\Model\Niagabeli\BarangDatang;
 use App\Model\Niagabeli\SPBarang;
 use App\Model\Niagabeli\SuratJalan;
 use App\Model\Pemesan\Permintaan;
@@ -27,15 +29,27 @@ class SuratJalanController extends Controller
                 ->select('b.nama', 'p.pemesan', 'p.nm_barang', 't.status_beli', 'spb.id')
                 ->where('t.status_beli', '=', '1')
                 ->get();
-            $surat_jalan = SuratJalan::all();
-            return view('niagabeli.surat-jalan.index', \compact('surat_jalan', 'barang_datang'));
+            $surat_jalan = DB::table('s_p_barangs as spb')
+                ->join('surat_jalans as sj', 'spb.id', '=', 'sj.spb_id')
+                ->join('transactions as t', 't.id', '=', 'spb.transaction_id')
+                ->join('transaction_details as td', 'spb.id', '=', 'td.spb_id')
+                ->join('permintaans as p', 'p.id', '=', 't.permintaan_id')
+                ->join('bagians as b', 'b.id', '=', 'p.bagian_id')
+                ->select('p.pemesan', 'sj.*')
+                ->where('t.status_beli', '=', '1')
+                ->get();
+            return view('niagabeli.surat-jalan.index', \compact('barang_datang', 'surat_jalan'));
         } else {
             return redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
     }
     public function create()
     {
-        //
+        if (Auth::guard('pembelian')->check()) {
+            return \redirect()->route('jalan.index');
+        } else {
+            return redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+        }
     }
     public function store($id)
     {
@@ -79,14 +93,29 @@ class SuratJalanController extends Controller
     public function update(SuratJalanRequest $req, $id)
     {
         if (Auth::guard('pembelian')->check()) {
-            $user_pembelian_id = Auth::guard('pembelian')->user()->getAuthIdentifier();
-            $sj = SuratJalan::findOrFail($id);
-            $sj->update([
-                'no_jalan' => $req->no_jalan,
-                'tgl_' => $req->tgl_,
-                'user_id' => $user_pembelian_id,
-            ]);
-            return redirect()->back()->with(['msg' => "Berhasil mengubah surat jalan, dengan nomor $req->no_jalan"]);
+            DB::beginTransaction();
+            try {
+                $user_pembelian_id = Auth::guard('pembelian')->user()->getAuthIdentifier();
+                $sj = SuratJalan::findOrFail($id);
+                $sj->update([
+                    'no_jalan' => $req->no_jalan,
+                    'tgl_' => $req->tgl_,
+                    'arsip' => $req->arsip,
+                    'user_id' => $user_pembelian_id,
+                ]);
+                SuratIjinMasuk::create([
+                    's_jln_id' => $sj->id,
+                    'user_id' => $user_pembelian_id,
+                ]);
+                BarangDatang::create([
+                    's_jln_id' => $sj->id,
+                ]);
+                DB::commit();
+                return redirect()->route('jalan.index')->with(['msg' => "Berhasil mengubah surat jalan, dengan nomor $req->no_jalan"]);
+            } catch (\Exception $e) {
+                DB::rollback();
+                return redirect()->back()->with('warning', 'Something Went Wrong!, tidak berhasil merubah data!!');
+            }
         } else {
             return redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }

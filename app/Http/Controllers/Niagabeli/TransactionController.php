@@ -84,7 +84,14 @@ class TransactionController extends Controller
             } else if ($req->input('action') == 'acc') {
                 $transaction->status_niaga = 'acc';
                 $transaction->permintaan->status_niaga_pembelian = '1';
-                DB::statement('CALL transaction_acc(?,?,?)', [$transaction->id, \now(), \now()]);
+                $spb = SPBarang::create([
+                    'transaction_id' => $transaction->id,
+                ]);
+                TransactionDetail::create([
+                    'transaction_id' => $transaction->id,
+                    'spb_id' => $spb->id,
+                ]);
+                // DB::statement('CALL transaction_acc(?,?,?)', [$transaction->id, \now(), \now()]);
                 $transaction->save();
                 $transaction->permintaan->save();
                 return \redirect()->route('transaction.index')->with(['msg' => 'Data pembelian dari ' . $transaction->permintaan->pemesan . ' sudah di acc. jangan lupa diproses ketika sudah melakukan pembelian!!']);
