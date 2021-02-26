@@ -40,13 +40,14 @@ Route::namespace('Niagabeli')->prefix('user-pembelian')->group(function () {
     });
     Route::group(['prefix' => 'permintaan-pembelian'], function () {
         Route::get('pembelian', 'TransactionController@index')->name('transaction.index');
-        Route::resource('pembelian', 'TransactionController')->only('create', 'store', 'edit');
+        Route::resource('pembelian', 'TransactionController')->only('create', 'store');
         Route::get('pembelian/{transaction}/detail', 'TransactionController@show')->name('transaction.show');
+        //detail in the below of this words
+        Route::get('pembelian/{id}/proses', 'TransactionController@edit')->name('detail.edit');
         Route::put('pembelian/{transaction}', 'TransactionController@update')->name('transaction.update');
         Route::delete('pembelian/{transaction}', 'TransactionDetailController@destroy')->name('transaction.destroy');
-        //detail
-        Route::get('pembelian/{transaction}/proses', 'TransactionDetailController@edit')->name('detail.edit');
-        Route::put('pembelian/{transaction}/proses', 'TransactionDetailController@update')->name('detail.update');
+        //detail update in the below of this words
+        Route::put('pembelian/{id}/proses', 'TransactionDetail')->name('detail.update');
     });
     Route::group(['prefix' => 'surat'], function () {
         Route::resource('jalan', 'SuratJalanController')->except('store');

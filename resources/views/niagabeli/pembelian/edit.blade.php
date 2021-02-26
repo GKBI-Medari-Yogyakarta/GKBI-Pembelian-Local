@@ -20,7 +20,7 @@
                 </div>
             @endif
             @include('niagabeli.layouts.required')
-            <form action="{{ URL::route('detail.update',$transDetail->id) }}" method="POST">
+            <form action="{{ URL::route('detail.update',$transaction->id) }}" method="POST">
                 @method('put')
                 {{ csrf_field() }}
                 <div class="card mt-4">

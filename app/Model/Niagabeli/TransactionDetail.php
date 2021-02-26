@@ -12,4 +12,8 @@ class TransactionDetail extends Model
     {
         return $this->belongsTo(Transaction::class, 'transaction_id');
     }
+    public function spb()
+    {
+        return $this->belongsTo(SPBarang::class,'spb_id');
+    }
 }

@@ -15,6 +15,6 @@ class Transaction extends Model
     }
     public function transactionDetail()
     {
-        return $this->hasOne(TransactionDetail::class, 'id');
+        return $this->morphOne(TransactionDetail::class,'transaction');
     }
 }
