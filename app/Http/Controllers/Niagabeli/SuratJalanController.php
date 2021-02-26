@@ -115,13 +115,7 @@ class SuratJalanController extends Controller
                         'arsip' => $req->arsip,
                         'user_id' => $user_pembelian_id,
                     ]);
-                    SuratIjinMasuk::create([
-                        's_jln_id' => $sj->id,
-                        'user_id' => $user_pembelian_id,
-                    ]);
-                    BarangDatang::create([
-                        's_jln_id' => $sj->id,
-                    ]);
+                    DB::statement("call surat_update(?,?,?,?)",[$sj->id,$user_pembelian_id,now(),now()]);
                     DB::commit();
                     return redirect()->route('jalan.index')->with(['msg' => "Berhasil mengubah surat jalan, dengan nomor $req->no_jalan"]);
                 } catch (\Exception $e) {
