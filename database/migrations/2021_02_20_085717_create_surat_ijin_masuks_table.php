@@ -16,7 +16,7 @@ class CreateSuratIjinMasuksTable extends Migration
         Schema::create('surat_ijin_masuks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('s_jln_id')->nullable();
-            $table->foreign('s_jln_id')->references('id')->on('surat_jalans');
+            $table->foreign('s_jln_id')->references('id')->on('surat_jalans')->onDelete('cascade');
             $table->string('no_ijin')->nullable();
             $table->dateTime('tgl_')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();

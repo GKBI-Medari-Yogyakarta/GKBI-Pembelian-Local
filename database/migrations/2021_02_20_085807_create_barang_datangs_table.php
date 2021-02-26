@@ -16,7 +16,7 @@ class CreateBarangDatangsTable extends Migration
         Schema::create('barang_datangs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('s_jln_id')->nullable();
-            $table->foreign('s_jln_id')->references('id')->on('surat_jalans');
+            $table->foreign('s_jln_id')->references('id')->on('surat_jalans')->onDelete('cascade');
             $table->string('no_rencana_pembelian')->nullable();
             $table->string('no_agenda_gudang')->nullable();
             $table->timestamps();
