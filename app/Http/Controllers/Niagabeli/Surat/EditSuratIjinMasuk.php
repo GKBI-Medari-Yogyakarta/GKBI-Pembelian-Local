@@ -17,6 +17,7 @@ class EditSuratIjinMasuk extends Controller
     public function __invoke($id)
     {
         $sim = SuratIjinMasuk::findOrFail($id);
+        // \dd($sim);
         return view('niagabeli.surat-ijin.edit', compact('sim'));
     }
 }

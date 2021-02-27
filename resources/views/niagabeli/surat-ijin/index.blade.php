@@ -46,13 +46,6 @@
                                     <td>{{ $sim->arsip }}</td>
                                     <td>
                                         <a href="{{ URL::route('sim.edit',$sim->id) }}" class="btn btn-outline-warning btn-sm">Edit</a>
-                                        {{-- <form action="{{ URL::route('jalan.destroy',$sim->id) }}" method="POST" class="btn btn-sm p-0">
-                                            @method('delete')
-                                            @csrf
-                                            <button class="btn btn-outline-danger btn-sm">
-                                                Hapus
-                                            </button>
-                                        </form> --}}
                                     </td>
                                 </tr>
                             @empty
