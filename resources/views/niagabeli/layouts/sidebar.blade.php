@@ -25,9 +25,9 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
                     Surat Jalan
                 </a>
-                <a class="nav-link {{ (request()->is('user-pembelian/barang/datang*')) ? 'active' : null }}" href="{{ URL::route('datang.index') }}">
+                <a class="nav-link {{ (request()->is('user-pembelian/surat/ijin-masuk*')) ? 'active' : null }}" href="{{ URL::route('sim.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
-                    Barang Datang
+                    Surat Ijin Masuk
                 </a>
             </div>
         </div>

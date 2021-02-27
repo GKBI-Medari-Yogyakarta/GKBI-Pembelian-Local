@@ -52,13 +52,19 @@ Route::namespace('Niagabeli')->prefix('user-pembelian')->group(function () {
     Route::group(['prefix' => 'surat'], function () {
         Route::resource('jalan', 'SuratJalanController')->except('store');
         Route::post('jalan/{id}', 'SuratJalanController@store')->name('jalan.store');
+        //Surat Ijin Masuk
+        Route::namespace('Surat')->group(function () {
+            Route::get('ijin-masuk', 'IndexSuratIjinMasuk')->name('sim.index');
+            Route::get('ijin-masuk/{id}', 'EditSuratIjinMasuk')->name('sim.edit');
+            Route::put('ijin-masuk/{id}', 'UpdateSuratIjinMasuk')->name('sim.update');
+        });
     });
-    Route::prefix('barang')->group(function () {
-        Route::resource('datang', 'BarangDatangController');
-
-        // Route::get('datang', 'BarangDatangController@index')->name('datang.index');
-        // Route::get('datang/{id}', 'BarangDatangController@edit')->name('datang.edit');
-    });
+    //    Route::prefix('barang')->group(function () {
+    //        Route::resource('datang', 'BarangDatangController');
+    //
+    //        // Route::get('datang', 'BarangDatangController@index')->name('datang.index');
+    //        // Route::get('datang/{id}', 'BarangDatangController@edit')->name('datang.edit');
+    //    });
 });
 Route::namespace('Gudang')->prefix('user-gudang')->group(function () {
     Route::resource('permintaan', 'GudangPermintaanController');

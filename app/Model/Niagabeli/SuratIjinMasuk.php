@@ -4,9 +4,9 @@ namespace App\Model\Niagabeli;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BarangDatang extends Model
+class SuratIjinMasuk extends Model
 {
-    protected $fillable = ['s_jln_id', 'no_rencana_pembelian', 'no_agenda_gudang'];
+    protected $fillable = ['s_jln_id', 'no_ijin', 'tgl_', 'user_id'];
     public $timestamps = true;
     public function suratJalan()
     {

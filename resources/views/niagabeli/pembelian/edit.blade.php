@@ -7,6 +7,9 @@
         padding: 40px;
     }
 </style>
+<div class="nama-div">
+    <div class="id-div"></div>
+</div>
 @section('main')
 <main>
     <div class="container">

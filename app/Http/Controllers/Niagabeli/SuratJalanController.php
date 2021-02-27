@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Niagabeli;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Niagabeli\SuratJalanRequest;
-use App\Model\Gudang\SuratIjinMasuk;
-use App\Model\Niagabeli\BarangDatang;
+use App\Model\Gudang\BarangDatang;
 use App\Model\Niagabeli\SPBarang;
+use App\Model\Niagabeli\SuratIjinMasuk;
 use App\Model\Niagabeli\SuratJalan;
 use App\Model\Pemesan\Permintaan;
 use Illuminate\Foundation\Console\Presets\React;
@@ -92,12 +92,13 @@ class SuratJalanController extends Controller
 
     public function update(SuratJalanRequest $req, $id)
     {
+//        dd($id);
         if (Auth::guard('pembelian')->check()) {
             $user_pembelian_id = Auth::guard('pembelian')->user()->getAuthIdentifier();
             $sj = SuratJalan::findOrFail($id);
-            DB::beginTransaction();
             $suratIjinMasuk = SuratIjinMasuk::where('s_jln_id', $sj->id)->first();
             $barangDatang = BarangDatang::where('s_jln_id', $sj->id)->first();
+            DB::beginTransaction();
             if (isset($suratIjinMasuk->s_jln_id) && isset($barangDatang->s_jln_id)) {
                 $sj->update([
                     'no_jalan' => $req->no_jalan,

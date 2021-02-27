@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Niagabeli;
+namespace App\Http\Controllers\Gudang;
 
 use App\Http\Controllers\Controller;
 use App\Model\Niagabeli\BarangDatang;
@@ -17,7 +17,7 @@ class BarangDatangController extends Controller
      */
     public function index()
     {
-        if (Auth::guard('pembelian')->check()) {
+        if (Auth::guard('gudang')->check()) {
             // SELECT p.id,p.pemesan,p.nm_barang,t.id,t.permintaan_id, spb.id,spb.transaction_id, td.spb_id,td.transaction_id,td._terbeli FROM s_p_barangs as spb JOIN transactions as t on t.id=spb.transaction_id JOIN transaction_details as td ON spb.id=td.spb_id JOIN permintaans as p on p.id=t.permintaan_id WHERE t.status_beli='1'
             $barang_datang = DB::table('s_p_barangs as spb')
                 ->join('transactions as t', 't.id', '=', 'spb.transaction_id')
@@ -25,6 +25,11 @@ class BarangDatangController extends Controller
                 ->join('permintaans as p', 'p.id', '=', 't.permintaan_id')
                 ->select('p.pemesan', 'p.nm_barang', 't.status_beli')
                 ->where('t.status_beli', '=', '1')
+                ->get();
+            $surat_in = DB::table('surat_ijin_masuks as sim')
+                ->join('surat_jalans as sj','sj.id','=','sim.s_jln_id')
+                ->join('barang_datangs as bd','sj.id','=','bd.s_jln_id')
+                ->select('sj.no_jalan as nj','sj.tgl_ as tanggal','sj.arsip','bd.no_rencana_pembelian as nrp','bd.no_agenda_gudang as nag','sim.*')
                 ->get();
             return \redirect()->route('barang-datang.index', \compact('barang_datang'));
         } else {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Niagabeli;
+namespace App\Http\Requests\Gudang;
 
 use Illuminate\Foundation\Http\FormRequest;
 
