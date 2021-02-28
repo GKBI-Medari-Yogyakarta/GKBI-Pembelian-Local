@@ -20,7 +20,6 @@ class UpdateSuratIjinMasuk extends Controller
         $sim = SuratIjinMasuk::find($id);
         $sim->no_ijin = $req->no_ijin;
         $sim->tgl_ = $req->tgl_;
-        \dd($sim);
         $sim->save();
         return \redirect()->route('sim.index')->with(['msg' => 'Berhasil memperbaharui surat ijin masuk dengan nomor surat jalan' . $sim->suratJalan->no_jalan]);
     }

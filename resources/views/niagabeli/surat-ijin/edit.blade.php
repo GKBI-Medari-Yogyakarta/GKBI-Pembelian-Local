@@ -18,9 +18,6 @@
                     {{ csrf_field() }}
                     <div class="modal-header bg-primary">
                         <h5 class="modal-title text-white" id="suratJalanLabel">Perbaharui surat ijin masuk dengan nomor surat jalan <strong> {{ $sim->suratJalan->no_jalan }} </strong></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="text-white">&times;</span>
-                        </button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group row">
@@ -32,9 +29,10 @@
                         <div class="form-group row">
                             <label for="tglIjin" class="col-sm-3 col-form-label">Tanggal / Jam</label>
                             <div class="col-sm-9">
-                                {{-- <input type="datetime-local" class="form-control @error('tgl_') is-invalid @enderror" id="tglIjin" name="tgl_" value="{{ \Carbon\Carbon::parse($sim->tgl_)->format('Y-m-d H:i a')}}"> --}}
-                                <input type="date" name="tgl_" id="tglIjin" value="{{ \Carbon\Carbon::parse($sim->tgl_)->format('Y-m-d') }}">
+                                <input type="datetime-local" class="form-control @error('tgl_') is-invalid @enderror" id="tglIjin" name="tgl_" value="{{ \Carbon\Carbon::parse($sim->tgl_)->format('Y-m-d\Th:i:s')}}">
+                                {{-- <input type="datetime-local" name="tgl_" id="tglIjin" value="{{ \Carbon\Carbon::parse($sim->tgl_)->format('Y-m-d\Th:m:s') }}">
                                 <input type="time" name="tgl_" id="tglIjin" value="{{ \Carbon\Carbon::parse($sim->tgl_)->format('H:i') }}">
+                                <input type="datetime" name="" id="" value="2021-02-17"> --}}
                                 {{-- <input type="datetime" class="form-control @error('tgl_') is-invalid @enderror" id="tglIjin" name="tgl_" value="{{ \Carbon\Carbon::parse($sim->tgl_)->format('m/d/Y') }}, {{ \Carbon\Carbon::parse($sim->tgl_)->format('H:i A') }}"> --}}
                             </div>
                         </div>
