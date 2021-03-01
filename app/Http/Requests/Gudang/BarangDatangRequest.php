@@ -24,15 +24,15 @@ class BarangDatangRequest extends FormRequest
     public function rules()
     {
         return [
-            'no_jalan' => 'required',
-            'tgl_' => 'required',
+            'no_agenda_pembelian' => 'required',
+            'no_agenda_gudang' => 'required',
         ];
     }
     public function messages()
     {
         return [
-            'no_jalan.required' => 'nomor surat jalan tidak boleh kosong!!',
-            'tgl_.required' => 'tanggal surat jalan tidak boleh kosong!!',
+            'no_agenda_pembelian.required' => 'nomor agenda pembelian tidak boleh kosong!!',
+            'no_agenda_gudang.required' => 'nomor agenda gudang tidak boleh kosong!!',
         ];
     }
 }

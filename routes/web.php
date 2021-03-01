@@ -49,10 +49,11 @@ Route::namespace('Niagabeli')->prefix('user-pembelian')->group(function () {
         //detail update in the below of this words
         Route::put('pembelian/{id}/proses', 'TransactionDetail')->name('detail.update');
     });
+    //Barang Datang
     Route::group(['prefix' => 'surat'], function () {
         Route::resource('jalan', 'SuratJalanController')->except('store');
         Route::post('jalan/{id}', 'SuratJalanController@store')->name('jalan.store');
-        //Surat Ijin Masuk
+        //Surat Ijin Masuk Barang Datang
         Route::namespace('Surat')->group(function () {
             Route::get('ijin-masuk', 'IndexSuratIjinMasuk')->name('sim.index');
             Route::get('ijin-masuk/{id}', 'EditSuratIjinMasuk')->name('sim.edit');
@@ -69,6 +70,12 @@ Route::namespace('Niagabeli')->prefix('user-pembelian')->group(function () {
 Route::namespace('Gudang')->prefix('user-gudang')->group(function () {
     Route::resource('permintaan', 'GudangPermintaanController');
     Route::get('pesanan', 'DaftarPesananController@index')->name('pesanan.index');
+    //Barang Datang
+    Route::namespace('BarangDatang')->group(function () {
+        Route::get('barang-datang', 'IndexBarangDatang')->name('bd.index');
+        Route::get('barang-datang/{id}', 'EditBarangDatang')->name('bd.edit');
+        Route::put('barang-datang/{id}', 'UpdateBarangDatang')->name('bd.update');
+    });
 });
 Route::namespace('Akuntansi')->prefix('user-akuntansi')->group(function () {
     Route::resource('rekening', 'RekController');

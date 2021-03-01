@@ -73,7 +73,6 @@ class GudangPermintaanController extends Controller
                 $pesanan->gudang_stok = $req->gudang_stok;
                 $pesanan->save();
             }
-            // \dd($pesanan);
             return \redirect()->back()->with(['msg' => "Berhasil merubah daftar permintaan dari $pesanan->pemesan"]);
         } else if ($req->input('action') == 'acc') {
             $pesanan->status_direktur = '1';

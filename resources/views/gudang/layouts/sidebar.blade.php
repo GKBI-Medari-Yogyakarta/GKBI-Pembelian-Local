@@ -9,13 +9,17 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
                     Daftar Pesanan
                 </a>
-                <a class="nav-link {{ (request()->is('user-gudang/permintaan*')) ? 'active' : ''}}" href="{{ URL::route('permintaan.index') }}">
+                {{-- <a class="nav-link {{ (request()->is('user-gudang/permintaan*')) ? 'active' : ''}}" href="{{ URL::route('permintaan.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-dolly-flatbed"></i></div>
                     Daftar Permintaan
-                </a>
+                </a> --}}
                 <a class="nav-link" href="#">
                     <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
                     Daftar Perbaikan
+                </a>
+                <a class="nav-link {{ (request()->is('user-gudang/barang-datang*')) ? 'active' : null }}" href="{{ URL::route('bd.index') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
+                    Barang Datang
                 </a>
             </div>
         </div>

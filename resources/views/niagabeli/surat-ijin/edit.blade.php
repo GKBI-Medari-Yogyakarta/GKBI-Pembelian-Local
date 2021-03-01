@@ -29,11 +29,7 @@
                         <div class="form-group row">
                             <label for="tglIjin" class="col-sm-3 col-form-label">Tanggal / Jam</label>
                             <div class="col-sm-9">
-                                <input type="datetime-local" class="form-control @error('tgl_') is-invalid @enderror" id="tglIjin" name="tgl_" value="{{ \Carbon\Carbon::parse($sim->tgl_)->format('Y-m-d\Th:i:s')}}">
-                                {{-- <input type="datetime-local" name="tgl_" id="tglIjin" value="{{ \Carbon\Carbon::parse($sim->tgl_)->format('Y-m-d\Th:m:s') }}">
-                                <input type="time" name="tgl_" id="tglIjin" value="{{ \Carbon\Carbon::parse($sim->tgl_)->format('H:i') }}">
-                                <input type="datetime" name="" id="" value="2021-02-17"> --}}
-                                {{-- <input type="datetime" class="form-control @error('tgl_') is-invalid @enderror" id="tglIjin" name="tgl_" value="{{ \Carbon\Carbon::parse($sim->tgl_)->format('m/d/Y') }}, {{ \Carbon\Carbon::parse($sim->tgl_)->format('H:i A') }}"> --}}
+                                <input type="datetime-local" class="form-control @error('tgl_') is-invalid @enderror" id="tglIjin" name="tgl_" value="old('tgl_').{{ \Carbon\Carbon::parse($sim->tgl_)->format('Y-m-d\Th:i:s'),'default'}}">
                             </div>
                         </div>
                     </div>
@@ -47,4 +43,3 @@
     </div>
 </main>
 @endsection
-
