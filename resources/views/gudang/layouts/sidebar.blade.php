@@ -21,6 +21,10 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
                     Barang Datang
                 </a>
+                <a class="nav-link {{ (request()->is('user-gudang/barang-datang*')) ? 'active' : null }}" href="{{ URL::route('bd.index') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
+                    Pengecekan Barang
+                </a>
             </div>
         </div>
         <div class="sb-sidenav-footer">

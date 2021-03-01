@@ -1,6 +1,16 @@
 @extends('gudang.layouts.main')
 @section('title','Gudang Page')
 @section('status-user','Gudang Page')
+@section('custom-style')
+@foreach ($barang_datang as $bd)
+{{-- @if (!isset($bd->no_agenda_gudang)) --}}
+<style>
+    .no-agenda-kosong{
+        color:red;
+    }
+</style>
+{{-- @endif --}}
+@endforeach
 @section('main')
 <main>
     <div class="container-fluid">
@@ -35,7 +45,9 @@
                         </thead>
                         <tbody>
                             @forelse ($barang_datang as $bd)
-                            <tr>
+                            <tr @if (!isset($bd->no_agenda_gudang) || !isset($bd->no_agenda_pembelian))
+                                class="no-agenda-kosong"
+                            @endif>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $bd->no_agenda_gudang }}</td>
                                 <td>{{ $bd->no_agenda_pembelian }}</td>

@@ -23,8 +23,7 @@ class IndexSuratIjinMasuk extends Controller
         //        }
         $surat_in = DB::table('surat_ijin_masuks as sim')
             ->join('surat_jalans as sj', 'sj.id', '=', 'sim.s_jln_id')
-            ->join('barang_datangs as bd', 'sj.id', '=', 'bd.s_jln_id')
-            ->select('sj.no_jalan as nj', 'sj.arsip', 'bd.no_rencana_pembelian as nrp', 'bd.no_agenda_gudang as nag', 'sim.*')
+            ->select('sj.no_jalan as nj', 'sj.arsip', 'sim.*')
             ->get();
         return view('niagabeli.surat-ijin.index', compact('surat_in'));
     }

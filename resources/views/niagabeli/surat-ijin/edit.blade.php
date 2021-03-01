@@ -29,7 +29,7 @@
                         <div class="form-group row">
                             <label for="tglIjin" class="col-sm-3 col-form-label">Tanggal / Jam</label>
                             <div class="col-sm-9">
-                                <input type="datetime-local" class="form-control @error('tgl_') is-invalid @enderror" id="tglIjin" name="tgl_" value="old('tgl_').{{ \Carbon\Carbon::parse($sim->tgl_)->format('Y-m-d\Th:i:s'),'default'}}">
+                                <input type="datetime-local" class="form-control @error('tgl_') is-invalid @enderror" id="tglIjin" name="tgl_" value="{{ old('tgl_'). \Carbon\Carbon::parse($sim->tgl_)->format('Y-m-d\Th:i'),'default'}}">
                             </div>
                         </div>
                     </div>
