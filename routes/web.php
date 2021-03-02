@@ -73,8 +73,9 @@ Route::namespace('Gudang')->prefix('user-gudang')->group(function () {
     //Pengecekan barang
     Route::namespace('TestingItem')->prefix('barang-datang-proses')->group(function () {
         Route::get('pengecekan', 'IndexTestingItem')->name('test.index');
-        // Route::get('pengecekan/{id}', 'GetByIdTestingItem')->name('test.show');
+        Route::get('pengecekan/{id}', 'EditTestingItem')->name('test.edit');
         Route::post('pengecekan/{id}', 'StoreTestingItem')->name('test.store');
+        Route::put('pengecekan/{id}', 'UpdateTestingItem')->name('test.update');
     });
 });
 Route::namespace('Akuntansi')->prefix('user-akuntansi')->group(function () {

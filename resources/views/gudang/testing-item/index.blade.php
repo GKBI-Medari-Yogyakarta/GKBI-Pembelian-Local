@@ -45,15 +45,14 @@
                                 <td>{{ $item->cek_detail }}</td>
                                 <td>
                                     @if ($item->cek_detail === '1')
-                                    <a href="{{ URL::route('bd.edit',$item->id) }}" class="btn btn-sm btn-info">Edit</a>
-                                    {{-- @elseif($item->cek_detail === ) --}}
+                                    <a href="{{ URL::route('test.edit',$item->id) }}" class="btn btn-sm btn-info">Edit</a>
+                                    @else
+                                    <button class="btn btn-sm btn-outline-danger" disabled>can't edit</button>
                                     @endif
-
                                 </td>
                             </tr>
                             @empty
                             <tr>
-                                {{-- <th rowspan="5"><h2 class="text-center">Daftar Barang Datang Kosong!!</h2></th> --}}
                                 <th colspan="7" class="text-center">
                                     <h1>Kosong!!</h1>
                                 </th>
