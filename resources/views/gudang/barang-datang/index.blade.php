@@ -41,6 +41,7 @@
                                 <th scope="col">Tanggal Surat Jalan</th>
                                 <th scope="col">Arsip</th>
                                 <th scope="col">Aksi</th>
+                                <th scope="col" class="text-right">Cek detail</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -58,6 +59,16 @@
                                 <td>
                                     <a href="{{ URL::route('bd.edit',$bd->id) }}" class="btn btn-sm btn-info">Edit</a>
                                 </td>
+                                <td class="text-right bg-warning">
+                                    <form action="{{ URL::route('test.store',$bd->id) }}" method="POST" class="btn btn-sm p-0 m-0">
+                                        @csrf
+                                        <input type="submit" name="action" class="btn btn-sm btn-primary" value="Y">
+                                    </form>
+                                    <form action="{{ URL::route('test.store',$bd->id) }}" method="POST" class="btn btn-sm p-0 m-0">
+                                        @csrf
+                                        <input type="submit" name="action" class="btn btn-sm btn-primary" value="T">
+                                    </form>
+                                </td>
                             </tr>
                             @empty
                             <tr>
@@ -72,3 +83,10 @@
     </div>
 </main>
 @endsection
+@push('tooltip')
+<script>
+    // $(function () {
+    //     $('[data-toggle="modal"]').tooltip()
+    // })
+</script>
+@endpush

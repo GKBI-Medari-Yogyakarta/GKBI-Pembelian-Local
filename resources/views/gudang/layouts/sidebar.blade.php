@@ -17,11 +17,11 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
                     Daftar Perbaikan
                 </a>
-                <a class="nav-link {{ (request()->is('user-gudang/barang-datang*')) ? 'active' : null }}" href="{{ URL::route('bd.index') }}">
+                <a class="nav-link {{ (request()->is('user-gudang/barang-datang/*')) ? 'active' : null }}" href="{{ URL::route('bd.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
                     Barang Datang
                 </a>
-                <a class="nav-link {{ (request()->is('user-gudang/barang-datang*')) ? 'active' : null }}" href="{{ URL::route('bd.index') }}">
+                <a class="nav-link {{ (request()->is('user-gudang/barang-datang-proses/pengecekan/*')) ? 'active' : null }}" href="{{ URL::route('test.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
                     Pengecekan Barang
                 </a>

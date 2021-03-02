@@ -60,12 +60,6 @@ Route::namespace('Niagabeli')->prefix('user-pembelian')->group(function () {
             Route::put('ijin-masuk/{id}', 'UpdateSuratIjinMasuk')->name('sim.update');
         });
     });
-    //    Route::prefix('barang')->group(function () {
-    //        Route::resource('datang', 'BarangDatangController');
-    //
-    //        // Route::get('datang', 'BarangDatangController@index')->name('datang.index');
-    //        // Route::get('datang/{id}', 'BarangDatangController@edit')->name('datang.edit');
-    //    });
 });
 Route::namespace('Gudang')->prefix('user-gudang')->group(function () {
     Route::resource('permintaan', 'GudangPermintaanController');
@@ -75,6 +69,12 @@ Route::namespace('Gudang')->prefix('user-gudang')->group(function () {
         Route::get('barang-datang', 'IndexBarangDatang')->name('bd.index');
         Route::get('barang-datang/{id}', 'EditBarangDatang')->name('bd.edit');
         Route::put('barang-datang/{id}', 'UpdateBarangDatang')->name('bd.update');
+    });
+    //Pengecekan barang
+    Route::namespace('TestingItem')->prefix('barang-datang-proses')->group(function () {
+        Route::get('pengecekan', 'IndexTestingItem')->name('test.index');
+        // Route::get('pengecekan/{id}', 'GetByIdTestingItem')->name('test.show');
+        Route::post('pengecekan/{id}', 'StoreTestingItem')->name('test.store');
     });
 });
 Route::namespace('Akuntansi')->prefix('user-akuntansi')->group(function () {
