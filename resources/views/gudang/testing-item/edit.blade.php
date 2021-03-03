@@ -60,6 +60,26 @@
                                 @enderror
                             </div>
                         </div>
+                        {{-- @if (!empty($ti->no_test) || !empty($ti->tgl_))
+                        <div class="form-group row">
+                            <label for="noTest" class="col-sm-3 col-form-label">Selesai</label>
+                            <div class="col-sm-9">
+                                <select name="" id="" class="form-control">
+                                    <option selected disabled>pilih</option>
+                                    <option value="1" class="text-success"><strong>Sudah</strong> selesai</option>
+                                    <option value="0" class="text-danger"><strong>Belum</strong> selesai</option>
+                                </select>
+                                @error('selesai')
+                                    <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+                        @endif --}}
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Simpan</button>

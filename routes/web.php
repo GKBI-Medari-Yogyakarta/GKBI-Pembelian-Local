@@ -77,6 +77,9 @@ Route::namespace('Gudang')->prefix('user-gudang')->group(function () {
         Route::post('pengecekan/{id}', 'StoreTestingItem')->name('test.store');
         Route::put('pengecekan/{id}', 'UpdateTestingItem')->name('test.update');
     });
+    Route::prefix('barang-datang-proses')->namespace('NPB')->group(function () {
+        Route::post('qty/{id}', 'StoreQtyController')->name('qty.store');
+    });
 });
 Route::namespace('Akuntansi')->prefix('user-akuntansi')->group(function () {
     Route::resource('rekening', 'RekController');

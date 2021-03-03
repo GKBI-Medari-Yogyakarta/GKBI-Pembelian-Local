@@ -17,7 +17,7 @@ class CreateNpbQtiesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('ti_id')->nullable();
             $table->foreign('ti_id')->references('id')->on('testing_items');
-            $table->string('no_urut');
+            $table->string('no_urut')->nullable();
             $table->timestamps();
         });
     }

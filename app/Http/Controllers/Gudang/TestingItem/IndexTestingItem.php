@@ -15,7 +15,8 @@ class IndexTestingItem extends Controller
         $items = DB::table('testing_items as ti')
             ->join('barang_datangs as bd', 'bd.id', '=', 'ti.bd_id')
             ->join('surat_jalans as sj', 'sj.id', '=', 'bd.s_jln_id')
-            ->select('bd.no_agenda_gudang as nag', 'bd.no_agenda_pembelian as nap', 'sj.no_jalan as nj', 'sj.tgl_ as tanggal', 'ti.*')
+            ->select('bd.no_agenda_gudang as nag', 'bd.no_agenda_pembelian as nap', 'sj.no_jalan as nj', 'ti.*')
+            ->orderBy('ti.id')
             ->get();
         return view('gudang.testing-item.index', compact('items'));
     }

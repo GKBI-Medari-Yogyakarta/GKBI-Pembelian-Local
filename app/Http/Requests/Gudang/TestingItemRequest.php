@@ -26,6 +26,7 @@ class TestingItemRequest extends FormRequest
         return [
             'no_test' => 'required',
             'tgl_' => 'required',
+            // 'selesai' => 'required',
         ];
     }
     public function messages()
@@ -33,6 +34,7 @@ class TestingItemRequest extends FormRequest
         return [
             'no_test.required' => 'nomor pengecekan tidak boleh kosong!!',
             'tgl_.required' => 'nomor pengecekan tidak boleh kosong!!',
+            // 'selesai.required' => 'nomor pengecekan tidak boleh kosong!!',
         ];
     }
 }

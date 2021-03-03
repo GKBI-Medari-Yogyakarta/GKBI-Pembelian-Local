@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Gudang\TestingItem;
 
 use App\Http\Controllers\Controller;
 use App\Model\Gudang\BarangDatang;
+use App\Model\Gudang\NpbQty;
 use App\Model\Gudang\TestingItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StoreTestingItem extends Controller
 {
@@ -22,11 +24,24 @@ class StoreTestingItem extends Controller
             return redirect()->route('test.index')->with(['msg' => 'Pengecekan barang dilakukan secara detail. Silahkan masukkan nota pengecekan barang!!']);
         } elseif ($req->input('action') == 'T') {
             if (isset($ti->bd_id)) return redirect()->back()->with(['msg' => 'barang sudah dicek. silahkan ke menu pengecekan barang']);
-            TestingItem::create([
-                'bd_id' => $bd->id,
-                'cek_detail' => '0',
-            ]);
-            return redirect()->route('test.index')->with(['msg' => 'Pengcekan barang tidak dilakukan secara detail']);
+            DB::beginTransaction();
+            try {
+                $testing_item = TestingItem::create([
+                    'bd_id' => $bd->id,
+                    'cek_detail' => '0',
+                    'selesai' => '1',
+                ]);
+                $qty = NpbQty::where('ti_id', $testing_item->id)->first();
+                if (isset($qty->ti_id)) return redirect()->back()->with(['msg' => 'already exists!!']);
+                NpbQty::create([
+                    'ti_id' => $testing_item->id,
+                ]);
+                DB::commit();
+                return redirect()->route('test.index')->with(['msg' => 'Pengcekan barang tidak dilakukan secara detail. Silahkan masukkan nota pengecekan barang!!']);
+            } catch (\Exception $e) {
+                DB::rollBack();
+                return redirect()->back()->with('warning', 'Something Went Wrong!, tidak berhasil merubah data!!');
+            }
         }
         return redirect()->back()->with(['msg' => 'Tidak ada aksi']);
     }
