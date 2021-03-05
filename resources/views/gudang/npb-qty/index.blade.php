@@ -61,7 +61,6 @@
                                 <td class="m-0 text-center">
                                     <a href="{{ URL::route('qty.edit',$qties->id) }}" class="btn btn-sm btn-info">Edit</a>
                                     <a href="{{ URL::route('test.edit',$qties->id) }}" class="btn btn-sm btn-primary">post</a>
-                                    {{-- <button class="btn btn-sm btn-outline-danger" disabled>can't edit</button> --}}
                                 </td>
                             </tr>
                             @empty

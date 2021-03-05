@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Gudang\NPB;
 
 use App\Http\Controllers\Controller;
 use App\Model\Gudang\BarangDatang;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class IndexQtyController extends Controller

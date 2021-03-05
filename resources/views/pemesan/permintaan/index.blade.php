@@ -27,6 +27,7 @@
                                 <th rowspan="2" class="text-center align-middle p-0" scope="col">#</th>
                                 <th rowspan="2" class="text-center align-middle p-0" scope="col">Nama Barang</th>
                                 <th rowspan="2" class="text-center align-middle p-0" scope="col">Spesifikasi</th>
+                                <th rowspan="2" class="text-center align-middle p-0" scope="col">Kode</th>
                                 <th colspan="2" class="text-center align-middle p-0" class="text-center">Stok</th>
                                 <th rowspan="2" class="text-center align-middle p-0" scope="col">Jumlah</th>
                                 <th rowspan="2" class="text-center align-middle p-0" scope="col">Tanggal Diperlukan</th>
@@ -43,6 +44,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $permintaans->nm_barang }}</td>
                                 <td>{{ $permintaans->spesifikasi }}</td>
+                                <td>{{ $permintaans->kd_barang }}</td>
                                 <td>{{ $permintaans->unit_stok }}</td>
                                 @if (!empty($permintaans->gudang_stok))
                                 <td>{{$permintaans->gudang_stok}}</td>

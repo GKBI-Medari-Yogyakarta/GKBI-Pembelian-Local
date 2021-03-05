@@ -42,6 +42,12 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label for="inputkd_barang" class="col-sm-3 col-form-label">Kode barang</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control @error('kd_barang') is-invalid @enderror" id="inputkd_barang" name="kd_barang" value="{{ old('kd_barang') }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="inputunit_stok" class="col-sm-3 col-form-label">Stok barang dari unit</label>
                         <div class="col-sm-9">
                             {{-- <input type="number" class="form-control @error('unit_stok') is-invalid @enderror" id="inputunit_stok" name="unit_stok" value="{{ old('unit_stok') }}"> --}}
