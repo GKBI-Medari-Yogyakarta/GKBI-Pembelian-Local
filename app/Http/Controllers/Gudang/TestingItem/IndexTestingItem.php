@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Gudang\TestingItem;
 
 use App\Http\Controllers\Controller;
+use App\Model\Gudang\BarangDatang;
 use App\Model\Gudang\TestingItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,6 +19,7 @@ class IndexTestingItem extends Controller
             ->select('bd.no_agenda_gudang as nag', 'bd.no_agenda_pembelian as nap', 'sj.no_jalan as nj', 'ti.*')
             ->orderBy('ti.id')
             ->get();
-        return view('gudang.testing-item.index', compact('items'));
+        $bdnull = BarangDatang::notification();
+        return view('gudang.testing-item.index', compact('items', 'bdnull'));
     }
 }

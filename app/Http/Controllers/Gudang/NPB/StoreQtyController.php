@@ -36,7 +36,7 @@ class StoreQtyController extends Controller
                 return redirect()->back()->with(['warning' => 'something went wrong,']);
             }
         } elseif ($req->input('action') == 'T') {
-            return redirect()->back();
+            return redirect()->back()->with(['msg' => 'belum dia apa-apain']);
         }
         return redirect()->back()->with(['msg' => 'tidak ada aksi!']);
     }

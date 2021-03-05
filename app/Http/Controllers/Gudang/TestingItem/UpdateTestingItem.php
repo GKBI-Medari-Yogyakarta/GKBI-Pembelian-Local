@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Gudang\TestingItem;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Gudang\TestingItemRequest;
-use App\Model\Gudang\NpbQty;
 use App\Model\Gudang\TestingItem;
-use Illuminate\Support\Facades\DB;
 
 class UpdateTestingItem extends Controller
 {

@@ -4,7 +4,7 @@
 @section('main')
 <main>
     <div class="container-fluid">
-        <h1 class="mt-4">Pengcekan barang</h1>
+        <h1 class="mt-4">Pengecekan barang</h1>
         @if(session('warning'))
             <div class="alert alert-success alert-dismissible" role="alert" style="z-index: 1">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -31,14 +31,15 @@
                     <table class="table table-sm table-bordered">
                         <thead>
                             <tr>
-                                <th scope="col" rowspan="2">#</th>
-                                <th scope="col" colspan="3" class="text-center">Nomor</th>
+                                <th scope="col" rowspan="2" class="text-center align-middle">#</th>
+                                <th scope="col" colspan="4" class="text-center">Nomor</th>
                                 <th scope="col" colspan="4" class="text-center align-middle">Pengecekan</th>
                             </tr>
                             <tr>
                                 <th scope="col">Agenda Gudang</th>
                                 <th scope="col">Agenda Pembelian</th>
                                 <th scope="col">Surat Jalan</th>
+                                <th scope="col">Pengecekan</th>
                                 <th scope="col">Tanggal</th>
                                 <th scope="col">Detail</th>
                                 <th scope="col">Aksi</th>
@@ -54,7 +55,12 @@
                                 <td>{{ $item->nag }}</td>
                                 <td>{{ $item->nap }}</td>
                                 <td>{{ $item->nj }}</td>
+                                <td>{{ $item->no_test }}</td>
+                                @if (empty($item->tgl_))
+                                <td></td>
+                                @else
                                 <td>{{ \Carbon\Carbon::parse($item->tgl_)->isoformat('dddd, D MMM Y') }}</td>
+                                @endif
                                 <td class="text-center">
                                     @if ($item->cek_detail === '1')
                                     <h6>Ya</h6>
@@ -69,18 +75,18 @@
                                     <button class="btn btn-sm btn-outline-danger" disabled>can't edit</button>
                                     @endif
                                 </td>
-                                <td>
+                                <td class="m-0">
                                     @if (!empty($item->selesai))
                                     <p>Selesai <span class="badge badge-success">Y</span></p>
                                     @else
                                         @if (empty($item->no_test) || empty($item->tgl_))
                                         <p style="font-size: 75%" class="m-0 p-0">isi no. cek/tgl<br>terlebih dahulu</p>
                                         @else
-                                        <form action="{{ url()->route('qty.store',$item->id) }}" method="post" class="btn btn-sm">
+                                        <form action="{{ url()->route('qty.store',$item->id) }}" method="post" class="btn btn-sm p-0 m-0">
                                             @csrf
                                             <input type="submit" class="btn btn-sm btn-info" name="action" value="Y"/>
                                         </form>
-                                        <form action="{{ url()->route('qty.store',$item->id) }}" method="post" class="btn btn-sm">
+                                        <form action="{{ url()->route('qty.store',$item->id) }}" method="post" class="btn btn-sm p-0 m-0">
                                             @csrf
                                             <input type="submit" class="btn btn-sm btn-info" name="action" value="T"/>
                                         </form>

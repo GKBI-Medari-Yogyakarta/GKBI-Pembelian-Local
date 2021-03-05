@@ -2,15 +2,11 @@
 @section('title','Gudang Page')
 @section('status-user','Gudang Page')
 @section('custom-style')
-@foreach ($barang_datang as $bd)
-{{-- @if (!isset($bd->no_agenda_gudang)) --}}
 <style>
     .no-agenda-kosong{
         color:red;
     }
 </style>
-{{-- @endif --}}
-@endforeach
 @section('main')
 <main>
     <div class="container-fluid">
@@ -59,7 +55,10 @@
                                 <td>
                                     <a href="{{ URL::route('bd.edit',$bd->id) }}" class="btn btn-sm btn-info">Edit</a>
                                 </td>
-                                <td class="text-right bg-warning">
+                                <td>
+                                    @if (empty($bd->no_agenda_pembelian)||empty($bd->no_agenda_gudang))
+                                    <p class="text-right">isi nomor agenda<br>terlebih dahulu</p>
+                                    @else
                                     <form action="{{ URL::route('test.store',$bd->id) }}" method="POST" class="btn btn-sm p-0 m-0">
                                         @csrf
                                         <input type="submit" name="action" class="btn btn-sm btn-primary" value="Y">
@@ -68,6 +67,7 @@
                                         @csrf
                                         <input type="submit" name="action" class="btn btn-sm btn-primary" value="T">
                                     </form>
+                                    @endif
                                 </td>
                             </tr>
                             @empty

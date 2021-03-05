@@ -10,6 +10,7 @@ class EditBarangDatang extends Controller
     public function __invoke($id)
     {
         $bd = BarangDatang::find($id);
-        return \view('gudang.barang-datang.edit', \compact('bd'));
+        $bdnull = BarangDatang::notification();
+        return \view('gudang.barang-datang.edit', \compact('bd', 'bdnull'));
     }
 }

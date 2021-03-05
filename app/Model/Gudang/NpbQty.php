@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class NpbQty extends Model
 {
-    protected $fillable = ['ti_id', 'no_urut'];
+    protected $fillable = ['ti_id', 'no_urut', 'posting'];
     public $timestamps = true;
     public function testingItem()
     {

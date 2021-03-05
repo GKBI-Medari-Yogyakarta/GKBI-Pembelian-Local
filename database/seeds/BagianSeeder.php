@@ -136,7 +136,7 @@ class BagianSeeder extends Seeder
             'id' => 16,
             'no_identitas' => '610',
             'unit_id' => 3,
-            'nama' => 'SINISHING',
+            'nama' => 'FINISHING',
             'created_at' => now(),
             'updated_at' => now(),
         ]);

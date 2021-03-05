@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Gudang\BarangDatang;
 
 use App\Http\Controllers\Controller;
+use App\Model\Gudang\BarangDatang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -23,7 +24,8 @@ class IndexBarangDatang extends Controller
                 ->join('transactions as t', 't.id', '=', 'spb.transaction_id')
                 ->select('t.no_transaction as no_rencana', 'sj.tgl_ as tanggal', 'sj.no_jalan as nj', 'sj.arsip', 'bd.*')
                 ->get();
-            return view('gudang.barang-datang.index', \compact('barang_datang'));
+            $bdnull = BarangDatang::notification();
+            return view('gudang.barang-datang.index', \compact('barang_datang', 'bdnull'));
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }

@@ -1,5 +1,5 @@
 @extends('gudang.layouts.main')
-@section('title','Edit status pengecekan barang')
+@section('title','Pembuata NPB Qty')
 @section('status-user','Gudang Page')
 @section('custom-style')
 <style>
@@ -13,44 +13,36 @@
         <div class="justify-content-md-center p-2">
             @include('gudang.layouts.required')
             <div class="card mt-4">
-                <form action="{{ URL::route('test.update',$ti->id) }}" method="POST">
+                <form action="{{ URL::route('qty.update',$qty->id) }}" method="POST">
                     @method('put')
                     {{ csrf_field() }}
                     <div class="modal-header bg-primary">
-                        <h5 class="modal-title text-white" id="suratJalanLabel">Perbaharui Data Barang Datang</h5>
+                        <h5 class="modal-title text-white" id="suratJalanLabel">Perbaharui pembuatan NPB Qty</h5>
                     </div>
                     <div class="modal-body">
                         <div class="form-group row">
-                            <label for="noTest" class="col-sm-3 col-form-label">No Agenda Gudang</label>
+                            <label for="agenda" class="col-sm-3 col-form-label">No Agenda Gudang</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="noTest" value="{{ $ti->barangDatang->no_agenda_gudang}}" readonly>
+                                <input type="text" class="form-control" id="agenda" value="{{ $bd->no_agenda_gudang}}" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="noTest" class="col-sm-3 col-form-label">No Surat Jalan</label>
+                            <label for="pembelian" class="col-sm-3 col-form-label">No Agenda Pembelian</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="noTest" value="{{ $sj->no_jalan}}" readonly>
+                                <input type="text" class="form-control" id="pembelian" value="{{ $bd->no_agenda_pembelian}}" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="noTest" class="col-sm-3 col-form-label">Nomor Pengecekan/Pengetesan</label>
+                            <label for="namaIdentitas" class="col-sm-3 col-form-label">Bagian</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control @error('no_test') is-invalid @enderror" id="noTest" name="no_test" value="{{ old('no_test') . $ti->no_test, 'default' }}">
-                                @error('no_test')
-                                    <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                                <input type="text" class="form-control" id="namaIdentitas" value="{{ $b->nama}} {{ $b->no_identitas}}" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="tanggal" class="col-sm-3 col-form-label">Tanggal Pengecekan</label>
+                            <label for="noTest" class="col-sm-3 col-form-label">Nomor Urut</label>
                             <div class="col-sm-9">
-                                <input type="date" class="form-control @error('tgl_') is-invalid @enderror" id="tanggal" name="tgl_" value="{{ old('tgl_') . $ti->tgl_, 'default' }}">
-                                @error('tgl_')
+                                <input type="text" class="form-control @error('no_urut') is-invalid @enderror" id="noTest" name="no_urut" value="{{ old('no_urut') . $qty->no_urut, 'default' }}">
+                                @error('no_urut')
                                     <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
@@ -63,7 +55,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Simpan</button>
-                        <a href="{{ URL::route('test.index') }}" class="btn btn-secondary">Batal</a>
+                        <a href="{{ URL::route('qty.index') }}" class="btn btn-secondary">Batal</a>
                     </div>
                 </form>
             </div>

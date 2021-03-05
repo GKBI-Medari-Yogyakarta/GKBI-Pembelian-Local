@@ -79,6 +79,9 @@ Route::namespace('Gudang')->prefix('user-gudang')->group(function () {
     });
     Route::prefix('barang-datang-proses')->namespace('NPB')->group(function () {
         Route::post('qty/{id}', 'StoreQtyController')->name('qty.store');
+        Route::get('qty', 'IndexQtyController')->name('qty.index');
+        Route::get('qty/{id}/edit', 'EditQtyController')->name('qty.edit');
+        Route::put('qty/{id}', 'UpdateQtyController')->name('qty.update');
     });
 });
 Route::namespace('Akuntansi')->prefix('user-akuntansi')->group(function () {

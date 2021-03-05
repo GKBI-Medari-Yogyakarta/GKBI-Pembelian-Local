@@ -13,4 +13,9 @@ class BarangDatang extends Model
     {
         return $this->belongsTo(SuratJalan::class, 's_jln_id');
     }
+    public static function notification()
+    {
+        $bdnull = BarangDatang::where('no_agenda_gudang', null)->orWhere('no_agenda_pembelian', null)->count();
+        return $bdnull;
+    }
 }
