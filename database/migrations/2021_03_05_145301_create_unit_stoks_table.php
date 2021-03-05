@@ -15,6 +15,11 @@ class CreateUnitStoksTable extends Migration
     {
         Schema::create('unit_stoks', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('item_id')->nullable();
+            $table->foreign('item_id')->references('id')->on('items');
+            $table->string('jumlah_stok');
+            $table->string('stok_masuk');
+            $table->unsignedBigInteger('bagian_id')->nullable();
             $table->timestamps();
         });
     }
