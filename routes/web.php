@@ -82,6 +82,7 @@ Route::namespace('Gudang')->prefix('user-gudang')->group(function () {
         Route::get('qty', 'IndexQtyController')->name('qty.index');
         Route::get('qty/{id}/edit', 'EditQtyController')->name('qty.edit');
         Route::put('qty/{id}', 'UpdateQtyController')->name('qty.update');
+        Route::put('qty/{id}/posting', 'PostQtyController')->name('qty.post');
     });
 });
 Route::namespace('Akuntansi')->prefix('user-akuntansi')->group(function () {

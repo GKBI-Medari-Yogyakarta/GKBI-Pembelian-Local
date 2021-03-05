@@ -10,7 +10,7 @@
 @section('main')
 <main>
     <div class="container-fluid">
-        <h1 class="mt-4">Pembuatan NPM Qties</h1>
+        <h1 class="mt-4">Pembuatan NPB Qties</h1>
         @if(session('warning'))
             <div class="alert alert-success alert-dismissible" role="alert" style="z-index: 1">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -50,7 +50,7 @@
                         </thead>
                         <tbody>
                             @forelse ($qty as $qties)
-                            <tr @if (!isset($bd->no_agenda_gudang) || !isset($bd->no_agenda_pembelian))
+                            <tr @if (!isset($qties->no_urut))
                                 class="no-urut-kosong"
                             @endif>
                                 <td>{{ $loop->iteration }}</td>
@@ -58,9 +58,17 @@
                                 <td>{{ $qties->nag }}</td>
                                 <td>{{ $qties->nap }}</td>
                                 <td>{{ $qties->bagian }}/<span class="badge">{{ $qties->nm_pemesan }}</span></td>
-                                <td class="m-0 text-center">
+                                <td class="m-0 text-left">
                                     <a href="{{ URL::route('qty.edit',$qties->id) }}" class="btn btn-sm btn-info">Edit</a>
-                                    <a href="{{ URL::route('test.edit',$qties->id) }}" class="btn btn-sm btn-primary">post</a>
+                                    @if (isset($qties->no_urut))
+                                    <form action="{{ url()->route('qty.post',$qties->id) }}" method="post" class="btn btn-sm m-0 p-0">
+                                        @csrf
+                                        @method('put')
+                                        <button class="btn btn-sm btn-primary" type="submit">Post</button>
+                                    </form>
+                                    @else
+                                    <button class="btn btn-sm btn-warning">Post</button>
+                                    @endif
                                 </td>
                             </tr>
                             @empty
@@ -78,3 +86,4 @@
     </div>
 </main>
 @endsection
+
