@@ -59,7 +59,11 @@
                                 <td>{{ $qties->nap }}</td>
                                 <td>{{ $qties->bagian }}/<span class="badge">{{ $qties->nm_pemesan }}</span></td>
                                 <td class="m-0 text-left">
+                                    @if ($qties->posting == 1)
+                                    <button class="btn btn-sm btn-danger" id="detail" data-toggle="tooltip" data-placement="right" title="Barang sudah diposting">Edit</button>
+                                    @else
                                     <a href="{{ URL::route('qty.edit',$qties->id) }}" class="btn btn-sm btn-info">Edit</a>
+                                    @endif
                                     @if (isset($qties->no_urut))
                                     <form action="{{ url()->route('qty.post',$qties->id) }}" method="post" class="btn btn-sm m-0 p-0">
                                         @csrf
@@ -67,7 +71,7 @@
                                         <button class="btn btn-sm btn-primary" type="submit">Post</button>
                                     </form>
                                     @else
-                                    <button class="btn btn-sm btn-warning">Post</button>
+                                    <button class="btn btn-sm btn-warning" id="detail" data-toggle="tooltip" data-placement="right" title="Detail">Post</button>
                                     @endif
                                 </td>
                             </tr>
@@ -86,4 +90,12 @@
     </div>
 </main>
 @endsection
-
+@push('tooltip')
+<script>
+    $(function() {
+        $('[data-toggle="tooltip"]').tooltip({
+            delay: {show:0,hide:1000}
+        });
+    })
+</script>
+@endpush
