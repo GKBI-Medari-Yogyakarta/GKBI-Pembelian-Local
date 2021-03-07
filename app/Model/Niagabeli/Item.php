@@ -13,4 +13,16 @@ class Item extends Model
     {
         return $this->belongsTo(NpbQty::class, 'npb_id');
     }
+    // public function test()
+    // {
+    //     // SELECT * FROM `items` WHERE created_at in (SELECT MAX(created_at) as ca FROM items WHERE kd_barang LIKE 'A3')
+
+    //     $test = Item::where(function ($query) {
+    //         $query->select('MAX(created_at) as create_date')
+    //             ->from('items')
+    //             ->where('kd_barang')
+    //             ->orderByDesc('membership.start_date')
+    //             ->limit(1);
+    //     }, 'Pro')->get();
+    // }
 }

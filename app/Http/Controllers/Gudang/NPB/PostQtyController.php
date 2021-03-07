@@ -15,12 +15,6 @@ use Illuminate\Support\Facades\DB;
 
 class PostQtyController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function __invoke(Request $req, $id)
     {
         $qty = NpbQty::find($id);
@@ -30,15 +24,17 @@ class PostQtyController extends Controller
         $td = TransactionDetail::find($spb->id);
         $b = Bagian::find($p->bagian_id);
         $item = Item::where('npb_id', $qty->id)->first();
-        $kd = Item::where('kd_barang', $p->kd_barang)->first();
-        if (isset($kd->kd_barang)) {
-            $it = new Item;
-            $jml = $kd->jml_barang + $td->_terbeli;
-            $it->jml_barang = "$jml";
-            dd($td, $it);
-        }
-        \dd('not ok');
-        if (isset($item->npb_id)) return \redirect()->back()->with(['Barang sudah diposting!!']);
+        // $kd = Item::where('kd_barang', $p->kd_barang)->first();
+        // $code = Item::
+        // if (isset($kd->kd_barang)) {
+        //     $it = new Item;
+        //     $jml = $kd->jml_barang + $td->_terbeli;
+        //     $it->jml_barang = "$jml";
+        //     dd($td, $it);
+        // }
+        // \dd('not ok');
+        $jlm_barang = DB::select("SELECT * FROM `items` WHERE created_at in (SELECT MAX(created_at) as ca FROM items WHERE kd_barang LIKE '$p->kd_barang')");
+        if (isset($item->npb_id)) return \redirect()->back()->with(['msg' => 'Barang sudah diposting!!']);
         DB::beginTransaction();
         try {
             $qty->posting = '1';
@@ -51,12 +47,15 @@ class PostQtyController extends Controller
             $item->kd_barang = $p->kd_barang;
             $item->ppn_barang = $td->ppn;
             $item->hrg_barang = $td->_terbayar;
-            $item->jml_barang = $td->_terbeli;
-            // $kd_barang = Item::where('kd_barang', $p->kd_barang)->first();
-            // if (isset($kd_barang->kd_barang)) {
-            //     $kd = $kd_barang->jml_barang;
-            // }
             $item->barang_masuk = $td->_terbeli;
+            if (!empty($jlm_barang)) {
+                $jml = $jlm_barang[0]->jml_barang + $td->_terbeli;
+                $item->jml_barang = "$jml";
+                $item->save();
+                DB::commit();
+                return redirect()->back()->with(['msg' => 'berhasil memposting barang ke gudang sebagai stok!!']);
+            }
+            $item->jml_barang = $td->_terbeli;
             $item->save();
             DB::commit();
             return redirect()->back()->with(['msg' => 'berhasil memposting barang ke gudang sebagai stok!!']);

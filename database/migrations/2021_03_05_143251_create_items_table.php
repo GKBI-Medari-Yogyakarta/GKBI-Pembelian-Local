@@ -18,13 +18,13 @@ class CreateItemsTable extends Migration
             $table->unsignedBigInteger('bagian_id')->nullable();
             $table->string('nm_barang');
             $table->string('spek_barang');
-            $table->string('ket_barang');
+            $table->string('ket_barang')->nullable();
             $table->string('kd_barang');
             $table->string('ppn_barang')->nullable();
             $table->string('hrg_barang')->nullable();
             $table->string('jml_barang');
             $table->string('barang_masuk');
-            $table->string('barang_keluar');
+            $table->string('barang_keluar')->nullable();
             $table->unsignedBigInteger('npb_id')->nullable();
             $table->foreign('npb_id')->references('id')->on('npb_qties');
             $table->timestamps();

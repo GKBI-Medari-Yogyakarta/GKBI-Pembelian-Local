@@ -71,8 +71,10 @@
                                 </td>
                             </tr>
                             @empty
-                            <tr>
-                                <th rowspan="8"><h2>Daftar Barang Datang Kosong!!</h2></th>
+                            <tr >
+                                <th colspan="8" class="text-center">
+                                    <h2>Daftar Barang Datang Kosong!!</h2>
+                                </th>
                             </tr>
                             @endforelse
                         </tbody>
