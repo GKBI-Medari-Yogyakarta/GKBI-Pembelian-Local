@@ -1,6 +1,12 @@
 @extends('niagabeli.layouts.main')
 @section('title','Surat Jalan Page')
 @section('status-user','Niagabeli Page')
+@section('custom-style')
+<style>
+    .no-jalan-kosong{
+        color:red;
+    }
+</style>
 @section('main')
     <main>
         <div class="container-fluid">
@@ -85,7 +91,9 @@
                                     </thead>
                                     <tbody>
                                    @forelse ($surat_jalan as $sj)
-                                       <tr>
+                                       <tr @if (!isset($sj->tgl_) || !isset($sj->no_jalan))
+                                        class="no-jalan-kosong"
+                                       @endif>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $sj->no_jalan }}</td>
                                             @if (isset($sj->tgl_))
@@ -95,6 +103,9 @@
                                             @endif
                                             <td>{{ $sj->arsip }} <strong>{{ $sj->pemesan }}</strong></td>
                                             <td>
+                                                {{-- @if (!isset($sj->no_ijin))
+                                                @endif --}}
+                                                @if (!isset($sj->no_ijin))
                                                 <a href="{{ URL::route('jalan.edit',$sj->id) }}" class="btn btn-outline-warning btn-sm">Edit</a>
                                                 <form action="{{ URL::route('jalan.destroy',$sj->id) }}" method="POST" class="btn btn-sm p-0">
                                                     @method('delete')
@@ -103,6 +114,9 @@
                                                         Hapus
                                                     </button>
                                                 </form>
+                                                @else
+                                                <button class="btn btn-sm btn-warning m-0 p-0">Ijin masuk di acc</button>
+                                                @endif
                                             </td>
                                         </tr>
                                    @empty

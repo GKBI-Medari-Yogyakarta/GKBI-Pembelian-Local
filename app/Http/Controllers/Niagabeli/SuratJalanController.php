@@ -31,11 +31,12 @@ class SuratJalanController extends Controller
                 ->get();
             $surat_jalan = DB::table('s_p_barangs as spb')
                 ->join('surat_jalans as sj', 'spb.id', '=', 'sj.spb_id')
+                ->join('surat_ijin_masuks as sim', 'sj.id', '=', 'sim.s_jln_id')
                 ->join('transactions as t', 't.id', '=', 'spb.transaction_id')
                 ->join('transaction_details as td', 'spb.id', '=', 'td.spb_id')
                 ->join('permintaans as p', 'p.id', '=', 't.permintaan_id')
                 ->join('bagians as b', 'b.id', '=', 'p.bagian_id')
-                ->select('p.pemesan', 'sj.*')
+                ->select('p.pemesan', 'sj.*', 'sim.no_ijin')
                 ->where('t.status_beli', '=', '1')
                 ->get();
             return view('niagabeli.surat-jalan.index', \compact('barang_datang', 'surat_jalan'));
@@ -92,7 +93,7 @@ class SuratJalanController extends Controller
 
     public function update(SuratJalanRequest $req, $id)
     {
-//        dd($id);
+        //        dd($id);
         if (Auth::guard('pembelian')->check()) {
             $user_pembelian_id = Auth::guard('pembelian')->user()->getAuthIdentifier();
             $sj = SuratJalan::findOrFail($id);
@@ -116,7 +117,7 @@ class SuratJalanController extends Controller
                         'arsip' => $req->arsip,
                         'user_id' => $user_pembelian_id,
                     ]);
-                    DB::statement("call surat_update(?,?,?,?)",[$sj->id,$user_pembelian_id,now(),now()]);
+                    DB::statement("call surat_update(?,?,?,?)", [$sj->id, $user_pembelian_id, now(), now()]);
                     DB::commit();
                     return redirect()->route('jalan.index')->with(['msg' => "Berhasil mengubah surat jalan, dengan nomor $req->no_jalan"]);
                 } catch (\Exception $e) {

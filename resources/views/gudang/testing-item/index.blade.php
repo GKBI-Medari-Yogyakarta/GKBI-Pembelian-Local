@@ -69,7 +69,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @if ($item->cek_detail === '1')
+                                    @if ($item->cek_detail === '1' && $item->selesai === null)
                                     <a href="{{ URL::route('test.edit',$item->id) }}" class="btn btn-sm btn-info">Edit</a>
                                     @else
                                     <button class="btn btn-sm btn-outline-danger" disabled>can't edit</button>
@@ -77,7 +77,9 @@
                                 </td>
                                 <td class="m-0">
                                     @if (!empty($item->selesai))
-                                    <p>Selesai <span class="badge badge-success">Y</span></p>
+                                    <p>Sesuai <span class="badge badge-success">Y</span></p>
+                                    @elseIF($item->selesai === '0')
+                                    <p>Sesuai <span class="badge badge-danger">T</span></p>
                                     @else
                                         @if (empty($item->no_test) || empty($item->tgl_))
                                         <p style="font-size: 75%" class="m-0 p-0">isi no. cek/tgl<br>terlebih dahulu</p>
@@ -96,7 +98,7 @@
                             </tr>
                             @empty
                             <tr>
-                                <th colspan="8" class="text-center">
+                                <th colspan="9" class="text-center">
                                     <h1>Kosong!!</h1>
                                 </th>
                             </tr>

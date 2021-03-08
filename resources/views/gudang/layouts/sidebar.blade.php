@@ -2,7 +2,7 @@
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="nav">
-                <div class="sb-sidenav-menu-heading nav-link active">SISTEM MELIHAT DAFTAR PERMINTAAN</div>
+                <div class="sb-sidenav-menu-heading nav-link active">SISTEM PERMINTAAN INTERNAL PC. GKBI</div>
                 {{-- List User --}}
                 <div class="sb-sidenav-menu-heading"><i class="fas fa-users"></i> List User</div>
                 <a class="nav-link {{ Request::url() == url('user-gudang/pesanan') ? 'active' : '' }}" href="{{ URL::route('pesanan.index') }}">
