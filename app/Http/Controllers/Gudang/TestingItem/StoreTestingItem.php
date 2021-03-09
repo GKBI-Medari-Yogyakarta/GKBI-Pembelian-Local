@@ -37,7 +37,7 @@ class StoreTestingItem extends Controller
                     'ti_id' => $testing_item->id,
                 ]);
                 DB::commit();
-                return redirect()->route('test.index')->with(['msg' => 'Pengcekan barang tidak dilakukan secara detail. Silahkan masukkan nota pengecekan barang!!']);
+                return redirect()->route('qty.index')->with(['msg' => 'Pengcekan barang tidak dilakukan secara detail.']);
             } catch (\Exception $e) {
                 DB::rollBack();
                 return redirect()->back()->with('warning', 'Something Went Wrong!, tidak berhasil merubah data!!');

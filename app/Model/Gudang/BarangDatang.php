@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class BarangDatang extends Model
 {
-    protected $fillable = ['s_jln_id', 'no_agenda_pembelian', 'no_agenda_gudang'];
+    protected $fillable = ['s_jln_id', 'no_agenda_pembelian', 'no_agenda_gudang', 'mikeluar_id'];
     public $timestamps = true;
     public function suratJalan()
     {

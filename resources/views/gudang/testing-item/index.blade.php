@@ -43,7 +43,7 @@
                                 <th scope="col">Tanggal</th>
                                 <th scope="col">Detail</th>
                                 <th scope="col">Aksi</th>
-                                <th scope="col">Status</th>
+                                <th scope="col">Sesuai</th>
                             </tr>
                         </thead>
                         <tbody>

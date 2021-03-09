@@ -21,8 +21,8 @@ class CreateMikeluarsTable extends Migration
             $table->string('no_mikeluar')->nullable();
             $table->timestamps();
         });
-        Schema::table('testing_items', function (Blueprint $table) {
-            $table->unsignedBigInteger('mikeluar_id')->after('cek_detail')->nullable();
+        Schema::table('barang_datangs', function (Blueprint $table) {
+            $table->unsignedBigInteger('mikeluar_id')->after('no_agenda_gudang')->nullable();
         });
     }
 

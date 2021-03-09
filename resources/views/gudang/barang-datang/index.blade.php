@@ -37,39 +37,102 @@
                                 <th scope="col">Tanggal Surat Jalan</th>
                                 <th scope="col">Arsip</th>
                                 <th scope="col">Aksi</th>
-                                <th scope="col" class="text-right">Cek detail</th>
+                                <th scope="col">Cek detail</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($barang_datang as $bd)
-                            <tr @if (!isset($bd->no_agenda_gudang) || !isset($bd->no_agenda_pembelian))
-                                class="no-agenda-kosong"
-                            @endif>
-                                <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $bd->no_agenda_gudang }}</td>
-                                <td>{{ $bd->no_agenda_pembelian }}</td>
-                                <td>{{ $bd->nj }}</td>
-                                <td>{{ $bd->no_rencana }}</td>
-                                <td>{{ \Carbon\Carbon::parse($bd->tanggal)->isoformat('dddd, D MMM Y') }}</td>
-                                <td>{{ $bd->arsip }}</td>
-                                <td>
-                                    <a href="{{ URL::route('bd.edit',$bd->id) }}" class="btn btn-sm btn-info">Edit</a>
-                                </td>
-                                <td>
-                                    @if (empty($bd->no_agenda_pembelian)||empty($bd->no_agenda_gudang))
-                                    <p class="text-right">isi nomor agenda<br>terlebih dahulu</p>
-                                    @else
-                                    <form action="{{ URL::route('test.store',$bd->id) }}" method="POST" class="btn btn-sm p-0 m-0">
-                                        @csrf
-                                        <input type="submit" name="action" class="btn btn-sm btn-primary" value="Y">
-                                    </form>
-                                    <form action="{{ URL::route('test.store',$bd->id) }}" method="POST" class="btn btn-sm p-0 m-0">
-                                        @csrf
-                                        <input type="submit" name="action" class="btn btn-sm btn-primary" value="T">
-                                    </form>
-                                    @endif
-                                </td>
+                                @if (empty($bd->mikeluar_id))
+                                    <tr @if (!isset($bd->no_agenda_gudang) || !isset($bd->no_agenda_pembelian)) class="no-agenda-kosong" @endif>
+                                        <th scope="row">{{ $loop->iteration }}</th>
+                                        <td>{{ $bd->no_agenda_gudang }}</td>
+                                        <td>{{ $bd->no_agenda_pembelian }}</td>
+                                        <td>{{ $bd->nj }}</td>
+                                        <td>{{ $bd->no_rencana }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($bd->tanggal)->isoformat('dddd, D MMM Y') }}</td>
+                                        <td>{{ $bd->arsip }}</td>
+                                        <td>
+                                            <a href="{{ URL::route('bd.edit',$bd->id) }}" class="btn btn-sm btn-info">Edit</a>
+                                        </td>
+                                        <td>
+                                            @if (empty($bd->no_agenda_pembelian)||empty($bd->no_agenda_gudang))
+                                            <p class="text-right">isi nomor agenda<br>terlebih dahulu</p>
+                                            @else
+                                            <form action="{{ URL::route('test.store',$bd->id) }}" method="POST" class="btn btn-sm p-0 m-0">
+                                                @csrf
+                                                <input type="submit" name="action" class="btn btn-sm btn-primary" value="Y">
+                                            </form>
+                                            <form action="{{ URL::route('test.store',$bd->id) }}" method="POST" class="btn btn-sm p-0 m-0">
+                                                @csrf
+                                                <input type="submit" name="action" class="btn btn-sm btn-primary" value="T">
+                                            </form>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endif
+                            @empty
+                            <tr >
+                                <th colspan="8" class="text-center">
+                                    <h2>Daftar Barang Datang Kosong!!</h2>
+                                </th>
                             </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-4 mt-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                DataTable barang yang direfund untuk dicek kembali!!
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">No. Agenda Gudang</th>
+                                <th scope="col">No. Agenda Pembelian</th>
+                                <th scope="col">No. Surat Jalan</th>
+                                <th scope="col">No. Rencana Pembelian</th>
+                                <th scope="col">Tanggal Surat Jalan</th>
+                                <th scope="col">Arsip</th>
+                                <th scope="col">Aksi</th>
+                                <th scope="col">Cek detail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($barang_datang as $bd)
+                                @if (!empty($bd->mikeluar_id))
+                                    <tr @if (!isset($bd->no_agenda_gudang) || !isset($bd->no_agenda_pembelian)) class="no-agenda-kosong" @endif>
+                                        <th scope="row">{{ $loop->iteration }}</th>
+                                        <td>{{ $bd->no_agenda_gudang }}</td>
+                                        <td>{{ $bd->no_agenda_pembelian }}</td>
+                                        <td>{{ $bd->nj }}</td>
+                                        <td>{{ $bd->no_rencana }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($bd->tanggal)->isoformat('dddd, D MMM Y') }}</td>
+                                        <td>{{ $bd->arsip }}</td>
+                                        <td>
+                                            <a href="{{ URL::route('bd.edit',$bd->id) }}" class="btn btn-sm btn-info">Edit</a>
+                                        </td>
+                                        <td>
+                                            @if (empty($bd->no_agenda_pembelian)||empty($bd->no_agenda_gudang))
+                                            <p class="text-right">isi nomor agenda<br>terlebih dahulu</p>
+                                            @else
+                                            <form action="{{ URL::route('test.store',$bd->id) }}" method="POST" class="btn btn-sm p-0 m-0">
+                                                @csrf
+                                                <input type="submit" name="action" class="btn btn-sm btn-primary" value="Y">
+                                            </form>
+                                            <form action="{{ URL::route('test.store',$bd->id) }}" method="POST" class="btn btn-sm p-0 m-0">
+                                                @csrf
+                                                <input type="submit" name="action" class="btn btn-sm btn-primary" value="T">
+                                            </form>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endif
                             @empty
                             <tr >
                                 <th colspan="8" class="text-center">

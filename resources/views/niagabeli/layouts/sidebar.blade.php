@@ -29,11 +29,15 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
                     Surat Ijin Masuk
                 </a>
+                <a class="nav-link {{ (request()->is('user-pembelian/surat/mikeluar/*')) ? 'active' : null }}" href="{{ URL::route('mikeluar.index') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
+                    Mikeluar
+                </a>
             </div>
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Masuk sebagai :</div>
-            Admin
+            {{ auth()->guard('pembelian')->user()->name }}
         </div>
     </nav>
 </div>

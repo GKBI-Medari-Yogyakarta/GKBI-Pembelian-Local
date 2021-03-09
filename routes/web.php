@@ -59,6 +59,12 @@ Route::namespace('Niagabeli')->prefix('user-pembelian')->group(function () {
             Route::get('ijin-masuk/{id}', 'EditSuratIjinMasuk')->name('sim.edit');
             Route::put('ijin-masuk/{id}', 'UpdateSuratIjinMasuk')->name('sim.update');
         });
+        Route::namespace('Mikeluar')->group(function () {
+            Route::get('mikeluar', 'IndexMikeluar')->name('mikeluar.index');
+            Route::get('mikeluar/{id}', 'EditMikeluar')->name('mikeluar.edit');
+            Route::put('mikeluar/{id}', 'UpdateMikeluar')->name('mikeluar.update');
+            Route::put('mikeluar/{id}/store', 'StoreMikeluarToOther')->name('mikeluar.store');
+        });
     });
 });
 Route::namespace('Gudang')->prefix('user-gudang')->group(function () {
