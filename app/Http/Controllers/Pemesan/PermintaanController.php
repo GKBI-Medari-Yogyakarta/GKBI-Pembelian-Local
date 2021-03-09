@@ -20,7 +20,7 @@ class PermintaanController extends Controller
         if (Auth::guard('pemesan')->check()) {
             $unit = Bagian::all();
             $permintaan = DB::table('permintaans')
-                ->select('id', 'nm_barang', 'spesifikasi', 'unit_stok', 'gudang_stok', 'jumlah', 'tgl_diperlukan', 'keterangan', 'bagian_id', 'kd_barang')
+                ->select('id', 'nm_barang', 'spesifikasi', 'unit_stok', 'gudang_stok', 'jumlah', 'tgl_diperlukan', 'keterangan', 'bagian_id', 'kd_barang', 'status_direktur')
                 ->get();
             $u = \random_int(1, 10);
             $g = \random_int(1, 10);

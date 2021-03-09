@@ -40,7 +40,7 @@
                         </thead>
                         <tbody>
                             @forelse ($permintaan as $permintaans)
-                            <tr>
+                            <tr @if (empty($permintaans->status_direktur)) class="text-danger" @endif>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $permintaans->nm_barang }}</td>
                                 <td>{{ $permintaans->spesifikasi }}</td>
