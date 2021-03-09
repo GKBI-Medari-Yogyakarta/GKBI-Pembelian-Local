@@ -31,12 +31,11 @@ class SuratJalanController extends Controller
                 ->get();
             $surat_jalan = DB::table('s_p_barangs as spb')
                 ->join('surat_jalans as sj', 'spb.id', '=', 'sj.spb_id')
-                ->join('surat_ijin_masuks as sim', 'sj.id', '=', 'sim.s_jln_id')
                 ->join('transactions as t', 't.id', '=', 'spb.transaction_id')
                 ->join('transaction_details as td', 'spb.id', '=', 'td.spb_id')
                 ->join('permintaans as p', 'p.id', '=', 't.permintaan_id')
                 ->join('bagians as b', 'b.id', '=', 'p.bagian_id')
-                ->select('p.pemesan', 'sj.*', 'sim.no_ijin')
+                ->select('p.pemesan', 'sj.*')
                 ->where('t.status_beli', '=', '1')
                 ->get();
             return view('niagabeli.surat-jalan.index', \compact('barang_datang', 'surat_jalan'));
@@ -93,7 +92,6 @@ class SuratJalanController extends Controller
 
     public function update(SuratJalanRequest $req, $id)
     {
-        //        dd($id);
         if (Auth::guard('pembelian')->check()) {
             $user_pembelian_id = Auth::guard('pembelian')->user()->getAuthIdentifier();
             $sj = SuratJalan::findOrFail($id);
@@ -135,6 +133,8 @@ class SuratJalanController extends Controller
     {
         if (Auth::guard('pembelian')->check()) {
             $sj = SuratJalan::findOrFail($id);
+            $sim = SuratIjinMasuk::where('s_jln_id', $sj->id)->first();
+            if (!empty($sim->no_ijin)) return redirect()->back()->with(['danger' => 'Barang sudah memiliki nomor ijin, TIDAK BOLEH DIHAPUS!!']);
             $sj->delete();
             return redirect()->back()->with(['msg' => "Berhasil menghapus surat jalan, dengan nomor $sj->no_jalan"]);
         } else {

@@ -18,8 +18,8 @@ class StoreQtyController extends Controller
      */
     public function __invoke(Request $req, $id)
     {
+        $ti = TestingItem::find($id);
         if ($req->input('action') == 'Y') {
-            $ti = TestingItem::find($id);
             $qty = NpbQty::where('ti_id', $ti->id)->first();
             if (isset($qty->ti_id)) return \redirect()->back()->with(['msg' => 'status sudah di cek!!']);
             DB::beginTransaction();
@@ -36,6 +36,7 @@ class StoreQtyController extends Controller
                 return redirect()->back()->with(['warning' => 'something went wrong,']);
             }
         } elseif ($req->input('action') == 'T') {
+            
             return redirect()->back()->with(['msg' => 'belum dia apa-apain']);
         }
         return redirect()->back()->with(['msg' => 'tidak ada aksi!']);

@@ -2,11 +2,6 @@
 @section('title','Surat Jalan Page')
 @section('status-user','Niagabeli Page')
 @section('custom-style')
-<style>
-    .no-jalan-kosong{
-        color:red;
-    }
-</style>
 @section('main')
     <main>
         <div class="container-fluid">
@@ -17,6 +12,14 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                     {{ session('msg') }}
+                </div>
+            @endif
+            @if(session('danger'))
+                <div class="alert alert-success alert-dismissible" role="alert" style="z-index: 1">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{ session('danger') }}
                 </div>
             @endif
             @include('niagabeli.layouts.required')
@@ -92,7 +95,7 @@
                                     <tbody>
                                    @forelse ($surat_jalan as $sj)
                                        <tr @if (!isset($sj->tgl_) || !isset($sj->no_jalan))
-                                        class="no-jalan-kosong"
+                                        class="text-danger"
                                        @endif>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $sj->no_jalan }}</td>
@@ -103,9 +106,6 @@
                                             @endif
                                             <td>{{ $sj->arsip }} <strong>{{ $sj->pemesan }}</strong></td>
                                             <td>
-                                                {{-- @if (!isset($sj->no_ijin))
-                                                @endif --}}
-                                                @if (!isset($sj->no_ijin))
                                                 <a href="{{ URL::route('jalan.edit',$sj->id) }}" class="btn btn-outline-warning btn-sm">Edit</a>
                                                 <form action="{{ URL::route('jalan.destroy',$sj->id) }}" method="POST" class="btn btn-sm p-0">
                                                     @method('delete')
@@ -114,9 +114,6 @@
                                                         Hapus
                                                     </button>
                                                 </form>
-                                                @else
-                                                <button class="btn btn-sm btn-warning m-0 p-0">Ijin masuk di acc</button>
-                                                @endif
                                             </td>
                                         </tr>
                                    @empty
