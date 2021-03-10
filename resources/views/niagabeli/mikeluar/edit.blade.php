@@ -12,7 +12,7 @@
     <div class="container">
         <div class="justify-content-md-center p-2">
             <div class="card mt-4">
-                <form action="{{ URL::route('mikeluar.update',$mikeluar->id) }}" method="POST">
+                <form action="{{ URL::route('mikeluar.update',$mikeluar->id) }}" method="POST" class="mb-0">
                     @method('put')
                     {{ csrf_field() }}
                     <div class="modal-header bg-primary">
@@ -33,20 +33,8 @@
                                 @enderror
                             </div>
                         </div>
-                        {{-- @if ($mikeluar->status_deputi === null)
-                        <div class="form-group row">
-                            <label for="statusDeputi" class="col-sm-3 col-form-label">Status Deputi</label>
-                            <div class="col-sm-9">
-                                <select name="status_deputi" id="statusDeputi" class="form-control">
-                                    <option selected disabled>pilih</option>
-                                    <option value="1">Ya</option>
-                                    <option value="0">Tidak</option>
-                                </select>
-                            </div>
-                        </div>
-                        @endif --}}
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer pb-0">
                         <button type="submit" class="btn btn-primary">Simpan</button>
                         <a href="{{ URL::route('mikeluar.index') }}" class="btn btn-secondary">Batal</a>
                     </div>

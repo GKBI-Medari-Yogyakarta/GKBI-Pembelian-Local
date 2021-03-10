@@ -45,7 +45,7 @@ Route::namespace('Niagabeli')->prefix('user-pembelian')->group(function () {
         //detail in the below of this words
         Route::get('pembelian/{id}/proses', 'TransactionController@edit')->name('detail.edit');
         Route::put('pembelian/{transaction}', 'TransactionController@update')->name('transaction.update');
-        Route::delete('pembelian/{transaction}', 'TransactionDetailController@destroy')->name('transaction.destroy');
+        // Route::delete('pembelian/{transaction}', 'TransactionDetailController@destroy')->name('transaction.destroy');
         //detail update in the below of this words
         Route::put('pembelian/{id}/proses', 'TransactionDetail')->name('detail.update');
     });
@@ -64,6 +64,11 @@ Route::namespace('Niagabeli')->prefix('user-pembelian')->group(function () {
             Route::get('mikeluar/{id}', 'EditMikeluar')->name('mikeluar.edit');
             Route::put('mikeluar/{id}', 'UpdateMikeluar')->name('mikeluar.update');
             Route::put('mikeluar/{id}/store', 'StoreMikeluarToOther')->name('mikeluar.store');
+            Route::namespace('Ijin')->prefix('MI')->group(function () {
+                Route::get('ijin-keluar', 'IndexIjinController')->name('ijin-keluar.index');
+                Route::get('ijin-keluar/{id}', 'EditIjinController')->name('ijin-keluar.edit');
+                Route::put('ijin-keluar/{id}', 'UpdateIjinController')->name('ijin-keluar.update');
+            });
         });
     });
 });

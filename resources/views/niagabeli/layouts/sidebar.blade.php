@@ -33,7 +33,7 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
                     MI keluar
                 </a>
-                <a class="nav-link" href="#">
+                <a class="nav-link {{ (request()->is('user-pembelian/surat/MI/ijin-keluar/*')) ? 'active' : null }}" href="{{ URL::route('ijin-keluar.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
                     Surat Ijin Keluar
                 </a>
