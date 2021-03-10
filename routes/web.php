@@ -70,6 +70,10 @@ Route::namespace('Niagabeli')->prefix('user-pembelian')->group(function () {
                 Route::put('ijin-keluar/{id}', 'UpdateIjinController')->name('ijin-keluar.update');
             });
         });
+        Route::namespace('NPB')->prefix('pembuatan-npb-price')->group(function () {
+            Route::get('/', 'IndexNpbPrice')->name('price.index');
+            Route::put('/{id}', 'UpdateNpbPrice')->name('price.update');
+        });
     });
 });
 Route::namespace('Gudang')->prefix('user-gudang')->group(function () {

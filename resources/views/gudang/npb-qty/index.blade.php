@@ -58,7 +58,7 @@
                                 <td>{{ $qties->nag }}</td>
                                 <td>{{ $qties->nap }}</td>
                                 <td>{{ $qties->bagian }}/<span class="badge">{{ $qties->nm_pemesan }}</span></td>
-                                <td class="m-0 text-left">
+                                <td class="m-0 text-left @if(empty($qties->posting)) bg-warning @endif">
                                     @if ($qties->posting == 1)
                                     <button class="btn btn-sm btn-danger" id="detail" data-toggle="tooltip" data-placement="right" title="Barang sudah diposting">Edit</button>
                                     @else

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Gudang\NPB;
 use App\Http\Controllers\Controller;
 use App\Model\Bagian;
 use App\Model\Gudang\BarangDatang;
+use App\Model\Gudang\NpbPrice;
 use App\Model\Gudang\NpbQty;
 use App\Model\Niagabeli\Item;
 use App\Model\Niagabeli\SPBarang;
@@ -24,21 +25,15 @@ class PostQtyController extends Controller
         $td = TransactionDetail::find($spb->id);
         $b = Bagian::find($p->bagian_id);
         $item = Item::where('npb_id', $qty->id)->first();
-        // $kd = Item::where('kd_barang', $p->kd_barang)->first();
-        // $code = Item::
-        // if (isset($kd->kd_barang)) {
-        //     $it = new Item;
-        //     $jml = $kd->jml_barang + $td->_terbeli;
-        //     $it->jml_barang = "$jml";
-        //     dd($td, $it);
-        // }
-        // \dd('not ok');
         $jlm_barang = DB::select("SELECT * FROM `items` WHERE created_at in (SELECT MAX(created_at) as ca FROM items WHERE kd_barang LIKE '$p->kd_barang')");
         if (isset($item->npb_id)) return \redirect()->back()->with(['msg' => 'Barang sudah diposting!!']);
         DB::beginTransaction();
         try {
             $qty->posting = '1';
             $qty->save();
+            NpbPrice::create([
+                'qty_id' => $qty->id,
+            ]);
             $item = new Item;
             $item->npb_id = $qty->id;
             $item->bagian_id = $b->id;

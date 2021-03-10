@@ -37,6 +37,10 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
                     Surat Ijin Keluar
                 </a>
+                <a class="nav-link {{ (request()->is('user-pembelian/surat/pembuatan-npb-price/*')) ? 'active' : null }}" href="{{ URL::route('price.index') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
+                    NPB Price
+                </a>
             </div>
         </div>
         <div class="sb-sidenav-footer">
