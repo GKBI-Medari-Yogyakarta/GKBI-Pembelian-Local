@@ -48,7 +48,7 @@
                                     <td>{{ $miout->no_mikeluar }}</td>
                                     <td @if ($miout->status_deputi === '0') class="pl-5" @endif>
                                         @if ($miout->no_mikeluar === null)
-                                        <button class="btn btn-sm btn-outline-danger">isi no MI Ijin</button>
+                                        <button class="btn btn-sm btn-outline-warning">isi no MI Ijin</button>
                                         @else
                                             @if ($miout->status_deputi === null)
                                             <form action="{{ URL::route('mikeluar.store',$miout->id) }}" method="post" class="btn btn-sm p-0 m-0">

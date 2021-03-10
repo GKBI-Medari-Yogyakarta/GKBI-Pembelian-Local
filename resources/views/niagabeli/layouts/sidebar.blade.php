@@ -31,7 +31,11 @@
                 </a>
                 <a class="nav-link {{ (request()->is('user-pembelian/surat/mikeluar/*')) ? 'active' : null }}" href="{{ URL::route('mikeluar.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
-                    Mikeluar
+                    MI keluar
+                </a>
+                <a class="nav-link" href="#">
+                    <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
+                    Surat Ijin Keluar
                 </a>
             </div>
         </div>

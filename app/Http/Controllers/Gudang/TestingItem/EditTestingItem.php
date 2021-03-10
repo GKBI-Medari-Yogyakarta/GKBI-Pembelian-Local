@@ -13,7 +13,7 @@ class EditTestingItem extends Controller
     public function __invoke($id)
     {
         $ti = TestingItem::find($id);
-        $sj = SuratJalan::find($ti->barangDatang->id);
+        $sj = SuratJalan::find($ti->barangDatang->s_jln_id);
         $bdnull = BarangDatang::notification();
         return view('gudang.testing-item.edit', \compact('ti', 'sj', 'bdnull'));
     }

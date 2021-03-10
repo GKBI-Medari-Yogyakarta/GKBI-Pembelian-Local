@@ -19,7 +19,7 @@ class TransactionController extends Controller
         if (Auth::guard('pembelian')->check()) {
             $permintaan = DB::table('transactions as t')
                 ->join('permintaans as p', 'p.id', '=', 't.permintaan_id')
-                ->select('p.nm_barang', 'p.spesifikasi', 'p.unit_stok', 'p.gudang_stok', 'p.tgl_diperlukan', 'p.realisasi', 'p.keterangan', 't.*')
+                ->select('p.nm_barang', 'p.spesifikasi', 'p.unit_stok', 'p.gudang_stok', 'p.tgl_diperlukan', 'p.realisasi', 'p.keterangan', 'p.status_niaga_pembelian', 't.*')
                 ->paginate(10);
             return \view('niagabeli.pembelian.index', \compact('permintaan'));
         } else {
@@ -39,10 +39,10 @@ class TransactionController extends Controller
     {
         if (Auth::guard('pembelian')->check()) {
             $transaction = Transaction::find($id);
-            $transDetail = TransactionDetail::where('transaction_id',$id)->first();
-            $spb = SPBarang::where('transaction_id',$id)->first();
+            $transDetail = TransactionDetail::where('transaction_id', $id)->first();
+            $spb = SPBarang::where('transaction_id', $id)->first();
             $sup = Supplier::all();
-            return \view('niagabeli.pembelian.edit', \compact('transaction','transDetail', 'sup', 'spb'));
+            return \view('niagabeli.pembelian.edit', \compact('transaction', 'transDetail', 'sup', 'spb'));
         } else {
             return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
         }
@@ -93,7 +93,7 @@ class TransactionController extends Controller
                     $transaction->permintaan->save();
                     DB::commit();
                     return \redirect()->route('transaction.index')->with(['msg' => 'Data pembelian dari ' . $transaction->permintaan->pemesan . ' sudah di acc. jangan lupa diproses ketika sudah melakukan pembelian!!']);
-                }catch (\Exception $e){
+                } catch (\Exception $e) {
                     DB::rollback();
                     return redirect()->back()->with('warning', 'Something Went Wrong!, tidak berhasil merubah data!!');
                 }
@@ -122,7 +122,7 @@ class TransactionController extends Controller
                     ]);
                     DB::commit();
                     return \redirect()->route('transaction.index')->with(['msg' => 'Data pembelian ' . $transaction->permintaan->pemesan . ' tidak di acc']);
-                }catch (\Exception $e){
+                } catch (\Exception $e) {
                     DB::rollback();
                     return redirect()->back()->with('warning', 'Something Went Wrong!, tidak berhasil merubah data!!');
                 }
