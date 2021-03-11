@@ -26,7 +26,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table table-sm">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -42,19 +42,19 @@
                         <tbody>
                             @forelse ($items as $item)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->nm_barang }}</td>
-                                <td>{{ $item->spek_barang }}</td>
-                                <td>{{ $item->ket_barang }}</td>
-                                <td>{{ $item->kd_barang }}</td>
-                                <td>{{ $item->jml_barang }}</td>
-                                <td>{{ $item->barang_masuk }}</td>
-                                <td>
+                                <td class="align-middle">{{ $loop->iteration }}</td>
+                                <td class="align-middle">{{ $item->nm_barang }}</td>
+                                <td class="align-middle">{{ $item->spek_barang }}</td>
+                                <td class="align-middle">{{ $item->ket_barang }}</td>
+                                <td class="align-middle">{{ $item->kd_barang }}</td>
+                                <td class="align-middle">{{ $item->jml_barang }}</td>
+                                <td class="align-middle">{{ $item->barang_masuk }}</td>
+                                <td class="align-middle">
                                     {{-- <a href="#" class="btn btn-sm btn-outline-info m-0 pl-1 pr-1" data-toggle="tooltip" data-placement="right" title="update stok">
                                         <i class="fas fa-edit"></i>
                                     </a> --}}
-                                    <a href="#" class="btn btn-sm btn-success">unit</a>
-                                    <form action="{{ URL::route('item.update',$item->id) }}" method="post" class="btn btn-sm">
+                                    <a href="{{ URL::route('item.edit',$item->id) }}" class="btn btn-sm btn-success">unit</a>
+                                    <form action="{{ URL::route('item.update',$item->id) }}" method="post" class="btn btn-sm p-0 m-0">
                                         @csrf
                                         @method('put')
                                         <button class="btn btn-sm btn-success" type="submit">gudang</button>

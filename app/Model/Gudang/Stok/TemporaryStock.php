@@ -11,6 +11,6 @@ class TemporaryStock extends Model
     public $timestamp = \true;
     public function item()
     {
-        return $this->belongsTo(GudangStok::class, 'id');
+        return $this->belongsTo(GudangStok::class, 'gs_id');
     }
 }

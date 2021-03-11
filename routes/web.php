@@ -102,6 +102,8 @@ Route::namespace('Gudang')->prefix('user-gudang')->group(function () {
     Route::namespace('Item')->prefix('daftar-barang')->group(function () {
         Route::get('/', 'IndexItem')->name('item.index');
         Route::put('/{id}', 'UpdateStockItem')->name('item.update');
+        Route::get('/{id}/edit', 'EditItemToStore')->name('item.edit');
+        Route::put('/{id}/store', 'StoreItemAgain')->name('item.store');
     });
 });
 Route::namespace('Akuntansi')->prefix('user-akuntansi')->group(function () {

@@ -18,7 +18,7 @@ class UpdateStockItem extends Controller
         if (isset($gs->kd_barang)) {
             DB::beginTransaction();
             try {
-                $d = TemporaryStock::create([
+                TemporaryStock::create([
                     'gs_id' => $gs->id,
                     'item_id' => $gs->item_id,
                     'kd_barang' => $gs->kd_barang,
