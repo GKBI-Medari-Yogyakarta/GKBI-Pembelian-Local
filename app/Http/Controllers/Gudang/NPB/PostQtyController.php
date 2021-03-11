@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Gudang\NPB;
 use App\Http\Controllers\Controller;
 use App\Model\Bagian;
 use App\Model\Gudang\BarangDatang;
+use App\Model\Gudang\GudangStok;
 use App\Model\Gudang\NpbPrice;
 use App\Model\Gudang\NpbQty;
 use App\Model\Niagabeli\Item;
@@ -35,6 +36,12 @@ class PostQtyController extends Controller
                 'qty_id' => $qty->id,
             ]);
             $item = new Item;
+            // GudangStok::create([
+            //     'item_id'=>$item->id,
+            //     'jumlah_stok'=>$item->jml_barang,
+            //     'bagian_id'=>$bd->id,
+            //     'stok_masuk'=>
+            // ]);
             $item->npb_id = $qty->id;
             $item->bagian_id = $b->id;
             $item->nm_barang = $p->nm_barang;

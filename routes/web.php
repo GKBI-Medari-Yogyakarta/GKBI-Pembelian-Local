@@ -99,6 +99,10 @@ Route::namespace('Gudang')->prefix('user-gudang')->group(function () {
         Route::put('qty/{id}', 'UpdateQtyController')->name('qty.update');
         Route::put('qty/{id}/posting', 'PostQtyController')->name('qty.post');
     });
+    Route::namespace('Item')->prefix('daftar-barang')->group(function () {
+        Route::get('/', 'IndexItem')->name('item.index');
+        Route::put('/{id}', 'UpdateStockItem')->name('item.update');
+    });
 });
 Route::namespace('Akuntansi')->prefix('user-akuntansi')->group(function () {
     Route::resource('rekening', 'RekController');
