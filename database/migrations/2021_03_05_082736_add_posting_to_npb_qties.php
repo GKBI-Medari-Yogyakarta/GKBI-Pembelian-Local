@@ -18,7 +18,9 @@ class AddPostingToNpbQties extends Migration
         });
         Schema::table('payments', function (Blueprint $table) {
             $table->dropForeign('payments_transaction_id_foreign');
-            $table->unsignedBigInteger('price_id')->nullable();
+            $table->dropColumn('transaction_id');
+            $table->string('terpakai')->after('total')->nullable();
+            $table->unsignedBigInteger('us_id')->after('payment_date')->nullable();
         });
     }
 

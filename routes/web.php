@@ -108,4 +108,7 @@ Route::namespace('Gudang')->prefix('user-gudang')->group(function () {
 });
 Route::namespace('Akuntansi')->prefix('user-akuntansi')->group(function () {
     Route::resource('rekening', 'RekController');
+    Route::namespace('Payment')->prefix('input-pembayaran')->group(function () {
+        Route::get('/', 'IndexPayment')->name('payment.index');
+    });
 });
