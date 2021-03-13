@@ -19,12 +19,14 @@ class StoreDetailPayment extends Controller
                 'payment_status' => 'required',
                 'dibayarkan' => 'required',
                 'payment_code' => 'required',
+                'payment_date' => 'required',
             ],
             [
                 'keterangan.required' => 'keterangan pembayaran ke berapa!!',
                 'payment_status.required' => 'isi status lunas atau belum!!',
                 'dibayarkan.required' => 'isi nominal yang dibayarkan!!',
                 'payment_code.required' => 'isi kode pembayaran',
+                'payment_date.required' => 'isi tanggal pembayaran',
             ],
         );
         $us = UnitStok::find($id);

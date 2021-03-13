@@ -56,12 +56,20 @@
                             <tr>
                                 <th scope="row" class="h-nomor pl-0">Nomor</th>
                                 <td class="h-t w-titik"><strong>:</strong></td>
-                                <td colspan="3" class="h-t pl-0">Mark</td>
+                                @if (!empty($t->tgl_status))
+                                <td colspan="3" class="h-t pl-0">{{ $t->no_niaga }}</td>
+                                @else
+                                <td colspan="3" class="h-t pl-0"></td>
+                                @endif
                             </tr>
                             <tr>
                                 <th scope="row" class="h-nomor pl-0">Tanggal</th>
                                 <td class="h-t w-titik"><strong>:</strong></td>
-                                <td colspan="3" class="h-t pl-0">Jacob</td>
+                                @if (!empty($t->tgl_status))
+                                <td colspan="3" class="h-t pl-0">{{ \Carbon\Carbon::parse($t->tgl_status)->isoformat('dddd, D MMM Y') }}</td>
+                                @else
+                                <td colspan="3" class="h-t pl-0"></td>
+                                @endif
                             </tr>
                         </tbody>
                     </table>

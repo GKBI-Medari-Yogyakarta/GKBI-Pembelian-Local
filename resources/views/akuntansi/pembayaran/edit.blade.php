@@ -136,6 +136,20 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="tanggal" class="col-sm-3 col-form-label">Tanggal Pembayaran</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-control @error('payment_date') is-invalid @enderror" id="tanggal" name="payment_date" value="{{ old('payment_date')}}">
+                                @error('payment_date')
+                                    <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="ket" class="col-sm-3 col-form-label">Keterangan</label>
                             <div class="col-sm-9">
                                 <input type="text" name="keterangan" class="form-control @error('keterangan') is-invalid @enderror" id="ket" value="{{ old('keterangan') }}" placeholder="pembayaran ke ">

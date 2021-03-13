@@ -31,6 +31,14 @@
                                 <button type="submit" class="btn btn-primary">Login</button>
                             </div>
                         </form>
+                        @if(session('warning'))
+                        <div class="alert alert-danger alert-dismissible mt-2 mb-0" role="alert" style="z-index: 1">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{ session('warning') }}
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>

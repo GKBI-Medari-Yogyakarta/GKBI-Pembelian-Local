@@ -61,7 +61,7 @@ class LoginController extends Controller
         } elseif (Auth::guard('akuntansi')->attempt($credentials)) {
             return \redirect()->route('rekening.index');
         } else {
-            \dd('akun tidak ada');
+            return \redirect()->back()->with(['warning' => 'akun tidak ditemukan. silahkan request akun ke IT Support!!']);
         }
     }
 }
