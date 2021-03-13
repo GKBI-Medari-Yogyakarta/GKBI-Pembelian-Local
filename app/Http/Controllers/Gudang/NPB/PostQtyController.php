@@ -50,6 +50,11 @@ class PostQtyController extends Controller
             $item->ppn_barang = $td->ppn;
             $item->hrg_barang = $td->_terbayar;
             $item->barang_masuk = $td->_terbeli;
+            $item->tgl_beli = $td->tgl_beli;
+            $item->tempo_pembayaran = $spb->tempo_pembayaran;
+            $item->pemesan = $p->pemesan;
+            $item->nota_spb = $spb->nota_spb;
+            $item->harga_item = $td->harga_item;
             if (!empty($jlm_barang)) {
                 $jml = $jlm_barang[0]->jml_barang + $td->_terbeli;
                 $item->jml_barang = "$jml";

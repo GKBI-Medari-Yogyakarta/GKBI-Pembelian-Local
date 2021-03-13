@@ -16,7 +16,6 @@ class StoreItemAgain extends Controller
     {
         $item = Item::find($id);
         $gs = GudangStok::where('kd_barang', $item->kd_barang)->first();
-        // $us = UnitStok::where('kd_barang', $item->kd_barang)->first();
         $this->validate(
             $req,
             [

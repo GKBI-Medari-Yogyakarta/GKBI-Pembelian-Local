@@ -2,6 +2,7 @@
 
 namespace App\Model\Gudang;
 
+use App\Model\Niagabeli\Item;
 use Illuminate\Database\Eloquent\Model;
 
 class UnitStok extends Model

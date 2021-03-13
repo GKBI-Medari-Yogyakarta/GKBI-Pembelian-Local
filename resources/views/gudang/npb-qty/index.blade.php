@@ -71,7 +71,7 @@
                                         <button class="btn btn-sm btn-primary" type="submit">Post</button>
                                     </form>
                                     @else
-                                    <button class="btn btn-sm btn-warning" id="detail" data-toggle="tooltip" data-placement="right" title="Detail">Post</button>
+                                    <button class="btn btn-sm btn-danger" id="detail" data-toggle="tooltip" data-placement="right" title="Detail">Post</button>
                                     @endif
                                 </td>
                             </tr>

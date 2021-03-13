@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
-    protected $fillable = ['barang_id', 'nm_barang', 'spek_barang', 'ket_barang', 'kd_barang', 'ppn_barang', 'hrg_barang', 'jml_barang', 'barang_masuk', 'barang_keluar', 'npb_id'];
+    protected $fillable = ['barang_id', 'nm_barang', 'spek_barang', 'ket_barang', 'kd_barang', 'ppn_barang', 'hrg_barang', 'jml_barang', 'barang_masuk', 'barang_keluar', 'npb_id', 'tgl_beli', 'tempo_pembayaran', 'pemesan', 'nota_spb', 'harga_item'];
     public $timestamps = true;
     public function qty()
     {

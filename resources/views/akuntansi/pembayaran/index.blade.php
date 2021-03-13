@@ -53,15 +53,19 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->pemesan }}</td>
                                 <td>{{ $item->nm_barang }}</td>
-                                <td>{{ $item->spesifikasi }}</td>
+                                <td>{{ $item->spek_barang }}</td>
                                 <td>{{ $item->kd_barang }}</td>
                                 <td>{{ $item->harga_item }}</td>
                                 <td>{{ \Carbon\Carbon::parse($item->tgl_beli)->isoformat('dddd, D MMM Y')}}</td>
-                                <td>{{ $item->_terbayar }}</td>
-                                <td>{{ $item->ppn }}</td>
-                                <td>{{ $item->tempo_pembayaran }}</td>
+                                <td>{{ $item->hrg_barang }}</td>
+                                <td>{{ $item->ppn_barang }}</td>
+                                @if (!empty($item->tempo_pembayaran))
+                                <td>{{ \Carbon\Carbon::parse($item->tempo_pembayaran)->isoformat('dddd, D MMM Y')}}</td>
+                                @else
+                                <td></td>
+                                @endif
                                 <td>
-                                    <button class="btn btn-sm btn-primary">Input</button>
+                                    <a href="{{ URL::route('payment.input',$item->id) }}" class="btn btn-sm btn-primary">Input</a>
                                 </td>
                             </tr>
                             @empty

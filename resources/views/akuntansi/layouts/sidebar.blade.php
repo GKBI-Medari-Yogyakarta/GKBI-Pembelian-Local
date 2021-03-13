@@ -9,9 +9,13 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-file-invoice-dollar"></i></div>
                     Data Rekening
                 </a>
-                <a class="nav-link {{ Request::url() == url('user-pembelian/input-pembayaran/*') ? 'active' : '' }}" href="{{ URL::route('payment.index') }}">
+                <a class="nav-link {{ (request()->is('user-akuntansi/input-pembayaran/*')) ? 'active' : null}}" href="{{ URL::route('payment.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
                     Input Pembayaran
+                </a>
+                <a class="nav-link" href="#">
+                    <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
+                    Sudah Dibayar
                 </a>
                 <a class="nav-link {{ Request::url() == url('user-pemesan/permintaan-pembelian') ? 'active' : '' }}" href="{{ URL::route('permintaan-pembelian.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-dolly-flatbed"></i></div>

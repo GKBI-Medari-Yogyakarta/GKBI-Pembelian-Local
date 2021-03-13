@@ -16,7 +16,6 @@ class CreateTemporaryStocksTable extends Migration
         Schema::create('temporary_stocks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('gs_id')->nullable();
-            $table->foreign('item_id')->references('id')->on('gudang_stoks');
             $table->unsignedBigInteger('item_id')->nullable();
             $table->string('kd_barang');
             $table->string('jumlah_stok');

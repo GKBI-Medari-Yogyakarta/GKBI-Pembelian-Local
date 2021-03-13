@@ -110,5 +110,8 @@ Route::namespace('Akuntansi')->prefix('user-akuntansi')->group(function () {
     Route::resource('rekening', 'RekController');
     Route::namespace('Payment')->prefix('input-pembayaran')->group(function () {
         Route::get('/', 'IndexPayment')->name('payment.index');
+        Route::get('/{id}', 'InputPayment')->name('payment.input');
+        Route::post('/{id}/store', 'StorePayment')->name('payment.store');
+        Route::put('/{id}/detail', 'StoreDetailPayment')->name('payment.detail');
     });
 });
