@@ -45,7 +45,7 @@
                                 <select name="rek_id" id="rekening" class="form-control @error('rek_id') is-invalid @enderror">
                                     <option disabled selected>pilih rekening</option>
                                     @foreach ($rek as $rekening)
-                                    <option value="{{ $rekening->id }}">{{ $rekening->bank }}</option>
+                                    <option value="{{ $rekening->id }}">{{ $rekening->bank }} : {{ $rekening->no_rekening }}</option>
                                     @endforeach
                                 </select>
                                 @error('rek_id')
@@ -91,7 +91,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="rekening">Rekening</label>
-                                <input readonly type="text" class="form-control" id="rekening" value="{{ $payment->rekening->bank }}">
+                                <input readonly type="text" class="form-control" id="rekening" value="{{ $payment->rekening->bank }} : {{ $payment->rekening->no_rekening }}">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="saldo">Saldo rekening</label>

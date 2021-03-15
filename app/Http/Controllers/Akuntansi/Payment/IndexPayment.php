@@ -13,6 +13,12 @@ class IndexPayment extends Controller
             ->join('items as it', 'it.id', '=', 'us.item_id')
             ->select('it.pemesan', 'it.nm_barang', 'it.spek_barang', 'it.kd_barang', 'it.tempo_pembayaran', 'it.harga_item', 'it.tgl_beli', 'it.ppn_barang', 'it.hrg_barang', 'us.*')
             ->get();
-        return \view('akuntansi.pembayaran.index', \compact('payment_iscoming'));
+        $payment = DB::table('payments')
+            ->join('unit_stoks as us', 'us.id', '=', 'payments.us_id')
+            ->join('items as it', 'it.id', '=', 'us.item_id')
+            ->select('it.pemesan', 'it.nm_barang', 'it.spek_barang', 'it.kd_barang', 'it.tempo_pembayaran', 'it.harga_item', 'it.tgl_beli', 'it.ppn_barang', 'it.hrg_barang', 'us.*', 'payments.payment_status')
+            ->get();
+        // \dd($payment);
+        return \view('akuntansi.pembayaran.index', \compact('payment_iscoming', 'payment'));
     }
 }

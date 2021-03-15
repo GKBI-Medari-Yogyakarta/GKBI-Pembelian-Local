@@ -21,6 +21,7 @@ class InputPayment extends Controller
             $compare = null;
             return \view('akuntansi.pembayaran.edit', \compact('us', 'rek', 'compare'));
         }
+        if ($payment->payment_status == '1') return \redirect()->back()->with(['warning' => 'pembayaran sudah lunas, silahkan lakukan pembayaran untuk barang lainnya!!']);
         $compare = $us->id . $payment->us_id;
         return \view('akuntansi.pembayaran.edit', \compact('us', 'rek', 'compare', 'payment'));
     }

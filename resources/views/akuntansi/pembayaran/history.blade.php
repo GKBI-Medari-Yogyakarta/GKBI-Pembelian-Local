@@ -1,39 +1,10 @@
 @extends('akuntansi.layouts.main')
-@section('title','Input Pembayaran')
+@section('title','Riwayat Pembayaran')
 @section('status-user','Akuntansi Page')
 @section('main')
 <main>
     <div class="container-fluid">
-        <h1 class="mt-4">Input pembayaran</h1>
-        @if(session('msg'))
-            <div class="alert alert-success alert-dismissible" role="alert" style="z-index: 1">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                {{ session('msg') }}
-            </div>
-        @endif
-        @if(session('warning'))
-              <div class="modal fade" id="myLargeModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header bg-warning">
-                            <h5 class="modal-title" id="myLargeModalLabel">Pembayaran</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            {{ session('warning') }}
-                        </div>
-                        <div class="modal-footer bg-warning">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Understood</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endif
+        <h1 class="mt-4">Riwayat pembayaran</h1>
         <div class="card mb-4 mt-4">
             <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
@@ -69,7 +40,7 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            @forelse ($payment_iscoming as $item)
+                            {{-- @forelse ($payment_iscoming as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->pemesan }}</td>
@@ -89,11 +60,11 @@
                                     <a href="{{ URL::route('payment.input',$item->id) }}" class="btn btn-sm btn-primary">Input</a>
                                 </td>
                             </tr>
-                            @empty
+                            @empty --}}
                             <tr>
                                 <td colspan="9" class="text-center h1">Kosong</td>
                             </tr>
-                            @endforelse
+                            {{-- @endforelse --}}
                         </tbody>
                     </table>
                 </div>
@@ -104,10 +75,6 @@
 @endsection
 @push('tooltip')
     <script>
-        // $('#myLargeModalLabel').modal('show')
-//         $('#myLargeModalLabel').on('shown.bs.modal', function () {
-//   $('#myInput').trigger('focus')
-// })
-$('#myLargeModal').modal({show: true});
+        $('#myLargeModal').modal({show: true});
     </script>
 @endpush
