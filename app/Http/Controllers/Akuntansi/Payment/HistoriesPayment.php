@@ -10,6 +10,9 @@ class HistoriesPayment extends Controller
     public function __invoke()
     {
         $payment = Payment::all();
+        // $payment->whereMonth('created_at', '=', \date('m'));
+        // $payment = Payment::all();
+        // \dd($payment);
         return \view('akuntansi.pembayaran.history', \compact('payment'));
     }
 }

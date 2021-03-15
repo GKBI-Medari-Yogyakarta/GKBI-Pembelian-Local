@@ -19,12 +19,12 @@ Route::namespace('Admin')->group(function () {
     Route::resource('admin-unit', 'UnitController');
     Route::resource('admin-bagian', 'BagianController');
 });
-Route::namespace('User')->group(function () {
-    Route::get('user-pemesan', 'AdminPemesanController@index')->name('user-pemesan.index');
-    Route::get('user-gudang', 'AdminGudangController@index')->name('user-gudang.index');
-    Route::get('user-pembelian', 'AdminPembelianController@index')->name('user-pembelian.index');
-    Route::get('user-akuntansi', 'AdminAkuntansiController@index')->name('user-akuntansi.index');
-});
+// Route::namespace('User')->group(function () {
+//     Route::get('user-pemesan', 'AdminPemesanController@index')->name('user-pemesan.index');
+//     Route::get('user-gudang', 'AdminGudangController@index')->name('user-gudang.index');
+//     Route::get('user-pembelian', 'AdminPembelianController@index')->name('user-pembelian.index');
+//     // Route::get('user-akuntansi', 'AdminAkuntansiController@index')->name('user-akuntansi.index');
+// });
 Route::namespace('Pemesan')->group(function () {
     Route::prefix('user-pemesan')->group(function () {
         Route::resource('permintaan-pembelian', 'PermintaanController');
@@ -116,5 +116,8 @@ Route::namespace('Akuntansi')->prefix('user-akuntansi')->group(function () {
             Route::put('/{id}/detail', 'StoreDetailPayment')->name('payment.detail');
         });
         Route::get('riwayat-pembayaran', 'HistoriesPayment')->name('history.index');
+        Route::prefix('riwayat-pembayaran')->group(function () {
+            Route::get('search', 'SearchPayment')->name('search');
+        });
     });
 });

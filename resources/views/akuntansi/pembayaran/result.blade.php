@@ -21,7 +21,7 @@
                         DataTable
                     </div>
                     <div class="col text-right">
-                        <form action="{{ URL::route('search') }}" method="GET">
+                        <form action="{{ URL::route('search') }}" method="get">
                             @csrf
                             <input type="month" name="cari" id="cari">
                             <input type="text" name="kd" id="cari">
@@ -64,6 +64,7 @@
                             @foreach ($payment as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
+                                <td>{{ $item->saldo_awal }}</td>
                                 <td>{{ $item->saldo_awal }}</td>
                             </tr>
                             @endforeach

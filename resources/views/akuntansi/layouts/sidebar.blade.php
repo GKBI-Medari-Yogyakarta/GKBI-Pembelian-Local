@@ -12,7 +12,7 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
                     Input Pembayaran
                 </a>
-                <a class="nav-link {{ (request()->is('user-akuntansi/input-pembayaran/riwayat-pembayaran')) ? 'active' : null}}" href="{{ URL::route('history.index') }}">
+                <a class="nav-link {{ (request()->is('user-akuntansi/input-pembayaran/riwayat-pembayaran/')) ? 'active' : null}} {{ (request()->is('user-akuntansi/input-pembayaran/riwayat-pembayaran/search?*')) ? 'active' : null}}" href="{{ URL::route('history.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
                     Riwayat Pembayaran
                 </a>
