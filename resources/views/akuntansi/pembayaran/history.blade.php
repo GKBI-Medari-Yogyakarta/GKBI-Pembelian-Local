@@ -16,23 +16,13 @@
         <div class="card mb-4 mt-4">
             <div class="card-header">
                 <div class="row">
-                    <div class="col">
-                        <i class="fas fa-table mr-1"></i>
-                        DataTable
-                    </div>
-                    <div class="col text-right">
-                        <form action="{{ URL::route('search') }}" method="GET">
-                            @csrf
-                            <input type="month" name="cari" id="cari">
-                            <input type="text" name="kd" id="cari">
-                            <button type="submit">cari</button>
-                        </form>
-                    </div>
+                    <i class="fas fa-table mr-1"></i>
+                    DataTable
                 </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-sm table-bordered">
+                    <table class="table table-sm table-bordered" id="dataTable_ok">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -60,15 +50,7 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            {{-- @if (url()->has()->route('search')) --}}
-                            @foreach ($payment as $item)
-                            <tr>
-                                <td>{{ $item->id }}</td>
-                                <td>{{ $item->saldo_awal }}</td>
-                            </tr>
-                            @endforeach
-                            {{-- @endif --}}
-                            {{-- @forelse ($payment_iscoming as $item)
+                            @forelse ($payment as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->pemesan }}</td>
@@ -88,11 +70,11 @@
                                     <a href="{{ URL::route('payment.input',$item->id) }}" class="btn btn-sm btn-primary">Input</a>
                                 </td>
                             </tr>
-                            @empty --}}
+                            @empty
                             <tr>
                                 <td colspan="9" class="text-center h1">Kosong</td>
                             </tr>
-                            {{-- @endforelse --}}
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
@@ -105,4 +87,12 @@
     <script>
         $('#myLargeModal').modal({show: true});
     </script>
+@endpush
+@push('tooltip')
+<script>
+    $(function(){
+        $('#dataTable_ok').DataTable({
+        });
+      });
+  </script>
 @endpush

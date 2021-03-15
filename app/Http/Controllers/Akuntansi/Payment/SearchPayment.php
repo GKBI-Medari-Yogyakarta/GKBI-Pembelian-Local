@@ -8,12 +8,13 @@ use App\Model\Niagabeli\Item;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Contracts\DataTable;
 
 class SearchPayment extends Controller
 {
     public function __invoke(Request $req)
     {
-        if ($req->cari) {
+        /*if ($req->cari) {
             if ($req->has('cari')) {
                 $m = Carbon::parse($req->cari)->format('m');
                 $y = Carbon::parse($req->cari)->format('Y');
@@ -23,7 +24,7 @@ class SearchPayment extends Controller
 
                 return \view('akuntansi.pembayaran.result', \compact('payment'))->with(['msg' => 'riwayat pembayaran selama bulan ' . Carbon::parse($req->cari)->isoformat('MMM')]);
             }
-        } elseif ($req->kd) {
+            } elseif ($req->kd) {
             if ($req->has('kd')) {
                 $payment = DB::table('payments')
                     ->join('unit_stoks as us', 'us.id', '=', 'payments.id')
@@ -34,6 +35,7 @@ class SearchPayment extends Controller
                 // $payment = Item::where('kd_barang', 'like', '%t%')->get();
                 \dd($payment);
             }
-        }
+        }*/
+        return DataTable::of(Payment::all())->make(\true);
     }
 }
