@@ -117,8 +117,7 @@ Route::namespace('Akuntansi')->prefix('user-akuntansi')->group(function () {
         });
         Route::get('riwayat-pembayaran', 'HistoriesPayment')->name('history.index');
         Route::prefix('riwayat-pembayaran')->group(function () {
-            // Route::get('search', 'SearchPayment')->name('search');
-            Route::get('search', 'SearchPayment')->name('search');
+            Route::get('/search', 'SearchPayment')->name('search');
         });
     });
 });

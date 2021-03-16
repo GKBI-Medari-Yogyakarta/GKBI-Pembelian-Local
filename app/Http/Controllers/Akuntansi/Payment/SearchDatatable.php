@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Contracts\DataTable;
 
-class SearchPayment extends Controller
+class SearchDatatable extends Controller
 {
     public function __invoke(Request $req)
     {
@@ -18,8 +18,7 @@ class SearchPayment extends Controller
             $payment = Payment::whereMonth('created_at', '=', $m)
                 ->whereYear('created_at', '=', $y)
                 ->get();
-            // \dd($payment);
-            return \view('akuntansi.pembayaran.result', \compact('payment'))->with(['msg' => 'riwayat pembayaran selama bulan ' . Carbon::parse($req->cari)->isoformat('MMM')]);
+            return DataTable::of($payment)->make(\true);
         }
     }
 }

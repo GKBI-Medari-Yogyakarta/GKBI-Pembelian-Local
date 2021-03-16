@@ -21,79 +21,67 @@
                         DataTable
                     </div>
                     <div class="col text-right">
-                        <form action="{{ URL::route('search') }}" method="get">
+                        <form action="{{ URL::route('search') }}" method="GET">
                             @csrf
                             <input type="month" name="cari" id="cari">
-                            <input type="text" name="kd" id="cari">
-                            <button type="submit">cari</button>
+                            <button type="submit" class="btn btn-info btn-sm">cari</button>
+                            <a href="{{ URL::route('history.index') }}" class="btn btn-info btn-sm">clear</a>
                         </form>
                     </div>
                 </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-sm table-bordered">
+                    <table class="table table-sm table-bordered" id="dataTable_ok">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th colspan="2" scope="col" class="text-center">Nama</th>
-                                <th scope="col">Spesifikasi</th>
+                                <th scope="col" class="align-center">#</th>
                                 <th scope="col">Kode</th>
-                                <th scope="col">Harga</th>
+                                <th scope="col">Tipe</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Tanggal</th>
-                                <th scope="col" class="text-center">Total</th>
-                                <th scope="col">PPN</th>
-                                <th scope="col">Tempo</th>
-                                <th scope="col">Aksi</th>
+                                <th scope="col">Keterangan</th>
+                                <th scope="col">Saldo</th>
+                                <th scope="col">total</th>
+                                <th scope="col">Saldo</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">pemesan</th>
-                                <th colspan="3" scope="col" class="text-center">barang</th>
-                                <th scope="col">per item</th>
-                                <th scope="col">pembelian</th>
-                                <th scope="col">harga</th>
-                                <th scope="col">barang</th>
-                                <th colspan="2" scope="col">pembayaran</th>
+                                <th></th>
+                                <th colspan="4" scope="col" class="text-center">Pembayaran</th>
+                                <th></th>
+                                <th>Awal</th>
+                                <th>Dibayarkan</th>
+                                <th>Akhir</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            {{-- @if (url()->has()->route('search')) --}}
-                            @foreach ($payment as $item)
-                            <tr>
-                                <td>{{ $item->id }}</td>
-                                <td>{{ $item->saldo_awal }}</td>
-                                <td>{{ $item->saldo_awal }}</td>
-                            </tr>
-                            @endforeach
-                            {{-- @endif --}}
-                            {{-- @forelse ($payment_iscoming as $item)
+                            @forelse ($payment as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->pemesan }}</td>
-                                <td>{{ $item->nm_barang }}</td>
-                                <td>{{ $item->spek_barang }}</td>
-                                <td>{{ $item->kd_barang }}</td>
-                                <td>{{ $item->harga_item }}</td>
-                                <td>{{ \Carbon\Carbon::parse($item->tgl_beli)->isoformat('dddd, D MMM Y')}}</td>
-                                <td>{{ $item->hrg_barang }}</td>
-                                <td>{{ $item->ppn_barang }}</td>
-                                @if (!empty($item->tempo_pembayaran))
-                                <td>{{ \Carbon\Carbon::parse($item->tempo_pembayaran)->isoformat('dddd, D MMM Y')}}</td>
+                                <td>{{ $item->payment_code }}</td>
+                                <td>{{ $item->payment_type }}</td>
+                                @if ($item->payment_status == '1')
+                                <td>Lunas</td>
+                                @else
+                                <td class="text-danger">Belum lunas</td>
+                                @endif
+                                @if (!empty($item->payment_date))
+                                <td>{{ \Carbon\Carbon::parse($item->payment_date)->isoformat('dddd, D MMM Y')}}</td>
                                 @else
                                 <td></td>
                                 @endif
-                                <td>
-                                    <a href="{{ URL::route('payment.input',$item->id) }}" class="btn btn-sm btn-primary">Input</a>
-                                </td>
+                                <td>{{ $item->keterangan }}</td>
+                                <td>Rp. <span class="money">{{ $item->saldo_awal }}</span></td>
+                                <td>Rp. <span class="money">{{ $item->dibayarkan }}</span></td>
+                                <td>Rp. <span class="money">{{ $item->saldo_akhir }}</span></td>
                             </tr>
-                            @empty --}}
+                            @empty
                             <tr>
-                                <td colspan="9" class="text-center h1">Kosong</td>
+                                <td colspan="8" class="text-center h1">Kosong</td>
                             </tr>
-                            {{-- @endforelse --}}
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
@@ -106,4 +94,21 @@
     <script>
         $('#myLargeModal').modal({show: true});
     </script>
+@endpush
+@push('tooltip')
+<script>
+    $(function(){
+        $('#dataTable_ok').DataTable({
+        });
+      });
+</script>
+<script>
+    let x = document.querySelectorAll(".money");
+    for (let i = 0, len = x.length; i < len; i++) {
+        let num = Number(x[i].innerHTML)
+                  .toLocaleString('ID');
+        x[i].innerHTML = num;
+        x[i].classList.add("currSign");
+    }
+</script>
 @endpush
