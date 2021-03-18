@@ -28,6 +28,10 @@ Route::namespace('Admin')->group(function () {
 Route::namespace('Pemesan')->group(function () {
     Route::prefix('user-pemesan')->group(function () {
         Route::resource('permintaan-pembelian', 'PermintaanController');
+        Route::namespace('FromStock')->group(function () {
+            Route::get('input-barang', 'IndexStock')->name('input.index');
+            Route::post('input-barang/{id}', 'StoreToPermintaan')->name('input.store');
+        });
     });
 });
 Route::namespace('Niagabeli')->prefix('user-pembelian')->group(function () {

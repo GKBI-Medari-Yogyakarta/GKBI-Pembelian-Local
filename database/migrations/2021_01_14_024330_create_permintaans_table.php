@@ -16,13 +16,13 @@ class CreatePermintaansTable extends Migration
         Schema::create('permintaans', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('pemesan'); //nama pemesan
-            $table->string('no_pemesan'); //nomor surat permintaan
-            $table->date('tgl_pesanan');
+            $table->string('no_pemesan')->nullable(); //nomor surat permintaan
+            $table->date('tgl_pesanan')->nullable();
             $table->string('nm_barang');
             $table->string('spesifikasi');
-            $table->string('unit_stok');
+            $table->string('unit_stok')->nullable();
             $table->string('gudang_stok')->nullable();
-            $table->date('tgl_diperlukan');
+            $table->date('tgl_diperlukan')->nullable();
             $table->date('realisasi')->nullable();
             $table->string('keterangan', 1000)->nullable();
             $table->enum('status_direktur', ['1', '0'])->nullable();

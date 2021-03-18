@@ -163,10 +163,10 @@
                             @endif
                         </td>
                         <td class="text-center align-middle ttd">
-                            @if ($permintaan->status_direktur != '1')
+                            @if ($permintaan->status_direktur != '1' || empty($permintaan->no_pemesan) || empty($permintaan->tgl_diperlukan))
                             <h4>Belum di acc</h4>
                             <button data-toggle="modal" data-target="#accPermintaan" class="btn btn-outline-primary btn-sm">
-                                Acc sekarang ?
+                                Acc sekarang ? hhh
                             </button>
                             @else
                             <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>

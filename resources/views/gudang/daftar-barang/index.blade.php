@@ -43,7 +43,7 @@
                                 <th scope="col">Keterangan</th>
                                 <th scope="col">Kode barang</th>
                                 <th scope="col">Jumlah barang</th>
-                                <th scope="col">Stok Gudang</th>
+                                <th scope="col">Barang masuk</th>
                                 <th scope="col">tambah barang ke</th>
                             </tr>
                         </thead>

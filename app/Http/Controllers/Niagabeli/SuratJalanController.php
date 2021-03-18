@@ -9,11 +9,8 @@ use App\Model\Niagabeli\SPBarang;
 use App\Model\Niagabeli\SuratIjinMasuk;
 use App\Model\Niagabeli\SuratJalan;
 use App\Model\Pemesan\Permintaan;
-use Illuminate\Foundation\Console\Presets\React;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Symfony\Component\Console\Input\Input;
 
 class SuratJalanController extends Controller
 {
@@ -28,6 +25,7 @@ class SuratJalanController extends Controller
                 ->join('bagians as b', 'b.id', '=', 'p.bagian_id')
                 ->select('b.nama', 'p.pemesan', 'p.nm_barang', 't.status_beli', 'spb.id')
                 ->where('t.status_beli', '=', '1')
+                ->orderBy('id', 'ASC')
                 ->get();
             $surat_jalan = DB::table('s_p_barangs as spb')
                 ->join('surat_jalans as sj', 'spb.id', '=', 'sj.spb_id')

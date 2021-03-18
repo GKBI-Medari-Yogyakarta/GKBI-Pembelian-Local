@@ -19,6 +19,9 @@ class AddColumnToItems extends Migration
             $table->enum('payment_status', [1, 0])->after('payment_type')->nullable();
             $table->string('dibayarkan')->after('terpakai')->nullable();
         });
+        Schema::table('permintaans', function (Blueprint $table) {
+            $table->unsignedBigInteger('item_id')->after('bagian_id')->nullable();
+        });
     }
     public function down()
     {
