@@ -13,7 +13,7 @@ class StoreTestingItem extends Controller
 {
     public function __invoke(Request $req, $id)
     {
-        $bd = BarangDatang::find($id);
+        $bd = BarangDatang::findOrFail($id);
         $ti = TestingItem::where('bd_id', $bd->id)->first();
         if ($req->input('action') == 'Y') {
             if (isset($ti->bd_id)) return redirect()->back()->with(['msg' => 'barang sudah dicek. silahkan ke menu pengecekan barang']);

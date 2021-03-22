@@ -3,16 +3,15 @@
 namespace App\Http\Controllers\Pemesan\FromStock;
 
 use App\Http\Controllers\Controller;
+use App\Model\Pemesan\Permintaan;
 use App\Model\Gudang\GudangStok;
 use App\Model\Niagabeli\Item;
-use App\Model\Pemesan\Permintaan;
-use Illuminate\Http\Request;
 
 class StoreToPermintaan extends Controller
 {
     public function __invoke($id)
     {
-        $item = Item::find($id);
+        $item = Item::findOrFail($id);
         $gs = GudangStok::where('item_id', $item->id)->first();
         $user_pemesan_id = auth()->guard('pemesan')->user()->getAuthIdentifier();
         if (empty($gs)) {

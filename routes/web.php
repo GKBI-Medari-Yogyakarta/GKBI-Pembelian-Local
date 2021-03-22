@@ -8,7 +8,7 @@ Route::namespace('Auth')->group(function () {
     Route::get('login', 'LoginController@index')->name('login.index');
     Route::post('post-login', 'LoginController@formLogin')->name('post.login');
 });
-Route::namespace('Admin')->group(function () {
+Route::namespace('Admin')->middleware('admin')->group(function () {
     Route::get('admin', 'AdminController@index')->name('admin.index');
     Route::get('logout', 'AdminController@logout')->name('logout');
     Route::resource('admin-gudang', 'GudangController');
@@ -25,7 +25,7 @@ Route::namespace('Admin')->group(function () {
 //     Route::get('user-pembelian', 'AdminPembelianController@index')->name('user-pembelian.index');
 //     // Route::get('user-akuntansi', 'AdminAkuntansiController@index')->name('user-akuntansi.index');
 // });
-Route::namespace('Pemesan')->group(function () {
+Route::namespace('Pemesan')->middleware('pemesan')->group(function () {
     Route::prefix('user-pemesan')->group(function () {
         Route::resource('permintaan-pembelian', 'PermintaanController');
         Route::namespace('FromStock')->group(function () {
@@ -34,7 +34,7 @@ Route::namespace('Pemesan')->group(function () {
         });
     });
 });
-Route::namespace('Niagabeli')->prefix('user-pembelian')->group(function () {
+Route::namespace('Niagabeli')->prefix('user-pembelian')->middleware('pembelian')->group(function () {
     Route::get('alamat', 'NegaraController@index')->name('negara.index');
     Route::resource('negara', 'NegaraController')->except('index');
     Route::resource('provinsi', 'ProvinsiController');
@@ -80,7 +80,7 @@ Route::namespace('Niagabeli')->prefix('user-pembelian')->group(function () {
         });
     });
 });
-Route::namespace('Gudang')->prefix('user-gudang')->group(function () {
+Route::namespace('Gudang')->prefix('user-gudang')->middleware('gudang')->group(function () {
     Route::resource('permintaan', 'GudangPermintaanController');
     Route::get('pesanan', 'DaftarPesananController@index')->name('pesanan.index');
     //Barang Datang
@@ -110,7 +110,7 @@ Route::namespace('Gudang')->prefix('user-gudang')->group(function () {
         Route::put('/{id}/store', 'StoreItemAgain')->name('item.store');
     });
 });
-Route::namespace('Akuntansi')->prefix('user-akuntansi')->group(function () {
+Route::namespace('Akuntansi')->prefix('user-akuntansi')->middleware('akuntansi')->group(function () {
     Route::resource('rekening', 'RekController');
     Route::namespace('Payment')->group(function () {
         Route::prefix('input-pembayaran')->group(function () {

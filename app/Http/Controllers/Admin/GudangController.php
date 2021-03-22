@@ -12,80 +12,59 @@ use Illuminate\Support\Facades\Hash;
 class GudangController extends Controller
 {
     //to index
-    public function index() {
-        if (Auth::check()) {
-            $user = Gudang::query()->get();
-            return \view('admin.user-gudang.index', \compact('user'));
-        } else {
-            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
-        }
+    public function index()
+    {
+        $user = Gudang::query()->get();
+        return \view('admin.user-gudang.index', \compact('user'));
     }
     //to form create / make
-    public function create() {
-        if (Auth::check()) {
-            return \view('admin.user-gudang.create');
-        } else {
-            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
-        }
+    public function create()
+    {
+        return \view('admin.user-gudang.create');
     }
     //save / store data
-    public function store(UserGudangRequest $req) {
-        if (Auth::check()) {
-            Gudang::create([
-                'name' => $req->name,
-                'email' => $req->email,
-                'password' => Hash::make($req->password),
-            ]);
-            return \redirect()->route('admin-gudang.index')->with(['msg' => "Berhasil menambah user $req->name"]);
-        } else {
-            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
-        }
+    public function store(UserGudangRequest $req)
+    {
+        Gudang::create([
+            'name' => $req->name,
+            'email' => $req->email,
+            'password' => Hash::make($req->password),
+        ]);
+        return \redirect()->route('admin-gudang.index')->with(['msg' => "Berhasil menambah user $req->name"]);
     }
     //nothing, just for completed of resources in routing
-    public function show() {
-        if (Auth::check()) {
-            return \redirect()->route('admin-gudang.index');
-        } else {
-            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
-        }
+    public function show()
+    {
+        return \redirect()->route('admin-gudang.index');
     }
     //to form edit
-    public function edit($id) {
-        if (Auth::check()) {
-            $user = Gudang::find($id);
-            return \view('admin.user-gudang.edit', \compact('user'));
-        } else {
-            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
-        }
+    public function edit($id)
+    {
+        $user = Gudang::findOrFail($id);
+        return \view('admin.user-gudang.edit', \compact('user'));
     }
     //update
-    public function update(Request $req, $id) {
-        if (Auth::check()) {
-            $this->validate($req, [
-                'name' => 'required',
-                'email' => 'required',
-            ]);
-            $user = Gudang::find($id);
-            $user->name = $req->name;
-            $user->email = $req->email;
-            if (empty($req->password)) {
-                $user->password = $user->password;
-            }
-            $user->password = Hash::make($req->password);
-            $user->save();
-            return \redirect()->route('admin-gudang.index')->with(['msg' => "Berhasil merubah data user $user->name"]);
-        } else {
-            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
+    public function update(Request $req, $id)
+    {
+        $this->validate($req, [
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+        $user = Gudang::findOrFail($id);
+        $user->name = $req->name;
+        $user->email = $req->email;
+        if (empty($req->password)) {
+            $user->password = $user->password;
         }
+        $user->password = Hash::make($req->password);
+        $user->save();
+        return \redirect()->route('admin-gudang.index')->with(['msg' => "Berhasil merubah data user $user->name"]);
     }
     //delete
-    public function destroy($id) {
-        if (Auth::check()) {
-            $user = Gudang::find($id);
-            $user->delete();
-            return \redirect()->back()->with(['msg' => "Data user $user->name berhasil di hapus!!"]);
-        } else {
-            return \redirect()->route('login.index')->with(['msg' => 'anda harus login!!']);
-        }
+    public function destroy($id)
+    {
+        $user = Gudang::findOrFail($id);
+        $user->delete();
+        return \redirect()->back()->with(['msg' => "Data user $user->name berhasil di hapus!!"]);
     }
 }

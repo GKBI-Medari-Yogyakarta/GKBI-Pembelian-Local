@@ -22,7 +22,7 @@ class UpdateIjinController extends Controller
                 'ket_.required' => 'Keterangan surat MI ijin keluar tidak boleh kosong!!',
             ],
         );
-        $ijin_keluar = IjinKeluar::find($id);
+        $ijin_keluar = IjinKeluar::findOrFail($id);
         $ijin_keluar->tgl_ = $req->tgl_;
         $ijin_keluar->ket_ = $req->ket_;
         $ijin_keluar->save();

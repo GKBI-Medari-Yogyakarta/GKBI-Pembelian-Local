@@ -10,7 +10,7 @@ class UpdateNpbPrice extends Controller
 {
     public function __invoke(Request $req, $id)
     {
-        $price = NpbPrice::find($id);
+        $price = NpbPrice::findOrFail($id);
         if ($req->input('action') === 'Ya') {
             $price->sesuai_sop = '1';
             $price->save();

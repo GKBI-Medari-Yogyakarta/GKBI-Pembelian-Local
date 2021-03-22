@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Gudang\NPB;
 use App\Http\Controllers\Controller;
 use App\Model\Bagian;
 use App\Model\Gudang\BarangDatang;
-use App\Model\Gudang\GudangStok;
 use App\Model\Gudang\NpbPrice;
 use App\Model\Gudang\NpbQty;
 use App\Model\Niagabeli\Item;

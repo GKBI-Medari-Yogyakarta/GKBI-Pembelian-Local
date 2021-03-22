@@ -19,7 +19,7 @@ class UpdateMikeluar extends Controller
                 'no_mikeluar.required' => 'nomor MI Ijin Keluar tidak boleh kosong!!',
             ],
         );
-        $mikeluar = Mikeluar::find($id);
+        $mikeluar = Mikeluar::findOrFail($id);
         $mikeluar->no_mikeluar = $req->no_mikeluar;
         $mikeluar->save();
         return \redirect()->route('mikeluar.index')->with(['msg' => 'Berhasil memperbaharui nomor MI Ijin Keluar' . $mikeluar->no_mikeluar]);

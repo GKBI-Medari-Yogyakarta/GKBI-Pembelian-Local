@@ -6,9 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Akuntansi\Payment;
 use App\Model\Akuntansi\Rekening;
 use App\Model\Gudang\UnitStok;
-use App\Model\Niagabeli\Item;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class InputPayment extends Controller
 {

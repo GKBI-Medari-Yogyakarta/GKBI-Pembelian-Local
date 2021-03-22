@@ -5,15 +5,12 @@ namespace App\Http\Controllers\Gudang\BarangDatang;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Gudang\BarangDatangRequest;
 use App\Model\Gudang\BarangDatang;
-use App\Model\Gudang\TestingItem;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class UpdateBarangDatang extends Controller
 {
     public function __invoke(BarangDatangRequest $req, $id)
     {
-        $bd = BarangDatang::find($id);
+        $bd = BarangDatang::findOrFail($id);
         $bd->no_agenda_gudang = $req->no_agenda_gudang;
         $bd->no_agenda_pembelian = $req->no_agenda_pembelian;
         $bd->save();

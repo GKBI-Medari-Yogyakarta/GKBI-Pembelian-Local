@@ -10,7 +10,7 @@ class UpdateTestingItem extends Controller
 {
     public function __invoke(TestingItemRequest $req, $id)
     {
-        $testing_item = TestingItem::find($id);
+        $testing_item = TestingItem::findOrFail($id);
         $testing_item->no_test = $req->no_test;
         $testing_item->tgl_ = $req->tgl_;
         $testing_item->save();

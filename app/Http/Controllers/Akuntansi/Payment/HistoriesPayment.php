@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Akuntansi\Payment;
 
 use App\Http\Controllers\Controller;
 use App\Model\Akuntansi\Payment;
-use Illuminate\Support\Facades\DB;
 
 class HistoriesPayment extends Controller
 {

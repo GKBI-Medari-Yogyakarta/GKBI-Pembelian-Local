@@ -14,7 +14,7 @@ class StoreMikeluarToOther extends Controller
 {
     public function __invoke(Request $req, $id)
     {
-        $mikeluar = Mikeluar::find($id);
+        $mikeluar = Mikeluar::findOrFail($id);
         $ti = TestingItem::where('id', $mikeluar->ti_id)->first();
         $bd = BarangDatang::where('id', $ti->bd_id)->first();
         if ($req->input('action') == 'Ya') {

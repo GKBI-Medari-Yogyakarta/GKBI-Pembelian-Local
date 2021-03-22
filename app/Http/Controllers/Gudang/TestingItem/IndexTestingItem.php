@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Gudang\TestingItem;
 
 use App\Http\Controllers\Controller;
 use App\Model\Gudang\BarangDatang;
-use App\Model\Gudang\TestingItem;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class IndexTestingItem extends Controller

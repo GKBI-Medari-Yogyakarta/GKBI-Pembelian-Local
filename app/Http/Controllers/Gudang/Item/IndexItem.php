@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Gudang\Item;
 use App\Http\Controllers\Controller;
 use App\Model\Gudang\BarangDatang;
 use App\Model\Niagabeli\Item;
-use Illuminate\Support\Facades\DB;
 
 class IndexItem extends Controller
 {

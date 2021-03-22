@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Pemesan\FromStock;
 use App\Http\Controllers\Controller;
 use App\Model\Niagabeli\Item;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class IndexStock extends Controller
 {
