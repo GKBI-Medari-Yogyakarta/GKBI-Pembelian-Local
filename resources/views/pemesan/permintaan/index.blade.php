@@ -16,8 +16,30 @@
         @include('pemesan.layouts.required')
         <div class="card mb-4 mt-4">
             <div class="card-header">
-                <i class="fas fa-table mr-1"></i>
-                DataTable Permintaan
+                <div class="row">
+                    <div class="col">
+                        <i class="fas fa-table"></i>
+                        DataTable Permintaan
+                    </div>
+                    <div class="col">
+                        <form action="{{ url()->current() }}">
+                            <div class="form-row">
+                                <div class="col col-sm-6">
+                                    <input type="text" class="form-control form-control-sm" name="keyword" placeholder="cari nama barang atau kode barang" value="{{ request('keyword') }}">
+                                </div>
+                                <div class="col col-sm-4">
+                                    <input type="number" class="form-control form-control-sm" name="limit" placeholder="limit" value="{{ request('limit') }}">
+                                </div>
+                                <div class="col col-sm-1">
+                                    <button type="submit" class="btn btn-sm btn-info">cari</button>
+                                </div>
+                                <div class="col col-sm-1">
+                                    <a href="{{ URL::route('permintaan-pembelian.index') }}" class="btn btn-sm btn-primary">clear</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -62,7 +84,7 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="8" class="text-center align-middle"><h2><strong>Daftar permintaan kosong!!</strong></h2></td>
+                                <td colspan="9" class="text-center align-middle"><h2><strong>Daftar permintaan kosong!!</strong></h2></td>
                             </tr>
                             @endforelse
                         </tbody>
@@ -73,7 +95,7 @@
                         </button>
                     </div>
                     <div class="mt-2 ml-2">
-                        {{-- {{ $alamat->links() }} --}}
+                        {{ $permintaan->links() }}
                     </div>
                 </div>
             </div>

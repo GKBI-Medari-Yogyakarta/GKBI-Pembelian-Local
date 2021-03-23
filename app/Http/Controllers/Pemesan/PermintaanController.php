@@ -15,15 +15,16 @@ use App\Model\Bagian;
 class PermintaanController extends Controller
 {
     //to index
-    public function index()
+    public function index(Request $req)
     {
         $unit = Bagian::all();
-        $permintaan = DB::table('permintaans')
-            ->select('id', 'nm_barang', 'spesifikasi', 'unit_stok', 'gudang_stok', 'jumlah', 'tgl_diperlukan', 'keterangan', 'bagian_id', 'kd_barang', 'status_direktur')
-            ->get();
-        $u = \random_int(1, 10);
-        $g = \random_int(1, 10);
-        return \view('pemesan.permintaan.index', \compact('unit', 'permintaan', 'u', 'g'));
+        $permintaan = Permintaan::when($req->keyword,function($query) use($req){
+            $query->where('nm_barang','like',"%{$req->keyword}%")
+            ->orwhere('kd_barang','like',"%{$req->keyword}%")
+            ->orderBy('id','ASC');
+        })->paginate($req->limit ?? 10);
+        $permintaan->appends($req->only('keyword','limit'));
+        return \view('pemesan.permintaan.index', \compact('unit', 'permintaan'));
     }
     //nothing, just for completed of resources in routing
     public function create()

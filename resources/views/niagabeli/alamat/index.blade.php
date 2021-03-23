@@ -19,7 +19,18 @@
                 <i class="fas fa-table mr-1"></i>
                 DataTable Negara/Provinsi/Kabupaten
             </div>
-            <div class="card-body">
+            <div class="card-body pt-1">
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-primary">cek</button>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary">cek</button>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary">cek</button>
+                    </div>
+                </div>
                 <div class="row">
                     {{-- Negara --}}
                     <div class="col">

@@ -7,7 +7,7 @@
         <meta name="description" content="" />
 
         <meta name="author" content="" />
-        {{-- <title>Beasiswa</title> --}}
+        <link rel="icon" type="image/png" href="{{ asset('assets/img/error-404-monochrome.svg') }}"/>
         <title>@yield('title')</title>
         <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
         <link href="{{ asset('css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" crossorigin="anonymous" />
