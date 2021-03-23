@@ -17,9 +17,60 @@
         <div class="card mb-4 mt-4">
             <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
-                DataTable Negara/Provinsi/Kabupaten
+                DataTable Alamat berdasarkan daftar kabupaten yang ada
             </div>
             <div class="card-body pt-2">
+                <div class="table-responsive">
+                    <table class="table table-striped" id="dataTable_alamat" width="100%">
+                        <thead>
+                            <tr class="">
+                                <th class="text-sm m-0" scope="col">#</th>
+                                <th class="text-sm m-0" scope="col">Kabupaten</th>
+                                <th class="text-sm m-0" scope="col">Provinsi</th>
+                                <th class="text-sm m-0" scope="col">Kode Negara</th>
+                                <th class="text-sm m-0" scope="col">Negara</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($alamat as $address)
+                            <tr>
+                                <td class="text-sm m-0">{{ $loop->iteration }}</td>
+                                <td class="text-sm m-0">{{ $address->nm_kab }}</td>
+                                <td class="text-sm m-0">{{ $address->nm_prov }}</td>
+                                <td class="text-sm m-0">{{ $address->kode }}</td>
+                                <td class="text-sm m-0">{{ $address->nama }}</td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>
+                                    <a href="edit-siswa.html" class="btn btn-outline-warning">Edit</a>
+                                    <a href="#" class="btn btn-outline-danger">Hapus</a>
+                                </td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                    {{-- {{ $alamat->links() }} --}}
+                    <div class="ml-2 mt-4 mb-4">
+                        <button data-toggle="modal" data-target="#tambahNegara" class="btn btn-outline-primary btn-sm">
+                            Negara
+                        </button>
+                        <button data-toggle="modal" data-target="#tambahProv" class="btn btn-outline-primary btn-sm">
+                            Provinsi
+                        </button>
+                        <button data-toggle="modal" data-target="#tambahKab" class="btn btn-outline-primary btn-sm">
+                            Kabupaten
+                        </button>
+                    </div>
+                    <div class="mt-2 ml-2">
+                        {{-- {{ $alamat->links() }} --}}
+                    </div>
+                </div>
                 {{-- <div class="row">
                     <div class="col mb-1">
                         <form action="{{ url()->current() }}">
@@ -76,6 +127,7 @@
                         </form>
                     </div>
                 </div> --}}
+                <h4 class="mt-2 p-2 border-bottom border-info">Daftar Negara/Provinsi/Kabupaten</h4>
                 <div class="row">
                     {{-- Negara --}}
                     <div class="col">
@@ -195,74 +247,7 @@
                         </div>
                     </div>
                 </div>
-                <h4 class="mt-2 p-2 border-bottom border-info">Alamat berdasarkan daftar kabupaten yang ada</h4>
-                {{-- <form action="{{ url()->current() }}">
-                    <div class="form-row">
-                        <div class="col col-sm-4">
-                            <input type="text" class="form-control form-control-sm" name="alamat" placeholder="cari alamat" value="{{ request('alamat') }}">
-                        </div>
-                        <div class="col col-sm-4">
-                            <input type="number" class="form-control form-control-sm" name="limit" placeholder="limit" value="{{ request('limit') }}">
-                        </div>
-                        <div class="col col-sm-2">
-                            <button type="submit" class="btn btn-sm btn-info">cari</button>
-                        </div>
-                        <div class="col col-sm-2">
-                            <a href="{{ URL::route('permintaan-pembelian.index') }}" class="btn btn-sm btn-primary">clear</a>
-                        </div>
-                    </div>
-                </form> --}}
-                <div class="table-responsive">
-                    <table class="table table-striped" id="dataTable_alamat" width="100%">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Kabupaten</th>
-                                <th scope="col">Provinsi</th>
-                                <th scope="col">Kode Negara</th>
-                                <th scope="col">Negara</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($alamat as $address)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $address->nm_kab }}</td>
-                                <td>{{ $address->nm_prov }}</td>
-                                <td>{{ $address->kode }}</td>
-                                <td>{{ $address->nama }}</td>
-                            </tr>
-                            @empty
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>
-                                    <a href="edit-siswa.html" class="btn btn-outline-warning">Edit</a>
-                                    <a href="#" class="btn btn-outline-danger">Hapus</a>
-                                </td>
-                            </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                    {{-- {{ $alamat->links() }} --}}
-                    <div class="ml-2 mt-4 mb-4">
-                        <button data-toggle="modal" data-target="#tambahNegara" class="btn btn-outline-primary btn-sm">
-                            Negara
-                        </button>
-                        <button data-toggle="modal" data-target="#tambahProv" class="btn btn-outline-primary btn-sm">
-                            Provinsi
-                        </button>
-                        <button data-toggle="modal" data-target="#tambahKab" class="btn btn-outline-primary btn-sm">
-                            Kabupaten
-                        </button>
-                    </div>
-                    <div class="mt-2 ml-2">
-                        {{-- {{ $alamat->links() }} --}}
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>

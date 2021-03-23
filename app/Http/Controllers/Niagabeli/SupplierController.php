@@ -8,18 +8,26 @@ use App\Http\Requests\Niagabeli\SupplierRequest;
 use App\Model\Niagabeli\Kabupaten;
 use Illuminate\Support\Facades\DB;
 use App\Model\Niagabeli\Supplier;
+use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
     //to index
-    public function index()
+    public function index(Request $req)
     {
         $kabupatens = Kabupaten::all();
         $supplier = DB::table('suppliers as s')
             ->join('kabupatens as k', 'k.id', '=', 's.kab_id')
             ->join('provinsis as p', 'p.id', '=', 'k.prov_id')
             ->select('s.*', 'k.nama as nm_kab', 'p.nama as nm_prov')
-            ->paginate(10);
+            ->when($req->searching, function ($query) use ($req) {
+                $query->where('s.nama', 'like', "%{$req->searching}%")
+                    ->orwhere('s.attn', 'like', "%{$req->searching}%")
+                    ->orwhere('p.nama', 'like', "%{$req->searching}%")
+                    ->orwhere('k.nama', 'like', "%{$req->searching}%");
+            })->orderBy('s.id', 'ASC')
+            ->paginate($req->limit ?? 10);
+        $supplier->appends($req->only('seacrching', 'limit'));
         return \view('niagabeli.supplier.index', \compact('kabupatens', 'supplier'));
     }
     //nothing, just for completed of resources in routing
@@ -53,7 +61,7 @@ class SupplierController extends Controller
         $k = Kabupaten::all();
         return \view('niagabeli.supplier.edit', \compact('s', 'k'));
     }
-
+ds
     public function update(SupplierReqUpdate $req, $id)
     {
         $s = Supplier::findOrFail($id);

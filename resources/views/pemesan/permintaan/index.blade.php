@@ -28,7 +28,7 @@
                                     <input type="text" class="form-control form-control-sm" name="keyword" placeholder="cari nama barang atau kode barang" value="{{ request('keyword') }}">
                                 </div>
                                 <div class="col col-sm-4">
-                                    <input type="number" class="form-control form-control-sm" name="limit" placeholder="limit" value="{{ request('limit') }}">
+                                    <input type="number" class="form-control form-control-sm" name="limit" min="0" placeholder="limit" value="{{ request('limit') }}">
                                 </div>
                                 <div class="col col-sm-1">
                                     <button type="submit" class="btn btn-sm btn-info">cari</button>
