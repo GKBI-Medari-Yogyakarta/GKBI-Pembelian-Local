@@ -19,23 +19,68 @@
                 <i class="fas fa-table mr-1"></i>
                 DataTable Negara/Provinsi/Kabupaten
             </div>
-            <div class="card-body pt-1">
-                <div class="row">
-                    <div class="col">
-                        <button class="btn btn-primary">cek</button>
+            <div class="card-body pt-2">
+                {{-- <div class="row">
+                    <div class="col mb-1">
+                        <form action="{{ url()->current() }}">
+                            <div class="form-row">
+                                <div class="col col-sm-4">
+                                    <input type="text" class="form-control form-control-sm" name="keyword" placeholder="cari negara" value="{{ request('keyword') }}">
+                                </div>
+                                <div class="col col-sm-4">
+                                    <input type="number" class="form-control form-control-sm" name="limit" placeholder="limit" value="{{ request('limit') }}">
+                                </div>
+                                <div class="col col-sm-2">
+                                    <button type="submit" class="btn btn-sm btn-info">cari</button>
+                                </div>
+                                <div class="col col-sm-2">
+                                    <a href="{{ URL::route('permintaan-pembelian.index') }}" class="btn btn-sm btn-primary">clear</a>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <div class="col">
-                        <button class="btn btn-primary">cek</button>
+                    <div class="col mb-1">
+                        <form action="{{ url()->current() }}">
+                            <div class="form-row">
+                                <div class="col col-sm-4">
+                                    <input type="text" class="form-control form-control-sm" name="keyword" placeholder="cari negara" value="{{ request('keyword') }}">
+                                </div>
+                                <div class="col col-sm-4">
+                                    <input type="number" class="form-control form-control-sm" name="limit" placeholder="limit" value="{{ request('limit') }}">
+                                </div>
+                                <div class="col col-sm-2">
+                                    <button type="submit" class="btn btn-sm btn-info">cari</button>
+                                </div>
+                                <div class="col col-sm-2">
+                                    <a href="{{ URL::route('permintaan-pembelian.index') }}" class="btn btn-sm btn-primary">clear</a>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <div class="col">
-                        <button class="btn btn-primary">cek</button>
+                    <div class="col mb-1">
+                        <form action="{{ url()->current() }}">
+                            <div class="form-row">
+                                <div class="col col-sm-4">
+                                    <input type="text" class="form-control form-control-sm" name="keyword" placeholder="cari negara" value="{{ request('keyword') }}">
+                                </div>
+                                <div class="col col-sm-4">
+                                    <input type="number" class="form-control form-control-sm" name="limit" placeholder="limit" value="{{ request('limit') }}">
+                                </div>
+                                <div class="col col-sm-2">
+                                    <button type="submit" class="btn btn-sm btn-info">cari</button>
+                                </div>
+                                <div class="col col-sm-2">
+                                    <a href="{{ URL::route('permintaan-pembelian.index') }}" class="btn btn-sm btn-primary">clear</a>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                </div>
+                </div> --}}
                 <div class="row">
                     {{-- Negara --}}
                     <div class="col">
                         <div class="table-responsive">
-                            <table class="table table-striped table-sm border border-info">
+                            <table class="table table-striped table-sm border border-info" id="dataTable_negara" width="100%">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
@@ -74,7 +119,7 @@
                     {{-- Provinsi --}}
                     <div class="col">
                         <div class="table-responsive">
-                            <table class="table table-striped table-sm border border-info">
+                            <table class="table table-striped table-sm border border-info" id="dataTable_prov" width="100%">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
@@ -107,12 +152,13 @@
                                     @endforelse
                                 </tbody>
                             </table>
+                            {{ $p->links() }}
                         </div>
                     </div>
                     {{-- Kabupaten --}}
                     <div class="col">
                         <div class="table-responsive">
-                            <table class="table table-striped table-sm border border-info">
+                            <table class="table table-striped table-sm border border-info" id="dataTable_kab" width="100%">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
@@ -145,12 +191,29 @@
                                     @endforelse
                                 </tbody>
                             </table>
+                            {{ $k->links() }}
                         </div>
                     </div>
                 </div>
                 <h4 class="mt-2 p-2 border-bottom border-info">Alamat berdasarkan daftar kabupaten yang ada</h4>
+                {{-- <form action="{{ url()->current() }}">
+                    <div class="form-row">
+                        <div class="col col-sm-4">
+                            <input type="text" class="form-control form-control-sm" name="alamat" placeholder="cari alamat" value="{{ request('alamat') }}">
+                        </div>
+                        <div class="col col-sm-4">
+                            <input type="number" class="form-control form-control-sm" name="limit" placeholder="limit" value="{{ request('limit') }}">
+                        </div>
+                        <div class="col col-sm-2">
+                            <button type="submit" class="btn btn-sm btn-info">cari</button>
+                        </div>
+                        <div class="col col-sm-2">
+                            <a href="{{ URL::route('permintaan-pembelian.index') }}" class="btn btn-sm btn-primary">clear</a>
+                        </div>
+                    </div>
+                </form> --}}
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="dataTable_alamat" width="100%">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -184,6 +247,7 @@
                             @endforelse
                         </tbody>
                     </table>
+                    {{-- {{ $alamat->links() }} --}}
                     <div class="ml-2 mt-4 mb-4">
                         <button data-toggle="modal" data-target="#tambahNegara" class="btn btn-outline-primary btn-sm">
                             Negara
@@ -196,7 +260,7 @@
                         </button>
                     </div>
                     <div class="mt-2 ml-2">
-                        {{ $alamat->links() }}
+                        {{-- {{ $alamat->links() }} --}}
                     </div>
                 </div>
             </div>
@@ -211,5 +275,29 @@
     $(function() {
         $('[data-toggle="tooltip"]').tooltip('toggle')
     })
+</script>
+<script>
+    $(function(){
+        $('#dataTable_negara').DataTable({
+        });
+      });
+</script>
+<script>
+    $(function(){
+        $('#dataTable_prov').DataTable({
+        });
+      });
+</script>
+<script>
+    $(function(){
+        $('#dataTable_kab').DataTable({
+        });
+      });
+</script>
+<script>
+    $(function(){
+        $('#dataTable_alamat').DataTable({
+        });
+      });
 </script>
 @endpush

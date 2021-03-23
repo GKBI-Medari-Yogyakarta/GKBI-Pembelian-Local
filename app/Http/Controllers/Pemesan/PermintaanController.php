@@ -18,12 +18,12 @@ class PermintaanController extends Controller
     public function index(Request $req)
     {
         $unit = Bagian::all();
-        $permintaan = Permintaan::when($req->keyword,function($query) use($req){
-            $query->where('nm_barang','like',"%{$req->keyword}%")
-            ->orwhere('kd_barang','like',"%{$req->keyword}%")
-            ->orderBy('id','ASC');
+        $permintaan = Permintaan::when($req->keyword, function ($query) use ($req) {
+            $query->where('nm_barang', 'like', "%{$req->keyword}%")
+                ->orwhere('kd_barang', 'like', "%{$req->keyword}%")
+                ->orderBy('id', 'ASC');
         })->paginate($req->limit ?? 10);
-        $permintaan->appends($req->only('keyword','limit'));
+        $permintaan->appends($req->only('keyword', 'limit'));
         return \view('pemesan.permintaan.index', \compact('unit', 'permintaan'));
     }
     //nothing, just for completed of resources in routing
