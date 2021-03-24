@@ -27,7 +27,7 @@
                                 <div class="col">
                                     <input type="text" class="form-control form-control-sm" name="searching" placeholder="cari nama/pemilik toko" value="{{ request('searching') }}">
                                 </div>
-                                <div class="col col-sm-1">
+                                <div class="col col-sm-2">
                                     <input type="number" class="form-control form-control-sm" name="limit" min="0" placeholder="limit" value="{{ request('limit') }}">
                                 </div>
                                 <div class="col col-sm-1">

@@ -9,16 +9,23 @@ use App\Model\Niagabeli\Transaction;
 use Illuminate\Support\Facades\DB;
 use App\Model\Niagabeli\SPBarang;
 use App\Model\Niagabeli\Supplier;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
-    public function index()
+    public function index(Request $req)
     {
         $permintaan = DB::table('transactions as t')
             ->join('permintaans as p', 'p.id', '=', 't.permintaan_id')
             ->select('p.nm_barang', 'p.spesifikasi', 'p.unit_stok', 'p.gudang_stok', 'p.tgl_diperlukan', 'p.realisasi', 'p.keterangan', 'p.status_niaga_pembelian', 't.*')
-            ->paginate(10);
+            ->when($req->date, function ($query) use ($req) {
+                $m = Carbon::parse($req->searching)->format('m');
+                $y = Carbon::parse($req->searching)->format('Y');
+                $query->whereYear('p.tgl_diperlukan', $y)
+                    ->whereMonth('p.tgl_diperlukan', $m);
+            })->orderBy('t.id', 'ASC')
+            ->get();
         return \view('niagabeli.pembelian.index', \compact('permintaan'));
     }
     public function create()

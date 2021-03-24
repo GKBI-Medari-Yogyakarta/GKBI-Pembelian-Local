@@ -21,41 +21,47 @@
             </div>
             <div class="card-body pt-2">
                 <div class="table-responsive">
-                    <table class="table table-striped" id="dataTable_alamat" width="100%">
+                    <table class="table table-striped table-sm" id="dataTable_alamat" width="100%">
                         <thead>
                             <tr class="">
                                 <th class="text-sm m-0" scope="col">#</th>
                                 <th class="text-sm m-0" scope="col">Kabupaten</th>
+                                <th class="text-sm m-0" scope="col">Kota</th>
                                 <th class="text-sm m-0" scope="col">Provinsi</th>
                                 <th class="text-sm m-0" scope="col">Kode Negara</th>
                                 <th class="text-sm m-0" scope="col">Negara</th>
+                                <th class="text-sm m-0" scope="col">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($alamat as $address)
                             <tr>
                                 <td class="text-sm m-0">{{ $loop->iteration }}</td>
-                                <td class="text-sm m-0">{{ $address->nm_kab }}</td>
+                                <td class="text-sm m-0">{{ $address->nama }}</td>
+                                <td class="text-sm m-0">{{ $address->kota }}</td>
                                 <td class="text-sm m-0">{{ $address->nm_prov }}</td>
                                 <td class="text-sm m-0">{{ $address->kode }}</td>
-                                <td class="text-sm m-0">{{ $address->nama }}</td>
+                                <td class="text-sm m-0">{{ $address->nm_negara }}</td>
+                                <td class="p-1">
+                                    <a href="{{ URL::route('kabupaten.edit',$address->id) }}" class="btn btn-outline-warning btn-sm">Edit</a>
+                                    <form action="{{ URL::route('kabupaten.destroy',$address->id) }}" method="POST" class="btn btn-sm p-0">
+                                        @method('delete')
+                                        @csrf
+                                        <button class="btn btn-outline-danger btn-sm">
+                                            Hapus
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                             @empty
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>
-                                    <a href="edit-siswa.html" class="btn btn-outline-warning">Edit</a>
-                                    <a href="#" class="btn btn-outline-danger">Hapus</a>
-                                </td>
+                                <th colspan="7">
+                                    <h3>Data kosong!!</h3>
+                                </th>
                             </tr>
                             @endforelse
                         </tbody>
                     </table>
-                    {{-- {{ $alamat->links() }} --}}
                     <div class="ml-2 mt-4 mb-4">
                         <button data-toggle="modal" data-target="#tambahNegara" class="btn btn-outline-primary btn-sm">
                             Negara
@@ -71,64 +77,15 @@
                         {{-- {{ $alamat->links() }} --}}
                     </div>
                 </div>
-                {{-- <div class="row">
-                    <div class="col mb-1">
-                        <form action="{{ url()->current() }}">
-                            <div class="form-row">
-                                <div class="col col-sm-4">
-                                    <input type="text" class="form-control form-control-sm" name="keyword" placeholder="cari negara" value="{{ request('keyword') }}">
-                                </div>
-                                <div class="col col-sm-4">
-                                    <input type="number" class="form-control form-control-sm" name="limit" placeholder="limit" value="{{ request('limit') }}">
-                                </div>
-                                <div class="col col-sm-2">
-                                    <button type="submit" class="btn btn-sm btn-info">cari</button>
-                                </div>
-                                <div class="col col-sm-2">
-                                    <a href="{{ URL::route('permintaan-pembelian.index') }}" class="btn btn-sm btn-primary">clear</a>
-                                </div>
-                            </div>
-                        </form>
+                <div class="row border-bottom border-info">
+                    <div class="col">
+                        <h4 class="mt-2 p-2">Daftar Negara</h4>
                     </div>
-                    <div class="col mb-1">
-                        <form action="{{ url()->current() }}">
-                            <div class="form-row">
-                                <div class="col col-sm-4">
-                                    <input type="text" class="form-control form-control-sm" name="keyword" placeholder="cari negara" value="{{ request('keyword') }}">
-                                </div>
-                                <div class="col col-sm-4">
-                                    <input type="number" class="form-control form-control-sm" name="limit" placeholder="limit" value="{{ request('limit') }}">
-                                </div>
-                                <div class="col col-sm-2">
-                                    <button type="submit" class="btn btn-sm btn-info">cari</button>
-                                </div>
-                                <div class="col col-sm-2">
-                                    <a href="{{ URL::route('permintaan-pembelian.index') }}" class="btn btn-sm btn-primary">clear</a>
-                                </div>
-                            </div>
-                        </form>
+                    <div class="col">
+                        <h4 class="mt-2 p-2">Daftar Provinsi</h4>
                     </div>
-                    <div class="col mb-1">
-                        <form action="{{ url()->current() }}">
-                            <div class="form-row">
-                                <div class="col col-sm-4">
-                                    <input type="text" class="form-control form-control-sm" name="keyword" placeholder="cari negara" value="{{ request('keyword') }}">
-                                </div>
-                                <div class="col col-sm-4">
-                                    <input type="number" class="form-control form-control-sm" name="limit" placeholder="limit" value="{{ request('limit') }}">
-                                </div>
-                                <div class="col col-sm-2">
-                                    <button type="submit" class="btn btn-sm btn-info">cari</button>
-                                </div>
-                                <div class="col col-sm-2">
-                                    <a href="{{ URL::route('permintaan-pembelian.index') }}" class="btn btn-sm btn-primary">clear</a>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div> --}}
-                <h4 class="mt-2 p-2 border-bottom border-info">Daftar Negara/Provinsi/Kabupaten</h4>
-                <div class="row">
+                </div>
+                <div class="row mt-2">
                     {{-- Negara --}}
                     <div class="col">
                         <div class="table-responsive">
@@ -205,45 +162,6 @@
                                 </tbody>
                             </table>
                             {{ $p->links() }}
-                        </div>
-                    </div>
-                    {{-- Kabupaten --}}
-                    <div class="col">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-sm border border-info" id="dataTable_kab" width="100%">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Kabupaten</th>
-                                        <th scope="col">Kota</th>
-                                        <th scope="col">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse ($k as $kabupaten)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $kabupaten->nama }}</td>
-                                        <td>{{ $kabupaten->kota }}</td>
-                                        <td class="p-1">
-                                            <a href="{{ URL::route('kabupaten.edit',$kabupaten->id) }}" class="btn btn-outline-warning btn-sm">Edit</a>
-                                            <form action="{{ URL::route('kabupaten.destroy',$kabupaten->id) }}" method="POST" class="btn btn-sm p-0">
-                                                @method('delete')
-                                                @csrf
-                                                <button class="btn btn-outline-danger btn-sm">
-                                                    Hapus
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    @empty
-                                    <tr>
-                                        <td colspan="4"><strong>Daftar negara kosong!!</strong></td>
-                                    </tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
-                            {{ $k->links() }}
                         </div>
                     </div>
                 </div>

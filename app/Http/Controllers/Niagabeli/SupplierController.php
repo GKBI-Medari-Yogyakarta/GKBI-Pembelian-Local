@@ -61,7 +61,7 @@ class SupplierController extends Controller
         $k = Kabupaten::all();
         return \view('niagabeli.supplier.edit', \compact('s', 'k'));
     }
-ds
+
     public function update(SupplierReqUpdate $req, $id)
     {
         $s = Supplier::findOrFail($id);

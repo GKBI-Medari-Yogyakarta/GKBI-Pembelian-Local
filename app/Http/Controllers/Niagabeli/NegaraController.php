@@ -16,10 +16,10 @@ class NegaraController extends Controller
     //to index
     public function index()
     {
-        $alamat = DB::table('negaras')
-            ->join('provinsis', 'negaras.id', '=', 'provinsis.negara_id')
-            ->join('kabupatens', 'provinsis.id', '=', 'kabupatens.prov_id')
-            ->select('kabupatens.nama as nm_kab', 'provinsis.nama as nm_prov', 'negaras.nama', 'negaras.kode')
+        $alamat = DB::table('kabupatens as k')
+            ->join('provinsis as p', 'p.id', 'k.prov_id')
+            ->join('negaras as n', 'n.id', '=', 'p.negara_id')
+            ->select('k.*', 'p.nama as nm_prov', 'n.nama as nm_negara', 'n.kode')
             ->get();
         $n = Negara::paginate(3);
         $p = Provinsi::paginate(3);

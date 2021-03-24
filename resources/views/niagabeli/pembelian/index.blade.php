@@ -16,12 +16,31 @@
         @include('niagabeli.layouts.required')
         <div class="card mb-4 mt-4">
             <div class="card-header">
-                <i class="fas fa-table mr-1"></i>
-                DataTable Permintaan Pembelian
+                <div class="row">
+                    <div class="col col-md-6">
+                        <i class="fas fa-table mr-1"></i>
+                        DataTable Permintaan Pembelian
+                    </div>
+                    <div class="col col-md-6">
+                        <form action="{{ url()->current() }}">
+                            <div class="form-row">
+                                <div class="col col-md-7 text-right">
+                                    <input type="month" class="form-control form-control-sm" name="date" value="{{ request('date') }}">
+                                </div>
+                                <div class="col col-md-3 text-right">
+                                    <button type="submit" class="btn btn-sm btn-info">urutkan</button>
+                                </div>
+                                <div class="col col-md-2 text-right">
+                                    <a href="{{ URL::route('transaction.index') }}" class="btn btn-sm btn-primary">clear</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
             <div class="card-body p-2">
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-sm">
+                    <table class="table table-striped table-bordered table-sm" id="dataTable_date" width="100%">
                         <thead>
                             <tr>
                                 <th rowspan="2" class="text-center align-middle p-0" scope="col">#</th>
@@ -68,13 +87,13 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="8" class="text-center align-middle"><h2><strong>Daftar permintaan kosong!!</strong></h2></td>
+                                <td colspan="9" class="text-center align-middle"><h2><strong>Daftar permintaan kosong!!</strong></h2></td>
                             </tr>
                             @endforelse
                         </tbody>
                     </table>
                     <div class="mt-2 ml-0">
-                        {{ $permintaan->links() }}
+                        {{-- {{ $permintaan->links() }} --}}
                     </div>
                 </div>
             </div>
@@ -90,5 +109,11 @@
             delay: {show:0,hide:1500}
         });
     })
+</script>
+<script>
+    $(function(){
+        $('#dataTable_date').DataTable({
+        });
+      });
 </script>
 @endpush
