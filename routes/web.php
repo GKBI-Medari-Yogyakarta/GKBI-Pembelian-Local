@@ -73,7 +73,6 @@ Route::namespace('Niagabeli')->prefix('user-pembelian')->middleware('pembelian')
 });
 Route::namespace('Gudang')->prefix('user-gudang')->middleware('gudang')->group(function () {
     Route::resource('permintaan', 'GudangPermintaanController');
-    Route::get('pesanan', 'DaftarPesananController@index')->name('pesanan.index');
     //Barang Datang
     Route::namespace('BarangDatang')->group(function () {
         Route::get('barang-datang', 'IndexBarangDatang')->name('bd.index');

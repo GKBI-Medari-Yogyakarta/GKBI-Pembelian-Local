@@ -57,7 +57,7 @@
                         <tfoot>
                             <tr>
                                 <th></th>
-                                <th colspan="4" scope="col" class="text-center">Pembayaran</th>
+                                <th colspan="5" scope="col" class="text-center">Pembayaran</th>
                                 <th></th>
                                 <th>Awal</th>
                                 <th>Dibayarkan</th>

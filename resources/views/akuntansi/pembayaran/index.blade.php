@@ -41,7 +41,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-sm table-bordered">
+                    <table class="table table-sm table-bordered" id="dataTable_Pay">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -103,11 +103,13 @@
 </main>
 @endsection
 @push('tooltip')
-    <script>
-        // $('#myLargeModalLabel').modal('show')
-//         $('#myLargeModalLabel').on('shown.bs.modal', function () {
-//   $('#myInput').trigger('focus')
-// })
-$('#myLargeModal').modal({show: true});
-    </script>
+<script>
+    $('#myLargeModal').modal({show: true});
+</script>
+<script>
+    $(function(){
+        $('#dataTable_Pay').DataTable({
+        });
+      });
+</script>
 @endpush

@@ -21,7 +21,7 @@
             </div>
             <div class="card-body p-3">
                 <div class="table-responsive">
-                    <table class="table table-striped table-borderless">
+                    <table class="table table-striped table-borderless" id="dataTable_Rekening">
                         <thead>
                             <tr>
                                 <th class="p-2" scope="col">#</th>
@@ -93,5 +93,11 @@
         x[i].innerHTML = num;
         x[i].classList.add("currSign");
     }
+</script>
+<script>
+    $(function(){
+        $('#dataTable_Rekening').DataTable({
+        });
+      });
 </script>
 @endpush
