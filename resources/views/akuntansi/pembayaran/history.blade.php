@@ -16,15 +16,23 @@
         <div class="card mb-4 mt-4">
             <div class="card-header">
                 <div class="row">
-                    <div class="col">
+                    <div class="col col-md-8">
                         <i class="fas fa-table mr-1"></i>
                         DataTable
                     </div>
-                    <div class="col text-right">
-                        <form action="{{ URL::route('search') }}" method="GET">
-                            @csrf
-                            <input type="month" name="cari" id="cari">
-                            <button type="submit" class="btn btn-info btn-sm">cari</button>
+                    <div class="col col-md-4">
+                        <form action="{{ url()->current() }}">
+                            <div class="form-row">
+                                <div class="col col-md-8">
+                                    <input type="month" name="search" class="form-control form-control-sm" value="{{ request('search') }}">
+                                </div>
+                                <div class="col col-md-2 text-right">
+                                    <button type="submit" class="btn btn-info btn-sm">cari</button>
+                                </div>
+                                <div class="col col-md-2">
+                                    <a href="{{ URL::route('history.index') }}" class="btn btn-primary btn-sm">clear</a>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -43,6 +51,7 @@
                                 <th scope="col">Saldo</th>
                                 <th scope="col">total</th>
                                 <th scope="col">Saldo</th>
+                                <th scope="col">Bank</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -53,6 +62,7 @@
                                 <th>Awal</th>
                                 <th>Dibayarkan</th>
                                 <th>Akhir</th>
+                                <th>Asal</th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -64,7 +74,7 @@
                                 @if ($item->payment_status == '1')
                                 <td>Lunas</td>
                                 @else
-                                <td class="text-danger">Belum lunas</td>
+                                <td class="text-danger">Belum</td>
                                 @endif
                                 @if (!empty($item->payment_date))
                                 <td>{{ \Carbon\Carbon::parse($item->payment_date)->isoformat('dddd, D MMM Y')}}</td>
@@ -75,6 +85,7 @@
                                 <td>Rp. <span class="money">{{ $item->saldo_awal }}</span></td>
                                 <td>Rp. <span class="money">{{ $item->dibayarkan }}</span></td>
                                 <td>Rp. <span class="money">{{ $item->saldo_akhir }}</span></td>
+                                <td>{{ $item->bank }}</td>
                             </tr>
                             @empty
                             <tr>

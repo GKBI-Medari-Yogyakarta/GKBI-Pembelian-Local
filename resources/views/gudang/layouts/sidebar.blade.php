@@ -9,25 +9,25 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
                     Daftar Pesanan
                 </a>
-                <a class="nav-link" href="#">
+                {{-- <a class="nav-link" href="#">
                     <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
                     Daftar Perbaikan
-                </a>
+                </a> --}}
                 <a class="nav-link {{ (request()->is('user-gudang/barang-datang/*')) ? 'active' : null }}" href="{{ URL::route('bd.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-box"></i></div>
                     Barang Datang
                     <span class="badge badge-danger">{{ $bdnull }}</span>
                 </a>
                 <a class="nav-link {{ (request()->is('user-gudang/barang-datang-proses/pengecekan/*')) ? 'active' : null }}" href="{{ URL::route('test.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-box-open"></i></div>
                     Pengecekan Barang
                 </a>
                 <a class="nav-link {{ (request()->is('user-gudang/barang-datang-proses/qty/*')) ? 'active' : null }}" href="{{ URL::route('qty.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                     NPB Qty
                 </a>
                 <a class="nav-link {{ (request()->is('user-gudang/daftar-barang/*')) ? 'active' : null }}" href="{{ URL::route('item.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-hamburger"></i></div>
                     Daftar Barang
                 </a>
             </div>

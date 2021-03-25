@@ -9,11 +9,11 @@
                     Data Rekening
                 </a>
                 <a class="nav-link {{ (request()->is('user-akuntansi/input-pembayaran/*')) ? 'active' : null}}" href="{{ URL::route('payment.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-money-check-alt"></i></div>
                     Input Pembayaran
                 </a>
-                <a class="nav-link @if(url('user-akuntansi/input-pembayaran/riwayat-pembayaran/*')) 'active' @endif" href="{{ URL::route('history.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
+                <a class="nav-link {{ (request()->is('user-akuntansi/riwayat-pembayaran*')) ? 'active' : null}}" href="{{ URL::route('history.index') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-history"></i></div>
                     Riwayat Pembayaran
                 </a>
             </div>

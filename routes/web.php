@@ -111,8 +111,8 @@ Route::namespace('Akuntansi')->prefix('user-akuntansi')->middleware('akuntansi')
             Route::put('/{id}/detail', 'StoreDetailPayment')->name('payment.detail');
         });
         Route::get('riwayat-pembayaran', 'HistoriesPayment')->name('history.index');
-        Route::prefix('riwayat-pembayaran')->group(function () {
-            Route::get('/search', 'SearchPayment')->name('search');
-        });
+        // Route::prefix('riwayat-pembayaran')->group(function () {
+        //     Route::get('/search', 'SearchPayment')->name('search');
+        // });
     });
 });
