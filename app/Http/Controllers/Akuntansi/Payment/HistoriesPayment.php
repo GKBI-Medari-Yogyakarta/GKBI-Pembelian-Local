@@ -12,12 +12,6 @@ class HistoriesPayment extends Controller
 {
     public function __invoke(Request $req)
     {
-        // $payment = Payment::when($req->search, function ($query) use ($req) {
-        //     $m = Carbon::parse($req->search)->format('m');
-        //     $y = Carbon::parse($req->search)->format('Y');
-        //     $query->whereMonth('created_at', $m)
-        //         ->whereYear('created_at', $y);
-        // })->get();
         $payment = DB::table('payments')
             ->join('rekenings', 'rekenings.id', '=', 'payments.rek_id')
             ->select('payments.*', 'rekenings.bank')
