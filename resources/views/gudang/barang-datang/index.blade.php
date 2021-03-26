@@ -20,13 +20,30 @@
             </div>
         @endif
         <div class="card mb-4 mt-4">
-            <div class="card-header">
-                <i class="fas fa-table mr-1"></i>
-                DataTable
+            <div class="card-header pb-0">
+                <div class="row">
+                    <div class="col col-md-8">
+                        <i class="fas fa-table mr-1"></i>
+                        DataTable barang datang
+                    </div>
+                    <div class="col col-md-4">
+                        <form action="{{ url()->current() }}">
+                            <div class="form-row">
+                                <div class="col col-sm-8">
+                                    <input type="month" class="form-control form-control-sm" name="date" value="{{ request('date') }}">
+                                </div>
+                                <div class="col col-sm-4 text-right">
+                                    <button type="submit" class="btn btn-sm btn-info">cari</button>
+                                    <a href="{{ URL::route('bd.index') }}" class="btn btn-sm btn-primary">clear</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-sm">
+                    <table class="table table-sm" id="dataTable_BD" width="100%">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -150,8 +167,9 @@
 @endsection
 @push('tooltip')
 <script>
-    // $(function () {
-    //     $('[data-toggle="modal"]').tooltip()
-    // })
+    $(function(){
+        $('#dataTable_BD').DataTable({
+        });
+      });
 </script>
 @endpush

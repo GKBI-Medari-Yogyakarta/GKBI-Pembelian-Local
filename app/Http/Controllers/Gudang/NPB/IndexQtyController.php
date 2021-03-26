@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Gudang\NPB;
 
 use App\Http\Controllers\Controller;
 use App\Model\Gudang\BarangDatang;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class IndexQtyController extends Controller
 {
-    public function __invoke()
+    public function __invoke(Request $req)
     {
         $qty = DB::table('npb_qties as qty')
             ->join('testing_items as ti', 'ti.id', '=', 'qty.ti_id')
@@ -19,6 +21,12 @@ class IndexQtyController extends Controller
             ->join('permintaans as p', 'p.id', '=', 't.permintaan_id')
             ->join('bagians as b', 'b.id', '=', 'p.bagian_id')
             ->select('b.nama as bagian', 'p.pemesan as nm_pemesan', 'bd.no_agenda_gudang as nag', 'bd.no_agenda_pembelian as nap', 'ti.no_test', 'qty.*')
+            ->when($req->date, function ($query) use ($req) {
+                $m = Carbon::parse($req->date)->format('m');
+                $y = Carbon::parse($req->date)->format('Y');
+                $query->whereYear('qty.updated_at', $y)
+                    ->whereMonth('qty.updated_at', $m);
+            })
             ->get();
         $bdnull = BarangDatang::notification();
         return \view('gudang.npb-qty.index', compact('qty', 'bdnull'));

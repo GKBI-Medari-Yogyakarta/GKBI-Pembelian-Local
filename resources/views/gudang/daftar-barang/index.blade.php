@@ -34,7 +34,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-sm">
+                    <table class="table table-sm" id="dataTable_Item" width=100%>
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -82,5 +82,11 @@
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     })
+</script>
+<script>
+    $(function(){
+        $('#dataTable_Item').DataTable({
+        });
+      });
 </script>
 @endpush

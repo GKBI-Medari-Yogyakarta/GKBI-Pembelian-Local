@@ -23,12 +23,29 @@
         @endif
         <div class="card mb-4 mt-4">
             <div class="card-header">
-                <i class="fas fa-table mr-1"></i>
-                DataTable User gudang
+                <div class="row">
+                    <div class="col col-md-8">
+                        <i class="fas fa-table mr-1"></i>
+                        DataTable User gudang
+                    </div>
+                    <div class="col col-md-4">
+                        <form action="{{ url()->current() }}">
+                            <div class="form-row">
+                                <div class="col col-sm-8">
+                                    <input type="month" class="form-control form-control-sm" name="date" value="{{ request('date') }}">
+                                </div>
+                                <div class="col col-sm-4 text-right">
+                                    <button type="submit" class="btn btn-sm btn-info">cari</button>
+                                    <a href="{{ URL::route('test.index') }}" class="btn btn-sm btn-primary">clear</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-sm table-bordered">
+                    <table class="table table-sm table-bordered" id="dataTable_Testing" width="100%">
                         <thead>
                             <tr>
                                 <th scope="col" rowspan="2" class="text-center align-middle">#</th>
@@ -111,3 +128,11 @@
     </div>
 </main>
 @endsection
+@push('tooltip')
+<script>
+    $(function(){
+        $('#dataTable_Testing').DataTable({
+        });
+      });
+</script>
+@endpush
