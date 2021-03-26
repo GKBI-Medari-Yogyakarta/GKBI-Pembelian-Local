@@ -23,12 +23,29 @@
             @endif
             <div class="card mb-4 mt-4">
                 <div class="card-header">
-                    <i class="fas fa-table mr-1"></i>
-                    Datatable
+                    <div class="row">
+                        <div class="col col-md-8">
+                            <i class="fas fa-table mr-1"></i>
+                            Datatable
+                        </div>
+                        <div class="col col-md-4">
+                            <form action="{{ url()->current() }}">
+                                <div class="form-row">
+                                    <div class="col col-sm-8">
+                                        <input type="month" class="form-control form-control-sm" name="date" value="{{ request('date') }}">
+                                    </div>
+                                    <div class="col col-sm-4 text-right">
+                                        <button type="submit" class="btn btn-sm btn-info">cari</button>
+                                        <a href="{{ URL::route('ijin-keluar.index') }}" class="btn btn-sm btn-primary">clear</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body p-2">
                     <div class="table-responsive">
-                        <table class="table table-striped table-borderless table-sm">
+                        <table class="table table-striped table-borderless table-sm" id="dataTable_ijin-keluar">
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -70,9 +87,15 @@
     <!-- Modal -->
 @endsection
 @push('tooltip')
-    <script>
-        $(function() {
-            $('[data-toggle="tooltip"]').tooltip('toggle')
-        })
-    </script>
+<script>
+    $(function() {
+        $('[data-toggle="tooltip"]').tooltip('toggle')
+    })
+</script>
+<script>
+    $(function(){
+        $('#dataTable_ijin-keluar').DataTable({
+        });
+      });
+</script>
 @endpush

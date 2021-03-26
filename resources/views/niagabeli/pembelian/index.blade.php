@@ -17,20 +17,18 @@
         <div class="card mb-4 mt-4">
             <div class="card-header">
                 <div class="row">
-                    <div class="col col-md-6">
+                    <div class="col col-md-8">
                         <i class="fas fa-table mr-1"></i>
                         DataTable Permintaan Pembelian
                     </div>
-                    <div class="col col-md-6">
+                    <div class="col col-md-4">
                         <form action="{{ url()->current() }}">
                             <div class="form-row">
                                 <div class="col col-md-7 text-right">
                                     <input type="month" class="form-control form-control-sm" name="date" value="{{ request('date') }}">
                                 </div>
-                                <div class="col col-md-3 text-right">
+                                <div class="col col-md-5 text-right">
                                     <button type="submit" class="btn btn-sm btn-info">urutkan</button>
-                                </div>
-                                <div class="col col-md-2 text-right">
                                     <a href="{{ URL::route('transaction.index') }}" class="btn btn-sm btn-primary">clear</a>
                                 </div>
                             </div>
