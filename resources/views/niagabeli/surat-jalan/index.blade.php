@@ -32,7 +32,7 @@
                         </div>
                         <div class="card-body p-2">
                             <div class="table-responsive">
-                                <table class="table table-striped table-borderless table-sm">
+                                <table class="table table-striped table-borderless table-sm" id="dataTable_BSD">
                                     <thead>
                                     <tr>
                                         <th scope="col">#</th>
@@ -82,7 +82,7 @@
                         </div>
                         <div class="card-body p-2">
                             <div class="table-responsive">
-                                <table class="table table-striped table-borderless table-sm">
+                                <table class="table table-striped table-borderless table-sm" id="dataTable_SJ">
                                     <thead>
                                     <tr>
                                         <th scope="col">#</th>
@@ -139,9 +139,21 @@
     <!-- Modal -->
 @endsection
 @push('tooltip')
-    <script>
-        $(function() {
-            $('[data-toggle="tooltip"]').tooltip('toggle')
-        })
-    </script>
+<script>
+    $(function() {
+        $('[data-toggle="tooltip"]').tooltip('toggle')
+    })
+</script>
+<script>
+    $(function(){
+        $('#dataTable_BSD').DataTable({
+        });
+      });
+</script>
+<script>
+    $(function(){
+        $('#dataTable_SJ').DataTable({
+        });
+      });
+</script>
 @endpush
