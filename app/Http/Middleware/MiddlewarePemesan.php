@@ -18,6 +18,9 @@ class MiddlewarePemesan
         if (auth()->guard('pemesan')->user()) {
             return $next($request);
         }
-        return \redirect()->back()->with(['msg' => 'anda tidak memiliki akses ke halaman yang dituju!!']);
+        if (\session()->has('pemesan')) {
+            return \redirect()->back()->with(['msg' => 'anda tidak memiliki akses ke halaman yang dituju!!']);
+        }
+        return \redirect()->route('login.index')->with(['warning' => 'you must be login']);
     }
 }

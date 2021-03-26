@@ -31,6 +31,6 @@ class StoreToPermintaan extends Controller
             'user_pemesan_id' => $user_pemesan_id,
             'item_id' => $item->id,
         ]);
-        return \redirect()->back()->with(['msg' => "berhasil menambahkan barang $item->kd_barang untuk di re-stok"]);
+        return \redirect()->route('permintaan-pembelian.index')->with(['msg' => "berhasil menambahkan barang $item->kd_barang untuk di re-stok"]);
     }
 }
