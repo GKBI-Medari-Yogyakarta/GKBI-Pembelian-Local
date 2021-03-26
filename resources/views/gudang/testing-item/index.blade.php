@@ -45,7 +45,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-sm table-bordered" id="dataTable_Testing" width="100%">
+                    <table class="table table-sm table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th scope="col" rowspan="2" class="text-center align-middle">#</th>
@@ -128,11 +128,3 @@
     </div>
 </main>
 @endsection
-@push('tooltip')
-<script>
-    $(function(){
-        $('#dataTable_Testing').DataTable({
-        });
-      });
-</script>
-@endpush

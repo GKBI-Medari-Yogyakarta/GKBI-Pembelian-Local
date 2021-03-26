@@ -40,7 +40,7 @@
                         </div>
                         <div class="card-body p-2">
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-sm" id="npb_price">
+                                <table class="table table-striped table-bordered table-sm" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th rowspan="2" scope="col" class="text-center align-middle">#</th>
@@ -117,11 +117,5 @@
     $(function() {
         $('[data-toggle="tooltip"]').tooltip('toggle')
     })
-</script>
-<script>
-    $(function(){
-        $('#npb_price').DataTable({
-        });
-      });
 </script>
 @endpush

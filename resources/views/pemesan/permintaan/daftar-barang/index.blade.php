@@ -35,13 +35,11 @@
                                 <div class="col col-sm-6">
                                     <input type="text" class="form-control form-control-sm" name="keyword" placeholder="cari nama barang atau kode barang" value="{{ request('keyword') }}">
                                 </div>
-                                <div class="col col-sm-4">
+                                <div class="col col-sm-3">
                                     <input type="number" class="form-control form-control-sm" name="limit" placeholder="limit" value="{{ request('limit') }}">
                                 </div>
-                                <div class="col col-sm-1">
+                                <div class="col col-sm-3">
                                     <button type="submit" class="btn btn-sm btn-info">cari</button>
-                                </div>
-                                <div class="col col-sm-1">
                                     <a href="{{ URL::route('input.index') }}" class="btn btn-sm btn-primary">clear</a>
                                 </div>
                             </div>

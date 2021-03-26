@@ -41,7 +41,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-sm table-bordered" id="dataTable_Pay">
+                    <table class="table table-sm table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -105,11 +105,5 @@
 @push('tooltip')
 <script>
     $('#myLargeModal').modal({show: true});
-</script>
-<script>
-    $(function(){
-        $('#dataTable_Pay').DataTable({
-        });
-      });
 </script>
 @endpush

@@ -38,7 +38,7 @@
             </div>
             <div class="card-body p-2">
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-sm" id="dataTable_date" width="100%">
+                    <table class="table table-striped table-bordered table-sm" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th rowspan="2" class="text-center align-middle p-0" scope="col">#</th>
@@ -107,11 +107,5 @@
             delay: {show:0,hide:1500}
         });
     })
-</script>
-<script>
-    $(function(){
-        $('#dataTable_date').DataTable({
-        });
-      });
 </script>
 @endpush

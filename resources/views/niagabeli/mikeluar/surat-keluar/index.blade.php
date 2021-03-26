@@ -45,7 +45,7 @@
                 </div>
                 <div class="card-body p-2">
                     <div class="table-responsive">
-                        <table class="table table-striped table-borderless table-sm" id="dataTable_ijin-keluar">
+                        <table class="table table-striped table-borderless table-sm" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -91,11 +91,5 @@
     $(function() {
         $('[data-toggle="tooltip"]').tooltip('toggle')
     })
-</script>
-<script>
-    $(function(){
-        $('#dataTable_ijin-keluar').DataTable({
-        });
-      });
 </script>
 @endpush

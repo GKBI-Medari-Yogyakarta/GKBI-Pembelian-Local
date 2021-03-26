@@ -39,7 +39,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-sm table-bordered" id="dataTable_ok">
+                    <table class="table table-sm table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th scope="col" class="align-center">#</th>
@@ -101,16 +101,8 @@
 </main>
 @endsection
 @push('tooltip')
-    <script>
-        $('#myLargeModal').modal({show: true});
-    </script>
-@endpush
-@push('tooltip')
 <script>
-    $(function(){
-        $('#dataTable_ok').DataTable({
-        });
-      });
+    $('#myLargeModal').modal({show: true});
 </script>
 <script>
     let x = document.querySelectorAll(".money");

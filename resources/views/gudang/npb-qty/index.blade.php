@@ -51,7 +51,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-sm table-bordered" id="dataTable_NPBQty" width="100%">
+                    <table class="table table-sm table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th scope="col" rowspan="2" class="text-center align-middle">#</th>
@@ -114,11 +114,5 @@
             delay: {show:0,hide:1000}
         });
     })
-</script>
-<script>
-    $(function(){
-        $('#dataTable_NPBQty').DataTable({
-        });
-      });
 </script>
 @endpush

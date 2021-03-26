@@ -21,7 +21,7 @@
             </div>
             <div class="card-body p-3">
                 <div class="table-responsive">
-                    <table class="table table-striped table-borderless" id="dataTable_Rekening">
+                    <table class="table table-striped table-borderless" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th class="p-2" scope="col">#</th>
