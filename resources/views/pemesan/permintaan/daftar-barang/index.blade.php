@@ -38,7 +38,7 @@
                                 <div class="col col-sm-3">
                                     <input type="number" class="form-control form-control-sm" name="limit" placeholder="limit" value="{{ request('limit') }}">
                                 </div>
-                                <div class="col col-sm-3">
+                                <div class="col col-sm-3 text-right">
                                     <button type="submit" class="btn btn-sm btn-info">cari</button>
                                     <a href="{{ URL::route('input.index') }}" class="btn btn-sm btn-primary">clear</a>
                                 </div>

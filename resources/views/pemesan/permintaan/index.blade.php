@@ -27,13 +27,11 @@
                                 <div class="col col-sm-6">
                                     <input type="text" class="form-control form-control-sm" name="keyword" placeholder="cari nama barang atau kode barang" value="{{ request('keyword') }}">
                                 </div>
-                                <div class="col col-sm-4">
+                                <div class="col col-sm-3">
                                     <input type="number" class="form-control form-control-sm" name="limit" min="0" placeholder="limit" value="{{ request('limit') }}">
                                 </div>
-                                <div class="col col-sm-1">
+                                <div class="col col-sm-3 text-right">
                                     <button type="submit" class="btn btn-sm btn-info">cari</button>
-                                </div>
-                                <div class="col col-sm-1">
                                     <a href="{{ URL::route('permintaan-pembelian.index') }}" class="btn btn-sm btn-primary">clear</a>
                                 </div>
                             </div>
@@ -43,7 +41,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-sm">
+                    <table class="table table-striped table-bordered table-sm" width="100%">
                         <thead>
                             <tr>
                                 <th rowspan="2" class="text-center align-middle p-0" scope="col">#</th>
