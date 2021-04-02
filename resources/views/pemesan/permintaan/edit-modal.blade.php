@@ -52,7 +52,11 @@
                         <label for="inputunit_stok" class="col-sm-3 col-form-label">Stok barang dari unit</label>
                         <div class="col-sm-9">
                             {{-- <input type="number" class="form-control @error('unit_stok') is-invalid @enderror" id="inputunit_stok" name="unit_stok" value="{{ $permintaan->unit_stok }}"> --}}
+                            @if ($permintaan->unit_stok === null)
+                            <input type="number" class="form-control @error('unit_stok') is-invalid @enderror" id="inputunit_stok" name="unit_stok" value="{{ old('unit_stok') }}">
+                            @else
                             <input type="number" value="{{ $permintaan->unit_stok }}" name="unit_stok" id="inputunit_stok" readonly>
+                            @endif
                         </div>
                     </div>
                     <div class="form-group row">

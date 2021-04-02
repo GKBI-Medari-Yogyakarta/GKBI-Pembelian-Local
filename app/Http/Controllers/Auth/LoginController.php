@@ -58,7 +58,7 @@ class LoginController extends Controller
         } elseif (Auth::guard('gudang')->attempt($credentials)) {
             return \redirect()->route('bd.index');
         } elseif (Auth::guard('pembelian')->attempt($credentials)) {
-            return \redirect()->route('negara.index');
+            return \redirect()->route('transaction.index');
         } elseif (Auth::guard('akuntansi')->attempt($credentials)) {
             return \redirect()->route('rekening.index');
         } else {

@@ -73,6 +73,17 @@ class PermintaanController extends Controller
         $pesanan = Permintaan::findOrFail($id);
         $user_pemesan_id = Auth::guard('pemesan')->user()->getAuthIdentifier();
         if ($req->input('action') == 'Simpan') {
+            $this->validate($req,[
+                'no_pemesan'=>'required',
+                'tgl_pesanan'=>'required',
+                'unit_stok'=>'required',
+                'tgl_diperlukan'=>'required',
+            ],[
+                'no_pemesan.required'=>'no pemesan belum diisi. TIDAK BOLEH KOSONG!!',
+                'tgl_pesanan.required'=>'tanggal pesanan belum diisi. TIDAK BOLEH KOSONG!!',
+                'unit_stok.required'=>'stok dari unit belum diisi. TIDAK BOLEH KOSONG!!',
+                'tgl_diperlukan.required'=>'tanggal diperlukan belum diisi. TIDAK BOLEH KOSONG!!',
+            ]);
             $pesanan->update([
                 'pemesan' => $req->pemesan,
                 'no_pemesan' => $req->no_pemesan,
@@ -80,6 +91,7 @@ class PermintaanController extends Controller
                 'nm_barang' => $req->nm_barang,
                 'kd_barang' => $req->kd_barang,
                 'spesifikasi' => $req->spesifikasi,
+                'unit_stok' => $req->unit_stok,
                 'jumlah' => $req->jumlah,
                 'tgl_diperlukan' => $req->tgl_diperlukan,
                 'bagian_id' => $req->bagian_id,
@@ -123,7 +135,8 @@ class PermintaanController extends Controller
                 ]);
                 $pesanan->status_direktur = '0';
                 $pesanan->save();
-                return \redirect()->back()->with(['msg' => "Permintaan pesanan dari $pesanan->pemesan ditolak!!"]);
+                DB::commit();
+                return \redirect()->back()->with(['danger' => "Permintaan pesanan dari $pesanan->pemesan ditolak!!"]);
             } catch (\Exception $e) {
                 DB::rollBack();
                 return \redirect()->back()->with(['msg' => 'something went wrong!!']);

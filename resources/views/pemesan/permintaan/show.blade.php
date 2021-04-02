@@ -42,6 +42,14 @@
         {{ session('msg') }}
     </div>
     @endif
+    @if(session('danger'))
+    <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{ session('danger') }}
+    </div>
+    @endif
     @include('pemesan.layouts.required')
     <div class="card mb-4 mt-4">
         <div class="card-header">
@@ -127,11 +135,7 @@
                         <th scope="row">{{$permintaan->id}}</th>
                         <td>{{$permintaan->nm_barang}} / {{$permintaan->spesifikasi}}</td>
                         <td>{{$permintaan->unit_stok}}</td>
-                        @if (!empty($permintaan->gudang_stok))
                         <td>{{$permintaan->gudang_stok}}</td>
-                        @else
-                        <td>belum dilihat / diupdate dari unit Gudang</td>
-                        @endif
                         <td>{{$permintaan->jumlah}}</td>
                         <td> {{\Carbon\Carbon::parse($permintaan->tgl_diperlukan)->isoFormat('dddd, D MMM Y') }} </td>
                         <td>{{$permintaan->realisasi}}</td>
@@ -166,7 +170,7 @@
                             @if ($permintaan->status_direktur != '1' || empty($permintaan->no_pemesan) || empty($permintaan->tgl_diperlukan))
                             <h4>Belum di acc</h4>
                             <button data-toggle="modal" data-target="#accPermintaan" class="btn btn-outline-primary btn-sm">
-                                Acc sekarang ? hhh
+                                Acc sekarang
                             </button>
                             @else
                             <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>

@@ -18,17 +18,17 @@
                 <div class="modal-footer">
                     <div class="row">
                         <div class="col">
-                            @if (!empty($permintaan->gudang_stok))
+                            @if (!empty($permintaan->jumlah) && !empty($permintaan->no_pemesan) && !empty($permintaan->tgl_diperlukan) && $permintaan->unit_stok !== null)
                             <input type="submit" name="action" class="btn btn-primary" value="acc">
                             @else
-                            <button disabled class="btn btn-primary status">Gudang stok belum diisi</button>
+                            <button disabled class="btn btn-primary status">data belum lengkap</button>
                             @endif
                         </div>
                         <div class="col">
-                            @if (!empty($permintaan->gudang_stok))
+                            @if (!empty($permintaan->jumlah) && !empty($permintaan->no_pemesan) && !empty($permintaan->tgl_diperlukan) && $permintaan->unit_stok !== null)
                             <input type="submit" name="action" class="btn btn-warning" value="tidak">
                             @else
-                            <button disabled class="btn btn-primary status">Gudang stok belum diisi</button>
+                            <button disabled class="btn btn-primary status">data belum lengkap</button>
                             @endif
                         </div>
                         <div class="col">
