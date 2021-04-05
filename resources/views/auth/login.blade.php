@@ -10,8 +10,8 @@
                         <form action="{{ URL::route('post.login') }}" method="POST">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <label class="large mb-1" for="inputEmailAddress">Nama</label>
-                                <input class="form-control py-4" id="inputEmailAddress" type="text" placeholder="Masukkan nama user" value="{{ old('name') }}" name="name"/>
+                                <label class="large mb-1" for="inputName">Nama</label>
+                                <input class="form-control py-4" id="inputName" type="text" placeholder="Masukkan nama user" value="{{ old('name') }}" name="name"/>
                                 @if ($errors->has('name'))
                                     <span class="error">
                                     {{ $errors->first('name') }}

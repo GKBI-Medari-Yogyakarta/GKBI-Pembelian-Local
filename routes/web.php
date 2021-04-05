@@ -2,12 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::namespace('Auth')->group(function () {
+Route::namespace ('Auth')->group(function () {
     Route::get('/', 'LoginController@index')->name('login.index');
     Route::post('post-login', 'LoginController@formLogin')->name('post.login');
     Route::get('logout', 'LoginController@logout')->name('logout');
 });
-Route::namespace('Admin')->middleware('admin')->group(function () {
+Route::namespace ('Admin')->middleware('admin')->group(function () {
     Route::get('admin', 'AdminController@index')->name('admin.index');
     Route::resource('admin-gudang', 'GudangController');
     Route::resource('admin-pemesan', 'PemesanController');
@@ -17,16 +17,22 @@ Route::namespace('Admin')->middleware('admin')->group(function () {
     Route::resource('admin-unit', 'UnitController');
     Route::resource('admin-bagian', 'BagianController');
 });
-Route::namespace('Pemesan')->middleware('pemesan')->group(function () {
+Route::namespace ('Pemesan')->middleware('pemesan')->group(function () {
     Route::prefix('user-pemesan')->group(function () {
         Route::resource('permintaan-pembelian', 'PermintaanController');
-        Route::namespace('FromStock')->group(function () {
+        Route::namespace ('FromStock')->group(function () {
             Route::get('input-barang', 'IndexStock')->name('input.index');
             Route::post('input-barang/{id}', 'StoreToPermintaan')->name('input.store');
         });
+        Route::namespace ('Password')->group(function () {
+            Route::put('changed/{pemesan}', 'ChangePassword')->name('pemesan.password');
+        });
     });
 });
-Route::namespace('Niagabeli')->prefix('user-pembelian')->middleware('pembelian')->group(function () {
+Route::namespace ('Niagabeli')->prefix('user-pembelian')->middleware('pembelian')->group(function () {
+    Route::namespace ('Password')->group(function () {
+        Route::put('changed/{pembelian}', 'ChangePassword')->name('niagabeli.password');
+    });
     Route::get('alamat', 'NegaraController@index')->name('negara.index');
     Route::resource('negara', 'NegaraController')->except('index');
     Route::resource('provinsi', 'ProvinsiController');
@@ -49,38 +55,41 @@ Route::namespace('Niagabeli')->prefix('user-pembelian')->middleware('pembelian')
         Route::resource('jalan', 'SuratJalanController')->except('store');
         Route::post('jalan/{id}', 'SuratJalanController@store')->name('jalan.store');
         //Surat Ijin Masuk Barang Datang
-        Route::namespace('Surat')->group(function () {
+        Route::namespace ('Surat')->group(function () {
             Route::get('ijin-masuk', 'IndexSuratIjinMasuk')->name('sim.index');
             Route::get('ijin-masuk/{id}', 'EditSuratIjinMasuk')->name('sim.edit');
             Route::put('ijin-masuk/{id}', 'UpdateSuratIjinMasuk')->name('sim.update');
         });
-        Route::namespace('Mikeluar')->group(function () {
+        Route::namespace ('Mikeluar')->group(function () {
             Route::get('mikeluar', 'IndexMikeluar')->name('mikeluar.index');
             Route::get('mikeluar/{id}', 'EditMikeluar')->name('mikeluar.edit');
             Route::put('mikeluar/{id}', 'UpdateMikeluar')->name('mikeluar.update');
             Route::put('mikeluar/{id}/store', 'StoreMikeluarToOther')->name('mikeluar.store');
-            Route::namespace('Ijin')->prefix('MI')->group(function () {
+            Route::namespace ('Ijin')->prefix('MI')->group(function () {
                 Route::get('ijin-keluar', 'IndexIjinController')->name('ijin-keluar.index');
                 Route::get('ijin-keluar/{id}', 'EditIjinController')->name('ijin-keluar.edit');
                 Route::put('ijin-keluar/{id}', 'UpdateIjinController')->name('ijin-keluar.update');
             });
         });
-        Route::namespace('NPB')->prefix('pembuatan-npb-price')->group(function () {
+        Route::namespace ('NPB')->prefix('pembuatan-npb-price')->group(function () {
             Route::get('/', 'IndexNpbPrice')->name('price.index');
             Route::put('/{id}', 'UpdateNpbPrice')->name('price.update');
         });
     });
 });
-Route::namespace('Gudang')->prefix('user-gudang')->middleware('gudang')->group(function () {
+Route::namespace ('Gudang')->prefix('user-gudang')->middleware('gudang')->group(function () {
+    Route::namespace ('Password')->group(function () {
+        Route::put('changed/{gudang}', 'ChangePassword')->name('gudang.password');
+    });
     Route::resource('permintaan', 'GudangPermintaanController');
     //Barang Datang
-    Route::namespace('BarangDatang')->group(function () {
+    Route::namespace ('BarangDatang')->group(function () {
         Route::get('barang-datang', 'IndexBarangDatang')->name('bd.index');
         Route::get('barang-datang/{id}', 'EditBarangDatang')->name('bd.edit');
         Route::put('barang-datang/{id}', 'UpdateBarangDatang')->name('bd.update');
     });
     //Pengecekan barang
-    Route::namespace('TestingItem')->prefix('barang-datang-proses')->group(function () {
+    Route::namespace ('TestingItem')->prefix('barang-datang-proses')->group(function () {
         Route::get('pengecekan', 'IndexTestingItem')->name('test.index');
         Route::get('pengecekan/{id}', 'EditTestingItem')->name('test.edit');
         Route::post('pengecekan/{id}', 'StoreTestingItem')->name('test.store');
@@ -93,16 +102,20 @@ Route::namespace('Gudang')->prefix('user-gudang')->middleware('gudang')->group(f
         Route::put('qty/{id}', 'UpdateQtyController')->name('qty.update');
         Route::put('qty/{id}/posting', 'PostQtyController')->name('qty.post');
     });
-    Route::namespace('Item')->prefix('daftar-barang')->group(function () {
+    Route::namespace ('Item')->prefix('daftar-barang')->group(function () {
         Route::get('/', 'IndexItem')->name('item.index');
         Route::put('/{id}', 'UpdateStockItem')->name('item.update');
         Route::get('/{id}/edit', 'EditItemToStore')->name('item.edit');
         Route::put('/{id}/store', 'StoreItemAgain')->name('item.store');
     });
 });
-Route::namespace('Akuntansi')->prefix('user-akuntansi')->middleware('akuntansi')->group(function () {
+Route::namespace ('Akuntansi')->prefix('user-akuntansi')->middleware('akuntansi')->group(function () {
+    Route::namespace ('Password')->group(function () {
+        Route::put('changed/{akuntansi}', 'ChangePassword')->name('akuntansi.password');
+    });
+
     Route::resource('rekening', 'RekController');
-    Route::namespace('Payment')->group(function () {
+    Route::namespace ('Payment')->group(function () {
         Route::prefix('input-pembayaran')->group(function () {
             Route::get('/', 'IndexPayment')->name('payment.index');
             Route::get('/{id}', 'InputPayment')->name('payment.input');

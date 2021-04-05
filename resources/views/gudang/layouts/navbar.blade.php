@@ -18,6 +18,11 @@
     </form>
     <!-- Navbar-->
     <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item">
+            <a class="nav-link trigger-btn"  href="#changePw" data-toggle="modal">
+                <i class="fas fa-user-circle"></i>
+            </a>
+        </li>
         <li class="nav-item dropdown">
             <a class="nav-link trigger-btn"  href="#myModal" data-toggle="modal">
                 <i class="fas fa-sign-out-alt"></i>
@@ -25,6 +30,57 @@
         </li>
     </ul>
 </nav>
+<!-- Modal Edit Profile-->
+<div class="modal fade" id="changePw" tabindex="-1" aria-labelledby="changePwModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <strong>
+                    <i class="fas fa-user-circle" style="font-size: xxx-large; color: red;"></i>
+                </strong>
+                <br><br>
+                <h3 class="mb-2">Edit Profile</h3>
+                <form action="{{ URL::route('gudang.password',auth()->guard('gudang')->user()->id) }}" method="post">
+                    @csrf
+                    @method('put')
+                    <input type="text" name="name" value="{{ auth()->guard('gudang')->user()->name . old('name'), 'default' }}" class="form-control mb-4 @error('name') is-invalid @enderror">
+                    @error('name')
+                    <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ $message }}
+                    </div>
+                    @enderror
+                    <input type="email" name="email" value="{{ auth()->guard('gudang')->user()->email }}" class="form-control mb-4 @error('email') is-invalid @enderror">
+                    @error('email')
+                    <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ $message }}
+                    </div>
+                    @enderror
+                    <input type="password" name="password" value="{{ old('password') }}" class="form-control mb-4 @error('password') is-invalid @enderror">
+                    @error('password')
+                    <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ $message }}
+                    </div>
+                    @enderror
+                    <div class="row">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Modal Confirm Logout-->
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
