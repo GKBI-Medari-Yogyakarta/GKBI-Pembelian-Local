@@ -42,17 +42,23 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="inputunit_stok" class="col-sm-3 col-form-label">Stok barang dari unit</label>
+                        <label for="inputkd_barang" class="col-sm-3 col-form-label">Kode barang</label>
                         <div class="col-sm-9">
-                            <input type="number" class="form-control @error('unit_stok') is-invalid @enderror" id="inputunit_stok" name="unit_stok" value="{{ old('unit_stok') }}">
+                            <input type="text" class="form-control @error('kd_barang') is-invalid @enderror" id="inputkd_barang" name="kd_barang" value="{{ old('kd_barang') }}">
                         </div>
                     </div>
-                    {{-- <div class="form-group row">
+                    <div class="form-group row">
+                        <label for="inputunit_stok" class="col-sm-3 col-form-label">Stok barang dari unit</label>
+                        <div class="col-sm-9">
+                            <input type="number" value="{{old('unit_stok')}}" class="form-control" name="unit_stok" id="inputunit_stok">
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="inputgudang_stok" class="col-sm-3 col-form-label">Stok barang dari gudang</label>
                         <div class="col-sm-9">
-                            <input type="number" class="form-control @error('gudang_stok') is-invalid @enderror" id="inputgudang_stok" name="gudang_stok" value="{{ old('gudang_stok') }}">
+                            <input type="number" value="0" name="gudang_stok" id="inputgudang_stok" readonly>
                         </div>
-                    </div> --}}
+                    </div>
                     <div class="form-group row">
                         <label for="inputjumlah" class="col-sm-3 col-form-label">Jumlah barang yang diminta</label>
                         <div class="col-sm-9">

@@ -17,5 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call(KabupatenSeeder::class);
         $this->call(UnitSeeder::class);
         $this->call(BagianSeeder::class);
+        $this->call(PermintaanSeeder::class);
+        $this->call(TransactionSeeder::class);
+        $this->call(SupplierSeeder::class);
     }
 }

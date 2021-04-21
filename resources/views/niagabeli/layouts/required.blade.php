@@ -104,3 +104,79 @@
     {{ $message }}
 </div>
 @enderror
+
+{{-- Permintaan Pembelian --}}
+@error('no_niaga')
+<div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    {{ $message }}
+</div>
+@enderror
+@error('tgl_status')
+<div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    {{ $message }}
+</div>
+@enderror
+@error('rencana_beli')
+<div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    {{ $message }}
+</div>
+@enderror
+@error('no_transaction')
+<div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    {{ $message }}
+</div>
+@enderror
+@error('keterangan')
+<div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    {{ $message }}
+</div>
+@enderror
+
+{{-- Surat Jalan & Surat Ijin Masuk --}}
+@error('spb_id')
+<div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    {{ $message }}
+</div>
+@enderror
+@error('no_jalan')
+<div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    {{ $message }}
+</div>
+@enderror
+@error('tgl_')
+<div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    {{ $message }}
+</div>
+@enderror
+@error('no_ijin')
+<div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    {{ $message }}
+</div>
+@enderror

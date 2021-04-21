@@ -16,8 +16,30 @@
         @include('niagabeli.layouts.required')
         <div class="card mb-4 mt-4">
             <div class="card-header">
-                <i class="fas fa-table mr-1"></i>
-                DataTable Alamat Supplier
+                <div class="row">
+                    <div class="col col-md-3">
+                        <i class="fas fa-table mr-1"></i>
+                        DataTable Alamat Supplier
+                    </div>
+                    <div class="col col-md-9">
+                        <form action="{{ url()->current() }}">
+                            <div class="form-row">
+                                <div class="col">
+                                    <input type="text" class="form-control form-control-sm" name="searching" placeholder="cari nama/pemilik toko" value="{{ request('searching') }}">
+                                </div>
+                                <div class="col col-sm-2">
+                                    <input type="number" class="form-control form-control-sm" name="limit" min="0" placeholder="limit" value="{{ request('limit') }}">
+                                </div>
+                                <div class="col col-sm-1">
+                                    <button type="submit" class="btn btn-sm btn-info">cari</button>
+                                </div>
+                                <div class="col col-sm-1">
+                                    <a href="{{ URL::route('supplier.index') }}" class="btn btn-sm btn-primary">clear</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
             <div class="card-body p-2">
                 <div class="table-responsive">
@@ -50,7 +72,7 @@
                                 <td>{{ $s->nm_kab }}</td>
                                 <td>{{ $s->alamat }}</td>
                                 <td>{{ $s->email }}</td>
-                                <td>{{ $s->telp }}</td>
+                                <td style="width: 10%;">{{ $s->telp }}</td>
                                 <td>{{ $s->fax }}</td>
                                 <td>{{ $s->npwp }}</td>
                                 <td>

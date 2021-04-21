@@ -20,7 +20,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -49,12 +49,8 @@
                             </tr>
                             @empty
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>
-                                    <a href="edit-siswa.html" class="btn btn-outline-warning">Edit</a>
-                                    <a href="#" class="btn btn-outline-danger">Hapus</a>
+                                <td colspan="4">
+                                    <h3>User gudang kosong!!</h3>
                                 </td>
                             </tr>
                             @endforelse
@@ -67,3 +63,11 @@
     </div>
 </main>
 @endsection
+@push('tooltip')
+<script>
+    $(function(){
+        $('#dataTable_Pemesan').DataTable({
+        });
+    });
+</script>
+@endpush

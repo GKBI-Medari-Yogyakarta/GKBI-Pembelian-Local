@@ -13,4 +13,8 @@ class Transaction extends Model
     {
         return $this->belongsTo(Permintaan::class, 'permintaan_id');
     }
+    public function transactionDetail()
+    {
+        return $this->morphOne(TransactionDetail::class,'transaction');
+    }
 }

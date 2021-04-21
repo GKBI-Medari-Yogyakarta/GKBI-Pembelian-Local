@@ -28,6 +28,9 @@
         width: 10px;
         margin: 0px;
     }
+    .status{
+        width: max-content;
+    }
 </style>
 @section('main')
 <div class="container-fluid">
@@ -37,6 +40,14 @@
             <span aria-hidden="true">&times;</span>
         </button>
         {{ session('msg') }}
+    </div>
+    @endif
+    @if(session('danger'))
+    <div class="alert alert-danger alert-dismissible" role="alert" style="z-index: 1">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{ session('danger') }}
     </div>
     @endif
     @include('pemesan.layouts.required')
@@ -53,12 +64,20 @@
                             <tr>
                                 <th scope="row" class="h-nomor pl-0">Nomor</th>
                                 <td class="h-t w-titik"><strong>:</strong></td>
-                                <td colspan="3" class="h-t pl-0">Mark</td>
+                                @if (!empty($t->tgl_status))
+                                <td colspan="3" class="h-t pl-0">{{ $t->no_niaga }}</td>
+                                @else
+                                <td colspan="3" class="h-t pl-0"></td>
+                                @endif
                             </tr>
                             <tr>
                                 <th scope="row" class="h-nomor pl-0">Tanggal</th>
                                 <td class="h-t w-titik"><strong>:</strong></td>
-                                <td colspan="3" class="h-t pl-0">Jacob</td>
+                                @if (!empty($t->tgl_status))
+                                <td colspan="3" class="h-t pl-0">{{ \Carbon\Carbon::parse($t->tgl_status)->isoformat('dddd, D MMM Y') }}</td>
+                                @else
+                                <td colspan="3" class="h-t pl-0"></td>
+                                @endif
                             </tr>
                         </tbody>
                     </table>
@@ -116,11 +135,7 @@
                         <th scope="row">{{$permintaan->id}}</th>
                         <td>{{$permintaan->nm_barang}} / {{$permintaan->spesifikasi}}</td>
                         <td>{{$permintaan->unit_stok}}</td>
-                        @if (!empty($permintaan->gudang_stok))
                         <td>{{$permintaan->gudang_stok}}</td>
-                        @else
-                        <td>belum dilihat / diupdate dari unit Gudang</td>
-                        @endif
                         <td>{{$permintaan->jumlah}}</td>
                         <td> {{\Carbon\Carbon::parse($permintaan->tgl_diperlukan)->isoFormat('dddd, D MMM Y') }} </td>
                         <td>{{$permintaan->realisasi}}</td>
@@ -152,8 +167,11 @@
                             @endif
                         </td>
                         <td class="text-center align-middle ttd">
-                            @if ($permintaan->status_direktur != '1')
+                            @if ($permintaan->status_direktur != '1' || empty($permintaan->no_pemesan) || empty($permintaan->tgl_diperlukan))
                             <h4>Belum di acc</h4>
+                            <button data-toggle="modal" data-target="#accPermintaan" class="btn btn-outline-primary btn-sm">
+                                Acc sekarang
+                            </button>
                             @else
                             <span><img class="img-ttd" src="{{ asset('assets/img/ttd_.jpg') }}" alt="ttd_"></span>
                             @endif
@@ -200,7 +218,7 @@
             </span>
         </div>
         @endif
-        @if ($permintaan->status_permintaan != '1' && $permintaan->status_direktur != '1')
+        @if ($permintaan->status_permintaan != '1' && $permintaan->status_direktur == null)
         <div class="col">
             <form action="{{ URL::route('permintaan-pembelian.destroy',$permintaan->id) }}" method="POST" class="btn btn-sm p-0">
                 @method('delete')
@@ -211,7 +229,7 @@
             </form>
         </div>
         @else
-        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Tidak boleh dihapus, status sudah diacc direktur" data-placement="left">
+        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Tidak boleh dihapus, status sudah diacc/ditolak direktur" data-placement="left">
             <button class="btn btn-outline-danger btn-sm" style="pointer-events: none;" type="button" disabled>Hapus</button>
         </span>
         @endif
@@ -219,6 +237,7 @@
 </div>
 @endsection
 @include('pemesan.permintaan.edit-modal')
+@include('pemesan.permintaan.acc-modal')
 @push('tooltip')
 <script>
     $(function() {

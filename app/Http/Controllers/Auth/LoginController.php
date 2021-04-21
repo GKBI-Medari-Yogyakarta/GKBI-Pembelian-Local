@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -55,13 +56,20 @@ class LoginController extends Controller
         } elseif (Auth::guard('pemesan')->attempt($credentials)) {
             return \redirect()->route('permintaan-pembelian.index');
         } elseif (Auth::guard('gudang')->attempt($credentials)) {
-            return \redirect()->route('pesanan.index');
+            return \redirect()->route('bd.index');
         } elseif (Auth::guard('pembelian')->attempt($credentials)) {
-            return \redirect()->route('negara.index');
+            return \redirect()->route('transaction.index');
         } elseif (Auth::guard('akuntansi')->attempt($credentials)) {
             return \redirect()->route('rekening.index');
         } else {
-            \dd('akun tidak ada');
+            return \redirect()->back()->with(['warning' => 'akun tidak ditemukan. silahkan request akun ke IT Support!!']);
         }
+    }
+    //to logout all user
+    public function logout()
+    {
+        Session::flush();
+        Auth::logout();
+        return \redirect()->route('login.index');
     }
 }

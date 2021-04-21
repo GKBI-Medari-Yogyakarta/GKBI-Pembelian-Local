@@ -10,8 +10,8 @@
                         <form action="{{ URL::route('post.login') }}" method="POST">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <label class="large mb-1" for="inputEmailAddress">Nama</label>
-                                <input class="form-control py-4" id="inputEmailAddress" type="text" placeholder="Masukkan nama user" value="{{ old('name') }}" name="name"/>
+                                <label class="large mb-1" for="inputName">Nama</label>
+                                <input class="form-control py-4" id="inputName" type="text" placeholder="Masukkan nama user" value="{{ old('name') }}" name="name"/>
                                 @if ($errors->has('name'))
                                     <span class="error">
                                     {{ $errors->first('name') }}
@@ -31,6 +31,14 @@
                                 <button type="submit" class="btn btn-primary">Login</button>
                             </div>
                         </form>
+                        @if(session('warning'))
+                        <div class="alert alert-danger alert-dismissible mt-2 mb-0" role="alert" style="z-index: 1">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{ session('warning') }}
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>

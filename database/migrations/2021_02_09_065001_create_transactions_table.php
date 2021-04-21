@@ -17,13 +17,13 @@ class CreateTransactionsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('permintaan_id')->nullable();
             $table->foreign('permintaan_id')->references('id')->on('permintaans');
-            $table->date('tgl_status'); //tgl niaga pada form
-            $table->string('no_niaga'); //nomor niaga pada form
+            $table->date('tgl_status')->nullable(); //tgl niaga pada form
+            $table->string('no_niaga')->nullable(); //nomor niaga pada form
             $table->enum('status_niaga', ['acc', 'tidak', '0'])->default('0'); //untuk status di acc atau tidak
-            $table->string('rencana_beli');
+            $table->string('rencana_beli')->nullable();
             $table->string('perkiraan_biaya')->nullable();
             $table->enum('payment_type', ['cash', 'credit', 'hutang', 'barter'])->default('hutang');
-            $table->string('keterangan');
+            $table->string('keterangan')->nullable();
             $table->enum('status_beli', ['1', '0'])->default('0'); //status pembelian
             $table->string('no_transaction')->nullable(); //nomor pembelian / transaction
             $table->timestamps();

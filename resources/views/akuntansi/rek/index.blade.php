@@ -21,7 +21,7 @@
             </div>
             <div class="card-body p-3">
                 <div class="table-responsive">
-                    <table class="table table-striped table-borderless">
+                    <table class="table table-striped table-borderless" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th class="p-2" scope="col">#</th>
@@ -39,7 +39,7 @@
                                 <td class="p-2">{{ $loop->iteration }}</td>
                                 <td class="p-2">{{ $rekening->bank }}</td>
                                 <td class="p-2">{{ $rekening->no_rekening }}</td>
-                                <td class="p-2">Rp. {{ $rekening->saldo }}</td>
+                                <td class="p-2">Rp. <span class="money">{{ $rekening->saldo }}</span></td>
                                 <td class="p-2">{{ $rekening->status }}</td>
                                 <td class="p-2">
                                     {{ $rekening->sup_id }}
@@ -84,5 +84,20 @@
     $(function() {
         $('[data-toggle="tooltip"]').tooltip('toggle')
     })
+</script>
+<script>
+    let x = document.querySelectorAll(".money");
+    for (let i = 0, len = x.length; i < len; i++) {
+        let num = Number(x[i].innerHTML)
+                  .toLocaleString('ID');
+        x[i].innerHTML = num;
+        x[i].classList.add("currSign");
+    }
+</script>
+<script>
+    $(function(){
+        $('#dataTable_Rekening').DataTable({
+        });
+      });
 </script>
 @endpush

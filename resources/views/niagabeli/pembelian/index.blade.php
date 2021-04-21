@@ -16,12 +16,29 @@
         @include('niagabeli.layouts.required')
         <div class="card mb-4 mt-4">
             <div class="card-header">
-                <i class="fas fa-table mr-1"></i>
-                DataTable Permintaan Pembelian
+                <div class="row">
+                    <div class="col col-md-8">
+                        <i class="fas fa-table mr-1"></i>
+                        DataTable Permintaan Pembelian
+                    </div>
+                    <div class="col col-md-4">
+                        <form action="{{ url()->current() }}">
+                            <div class="form-row">
+                                <div class="col col-md-7 text-right">
+                                    <input type="month" class="form-control form-control-sm" name="date" value="{{ request('date') }}">
+                                </div>
+                                <div class="col col-md-5 text-right">
+                                    <button type="submit" class="btn btn-sm btn-info">urutkan</button>
+                                    <a href="{{ URL::route('transaction.index') }}" class="btn btn-sm btn-primary">clear</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
             <div class="card-body p-2">
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-sm">
+                    <table class="table table-striped table-bordered table-sm" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th rowspan="2" class="text-center align-middle p-0" scope="col">#</th>
@@ -39,42 +56,42 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @forelse ($permintaans as $p)
-                            <tr>
+                            @forelse ($permintaan as $p)
+                            <tr @if(empty($p->status_niaga_pembelian)) class="text-danger" @endif>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $p->nm_barang }}</td>
                                 <td>{{ $p->spesifikasi }}</td>
                                 <td>{{ $p->unit_stok }}</td>
-                                @if (empty($perminstaans->gudang_stok))
                                 <td>{{$p->gudang_stok}}</td>
-                                @else
-                                <td>belum dilihat / diupdate dari unit Gudang</td>
-                                @endif
-                                <td>{{ $p->jumlah }}</td>
+                                <td>{{ $p->rencana_beli }}</td>
                                 <td>{{\Carbon\Carbon::parse($p->tgl_diperlukan)->isoFormat('dddd, D MMM Y') }}</td>
                                 <td>
                                     {{ $p->keterangan }}
                                 </td>
                                 <td>
-                                    <a href="{{ URL::route('permintaan.show',$p->id) }}" class="btn bg-transparent p-0 align-middle text-center" id="detail" data-toggle="tooltip" data-placement="top" title="Detail">
+                                    @if ($p->status_beli !== '1')
+                                        @if ($p->status_niaga === 'acc')
+                                        <a class="btn btn-primary" href="{{ URL::route('detail.edit',$p->id) }}">proses pembelian</a>
+                                        @else
+                                        <button disabled class="btn btn-warning">data belum lengkap</button>
+                                        @endif
+                                    @else
+                                    <button disabled class="btn btn-outline-danger">sudah terbeli</button>
+                                    @endif
+                                    <a href="{{ URL::route('transaction.show',$p->id) }}" class="btn bg-transparent p-0 align-middle text-center" id="detail" data-toggle="tooltip" data-placement="right" title="Detail">
                                         <i class="fas fa-info-circle text-info h4 m-0"></i>
                                     </a>
                                 </td>
                             </tr>
-                            @empty --}}
+                            @empty
                             <tr>
-                                <td colspan="8" class="text-center align-middle"><h2><strong>Daftar permintaan kosong!!</strong></h2></td>
+                                <td colspan="9" class="text-center align-middle"><h2><strong>Daftar permintaan kosong!!</strong></h2></td>
                             </tr>
-                            {{-- @endforelse --}}
+                            @endforelse
                         </tbody>
                     </table>
-                    <div class="ml-2 mt-4 mb-4">
-                        <button data-toggle="modal" data-target="#tambahSupplier" class="btn btn-outline-primary btn-sm">
-                            Edit Pembelian
-                        </button>
-                    </div>
-                    <div class="mt-2 ml-2">
-                        {{-- {{ $supplier->links() }} --}}
+                    <div class="mt-2 ml-0">
+                        {{-- {{ $permintaan->links() }} --}}
                     </div>
                 </div>
             </div>
@@ -82,12 +99,13 @@
     </div>
 </main>
 <!-- Modal -->
-{{-- @include('niagabeli.supplier.modal') --}}
 @endsection
 @push('tooltip')
 <script>
     $(function() {
-        $('[data-toggle="tooltip"]').tooltip('toggle')
+        $('[data-toggle="tooltip"]').tooltip({
+            delay: {show:0,hide:1500}
+        });
     })
 </script>
 @endpush
