@@ -1,33 +1,36 @@
 ## SET UP
-
-git clone https://github.com/WahidinAji/GKBI-Pembelian-Local.git GKBI
-
+```bash
+$ git clone https://github.com/WahidinAji/GKBI-Pembelian-Local.git GKBI
+```
 ##
-
-cd GKBI
-
+```bash
+$ cd GKBI
+```
 ##
-
-composer install
-
+```bash
+$ composer install
+```
 ##
-
-php artisan migrate
-
+```bash
+$ cp .env.example .env
+```
 ##
-
-php artisan db:seed
-
+```bash
+$ php artisan key:generate
+```
 ##
-
-php artisan key:generate
-
+```bash
+$ php artisan migrate
+```
 ##
-
-php artisan serve --port=2020
-
+```bash
+$ php artisan db:seed
+```
 ##
-
+```bash
+$ php artisan serve --port=2020
+```
+##
 Jangan Lupa Bahagia dan Bersyukur Selalu!!
 ##
 ##
