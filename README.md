@@ -20,11 +20,7 @@ $ php artisan key:generate
 ```
 ##
 ```bash
-$ php artisan migrate
-```
-##
-```bash
-$ php artisan db:seed
+$ php artisan migrate --seed
 ```
 ##
 ```bash
