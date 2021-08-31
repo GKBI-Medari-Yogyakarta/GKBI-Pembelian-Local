@@ -24,7 +24,7 @@ class BagianRequest extends FormRequest
     public function rules()
     {
         return [
-            'no_identitas' => 'required|unique:bagians',
+            'no_identitas' => 'required|unique:bagians|integer',
             'unit_id' => 'required',
             'nama' => 'required|unique:bagians',
         ];
