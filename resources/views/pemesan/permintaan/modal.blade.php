@@ -56,7 +56,7 @@
                     <div class="form-group row">
                         <label for="inputgudang_stok" class="col-sm-3 col-form-label">Stok barang dari gudang</label>
                         <div class="col-sm-9">
-                            <input type="number" value="0" name="gudang_stok" id="inputgudang_stok" readonly>
+                            <input type="number" value="0" class="form-control" name="gudang_stok" id="inputgudang_stok" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
