@@ -24,7 +24,7 @@
                     @method('put')
                     {{ csrf_field() }}
                     <div class="modal-header bg-primary">
-                        <h5 class="modal-title text-white" id="bagianLabel">Edit Data Unit {{ $bagian->nama }}</h5>
+                        <h5 class="modal-title text-white" id="bagianLabel">Edit Data Bagian {{ $bagian->nama }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true" class="text-white">&times;</span>
                         </button>

@@ -30,11 +30,11 @@
                                 <td>{{ $units->alias }}</td>
                                 <td>
                                     <a href="{{ URL::route('admin-unit.edit',$units->id) }}" class="btn btn-outline-warning">Edit</a>
-                                    <form action="{{ URL::route('admin-bagian.destroy',$units->id) }}"
+                                    <form action="{{ URL::route('admin-unit.destroy',$units->id) }}"
                                         method="POST" class="btn">
                                         @method('delete')
                                         @csrf
-                                        <button class="btn btn-outline-danger">
+                                        <button onclick="return confirm('Are you sure?')" class="btn btn-outline-danger">
                                             Hapus
                                         </button>
                                     </form>

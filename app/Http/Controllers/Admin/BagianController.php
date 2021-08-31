@@ -32,7 +32,6 @@ class BagianController extends Controller
     //save / store data
     public function store(BagianRequest $req)
     {
-
         Bagian::create([
             'no_identitas' => $req->no_identitas,
             'unit_id' => $req->unit_id,

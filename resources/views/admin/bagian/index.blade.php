@@ -36,7 +36,7 @@
                                         method="POST" class="btn">
                                         @method('delete')
                                         @csrf
-                                        <button class="btn btn-outline-danger">
+                                        <button onclick="return confirm('are you sure?')" class="btn btn-outline-danger">
                                             Hapus
                                         </button>
                                     </form>
