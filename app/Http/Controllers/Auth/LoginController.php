@@ -52,7 +52,7 @@ class LoginController extends Controller
         ]);
         $credentials = $request->only('name', 'password');
         if (Auth::attempt($credentials)) {
-            return \redirect()->route('admin.index');
+            return \redirect()->route('admin-unit.index');
         } elseif (Auth::guard('pemesan')->attempt($credentials)) {
             return \redirect()->route('permintaan-pembelian.index');
         } elseif (Auth::guard('gudang')->attempt($credentials)) {
