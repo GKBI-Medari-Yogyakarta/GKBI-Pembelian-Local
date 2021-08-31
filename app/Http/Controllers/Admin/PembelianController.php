@@ -56,7 +56,7 @@ class PembelianController extends Controller
         if (empty($req->password)) {
             $user->password = $user->password;
         }
-        $user->password = $req->password;
+        $user->password = Hash::make($req->password);
         $user->save();
         return \redirect()->route('admin-pembelian.index')->with(['msg' => "Berhasil merubah data user $req->name"]);
     }
